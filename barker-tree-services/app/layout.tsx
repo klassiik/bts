@@ -6,6 +6,7 @@ import '@/styles/globals.css'
 // Lazy load components
 const Header = dynamic(() => import('@/components/Header'))
 const Footer = dynamic(() => import('@/components/Footer'))
+const FloatingContactButton = dynamic(() => import('@/components/FloatingContactButton'))
 
 /* GEO: Enhanced root metadata for AI search engines with comprehensive business context */
 export const metadata: Metadata = {
@@ -83,6 +84,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main role="main" id="main-content">{children}</main>
           {/* GEO: Footer as contentinfo landmark for business details extraction */}
           <Footer />
+          {/* GEO: Floating contact button for mobile click-to-call enhancement */}
+          <FloatingContactButton />
         </Providers>
       </body>
     </html>

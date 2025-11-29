@@ -59,9 +59,14 @@ export default function ServicesContent() {
                 loop
                 playsInline
                 preload="auto"
+                aria-label="Barker Tree Services professional tree care work demonstration"
+                role="img"
               >
                 <source src="/3.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
+                <p className="text-charcoal-400 p-4">
+                  Professional tree trimming and removal services demonstration video. 
+                  Contact Barker Tree Services at (530) 802-1271 for tree care in Colfax, CA.
+                </p>
               </video>
             </CardBody>
           </Card>

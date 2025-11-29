@@ -4,6 +4,7 @@
 import { BUSINESS_INFO, COMPANY_CREDENTIALS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon } from '@heroicons/react/24/outline'
+import TreeCareGuides from '@/components/TreeCareGuides'
 
 export default function AboutContent() {
   return (
@@ -169,6 +170,9 @@ export default function AboutContent() {
           </div>
         </div>
       </section>
+
+      {/* GEO: Educational content section with tree care guides */}
+      <TreeCareGuides />
 
       {/* GEO: Contact call-to-action with contact information */}
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Contact call-to-action">
