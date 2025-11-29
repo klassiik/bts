@@ -1,7 +1,7 @@
 'use client'
 
 import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS } from '@/lib/config'
-import { Button, Card, CardBody, CardHeader, Chip } from '@heroui/react'
+import { Button, Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
 import FAQSection from '@/components/FAQSection'
 

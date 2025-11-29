@@ -1,7 +1,7 @@
 'use client'
 
 /* GEO: Contact form with semantic HTML and ARIA labels for accessibility and AI extraction */
-import { BUSINESS_INFO } from '@/lib/config'
+import { /* BUSINESS_INFO */ } from '@/lib/config'
 import { Card, CardBody, CardHeader, Button, Input, Textarea, Select, SelectItem } from '@heroui/react'
 import { PaperAirplaneIcon, CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'

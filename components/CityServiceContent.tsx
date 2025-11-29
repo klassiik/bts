@@ -1,6 +1,6 @@
 'use client'
 
-import { BUSINESS_INFO, SERVICES, DETAILED_TESTIMONIALS } from '@/lib/config'
+import { BUSINESS_INFO, DETAILED_TESTIMONIALS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/outline'
 
