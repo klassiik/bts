@@ -23,7 +23,7 @@ export default function Video({
       poster={poster}
       autoPlay={autoPlay}
       loop={loop}
-      muted={true}
+      muted={muted}
       playsInline={playsInline}
       preload={preload}
       className={className}

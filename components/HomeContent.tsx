@@ -4,12 +4,20 @@ import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIAL
 import { Button, Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
 import FAQSection from '@/components/FAQSection'
+import Video from '@/components/Video'
 
 export default function HomeContent() {
   return (
     <>
       {/* GEO: Hero section with semantic article landmark for main business proposition */}
       <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Professional Tree Services in Colfax, CA">
+        {/* Background hero video */}
+        <Video
+          src="/media/home-hero.mp4"
+          poster="/media/home-hero.jpg"
+          className="absolute inset-0 -z-20 w-full h-full object-cover"
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-evergreen-600/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"></div>
