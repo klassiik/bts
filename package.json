@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
+    "predev": "node scripts/sync-media.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
