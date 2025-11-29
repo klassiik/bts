@@ -1,10 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: __dirname,
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
+  // Debug: Log the current directory to help diagnose Vercel issues
+  eslint: {
+    ignoreDuringBuilds: false
+  },
   
   images: {
     formats: ['image/webp'],
