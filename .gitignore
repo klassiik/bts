@@ -44,3 +44,7 @@ next-env.d.ts
 
 # generated media files (synced from /media by build scripts)
 /public/media/
+barker-tree-services/barker-tree-services/
+barker-tree-services/barker-tree-services/media/
+barker-tree-services/barker-tree-services/public/
+barker-tree-services/barker-tree-services/*.mp4
