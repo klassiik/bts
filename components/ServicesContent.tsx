@@ -52,10 +52,10 @@ export default function ServicesContent() {
             <p className="text-xl text-charcoal-300">Professional tree care with precision and safety</p>
           </div>
           <Card className="bg-charcoal-800/50 border border-evergreen-900/20 overflow-hidden">
-            <CardBody className="p-0">
+            <CardBody className="p-0 relative">
               <Video
                 src="/media/553827505_24841983355418125_3276620820634142277_n.mp4"
-                className="w-full h-auto"
+                className="w-full h-auto relative z-0"
                 aria-label="Barker Tree Services professional tree care work demonstration"
               />
             </CardBody>

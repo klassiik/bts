@@ -12,10 +12,11 @@ export default function ContactContent() {
     <section className="relative py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)] overflow-hidden" aria-label="Contact Barker Tree Services" itemScope itemType="https://schema.org/ContactPage">
       <Video
         src="/media/556677411_32055543104036746_2204476273704338762_n.mp4"
-        className="absolute inset-0 -z-10 w-full h-full object-cover opacity-30"
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        style={{ zIndex: 0 }}
         aria-hidden="true"
       />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative" style={{ zIndex: 10 }}>
         <div className="text-center mb-12">
           <Chip 
             className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-400"

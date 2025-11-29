@@ -53,10 +53,10 @@ export default function AboutContent() {
 
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="complementary" aria-label="Company differentiators">
               <CardBody className="p-8">
-                <div className="mb-6 rounded-lg overflow-hidden">
+                <div className="mb-6 rounded-lg overflow-hidden relative">
                   <Video
                     src="/media/554478983_25636593632607805_5041281570766047163_n.mp4"
-                    className="w-full h-auto"
+                    className="w-full h-auto relative z-0"
                     aria-label="About Barker Tree Services"
                   />
                 </div>
