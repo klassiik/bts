@@ -1,6 +1,8 @@
 {
-  "buildCommand": "echo 'Working directory:' && pwd && echo 'App directory exists:' && ls -la app/",
+  "buildCommand": "pwd && ls -la && echo '=== package.json check ===' && cat package.json | head -5",
   "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
   "functions": {
     "app/api/**/*.ts": {
       "runtime": "nodejs20.x"
