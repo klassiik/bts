@@ -3,6 +3,7 @@
 import { BUSINESS_INFO, DETAILED_TESTIMONIALS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/outline'
+import Video from '@/components/Video'
 
 interface CityServiceContentProps {
   city: string
@@ -154,6 +155,14 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               <h3 className="text-2xl font-bold text-evergreen-400 mb-6">
                 Tree Care Specialists Serving {city}
               </h3>
+              {/* Local work clip */}
+              <div className="mb-6 rounded-lg overflow-hidden">
+                <Video
+                  src="/media/554341283_24812556778411123_8495766478130270581_n.mp4"
+                  className="w-full h-auto"
+                  aria-label={`Local tree work in ${city}`}
+                />
+              </div>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
                   <h4 className="font-semibold text-evergreen-400 mb-2">Local Expertise</h4>

@@ -3,6 +3,7 @@
 /* GEO: About page with Organization schema markers and semantic article structure for AI extraction */
 import { BUSINESS_INFO, COMPANY_CREDENTIALS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
+import Video from '@/components/Video'
 import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import TreeCareGuides from '@/components/TreeCareGuides'
 
@@ -52,6 +53,13 @@ export default function AboutContent() {
 
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="complementary" aria-label="Company differentiators">
               <CardBody className="p-8">
+                <div className="mb-6 rounded-lg overflow-hidden">
+                  <Video
+                    src="/media/554478983_25636593632607805_5041281570766047163_n.mp4"
+                    className="w-full h-auto"
+                    aria-label="About Barker Tree Services"
+                  />
+                </div>
                 <h3 className="text-2xl font-bold text-evergreen-400 mb-6">Why We&apos;re Different</h3>
                 <ul className="space-y-4" role="list" aria-label="Key differentiators">
                   <li className="flex items-start gap-3">

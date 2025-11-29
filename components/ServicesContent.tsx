@@ -3,6 +3,7 @@
 /* GEO: Services page component with comprehensive Service schema markers for AI discovery */
 import { SERVICES, BUSINESS_INFO } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
+import Video from '@/components/Video'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon } from '@heroicons/react/24/outline'
 
 export default function ServicesContent() {
@@ -52,22 +53,11 @@ export default function ServicesContent() {
           </div>
           <Card className="bg-charcoal-800/50 border border-evergreen-900/20 overflow-hidden">
             <CardBody className="p-0">
-              <video 
+              <Video
+                src="/media/553827505_24841983355418125_3276620820634142277_n.mp4"
                 className="w-full h-auto"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
                 aria-label="Barker Tree Services professional tree care work demonstration"
-                role="img"
-              >
-                <source src="/3.mp4" type="video/mp4" />
-                <p className="text-charcoal-400 p-4">
-                  Professional tree trimming and removal services demonstration video. 
-                  Contact Barker Tree Services at (530) 802-1271 for tree care in Colfax, CA.
-                </p>
-              </video>
+              />
             </CardBody>
           </Card>
         </div>

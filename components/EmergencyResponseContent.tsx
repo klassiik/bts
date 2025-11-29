@@ -10,6 +10,7 @@ import {
   WrenchScrewdriverIcon 
 } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
+import Video from '@/components/Video'
 
 export default function EmergencyResponseContent() {
   const emergencyScenarios = [
@@ -78,6 +79,11 @@ export default function EmergencyResponseContent() {
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden bg-gradient-to-br from-red-950/30 via-charcoal-950 to-charcoal-950">
+        <Video
+          src="/media/555764101_25387785744161354_2365138505705379783_n.mp4"
+          className="absolute inset-0 -z-10 w-full h-full object-cover"
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" />
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
         

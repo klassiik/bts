@@ -13,9 +13,8 @@ export default function HomeContent() {
       <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Professional Tree Services in Colfax, CA">
         {/* Background hero video */}
         <Video
-          src="/media/home-hero.mp4"
-          poster="/media/home-hero.jpg"
-          className="absolute inset-0 -z-20 w-full h-full object-cover"
+          src="/media/552252494_24763328253355339_8075536204197305204_n.mp4"
+          className="absolute inset-0 -z-10 w-full h-full object-cover"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>

@@ -5,10 +5,16 @@ import { BUSINESS_INFO } from '@/lib/config'
 import ContactForm from '@/components/ContactForm'
 import { Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, ClockIcon } from '@heroicons/react/24/outline'
+import Video from '@/components/Video'
 
 export default function ContactContent() {
   return (
-    <section className="py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)]" aria-label="Contact Barker Tree Services" itemScope itemType="https://schema.org/ContactPage">
+    <section className="relative py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)] overflow-hidden" aria-label="Contact Barker Tree Services" itemScope itemType="https://schema.org/ContactPage">
+      <Video
+        src="/media/556677411_32055543104036746_2204476273704338762_n.mp4"
+        className="absolute inset-0 -z-10 w-full h-full object-cover opacity-30"
+        aria-hidden="true"
+      />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <Chip 
