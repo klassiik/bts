@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "npm run diagnose && next build",
+    "vercel-build": "next build",
     "diagnose": "node scripts/vercel-diagnose.js"
   },
   "dependencies": {
