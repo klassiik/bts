@@ -11,12 +11,6 @@ export default function HomeContent() {
     <>
       {/* GEO: Hero section with semantic article landmark for main business proposition */}
       <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Professional Tree Services in Colfax, CA">
-        {/* Background hero video */}
-        <Video
-          src="/media/552252494_24763328253355339_8075536204197305204_n.mp4"
-          className="absolute inset-0 -z-10 w-full h-full object-cover"
-          aria-hidden="true"
-        />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-evergreen-600/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"></div>
