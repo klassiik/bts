@@ -1,4 +1,6 @@
 {
+  "buildCommand": "echo 'Working directory:' && pwd && echo 'App directory exists:' && ls -la app/",
+  "outputDirectory": ".next",
   "functions": {
     "app/api/**/*.ts": {
       "runtime": "nodejs20.x"
