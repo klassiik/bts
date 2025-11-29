@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-emerald-900: #05472A;
+  --color-emerald-950: #032817;
+}
+
+* {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    @apply !scroll-auto;
+  }
+}
