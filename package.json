@@ -9,7 +9,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prebuild": "node scripts/sync-media.mjs",
+    "prepare-media": "node scripts/shrink-videos.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -33,6 +35,8 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
     "autoprefixer": "^10.4.21",
+    "ffmpeg-static": "^5.2.0",
+    "fluent-ffmpeg": "^2.1.2",
     "canvas": "^3.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
