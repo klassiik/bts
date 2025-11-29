@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "next build",
-    "diagnose": "node scripts/vercel-diagnose.js"
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
