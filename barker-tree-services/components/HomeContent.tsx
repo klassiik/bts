@@ -1,20 +1,27 @@
 'use client'
 
 import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS } from '@/lib/config'
-import { Button, Card, CardBody, CardHeader, Chip } from '@heroui/react'
+import { Button, Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
 import FAQSection from '@/components/FAQSection'
+import Video from '@/components/Video'
 
 export default function HomeContent() {
   return (
     <>
       {/* GEO: Hero section with semantic article landmark for main business proposition */}
       <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Professional Tree Services in Colfax, CA">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-evergreen-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"></div>
+        <Video
+          src="/media/552252494_24763328253355339_8075536204197305204_n.mp4"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          style={{ zIndex: 0 }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" style={{ zIndex: 1 }}></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-evergreen-600/10 rounded-full blur-3xl" style={{ zIndex: 1 }}></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl" style={{ zIndex: 1 }}></div>
         
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 10 }}>
           <div>
             <Chip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
               <span className="text-evergreen-400 font-semibold">15+ Years Experience</span>

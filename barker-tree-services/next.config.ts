@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -8,6 +9,11 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: false
   },
+  // Ensures Next's output tracing root is the project directory so Next
+  // doesn't accidentally infer a parent directory as the workspace root
+  // (fixes Vercel/CI builds that detect the wrong root when lockfiles
+  // exist in parent folders).
+  outputFileTracingRoot: path.resolve(__dirname),
   
   images: {
     formats: ['image/webp'],
