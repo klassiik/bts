@@ -1,7 +1,6 @@
 'use client'
 
 /* GEO: Contact form with semantic HTML and ARIA labels for accessibility and AI extraction */
-import { /* BUSINESS_INFO */ } from '@/lib/config'
 import { Card, CardBody, CardHeader, Button, Input, Textarea, Select, SelectItem } from '@heroui/react'
 import { PaperAirplaneIcon, CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
@@ -12,6 +11,18 @@ const services = [
   { key: 'stump', label: 'Stump Removal' },
   { key: 'emergency', label: 'Emergency Services' }
 ]
+
+const MAX_DETAILS_LENGTH = 2000
+
+function validateForm(data: { name: string; phone: string; email: string; service: string; details: string }) {
+  const phoneDigits = (data.phone || '').replace(/\D/g, '')
+  if (!data.name || data.name.trim().length < 2) return 'Please enter your name (2+ characters).'
+  if (phoneDigits.length < 10) return 'Please enter a valid phone number with at least 10 digits.'
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return 'Please enter a valid email address.'
+  if (!data.service) return 'Please select a service.'
+  if (data.details && data.details.length > MAX_DETAILS_LENGTH) return 'Details are too long.'
+  return ''
+}
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -26,11 +37,25 @@ export default function ContactForm() {
 
     const formData = new FormData(e.currentTarget)
     const data = {
-      name: formData.get('name') as string,
-      phone: formData.get('phone') as string,
-      email: formData.get('email') as string,
-      service: formData.get('service') as string,
-      details: formData.get('details') as string
+      name: (formData.get('name') as string)?.trim() || '',
+      phone: (formData.get('phone') as string)?.trim() || '',
+      email: (formData.get('email') as string)?.trim() || '',
+      service: (formData.get('service') as string) || '',
+      details: (formData.get('details') as string)?.trim() || '',
+      honeypot: (formData.get('company') as string)?.trim() || ''
+    }
+
+    if (data.honeypot) {
+      setIsSubmitting(false)
+      return
+    }
+
+    const validationError = validateForm(data)
+    if (validationError) {
+      setSubmitStatus('error')
+      setErrorMessage(validationError)
+      setIsSubmitting(false)
+      return
     }
 
     try {
@@ -70,6 +95,14 @@ export default function ContactForm() {
       <CardBody className="p-8 pt-6">
         {/* GEO: Form with semantic fieldset structure for AI understanding */}
         <form className="space-y-4" aria-label="Contact form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
           <Input 
             type="text" 
             label="Your Name"
@@ -79,6 +112,7 @@ export default function ContactForm() {
             isRequired
             aria-label="Enter your full name"
             aria-required="true"
+            maxLength={100}
             classNames={{
               input: "text-charcoal-50",
               inputWrapper: "border-evergreen-700/30 bg-charcoal-900/50 hover:border-evergreen-500/50 data-[hover=true]:border-evergreen-500/50",
@@ -94,6 +128,8 @@ export default function ContactForm() {
             isRequired
             aria-label="Enter your phone number"
             aria-required="true"
+            maxLength={25}
+            inputMode="tel"
             classNames={{
               input: "text-charcoal-50",
               inputWrapper: "border-evergreen-700/30 bg-charcoal-900/50 hover:border-evergreen-500/50 data-[hover=true]:border-evergreen-500/50",
@@ -108,6 +144,7 @@ export default function ContactForm() {
             name="email"
             isRequired
             aria-label="Enter your email address"
+            maxLength={150}
             classNames={{
               input: "text-charcoal-50",
               inputWrapper: "border-evergreen-700/30 bg-charcoal-900/50 hover:border-evergreen-500/50 data-[hover=true]:border-evergreen-500/50",
@@ -141,6 +178,7 @@ export default function ContactForm() {
             minRows={4}
             name="details"
             aria-label="Describe your project details"
+            maxLength={MAX_DETAILS_LENGTH}
             classNames={{
               input: "text-charcoal-50",
               inputWrapper: "border-evergreen-700/30 bg-charcoal-900/50 hover:border-evergreen-500/50 data-[hover=true]:border-evergreen-500/50",

@@ -15,15 +15,19 @@ if (!process.env.RESEND_API_KEY) {
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Rate limiting configuration
+// Rate limiting configuration (per-IP, in-memory)
 const RATE_LIMIT = new Map<string, { count: number, lastReset: number }>()
 const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
 const MAX_REQUESTS = 5 // Max requests per minute
 
+const truncate = (value: string | undefined, max = 2000) => (value || '').slice(0, max)
+const sanitizeText = (value: string | undefined) => purify.sanitize(truncate(value, 2000))
+
 export async function POST(request: Request) {
   try {
     // Rate limiting check
-    const clientIP = request.headers.get('x-forwarded-for') || '127.0.0.1'
+    const forwardedFor = request.headers.get('x-forwarded-for')
+    const clientIP = forwardedFor?.split(',')[0].trim() || request.headers.get('x-real-ip') || '127.0.0.1'
     const currentTime = Date.now()
     
     if (!RATE_LIMIT.has(clientIP)) {
@@ -57,20 +61,24 @@ export async function POST(request: Request) {
     const { name, phone, email, service, details } = result.data
 
     // Sanitize user input
-    const sanitizedDetails = details ? purify.sanitize(details) : 'No additional details provided.'
+    const sanitizedDetails = details ? sanitizeText(details) : 'No additional details provided.'
+    const safeName = sanitizeText(name)
+    const safePhone = sanitizeText(phone)
+    const safeEmail = sanitizeText(email)
+    const safeService = sanitizeText(service)
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'Barker Tree Services Website <onboarding@resend.dev>',
       to: ['jacob@barkertreeservices.com'],
-      replyTo: email,
-      subject: `Free Estimate Request - ${service}`,
+      replyTo: safeEmail,
+      subject: `Free Estimate Request - ${safeService}`,
       html: `
         <h2>New Free Estimate Request</h2>
-        <p><strong>From:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Service Needed:</strong> ${service}</p>
+        <p><strong>From:</strong> ${safeName}</p>
+        <p><strong>Phone:</strong> ${safePhone}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Service Needed:</strong> ${safeService}</p>
         <h3>Project Details:</h3>
         <p>${sanitizedDetails}</p>
         <hr />

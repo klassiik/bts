@@ -3,11 +3,12 @@ import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
 
 // Zod schema for contact form validation
 export const ContactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  phone: z.string().min(10, 'Phone number must be at least 10 digits'),
-  email: z.string().email('Invalid email address'),
-  service: z.string().min(1, 'Please select a service'),
-  details: z.string().optional()
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
+  phone: z.string().trim().max(25, 'Phone number is too long').refine((val) => val.replace(/\D/g, '').length >= 10, 'Phone number must include at least 10 digits'),
+  email: z.string().trim().toLowerCase().email('Invalid email address').max(150, 'Email is too long'),
+  service: z.string().min(1, 'Please select a service').max(50, 'Service value is too long'),
+  details: z.string().trim().max(2000, 'Details are too long').optional(),
+  honeypot: z.string().trim().max(0, 'Invalid submission').optional()
 })
 
 /* GEO: Enhanced LocalBusiness schema for comprehensive AI understanding */
