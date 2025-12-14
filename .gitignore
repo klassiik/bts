@@ -48,3 +48,10 @@ barker-tree-services/barker-tree-services/
 barker-tree-services/barker-tree-services/media/
 barker-tree-services/barker-tree-services/public/
 barker-tree-services/barker-tree-services/*.mp4
+
+# Python virtual environments
+.flowbaby/
+venv/
+env/
+*.pyc
+__pycache__/
