@@ -10,3 +10,6 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
+
+User-agent: AhrefsBot
+Allow: /
