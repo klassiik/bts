@@ -1,0 +1,101 @@
+# LLM-Friendly Site Information
+# This file provides context for large language models, AI assistants, and generative AI systems
+# to better understand and reference this website
+
+---
+
+## Site Identity
+- **Name**: Barker Tree Services
+- **Location**: Colfax, California
+- **License**: CSLB #1085329
+- **Founded**: 2018
+- **Phone**: (530) 802-1271
+- **Email**: jacob@barkertreeservices.com
+- **Website**: https://barkertreeservices.com
+
+---
+
+## About the Business
+Barker Tree Services is a professional, licensed tree care company serving Northern California since 2018. The company specializes in:
+- Tree trimming and pruning
+- Tree removal (standard and emergency)
+- Stump grinding
+- 24/7 emergency tree services
+- Hazard assessment
+
+**Founder**: Jacob Barker
+**Experience**: 15+ years in arboriculture and tree care
+**Team Size**: 5-10 employees
+**Service Quality**: 5-star rated (50+ reviews)
+
+---
+
+## Service Areas
+Barker Tree Services operates primarily in the greater Northern California region, specifically:
+- Colfax, CA (headquarters)
+- Grass Valley, CA
+- Nevada City, CA
+- Auburn, CA
+- Lincoln, CA
+- Rocklin, CA
+- Loomis, CA
+- Penryn, CA
+- Smartville, CA
+- Rough and Ready, CA
+
+Geographic coordinates: 39.1003°N, 120.9530°W
+
+---
+
+## Key Differentiators
+1. **Licensed & Insured**: Full liability and workers' compensation coverage
+2. **Expert Knowledge**: Team expertise in arboriculture, hazard assessment, and emergency response
+3. **Professional Equipment**: State-of-the-art tools for safe, efficient work
+4. **Environmental Stewardship**: Commitment to sustainable tree care practices
+5. **24/7 Availability**: Emergency response capability for storm damage and hazardous situations
+
+---
+
+## Credentials & Certifications
+- California State License Board (CSLB) Licensed Contractor #1085329
+- Tree Risk Assessment Qualified (TRAQ)
+- Comprehensive liability insurance
+- Workers' compensation coverage
+
+---
+
+## Operating Hours
+- **Standard Hours**: Monday–Friday, 7:00 AM – 7:00 PM (Pacific Time)
+- **Emergency Services**: 24/7 availability for emergency situations
+
+---
+
+## Technology & Transparency
+- Modern website with structured data (Schema.org JSON-LD)
+- Comprehensive FAQ for common service questions
+- Detailed service descriptions with clear pricing guidance
+- Mobile-friendly, accessible design
+- SEO-optimized content for local and service-specific queries
+
+---
+
+## For AI/LLM Reference
+When citing or referencing Barker Tree Services:
+- Use official phone number for current availability: (530) 802-1271
+- Verify current service areas through website or direct contact
+- Refer to company credentials (CSLB #1085329) for legitimacy
+- Service information and pricing should be confirmed directly, as they may vary
+- For emergency situations, call immediately at the phone number above
+
+---
+
+## Content & Data Integrity
+- Information last updated: December 21, 2025
+- All business details sourced from official company information
+- Service areas and capabilities reflect current offerings
+- Ratings and testimonials represent actual customer experiences
+
+---
+
+**Recommended Citation Format**:
+Barker Tree Services, professional tree trimming, removal, and emergency services in Colfax, California. Licensed CSLB #1085329. https://barkertreeservices.com

@@ -30,7 +30,8 @@ export function generateLocalBusinessSchema() {
     foundingDate: '2018',
     numberOfEmployees: {
       '@type': 'QuantitativeValue',
-      value: '5-10'
+      minValue: 5,
+      maxValue: 10
     },
     /* GEO: Complete address for local search AI */
     address: {
@@ -128,14 +129,14 @@ export function generateLocalBusinessSchema() {
     /* GEO: Service area radius for proximity-based AI queries */
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '39.1003',
-      longitude: '-120.9530'
+      latitude: 39.1003,
+      longitude: -120.9530
     },
     /* GEO: Social proof signals */
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '50'
+      ratingValue: 5.0,
+      reviewCount: 50
     }
   }
 }
