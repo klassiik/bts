@@ -28,6 +28,10 @@ const nextConfig: NextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable'
+          },
+          {
+            key: 'X-Canonical-URL',
+            value: 'https://barkertreeservices.com'
           }
         ]
       }
@@ -36,6 +40,19 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // Redirect www to non-www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.barkertreeservices.com',
+          },
+        ],
+        destination: 'https://barkertreeservices.com/:path*',
+        permanent: true,
+      },
+      // Other legacy redirects
       { source: '/contact-us', destination: '/contact', permanent: true },
       { source: '/our-services', destination: '/services', permanent: true },
       { source: '/about-us', destination: '/about', permanent: true }

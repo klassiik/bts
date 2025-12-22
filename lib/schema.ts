@@ -15,7 +15,7 @@ export const ContactSchema = z.object({
 export function generateLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness', 'ProfessionalService'],
+    '@type': 'LocalBusiness',
     '@id': `${BUSINESS_INFO.url}#business`,
     name: BUSINESS_INFO.name,
     alternateName: 'Barker Tree Service',

@@ -44,7 +44,7 @@ export default async function CityServicePage({ params }: PageProps) {
   // Generate LocalBusiness schema for this city
   const citySchema = {
     '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'ProfessionalService'],
+    '@type': 'LocalBusiness',
     name: `${BUSINESS_INFO.name} - ${cityData.city}`,
     description: `Professional tree trimming, removal, stump grinding, and 24/7 emergency services in ${cityData.city}, CA`,
     url: `${BUSINESS_INFO.url}/service-areas/${cityData.city.toLowerCase().replace(/\s+/g, '-')}`,

@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://barkertreeservices.com'),
   title: 'Barker Tree Services - Professional Tree Care in Colfax, CA',
   description: 'Expert tree trimming, removal, and emergency services in Colfax and surrounding areas. Licensed & Insured. 24/7 service.',
+  /* GEO: Canonical URL for www version consolidation */
+  alternates: {
+    canonical: 'https://barkertreeservices.com',
+  },
   /* GEO: Additional metadata for LLM context extraction */
   keywords: ['tree services Colfax CA', 'tree trimming', 'tree removal', 'stump grinding', 'arborist', 'emergency tree service', 'licensed tree care', 'CSLB 1085329'],
   authors: [{ name: 'Barker Tree Services' }],
