@@ -169,7 +169,12 @@ describe('Schema.org JSON-LD Validation', () => {
 
   it('should have properly structured FAQ items', () => {
     const schema = generateFAQSchema()
-    schema.mainEntity.forEach((item: any) => {
+    type FAQEntity = {
+      '@type': 'Question'
+      name: string
+      acceptedAnswer: { '@type': 'Answer'; text: string }
+    }
+    (schema.mainEntity as FAQEntity[]).forEach((item) => {
       expect(item['@type']).toBe('Question')
       expect(item.name).toBeDefined()
       expect(typeof item.name).toBe('string')
@@ -187,7 +192,8 @@ describe('Schema.org JSON-LD Validation', () => {
     expect(schema.areaServed.length).toBeGreaterThan(0)
 
     // Check that areas have proper structure
-    schema.areaServed.forEach((area: any) => {
+    type Area = { '@type': 'City'; name: string; addressCountry?: string; addressRegion?: string }
+    (schema.areaServed as Area[]).forEach((area) => {
       expect(area['@type']).toBe('City')
       expect(area.name).toBeDefined()
       expect(area.addressCountry).toBe('US')
