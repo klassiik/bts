@@ -41,5 +41,32 @@ export default async function CityServicePage({ params }: PageProps) {
   const cityData = getCityFromSlug(city)
   if (!cityData) notFound()
 
-  return <CityServiceContent city={cityData.city} state={cityData.state} />
+  // Generate LocalBusiness schema for this city
+  const citySchema = {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'ProfessionalService'],
+    name: `${BUSINESS_INFO.name} - ${cityData.city}`,
+    description: `Professional tree trimming, removal, stump grinding, and 24/7 emergency services in ${cityData.city}, CA`,
+    url: `${BUSINESS_INFO.url}/service-areas/${cityData.city.toLowerCase().replace(/\s+/g, '-')}`,
+    telephone: BUSINESS_INFO.phoneRaw,
+    email: BUSINESS_INFO.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: cityData.city,
+      addressRegion: cityData.state,
+      addressCountry: 'US'
+    },
+    areaServed: {
+      '@type': 'City',
+      name: cityData.city,
+      addressRegion: cityData.state
+    }
+  }
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(citySchema) }} />
+      <CityServiceContent city={cityData.city} state={cityData.state} />
+    </>
+  )
 }
