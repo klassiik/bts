@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Barker Tree Services - Expert Tree Care in Colfax, CA',
-    description: 'Licensed & insured tree services. 15+ years experience. 24/7 emergency response.',
+    description: 'Licensed & insured tree services. 6 years experience. 24/7 emergency response.',
     images: ['/logo.webp'],
   },
   /* GEO: Robots configuration for optimal AI crawler access */

@@ -29,7 +29,7 @@ export default function ServicesContent() {
             Expert Tree Services
           </h1>
           <p className="text-xl text-charcoal-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive tree care services backed by experienced professionals, professional equipment, and 15+ years of experience serving Colfax and surrounding communities.
+            Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Colfax and surrounding communities.
           </p>
           <Button 
             href={`tel:${BUSINESS_INFO.phoneRaw}`}

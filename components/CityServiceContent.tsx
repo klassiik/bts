@@ -67,7 +67,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Expert Tree Services in {city}, {state}
           </h1>
           <p className="text-xl text-charcoal-300 mb-8 max-w-3xl">
-            Professional tree trimming, removal, stump grinding, and emergency services in {city}. Licensed tree care specialists with 15+ years of experience serving {city} and surrounding communities.
+            Professional tree trimming, removal, stump grinding, and emergency services in {city}. Licensed tree care specialists with 6 years of experience serving {city} and surrounding communities.
           </p>
           <div className="flex gap-4 flex-wrap">
             <Button
@@ -281,7 +281,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 </Button>
               </div>
               <p className="text-evergreen-300 text-sm mt-4">
-                Licensed & Insured • CSLB #1085329 • 15+ Years Experience
+                Licensed & Insured • CSLB #1085329 • 6 Years Experience
               </p>
             </CardBody>
           </Card>

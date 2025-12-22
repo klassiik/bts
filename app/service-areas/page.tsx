@@ -4,7 +4,7 @@ import ServiceAreasContent from '@/components/ServiceAreasContent'
 
 export const metadata = generatePageMetadata({
   title: 'Service Areas',
-  description: `Tree services in Colfax, Grass Valley, Nevada City and surrounding areas. Call ${BUSINESS_INFO.phone}`,
+  description: `Expert tree services throughout Colfax, Grass Valley, Nevada City, Auburn, Lincoln, Rocklin & surrounding Northern California areas. Licensed & insured. Call ${BUSINESS_INFO.phone}`,
   path: '/service-areas',
 })
 

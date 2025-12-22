@@ -24,7 +24,7 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 10 }}>
           <div>
             <Chip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
-              <span className="text-evergreen-400 font-semibold">15+ Years Experience</span>
+              <span className="text-evergreen-400 font-semibold">6 Years Experience</span>
             </Chip>
             {/* GEO: H1 optimized with location and service keywords for AI understanding */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-charcoal-50">

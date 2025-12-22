@@ -123,7 +123,7 @@ export const DETAILED_TESTIMONIALS = [
 // Company credentials and certifications
 export const COMPANY_CREDENTIALS = {
   founded: '2018',
-  experience: '15+ years combined team experience',
+  experience: '6 years combined team experience',
   certifications: [
     'CSLB Licensed Contractor #1085329',
     'Tree Risk Assessment Qualified (TRAQ)',

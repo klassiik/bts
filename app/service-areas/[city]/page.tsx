@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!cityData) return {}
 
   const title = `Tree Services in ${cityData.city}, ${cityData.state}`
-  const description = `Professional tree trimming, removal & stump removal in ${cityData.city}. Call ${BUSINESS_INFO.phone}`
+  const description = `Expert tree trimming, removal, stump grinding & emergency services in ${cityData.city}, CA. Licensed (CSLB #1085329), insured, 6 years experience. Call ${BUSINESS_INFO.phone}`
 
   return generatePageMetadata({
     title,

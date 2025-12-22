@@ -184,7 +184,7 @@ export function generateFAQSchema() {
         name: 'How much experience does Barker Tree Services have?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Barker Tree Services has over 15 years of experience in arboriculture and tree care, serving Northern California communities since 2018.'
+          text: 'Barker Tree Services has over 6 years of experience in arboriculture and tree care, serving Northern California communities since 2018.'
         }
       }
     ]

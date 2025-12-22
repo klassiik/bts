@@ -5,7 +5,7 @@ import HomeContent from '@/components/HomeContent'
 /* GEO: Enhanced homepage metadata with comprehensive service and location keywords */
 export const metadata = generatePageMetadata({
   title: 'Professional Tree Care & Emergency Services',
-  description: 'Licensed tree trimming, removal, stump grinding & 24/7 emergency services in Colfax, CA. CSLB #1085329. Serving Grass Valley, Nevada City, Auburn & Northern California. 15+ years experience. Free estimates.',
+  description: 'Licensed tree trimming, removal, stump grinding & 24/7 emergency services in Colfax, CA. CSLB #1085329. Serving Grass Valley, Nevada City, Auburn & Northern California. 6 years experience. Free estimates.',
   path: '/',
   keywords: [
     'tree services Colfax',

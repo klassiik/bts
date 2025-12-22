@@ -169,7 +169,7 @@ export default function TreeCareGuides() {
             Expert Tree Care Guides
           </h2>
           <p className="text-xl text-charcoal-300 max-w-3xl mx-auto">
-            Learn from our 15+ years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
+            Learn from our 6 years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
           </p>
         </div>
 
