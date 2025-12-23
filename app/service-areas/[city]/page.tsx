@@ -2,11 +2,12 @@ import { generateMetadata as generatePageMetadata } from '@/lib/seo'
 import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
 import { notFound } from 'next/navigation'
 import CityServiceContent from '@/components/CityServiceContent'
+import { generateLocalBusinessSchema } from '@/lib/schema'
 
 interface PageProps {
-  params: Promise<{
+  params: {
     city: string
-  }>
+  }
 }
 
 function getCityFromSlug(slug: string) {
@@ -22,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { city } = await params
+  const { city } = params
   const cityData = getCityFromSlug(city)
   if (!cityData) return {}
 
@@ -36,32 +37,20 @@ export async function generateMetadata({ params }: PageProps) {
   })
 }
 
-export default async function CityServicePage({ params }: PageProps) {
-  const { city } = await params
+export default function CityServicePage({ params }: PageProps) {
+  const { city } = params
   const cityData = getCityFromSlug(city)
   if (!cityData) notFound()
 
-  // Generate LocalBusiness schema for this city
-  const citySchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+  const citySchema = generateLocalBusinessSchema({
+    city: cityData.city,
+    state: cityData.state,
+    path: `/service-areas/${city}`,
+    id: `${BUSINESS_INFO.url}/service-areas/${city}#business`,
     name: `${BUSINESS_INFO.name} - ${cityData.city}`,
-    description: `Professional tree trimming, removal, stump grinding, and 24/7 emergency services in ${cityData.city}, CA`,
-    url: `${BUSINESS_INFO.url}/service-areas/${cityData.city.toLowerCase().replace(/\s+/g, '-')}`,
-    telephone: BUSINESS_INFO.phoneRaw,
-    email: BUSINESS_INFO.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: cityData.city,
-      addressRegion: cityData.state,
-      addressCountry: 'US'
-    },
-    areaServed: {
-      '@type': 'City',
-      name: cityData.city,
-      addressRegion: cityData.state
-    }
-  }
+    description: `Professional tree trimming, removal, stump grinding, and 24/7 emergency tree services in ${cityData.city}, CA. Licensed (CSLB #${BUSINESS_INFO.cslb}), insured, and serving Northern California since 2018.`,
+    areaServed: [{ city: cityData.city, state: cityData.state }]
+  })
 
   return (
     <>

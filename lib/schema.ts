@@ -1,6 +1,19 @@
 import { z } from 'zod'
 import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
 
+type ServiceArea = { city: string; state: string }
+
+type LocalBusinessSchemaOptions = {
+  city?: string
+  state?: string
+  path?: string
+  description?: string
+  areaServed?: ServiceArea[]
+  id?: string
+  name?: string
+  sameAs?: string[]
+}
+
 // Zod schema for contact form validation
 export const ContactSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
@@ -12,19 +25,29 @@ export const ContactSchema = z.object({
 })
 
 /* GEO: Enhanced LocalBusiness schema for comprehensive AI understanding */
-export function generateLocalBusinessSchema() {
+export function generateLocalBusinessSchema(options: LocalBusinessSchemaOptions = {}) {
+  const serviceCity = options.city ?? BUSINESS_INFO.city
+  const serviceState = options.state ?? BUSINESS_INFO.state
+  const url = options.path ? `${BUSINESS_INFO.url}${options.path}` : BUSINESS_INFO.url
+  const description = options.description ?? `Professional tree trimming, removal, stump grinding, and 24/7 emergency tree services in ${serviceCity}, ${serviceState}. Licensed (CSLB #1085329), insured, and serving Northern California since 2018.`
+  const areaServed = options.areaServed ?? SERVICE_AREAS
+  const id = options.id ?? `${url}#business`
+  const name = options.name ?? BUSINESS_INFO.name
+  const sameAs = options.sameAs ?? []
+
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${BUSINESS_INFO.url}#business`,
-    name: BUSINESS_INFO.name,
+    '@type': ['LocalBusiness', 'ProfessionalService', 'HomeAndConstructionBusiness'],
+    '@id': id,
+    name,
     alternateName: 'Barker Tree Service',
-    description: 'Professional tree trimming, removal, stump grinding, and 24/7 emergency tree services in Colfax, CA. Licensed (CSLB #1085329), insured, and serving Northern California since 2018.',
-    url: BUSINESS_INFO.url,
+    description,
+    url,
     telephone: BUSINESS_INFO.phoneRaw,
     email: BUSINESS_INFO.email,
     image: `${BUSINESS_INFO.url}/logo.webp`,
     logo: `${BUSINESS_INFO.url}/logo.webp`,
+    sameAs,
     /* GEO: Credentials for authority and trust signals */
     slogan: 'Expert Tree Care, Trusted Service',
     foundingDate: '2018',
@@ -43,7 +66,7 @@ export function generateLocalBusinessSchema() {
       addressCountry: 'US'
     },
     /* GEO: Geographic coverage for location-based AI queries */
-    areaServed: SERVICE_AREAS.map(area => ({
+    areaServed: areaServed.map(area => ({
       '@type': 'City',
       name: area.city,
       addressRegion: area.state,
