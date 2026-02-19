@@ -1,0 +1,17 @@
+/* Force hide sr-only in navbar toggle button */
+button[aria-label*="menu"] .sr-only,
+button[aria-label*="close"] .sr-only,
+button[aria-label*="Menu"] .sr-only,
+button[aria-label*="Close"] .sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
