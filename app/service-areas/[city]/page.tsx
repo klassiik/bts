@@ -5,9 +5,9 @@ import CityServiceContent from '@/components/CityServiceContent'
 import { generateLocalBusinessSchema } from '@/lib/schema'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     city: string
-  }
+  }>
 }
 
 function getCityFromSlug(slug: string) {
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { city } = params
+  const { city } = await params
   const cityData = getCityFromSlug(city)
   if (!cityData) return {}
 
@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: PageProps) {
   })
 }
 
-export default function CityServicePage({ params }: PageProps) {
-  const { city } = params
+export default async function CityServicePage({ params }: PageProps) {
+  const { city } = await params
   const cityData = getCityFromSlug(city)
   if (!cityData) notFound()
 
