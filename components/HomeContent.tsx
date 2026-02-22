@@ -3,8 +3,18 @@
 import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS } from '@/lib/config'
 import { Button, Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
-import FAQSection from '@/components/FAQSection'
+import dynamic from 'next/dynamic'
 import Video from '@/components/Video'
+
+// Lazy load below-the-fold components for better initial load performance
+const FAQSection = dynamic(() => import('@/components/FAQSection'), {
+  loading: () => (
+    <div className="py-20 px-4 bg-charcoal-900/30 flex items-center justify-center">
+      <div className="animate-pulse text-evergreen-400">Loading FAQ...</div>
+    </div>
+  ),
+  ssr: true // Keep SSR for SEO
+})
 
 export default function HomeContent() {
   return (

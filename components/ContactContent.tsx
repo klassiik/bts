@@ -45,7 +45,7 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <PhoneIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
-                  <h3 className="font-bold text-lg text-evergreen-400">Phone</h3>
+                  <h2 className="font-bold text-lg text-evergreen-400">Phone</h2>
                   <p className="text-evergreen-300 font-semibold" itemProp="telephone">{BUSINESS_INFO.phone}</p>
                   <p className="text-charcoal-200 text-sm">Call for immediate assistance</p>
                 </div>
@@ -63,7 +63,7 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <EnvelopeIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
-                  <h3 className="font-bold text-lg text-evergreen-400">Email</h3>
+                  <h2 className="font-bold text-lg text-evergreen-400">Email</h2>
                   <p className="text-evergreen-300 font-semibold" itemProp="email">{BUSINESS_INFO.email}</p>
                   <p className="text-charcoal-200 text-sm">Send us a message anytime</p>
                 </div>
@@ -74,7 +74,7 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <MapPinIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <address className="not-italic" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                  <h3 className="font-bold text-lg text-evergreen-400">Service Area</h3>
+                  <h2 className="font-bold text-lg text-evergreen-400">Service Area</h2>
                   <p className="text-charcoal-200" itemProp="streetAddress">{BUSINESS_INFO.address}</p>
                   <p className="text-charcoal-200 text-sm mt-1" itemProp="areaServed">Serving Placer & Nevada Counties</p>
                 </address>
@@ -85,7 +85,7 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <ClockIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
-                  <h3 className="font-bold text-lg text-evergreen-400">Business Hours</h3>
+                  <h2 className="font-bold text-lg text-evergreen-400">Business Hours</h2>
                   <p className="text-charcoal-200" itemProp="hoursAvailable">{BUSINESS_INFO.hours}</p>
                   <Chip 
                     className="mt-2 bg-amber-900/30 border border-amber-600/30 text-amber-400"

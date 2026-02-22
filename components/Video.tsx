@@ -12,7 +12,7 @@ export default function Video({
   loop = true,
   muted = true,
   playsInline = true,
-  preload = 'metadata',
+  preload = 'none', // Changed from 'metadata' to 'none' for better performance
   className,
   children,
   ...rest
