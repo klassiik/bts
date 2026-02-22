@@ -126,14 +126,14 @@ export default function HomeContent() {
       </section>
 
       {/* GEO: Social proof section with Review schema markers for AI extraction */}
-      <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Customer testimonials and reviews">
+      <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer testimonials and reviews">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-300 mb-4 text-center">What Our Customers Say</h2>
-          <p className="text-charcoal-100 text-center mb-12">Real reviews from satisfied customers across our service areas</p>
+          <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">What Our Customers Say</h2>
+          <p className="text-charcoal-50 text-center mb-12">Real reviews from satisfied customers across our service areas</p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" aria-label="Customer reviews">
             {DETAILED_TESTIMONIALS.slice(0, 6).map((testimonial, idx) => (
-              <Card key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" itemScope itemType="https://schema.org/Review">
+              <Card key={idx} className="bg-charcoal-800/80 border border-evergreen-900/20" itemScope itemType="https://schema.org/Review">
                 <CardBody className="p-6">
                   <div className="flex items-center gap-1 mb-3" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
                     <meta itemProp="ratingValue" content={testimonial.rating.toString()} />
@@ -142,17 +142,17 @@ export default function HomeContent() {
                       <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
                     ))}
                   </div>
-                  <p className="text-charcoal-100 mb-4 leading-relaxed text-sm" itemProp="reviewBody">&ldquo;{testimonial.text}&rdquo;</p>
+                  <p className="text-charcoal-50 mb-4 leading-relaxed text-sm" itemProp="reviewBody">&ldquo;{testimonial.text}&rdquo;</p>
                   <div className="flex justify-between items-center text-sm" itemProp="author" itemScope itemType="https://schema.org/Person">
                     <div>
-                      <p className="font-semibold text-evergreen-300" itemProp="name">{testimonial.name}</p>
-                      <p className="text-charcoal-300" itemProp="address">{testimonial.location}</p>
+                      <p className="font-semibold text-evergreen-200" itemProp="name">{testimonial.name}</p>
+                      <p className="text-charcoal-200" itemProp="address">{testimonial.location}</p>
                     </div>
                     <div className="text-right">
-                      <Chip size="sm" className="bg-evergreen-900/30 text-evergreen-300 border border-evergreen-700/30" variant="bordered">
+                      <Chip size="sm" className="bg-evergreen-900/50 text-evergreen-200 border border-evergreen-700/50" variant="bordered">
                         {testimonial.service}
                       </Chip>
-                      <p className="text-charcoal-300 text-xs mt-1">{testimonial.date}</p>
+                      <p className="text-charcoal-200 text-xs mt-1">{testimonial.date}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -161,7 +161,7 @@ export default function HomeContent() {
           </div>
 
           <div className="text-center">
-            <p className="text-charcoal-100 mb-6">Join hundreds of satisfied customers in Colfax and surrounding areas</p>
+            <p className="text-charcoal-50 mb-6">Join hundreds of satisfied customers in Colfax and surrounding areas</p>
             <Button
               as="a"
               href={`tel:${BUSINESS_INFO.phoneRaw}`}

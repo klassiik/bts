@@ -8,8 +8,6 @@ import { usePathname } from 'next/navigation'
 import {
   Navbar,
   NavbarBrand,
-  NavbarContent,
-  NavbarItem,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
@@ -54,7 +52,8 @@ export default function Header() {
       as="nav"
       aria-label="Main navigation"
     >
-      <NavbarContent className="lg:basis-0 lg:grow" justify="center">
+      {/* Left section with menu toggle and brand - using div to avoid ul/li accessibility issue */}
+      <div className="flex items-center gap-2 lg:basis-0 lg:grow lg:justify-start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="lg:hidden text-charcoal-100"
@@ -81,14 +80,15 @@ export default function Header() {
             </div>
           </Link>
         </NavbarBrand>
-      </NavbarContent>
+      </div>
 
-      <NavbarContent className="hidden lg:flex gap-1 lg:basis-0 lg:grow" justify="center">
+      {/* Center navigation - proper ul/li structure for accessibility */}
+      <ul className="hidden lg:flex gap-1 lg:basis-0 lg:grow lg:justify-center list-none m-0 p-0" role="list">
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href
           return (
-            <NavbarItem key={item.href} isActive={isActive}>
+            <li key={item.href} role="listitem">
               <Link
                 href={item.href}
                 className={`group flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
@@ -104,28 +104,27 @@ export default function Header() {
                 }`} aria-hidden="true" />
                 <span>{item.label}</span>
               </Link>
-            </NavbarItem>
+            </li>
           )
         })}
-      </NavbarContent>
+      </ul>
 
-      <NavbarContent className="lg:basis-0 lg:grow" justify="end">
-        <NavbarItem>
-          <Button
-            as="a"
-            href={`tel:${BUSINESS_INFO.phoneRaw}`}
-            color="primary"
-            variant="shadow"
-            size="sm"
-            className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 hover:from-evergreen-500 hover:to-evergreen-600 font-bold text-white shadow-lg shadow-evergreen-900/50 lg:size-lg"
-            startContent={<PhoneIcon className="w-4 h-4 lg:w-5 lg:h-5" aria-hidden="true" />}
-            aria-label="Call Barker Tree Services now"
-          >
-            <span className="hidden sm:inline">Call Now</span>
-            <span className="sm:hidden">Call</span>
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      {/* Right section with CTA - using div to avoid ul/li accessibility issue */}
+      <div className="flex items-center lg:basis-0 lg:grow lg:justify-end">
+        <Button
+          as="a"
+          href={`tel:${BUSINESS_INFO.phoneRaw}`}
+          color="primary"
+          variant="shadow"
+          size="sm"
+          className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 hover:from-evergreen-500 hover:to-evergreen-600 font-bold text-white shadow-lg shadow-evergreen-900/50 lg:size-lg"
+          startContent={<PhoneIcon className="w-4 h-4 lg:w-5 lg:h-5" aria-hidden="true" />}
+          aria-label="Call Barker Tree Services now"
+        >
+          <span className="hidden sm:inline">Call Now</span>
+          <span className="sm:hidden">Call</span>
+        </Button>
+      </div>
 
       <NavbarMenu className="bg-charcoal-900/98 backdrop-blur-xl border-r border-evergreen-900/20 pt-6">
         {navItems.map((item) => {
