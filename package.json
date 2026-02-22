@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "predev": "node scripts/sync-media.mjs",
     "build": "next build",
     "start": "next start",
@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/postcss": "^4.2.0",
     "@types/jest": "^29.5.14",
-    "@types/node": "^20.19.21",
+    "@types/node": "^22.0.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
     "ajv": "^8.17.1",
