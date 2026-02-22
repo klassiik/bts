@@ -28,9 +28,9 @@ export default function ServicesContent() {
           <h1 className="text-5xl font-bold mb-6 text-charcoal-50">
             Expert Tree Services
           </h1>
-          <p className="text-xl text-charcoal-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Colfax and surrounding communities.
-          </p>
+          <p className="text-xl text-charcoal-200 mb-8 max-w-3xl mx-auto leading-relaxed">
+             Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Colfax and surrounding communities.
+           </p>
           <Button 
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
             as="a"
@@ -49,7 +49,7 @@ export default function ServicesContent() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-evergreen-400 mb-4">See Our Expertise in Action</h2>
-            <p className="text-xl text-charcoal-300">Professional tree care with precision and safety</p>
+            <p className="text-xl text-charcoal-200">Professional tree care with precision and safety</p>
           </div>
           <Card className="bg-charcoal-800/50 border border-evergreen-900/20 overflow-hidden">
             <CardBody className="p-0 relative">
@@ -71,12 +71,12 @@ export default function ServicesContent() {
               {/* Main Content */}
               <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
                 <h2 className="text-4xl font-bold text-evergreen-400 mb-4" itemProp="name">{service.title}</h2>
-                <p className="text-lg text-charcoal-300 mb-6 leading-relaxed" itemProp="description">{service.description}</p>
+                <p className="text-lg text-charcoal-200 mb-6 leading-relaxed" itemProp="description">{service.description}</p>
                 
                 <Card className="mb-6 bg-charcoal-900/50 border border-evergreen-900/20" role="region" aria-label="Service process details">
                   <CardBody className="p-6">
                     <h3 className="text-xl font-semibold text-evergreen-400 mb-3">Our Process</h3>
-                    <p className="text-charcoal-300 leading-relaxed" itemProp="serviceOutput">{service.process}</p>
+                    <p className="text-charcoal-200 leading-relaxed" itemProp="serviceOutput">{service.process}</p>
                   </CardBody>
                 </Card>
 
@@ -84,7 +84,7 @@ export default function ServicesContent() {
                   <Card className="bg-charcoal-900/30 border border-evergreen-900/10" role="region" aria-label="Service benefits">
                     <CardBody className="p-5">
                       <h4 className="font-semibold text-evergreen-400 mb-3">Key Benefits</h4>
-                      <ul className="text-sm text-charcoal-300 space-y-2" role="list" aria-label="Benefits of this service">
+                      <ul className="text-sm text-charcoal-200 space-y-2" role="list" aria-label="Benefits of this service">
                         {service.benefits?.map((benefit, idx) => (
                           <li key={idx} className="flex items-start gap-2">
                             <CheckCircleIcon className="w-4 h-4 text-evergreen-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
@@ -98,7 +98,7 @@ export default function ServicesContent() {
                   <Card className="bg-charcoal-900/30 border border-evergreen-900/10" role="region" aria-label="Service features">
                     <CardBody className="p-5">
                       <h4 className="font-semibold text-evergreen-400 mb-3">Service Features</h4>
-                      <ul className="text-sm text-charcoal-300 space-y-2" role="list" aria-label="Features included with this service">
+                      <ul className="text-sm text-charcoal-200 space-y-2" role="list" aria-label="Features included with this service">
                         {service.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2">
                             <span className="text-evergreen-500 mt-0.5 flex-shrink-0" aria-hidden="true">•</span>
@@ -119,7 +119,7 @@ export default function ServicesContent() {
                       <WrenchScrewdriverIcon className="w-5 h-5" aria-hidden="true" />
                       Equipment Used
                     </h4>
-                    <p className="text-sm text-charcoal-300 leading-relaxed">{service.equipment}</p>
+                    <p className="text-sm text-charcoal-200 leading-relaxed">{service.equipment}</p>
                   </div>
                   
                   <div>
@@ -127,7 +127,7 @@ export default function ServicesContent() {
                       <CalendarIcon className="w-5 h-5" aria-hidden="true" />
                       Best Timing
                     </h4>
-                    <p className="text-sm text-charcoal-300 leading-relaxed" itemProp="serviceType">{service.seasonality}</p>
+                    <p className="text-sm text-charcoal-200 leading-relaxed" itemProp="serviceType">{service.seasonality}</p>
                   </div>
 
                   <div className="pt-4 border-t border-evergreen-900/20">
@@ -157,21 +157,21 @@ export default function ServicesContent() {
               <CardBody className="text-center p-8">
                 <div className="text-5xl mb-4" aria-label="Trained experts icon" role="img">🎓</div>
                 <h3 className="text-xl font-bold text-evergreen-400 mb-3">Trained Experts</h3>
-                <p className="text-charcoal-300">Experienced professionals with ongoing education and training</p>
+                <p className="text-charcoal-200">Experienced professionals with ongoing education and training</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-8">
                 <div className="text-5xl mb-4" aria-label="Fully insured icon" role="img">🛡️</div>
                 <h3 className="text-xl font-bold text-evergreen-400 mb-3">Fully Insured</h3>
-                <p className="text-charcoal-300">Complete liability and workers&apos; compensation coverage</p>
+                <p className="text-charcoal-200">Complete liability and workers&apos; compensation coverage</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-8">
                 <div className="text-5xl mb-4" aria-label="24/7 emergency service icon" role="img">⚡</div>
                 <h3 className="text-xl font-bold text-evergreen-400 mb-3">Emergency Ready</h3>
-                <p className="text-charcoal-300">24/7 response for storm damage and urgent situations</p>
+                <p className="text-charcoal-200">24/7 response for storm damage and urgent situations</p>
               </CardBody>
             </Card>
           </div>

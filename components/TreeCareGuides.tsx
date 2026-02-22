@@ -168,9 +168,9 @@ export default function TreeCareGuides() {
           <h2 className="text-4xl font-bold text-sage-400 mb-4">
             Expert Tree Care Guides
           </h2>
-          <p className="text-xl text-charcoal-300 max-w-3xl mx-auto">
-            Learn from our 6 years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
-          </p>
+          <p className="text-xl text-charcoal-200 max-w-3xl mx-auto">
+             Learn from our 6 years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
+           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -198,19 +198,19 @@ export default function TreeCareGuides() {
                         <span className="text-charcoal-500 text-sm">{guide.readTime}</span>
                       </div>
                       <h3 className="text-xl font-bold text-charcoal-50 mb-2">{guide.title}</h3>
-                      <p className="text-charcoal-300 mb-4">{guide.description}</p>
+                      <p className="text-charcoal-200 mb-4">{guide.description}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-semibold text-sage-400 mb-2">Overview</h4>
-                      <p className="text-charcoal-300 text-sm leading-relaxed">{guide.content.overview}</p>
+                      <p className="text-charcoal-200 text-sm leading-relaxed">{guide.content.overview}</p>
                     </div>
                     
                     <div>
                       <h4 className="font-semibold text-sage-400 mb-2">Key Points</h4>
-                      <ul className="text-charcoal-300 text-sm space-y-1">
+                      <ul className="text-charcoal-200 text-sm space-y-1">
                         {guide.content.keyPoints.map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2">
                             <span className="text-sage-500 mt-1 flex-shrink-0">•</span>
@@ -227,7 +227,7 @@ export default function TreeCareGuides() {
                           {Object.entries(guide.content.seasonalTips).map(([season, tips]) => (
                             <div key={season} className="bg-charcoal-900/30 p-3 rounded">
                               <h5 className="font-medium text-charcoal-200 mb-2 capitalize">{season}</h5>
-                              <ul className="text-charcoal-400 space-y-1">
+                              <ul className="text-charcoal-200 space-y-1">
                                 {tips.map((tip, idx) => (
                                   <li key={idx} className="text-xs">• {tip}</li>
                                 ))}
@@ -241,7 +241,7 @@ export default function TreeCareGuides() {
                     {guide.content.warningSigns && (
                       <div>
                         <h4 className="font-semibold text-red-400 mb-2">Warning Signs to Watch For</h4>
-                        <ul className="text-charcoal-300 text-sm space-y-1">
+                        <ul className="text-charcoal-200 text-sm space-y-1">
                           {guide.content.warningSigns.map((sign, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <span className="text-red-500 mt-1 flex-shrink-0">!</span>

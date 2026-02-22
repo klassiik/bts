@@ -105,10 +105,10 @@ export default function EmergencyResponseContent() {
             Storm Damage? Fallen Trees? Immediate Response Available
           </p>
           
-          <p className="text-xl text-charcoal-300 mb-8 max-w-3xl mx-auto">
-            Professional emergency tree services throughout Colfax and surrounding areas. 
-            Licensed, insured, and ready to respond to your tree emergencies 24/7.
-          </p>
+          <p className="text-xl text-charcoal-200 mb-8 max-w-3xl mx-auto">
+             Professional emergency tree services throughout Colfax and surrounding areas. 
+             Licensed, insured, and ready to respond to your tree emergencies 24/7.
+           </p>
 
           <div className="flex gap-4 justify-center flex-wrap">
             <Button
@@ -160,7 +160,7 @@ export default function EmergencyResponseContent() {
                       <Icon className={`w-8 h-8 ${scenario.color}`} aria-hidden="true" />
                     </div>
                     <h3 className="text-xl font-bold text-charcoal-50 mb-3">{scenario.title}</h3>
-                    <p className="text-charcoal-300 mb-4 leading-relaxed">{scenario.description}</p>
+                    <p className="text-charcoal-200 mb-4 leading-relaxed">{scenario.description}</p>
                     <Chip 
                       size="sm" 
                       className="bg-red-900/30 text-red-400 border-red-700/30"
@@ -191,7 +191,7 @@ export default function EmergencyResponseContent() {
                     {process.step}
                   </div>
                   <h3 className="text-lg font-bold text-red-400 mb-3 mt-2">{process.title}</h3>
-                  <p className="text-charcoal-300 text-sm leading-relaxed mb-4">{process.description}</p>
+                  <p className="text-charcoal-200 text-sm leading-relaxed mb-4">{process.description}</p>
                   <div className="text-red-300 font-semibold text-sm">{process.action}</div>
                 </CardBody>
               </Card>
@@ -210,7 +210,7 @@ export default function EmergencyResponseContent() {
                 <h3 className="text-2xl font-bold text-amber-400">Important Safety Information</h3>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6 text-charcoal-300">
+              <div className="grid md:grid-cols-2 gap-6 text-charcoal-200">
                 <div>
                   <h4 className="font-bold text-amber-400 mb-2">DO:</h4>
                   <ul className="space-y-1 text-sm">
@@ -247,11 +247,11 @@ export default function EmergencyResponseContent() {
               <CardBody className="p-8">
                 <DocumentTextIcon className="w-10 h-10 text-red-400 mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-red-400 mb-4">We Help with Insurance Claims</h3>
-                <p className="text-charcoal-300 mb-4">
-                  Our team provides detailed documentation and assessments to support your insurance claims. 
-                  We work directly with insurance adjusters to streamline the process.
-                </p>
-                <ul className="text-charcoal-300 text-sm space-y-1">
+                <p className="text-charcoal-200 mb-4">
+                   Our team provides detailed documentation and assessments to support your insurance claims. 
+                   We work directly with insurance adjusters to streamline the process.
+                 </p>
+                 <ul className="text-charcoal-200 text-sm space-y-1">
                   <li>• Professional damage assessments</li>
                   <li>• Detailed written reports</li>
                   <li>• Photo documentation</li>
@@ -264,11 +264,11 @@ export default function EmergencyResponseContent() {
               <CardBody className="p-8">
                 <ShieldCheckIcon className="w-10 h-10 text-red-400 mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-red-400 mb-4">Licensed & Insured Protection</h3>
-                <p className="text-charcoal-300 mb-4">
-                  Work with confidence knowing you&apos;re protected. Our comprehensive insurance 
-                  and licensing provides peace of mind during emergency situations.
-                </p>
-                <ul className="text-charcoal-300 text-sm space-y-1">
+                <p className="text-charcoal-200 mb-4">
+                   Work with confidence knowing you&apos;re protected. Our comprehensive insurance 
+                   and licensing provides peace of mind during emergency situations.
+                 </p>
+                 <ul className="text-charcoal-200 text-sm space-y-1">
                   <li>• CSLB #1085329 Licensed</li>
                   <li>• Full liability insurance</li>
                   <li>• Workers compensation coverage</li>
@@ -288,10 +288,10 @@ export default function EmergencyResponseContent() {
               <h2 className="text-4xl font-bold text-red-400 mb-6">
                 Don&apos;t Wait - Call Now
               </h2>
-              <p className="text-xl text-charcoal-300 mb-8 max-w-2xl mx-auto">
-                Tree emergencies don&apos;t wait for convenient timing. Neither do we. 
-                Our emergency response team is standing by to help restore safety to your property.
-              </p>
+              <p className="text-xl text-charcoal-200 mb-8 max-w-2xl mx-auto">
+                 Tree emergencies don&apos;t wait for convenient timing. Neither do we. 
+                 Our emergency response team is standing by to help restore safety to your property.
+               </p>
               
               <div className="flex gap-6 justify-center flex-wrap mb-6">
                 <Button

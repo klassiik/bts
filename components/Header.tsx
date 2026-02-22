@@ -75,9 +75,9 @@ export default function Header() {
               <span className="text-xl lg:text-2xl font-bold tracking-tight bg-gradient-to-r from-evergreen-400 via-evergreen-300 to-sage-400 bg-clip-text text-transparent leading-tight">
                 BARKER
               </span>
-              <span className="text-xs lg:text-sm font-semibold tracking-wider text-charcoal-300 uppercase -mt-1">
-                Tree Services
-              </span>
+              <span className="text-xs lg:text-sm font-semibold tracking-wider text-charcoal-200 uppercase -mt-1">
+                 Tree Services
+               </span>
             </div>
           </Link>
         </NavbarBrand>
@@ -94,7 +94,7 @@ export default function Header() {
                 className={`group flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
                   isActive
                     ? 'text-evergreen-400 bg-evergreen-950/40'
-                    : 'text-charcoal-300 hover:text-evergreen-400 hover:bg-charcoal-800/50'
+                    : 'text-charcoal-200 hover:text-evergreen-400 hover:bg-charcoal-800/50'
                 }`}
                 aria-current={isActive ? 'page' : undefined}
                 aria-label={`Navigate to ${item.label}`}
@@ -138,7 +138,7 @@ export default function Header() {
                 className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg font-semibold text-base transition-all duration-200 ${
                   isActive
                     ? 'text-evergreen-400 bg-evergreen-950/40'
-                    : 'text-charcoal-300 hover:text-evergreen-400 hover:bg-charcoal-800/50'
+                    : 'text-charcoal-200 hover:text-evergreen-400 hover:bg-charcoal-800/50'
                 }`}
                 aria-current={isActive ? 'page' : undefined}
                 aria-label={`Navigate to ${item.label}`}

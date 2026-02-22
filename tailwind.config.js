@@ -11,19 +11,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Charcoal backgrounds
+        // Charcoal backgrounds - improved contrast for accessibility
         charcoal: {
-          50: '#f5f5f6',
-          100: '#e6e6e7',
-          200: '#cfcfd1',
-          300: '#adaeb1',
-          400: '#84858a',
-          500: '#696a6f',
-          600: '#58595d',
-          700: '#4a4b4f',
-          800: '#3d3e41',
-          900: '#2b2c2e',
-          950: '#1a1b1c',
+          50: '#ffffff',
+          100: '#f5f5f6',
+          200: '#e0e0e2',
+          300: '#c0c0c3',
+          400: '#9a9a9f',
+          500: '#7a7a80',
+          600: '#5a5a60',
+          700: '#4a4a50',
+          800: '#3a3a40',
+          900: '#2a2a30',
+          950: '#1a1a20',
         },
         // Evergreen primary
         evergreen: {

@@ -21,7 +21,7 @@ export default function ServiceAreasContent() {
           </Chip>
           {/* GEO: H1 optimized with geographic keywords for AI discovery */}
           <h1 className="text-5xl font-bold text-charcoal-50 mb-4" itemProp="name">Service Areas</h1>
-          <p className="text-xl text-charcoal-300" itemProp="areaServed">Proudly serving Colfax and all surrounding communities</p>
+          <p className="text-xl text-charcoal-200" itemProp="areaServed">Proudly serving Colfax and all surrounding communities</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -83,7 +83,7 @@ export default function ServiceAreasContent() {
         <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Contact for unlisted areas">
           <CardBody className="p-8 text-center">
             <h3 className="text-2xl font-bold text-evergreen-400 mb-4">Not seeing your area?</h3>
-            <p className="text-charcoal-300 mb-6">We may still be able to help! Give us a call to discuss your location.</p>
+            <p className="text-charcoal-200 mb-6">We may still be able to help! Give us a call to discuss your location.</p>
             <Button
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
               as="a"

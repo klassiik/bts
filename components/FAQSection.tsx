@@ -110,9 +110,9 @@ export default function FAQSection() {
           <h2 className="text-4xl font-bold text-evergreen-400 mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-charcoal-300">
-            Get answers to common questions about tree services in Colfax and surrounding areas
-          </p>
+          <p className="text-xl text-charcoal-200">
+             Get answers to common questions about tree services in Colfax and surrounding areas
+           </p>
         </div>
 
         <div className="space-y-4">
@@ -164,9 +164,9 @@ export default function FAQSection() {
                     itemProp="acceptedAnswer" 
                     itemType="https://schema.org/Answer"
                   >
-                    <p className="text-charcoal-300 leading-relaxed" itemProp="text">
-                      {item.answer}
-                    </p>
+                    <p className="text-charcoal-200 leading-relaxed" itemProp="text">
+                       {item.answer}
+                     </p>
                   </div>
                 )}
               </CardBody>
@@ -175,9 +175,9 @@ export default function FAQSection() {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-charcoal-400 mb-6">
-            Don&apos;t see your question answered? Contact us for personalized tree care guidance.
-          </p>
+          <p className="text-charcoal-200 mb-6">
+              Don&apos;t see your question answered? Contact us for personalized tree care guidance.
+            </p>
           <Button
             href="/contact"
             as="a"

@@ -27,7 +27,7 @@ export default function ContactContent() {
           </Chip>
           {/* GEO: H1 optimized with location and contact keywords */}
           <h1 className="text-5xl font-bold text-charcoal-50 mb-4">Contact Us</h1>
-          <p className="text-charcoal-300 text-lg">Ready to transform your property? Let&apos;s discuss your tree care needs</p>
+          <p className="text-charcoal-200 text-lg">Ready to transform your property? Let&apos;s discuss your tree care needs</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -47,7 +47,7 @@ export default function ContactContent() {
                 <div>
                   <h3 className="font-bold text-lg text-evergreen-400">Phone</h3>
                   <p className="text-evergreen-300 font-semibold" itemProp="telephone">{BUSINESS_INFO.phone}</p>
-                  <p className="text-charcoal-400 text-sm">Call for immediate assistance</p>
+                  <p className="text-charcoal-200 text-sm">Call for immediate assistance</p>
                 </div>
               </CardBody>
             </Card>
@@ -65,7 +65,7 @@ export default function ContactContent() {
                 <div>
                   <h3 className="font-bold text-lg text-evergreen-400">Email</h3>
                   <p className="text-evergreen-300 font-semibold" itemProp="email">{BUSINESS_INFO.email}</p>
-                  <p className="text-charcoal-400 text-sm">Send us a message anytime</p>
+                  <p className="text-charcoal-200 text-sm">Send us a message anytime</p>
                 </div>
               </CardBody>
             </Card>
@@ -75,8 +75,8 @@ export default function ContactContent() {
                 <MapPinIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <address className="not-italic" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                   <h3 className="font-bold text-lg text-evergreen-400">Service Area</h3>
-                  <p className="text-charcoal-300" itemProp="streetAddress">{BUSINESS_INFO.address}</p>
-                  <p className="text-charcoal-400 text-sm mt-1" itemProp="areaServed">Serving Placer & Nevada Counties</p>
+                  <p className="text-charcoal-200" itemProp="streetAddress">{BUSINESS_INFO.address}</p>
+                  <p className="text-charcoal-200 text-sm mt-1" itemProp="areaServed">Serving Placer & Nevada Counties</p>
                 </address>
               </CardBody>
             </Card>
@@ -86,7 +86,7 @@ export default function ContactContent() {
                 <ClockIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
                   <h3 className="font-bold text-lg text-evergreen-400">Business Hours</h3>
-                  <p className="text-charcoal-300" itemProp="hoursAvailable">{BUSINESS_INFO.hours}</p>
+                  <p className="text-charcoal-200" itemProp="hoursAvailable">{BUSINESS_INFO.hours}</p>
                   <Chip 
                     className="mt-2 bg-amber-900/30 border border-amber-600/30 text-amber-400"
                     size="sm"

@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { Providers } from './providers'
-import dynamic from 'next/dynamic'
 import Script from 'next/script'
 import '@/styles/globals.css'
 
-// Lazy load components
-const Header = dynamic(() => import('@/components/Header'))
-const Footer = dynamic(() => import('@/components/Footer'))
-const FloatingContactButton = dynamic(() => import('@/components/FloatingContactButton'))
+// Import components directly for better LCP - they're needed immediately
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import FloatingContactButton from '@/components/FloatingContactButton'
 
 /* GEO: Enhanced root metadata for AI search engines with comprehensive business context */
 export const metadata: Metadata = {

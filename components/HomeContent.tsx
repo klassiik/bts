@@ -30,9 +30,9 @@ export default function HomeContent() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-charcoal-50">
               Expert Tree Services in <span className="text-evergreen-400">Colfax, CA</span>
             </h1>
-            <p className="text-xl text-charcoal-300 mb-8 leading-relaxed">
-              Professional tree trimming, removal, and emergency services. Licensed, insured, and available 24/7.
-            </p>
+            <p className="text-xl text-charcoal-200 mb-8 leading-relaxed">
+               Professional tree trimming, removal, and emergency services. Licensed, insured, and available 24/7.
+             </p>
             <div className="flex gap-4 flex-wrap">
               {/* GEO: Primary CTA with semantic link relationship */}
               <Button
@@ -62,16 +62,16 @@ export default function HomeContent() {
           
           {/* GEO: Service areas card with structured location data for geographic AI queries */}
           <Card className="bg-charcoal-800/50 border border-evergreen-900/30 backdrop-blur-sm" role="region" aria-label="Service coverage areas">
-            <CardBody className="p-6">
-              <h3 className="text-2xl font-bold text-evergreen-400 mb-4">Our Service Areas</h3>
-              <ul className="grid grid-cols-2 gap-3" role="list" aria-label="Cities served by Barker Tree Services">
-                {SERVICE_AREAS.map((area) => (
-                  <li key={area.city} className="flex items-center gap-2 text-charcoal-300">
-                    <CheckCircleIcon className="w-5 h-5 text-evergreen-500 flex-shrink-0" aria-hidden="true" />
-                    <span>{area.city}</span>
-                  </li>
-                ))}
-              </ul>
+             <CardBody className="p-6">
+               <h2 className="text-2xl font-bold text-evergreen-400 mb-4">Our Service Areas</h2>
+               <ul className="grid grid-cols-2 gap-3" role="list" aria-label="Cities served by Barker Tree Services">
+                 {SERVICE_AREAS.map((area) => (
+                   <li key={area.city} className="flex items-center gap-2 text-charcoal-200">
+                     <CheckCircleIcon className="w-5 h-5 text-evergreen-500 flex-shrink-0" aria-hidden="true" />
+                     <span>{area.city}</span>
+                   </li>
+                 ))}
+               </ul>
             </CardBody>
           </Card>
         </div>
@@ -87,28 +87,28 @@ export default function HomeContent() {
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Licensed and insured icon" role="img">🏆</div>
                 <h3 className="text-lg font-bold text-evergreen-400 mb-2">Licensed & Insured</h3>
-                <p className="text-charcoal-300 text-sm">CSLB #{BUSINESS_INFO.cslb}</p>
+                <p className="text-charcoal-200 text-sm">CSLB #{BUSINESS_INFO.cslb}</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Expert training icon" role="img">🎓</div>
                 <h3 className="text-lg font-bold text-evergreen-400 mb-2">Expert Training</h3>
-                <p className="text-charcoal-300 text-sm">Ongoing education & training</p>
+                <p className="text-charcoal-200 text-sm">Ongoing education & training</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Expert team icon" role="img">👨‍💼</div>
                 <h3 className="text-lg font-bold text-evergreen-400 mb-2">Expert Team</h3>
-                <p className="text-charcoal-300 text-sm">{COMPANY_CREDENTIALS.experience}</p>
+                <p className="text-charcoal-200 text-sm">{COMPANY_CREDENTIALS.experience}</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="24/7 emergency service icon" role="img">⚡</div>
                 <h3 className="text-lg font-bold text-evergreen-400 mb-2">Emergency Ready</h3>
-                <p className="text-charcoal-300 text-sm">24/7 storm response</p>
+                <p className="text-charcoal-200 text-sm">24/7 storm response</p>
               </CardBody>
             </Card>
           </div>
@@ -119,7 +119,7 @@ export default function HomeContent() {
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Customer testimonials and reviews">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-evergreen-400 mb-4 text-center">What Our Customers Say</h2>
-          <p className="text-charcoal-400 text-center mb-12">Real reviews from satisfied customers across our service areas</p>
+          <p className="text-charcoal-200 text-center mb-12">Real reviews from satisfied customers across our service areas</p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" role="list" aria-label="Customer reviews">
             {DETAILED_TESTIMONIALS.slice(0, 6).map((testimonial, idx) => (
@@ -132,7 +132,7 @@ export default function HomeContent() {
                       <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
                     ))}
                   </div>
-                  <p className="text-charcoal-300 mb-4 leading-relaxed text-sm" itemProp="reviewBody">&ldquo;{testimonial.text}&rdquo;</p>
+                  <p className="text-charcoal-200 mb-4 leading-relaxed text-sm" itemProp="reviewBody">&ldquo;{testimonial.text}&rdquo;</p>
                   <div className="flex justify-between items-center text-sm" itemProp="author" itemScope itemType="https://schema.org/Person">
                     <div>
                       <p className="font-semibold text-evergreen-400" itemProp="name">{testimonial.name}</p>
@@ -151,7 +151,7 @@ export default function HomeContent() {
           </div>
 
           <div className="text-center">
-            <p className="text-charcoal-400 mb-6">Join hundreds of satisfied customers in Colfax and surrounding areas</p>
+            <p className="text-charcoal-200 mb-6">Join hundreds of satisfied customers in Colfax and surrounding areas</p>
             <Button
               as="a"
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
@@ -175,28 +175,28 @@ export default function HomeContent() {
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Tree trimming service icon" role="img">✂️</div>
                 <h3 className="font-bold text-evergreen-400 mb-2">Tree Trimming</h3>
-                <p className="text-charcoal-400 text-sm">Professional pruning for health and beauty</p>
+                <p className="text-charcoal-200 text-sm">Professional pruning for health and beauty</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all" role="listitem">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Tree removal service icon" role="img">🪓</div>
                 <h3 className="font-bold text-evergreen-400 mb-2">Tree Removal</h3>
-                <p className="text-charcoal-400 text-sm">Safe removal of hazardous trees</p>
+                <p className="text-charcoal-200 text-sm">Safe removal of hazardous trees</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all" role="listitem">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Stump grinding service icon" role="img">🪚</div>
                 <h3 className="font-bold text-evergreen-400 mb-2">Stump Grinding</h3>
-                <p className="text-charcoal-400 text-sm">Complete stump removal solutions</p>
+                <p className="text-charcoal-200 text-sm">Complete stump removal solutions</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all" role="listitem">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Emergency tree service icon" role="img">⚡</div>
                 <h3 className="font-bold text-evergreen-400 mb-2">Emergency</h3>
-                <p className="text-charcoal-400 text-sm">24/7 storm damage response</p>
+                <p className="text-charcoal-200 text-sm">24/7 storm damage response</p>
               </CardBody>
             </Card>
           </div>
