@@ -203,7 +203,7 @@ export default function ContactForm() {
              isSubmitting ? 'Sending...' : 'Send Estimate Request'}
           </Button>
           {submitStatus === 'success' && (
-            <p className="text-center text-evergreen-400 text-sm font-semibold" role="status">
+            <p className="text-center text-evergreen-300 text-sm font-semibold" role="status">
               ✓ We&apos;ll contact you within 24 hours!
             </p>
           )}

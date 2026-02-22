@@ -18,7 +18,7 @@ export default function AboutContent() {
         
         <div className="relative max-w-6xl mx-auto text-center">
           <Chip 
-            className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-400"
+            className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             aria-label="Company founding date"
           >
@@ -26,7 +26,7 @@ export default function AboutContent() {
           </Chip>
           {/* GEO: H1 with organization name for AI understanding */}
           <h1 className="text-5xl font-bold mb-6 text-charcoal-50" itemProp="name">About Barker Tree Services</h1>
-          <p className="text-xl text-charcoal-200 max-w-3xl mx-auto" itemProp="description">
+          <p className="text-xl text-charcoal-100 max-w-3xl mx-auto" itemProp="description">
              Your trusted tree care professionals serving Colfax and surrounding communities
            </p>
         </div>
@@ -37,8 +37,8 @@ export default function AboutContent() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <article itemProp="knowsAbout">
-              <h2 className="text-4xl font-bold text-evergreen-400 mb-6">Our Story</h2>
-              <div className="space-y-4 text-charcoal-200 leading-relaxed">
+              <h2 className="text-4xl font-bold text-evergreen-300 mb-6">Our Story</h2>
+              <div className="space-y-4 text-charcoal-100 leading-relaxed">
                 <p>
                   Barker Tree Services was founded in {COMPANY_CREDENTIALS.founded} with a simple mission: to provide the highest quality tree care services while prioritizing safety, environmental stewardship, and customer satisfaction. What started as a small operation has grown into one of the most trusted tree service companies in the greater Colfax area.
                 </p>
@@ -60,27 +60,27 @@ export default function AboutContent() {
                     aria-label="About Barker Tree Services"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-evergreen-400 mb-6">Why We&apos;re Different</h3>
+                <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Why We&apos;re Different</h3>
                 <ul className="space-y-4" role="list" aria-label="Key differentiators">
                   <li className="flex items-start gap-3">
                     <span className="text-4xl" aria-label="Education icon" role="img">🎓</span>
                     <div>
-                      <strong className="text-evergreen-400">Education First</strong>
-                      <p className="text-charcoal-200 text-sm">Continuous training in latest arboriculture techniques and safety protocols</p>
+                      <strong className="text-evergreen-300">Education First</strong>
+                      <p className="text-charcoal-100 text-sm">Continuous training in latest arboriculture techniques and safety protocols</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-4xl" aria-label="Environmental focus icon" role="img">🌱</span>
                     <div>
-                      <strong className="text-evergreen-400">Environmental Focus</strong>
-                      <p className="text-charcoal-200 text-sm">Sustainable practices that benefit both your property and the ecosystem</p>
+                      <strong className="text-evergreen-300">Environmental Focus</strong>
+                      <p className="text-charcoal-100 text-sm">Sustainable practices that benefit both your property and the ecosystem</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-4xl" aria-label="Community commitment icon" role="img">🤝</span>
                     <div>
-                      <strong className="text-evergreen-400">Community Commitment</strong>
-                      <p className="text-charcoal-200 text-sm">Proud to support local community events and environmental initiatives</p>
+                      <strong className="text-evergreen-300">Community Commitment</strong>
+                      <p className="text-charcoal-100 text-sm">Proud to support local community events and environmental initiatives</p>
                     </div>
                   </li>
                 </ul>
@@ -93,17 +93,17 @@ export default function AboutContent() {
       {/* GEO: Credentials section with certification and equipment lists for AI extraction */}
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Professional credentials and equipment">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-400 mb-12 text-center">Credentials & Certifications</h2>
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Credentials & Certifications</h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional certifications">
               <CardBody className="p-8">
-                <h3 className="text-2xl font-bold text-evergreen-400 mb-6">Professional Certifications</h3>
+                <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Professional Certifications</h3>
                 <ul className="space-y-3" role="list" aria-label="List of certifications" itemProp="hasCredential">
                   {COMPANY_CREDENTIALS.certifications.map((cert, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircleIcon className="w-5 h-5 text-evergreen-500 mt-1 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-charcoal-200">{cert}</span>
+                      <span className="text-charcoal-100">{cert}</span>
                     </li>
                   ))}
                 </ul>
@@ -112,12 +112,12 @@ export default function AboutContent() {
 
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional equipment">
               <CardBody className="p-8">
-                <h3 className="text-2xl font-bold text-evergreen-400 mb-6">Professional Equipment</h3>
+                <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Professional Equipment</h3>
                 <ul className="space-y-3" role="list" aria-label="Equipment used">
                   {COMPANY_CREDENTIALS.equipment.map((equipment, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <span className="text-evergreen-500 mt-1 flex-shrink-0" aria-hidden="true">•</span>
-                      <span className="text-charcoal-200">{equipment}</span>
+                      <span className="text-charcoal-100">{equipment}</span>
                     </li>
                   ))}
                 </ul>
@@ -127,7 +127,7 @@ export default function AboutContent() {
 
           <Card className="bg-gradient-to-br from-evergreen-950/80 to-charcoal-900/80 border border-evergreen-900/30" role="region" aria-label="Core company values">
             <CardBody className="p-8">
-              <h3 className="text-2xl font-bold mb-6 text-center text-evergreen-400">Our Core Values</h3>
+              <h3 className="text-2xl font-bold mb-6 text-center text-evergreen-300">Our Core Values</h3>
               <div className="grid md:grid-cols-3 gap-6" role="list" aria-label="Company values">
                 {COMPANY_CREDENTIALS.values.map((value, index) => (
                   <div key={index} className="text-center" role="listitem">
@@ -152,11 +152,11 @@ export default function AboutContent() {
           <div className="grid md:grid-cols-2 gap-12">
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="article" aria-label="Mission statement">
               <CardBody className="p-8">
-                <h3 className="text-3xl font-bold text-evergreen-400 mb-6">Our Mission</h3>
-                <p className="text-charcoal-200 leading-relaxed mb-6" itemProp="slogan">
+                <h3 className="text-3xl font-bold text-evergreen-300 mb-6">Our Mission</h3>
+                <p className="text-charcoal-100 leading-relaxed mb-6" itemProp="slogan">
                   To provide expert, safe, and environmentally responsible tree care services that enhance the beauty, safety, and value of properties throughout our community while fostering long-term relationships built on trust and excellence.
                 </p>
-                <div className="flex items-center gap-3 text-evergreen-400">
+                <div className="flex items-center gap-3 text-evergreen-300">
                   <span className="text-3xl" aria-label="Service area icon" role="img">🎯</span>
                   <span className="font-semibold" itemProp="areaServed">Serving Colfax & Surrounding Areas</span>
                 </div>
@@ -185,8 +185,8 @@ export default function AboutContent() {
       {/* GEO: Contact call-to-action with contact information */}
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Contact call-to-action">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-evergreen-400 mb-6">Ready to Work Together?</h2>
-          <p className="text-xl text-charcoal-200 mb-8">
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-6">Ready to Work Together?</h2>
+          <p className="text-xl text-charcoal-100 mb-8">
             Experience the Barker Tree Services difference. Contact us today for your free consultation and estimate.
           </p>
           <div className="flex gap-4 justify-center flex-wrap" itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
@@ -207,7 +207,7 @@ export default function AboutContent() {
               as="a"
               size="lg"
               variant="bordered"
-              className="border-evergreen-600 text-evergreen-400 hover:bg-evergreen-900/30 font-bold"
+              className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-900/30 font-bold"
               startContent={<EnvelopeIcon className="w-5 h-5" aria-hidden="true" />}
               aria-label="Email Barker Tree Services"
               itemProp="email"

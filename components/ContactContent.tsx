@@ -19,7 +19,7 @@ export default function ContactContent() {
       <div className="max-w-6xl mx-auto relative" style={{ zIndex: 10 }}>
         <div className="text-center mb-12">
           <Chip 
-            className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-400"
+            className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             aria-label="Contact section label"
           >
@@ -27,7 +27,7 @@ export default function ContactContent() {
           </Chip>
           {/* GEO: H1 optimized with location and contact keywords */}
           <h1 className="text-5xl font-bold text-charcoal-50 mb-4">Contact Us</h1>
-          <p className="text-charcoal-200 text-lg">Ready to transform your property? Let&apos;s discuss your tree care needs</p>
+          <p className="text-charcoal-100 text-lg">Ready to transform your property? Let&apos;s discuss your tree care needs</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -45,9 +45,9 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <PhoneIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
-                  <h2 className="font-bold text-lg text-evergreen-400">Phone</h2>
+                  <h2 className="font-bold text-lg text-evergreen-300">Phone</h2>
                   <p className="text-evergreen-300 font-semibold" itemProp="telephone">{BUSINESS_INFO.phone}</p>
-                  <p className="text-charcoal-200 text-sm">Call for immediate assistance</p>
+                  <p className="text-charcoal-100 text-sm">Call for immediate assistance</p>
                 </div>
               </CardBody>
             </Card>
@@ -63,9 +63,9 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <EnvelopeIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
-                  <h2 className="font-bold text-lg text-evergreen-400">Email</h2>
+                  <h2 className="font-bold text-lg text-evergreen-300">Email</h2>
                   <p className="text-evergreen-300 font-semibold" itemProp="email">{BUSINESS_INFO.email}</p>
-                  <p className="text-charcoal-200 text-sm">Send us a message anytime</p>
+                  <p className="text-charcoal-100 text-sm">Send us a message anytime</p>
                 </div>
               </CardBody>
             </Card>
@@ -74,9 +74,9 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <MapPinIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <address className="not-italic" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                  <h2 className="font-bold text-lg text-evergreen-400">Service Area</h2>
-                  <p className="text-charcoal-200" itemProp="streetAddress">{BUSINESS_INFO.address}</p>
-                  <p className="text-charcoal-200 text-sm mt-1" itemProp="areaServed">Serving Placer & Nevada Counties</p>
+                  <h2 className="font-bold text-lg text-evergreen-300">Service Area</h2>
+                  <p className="text-charcoal-100" itemProp="streetAddress">{BUSINESS_INFO.address}</p>
+                  <p className="text-charcoal-100 text-sm mt-1" itemProp="areaServed">Serving Placer & Nevada Counties</p>
                 </address>
               </CardBody>
             </Card>
@@ -85,8 +85,8 @@ export default function ContactContent() {
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <ClockIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
-                  <h2 className="font-bold text-lg text-evergreen-400">Business Hours</h2>
-                  <p className="text-charcoal-200" itemProp="hoursAvailable">{BUSINESS_INFO.hours}</p>
+                  <h2 className="font-bold text-lg text-evergreen-300">Business Hours</h2>
+                  <p className="text-charcoal-100" itemProp="hoursAvailable">{BUSINESS_INFO.hours}</p>
                   <Chip 
                     className="mt-2 bg-amber-900/30 border border-amber-600/30 text-amber-400"
                     size="sm"

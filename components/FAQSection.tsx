@@ -89,11 +89,11 @@ export default function FAQSection() {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'general': return 'bg-evergreen-900/30 text-evergreen-400 border-evergreen-700/30'
-      case 'services': return 'bg-sage-900/30 text-sage-400 border-sage-700/30'
-      case 'pricing': return 'bg-amber-900/30 text-amber-400 border-amber-700/30'
-      case 'emergency': return 'bg-red-900/30 text-red-400 border-red-700/30'
-      default: return 'bg-charcoal-800/30 text-charcoal-400 border-charcoal-700/30'
+      case 'general': return 'bg-evergreen-900/30 text-evergreen-300 border-evergreen-700/30'
+      case 'services': return 'bg-sage-900/30 text-sage-300 border-sage-700/30'
+      case 'pricing': return 'bg-amber-900/30 text-amber-300 border-amber-700/30'
+      case 'emergency': return 'bg-red-900/30 text-red-300 border-red-700/30'
+      default: return 'bg-charcoal-800/30 text-charcoal-300 border-charcoal-700/30'
     }
   }
 
@@ -102,15 +102,15 @@ export default function FAQSection() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <Chip 
-            className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-400"
+            className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
           >
             Tree Care FAQ
           </Chip>
-          <h2 className="text-4xl font-bold text-evergreen-400 mb-4">
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-charcoal-200">
+          <p className="text-xl text-charcoal-100">
              Get answers to common questions about tree services in Colfax and surrounding areas
            </p>
         </div>
@@ -149,9 +149,9 @@ export default function FAQSection() {
                   </div>
                   <div className="flex-shrink-0">
                     {openItems.has(item.id) ? (
-                      <ChevronUpIcon className="w-5 h-5 text-evergreen-400" aria-hidden="true" />
+                      <ChevronUpIcon className="w-5 h-5 text-evergreen-300" aria-hidden="true" />
                     ) : (
-                      <ChevronDownIcon className="w-5 h-5 text-charcoal-400" aria-hidden="true" />
+                      <ChevronDownIcon className="w-5 h-5 text-charcoal-300" aria-hidden="true" />
                     )}
                   </div>
                 </button>
@@ -164,7 +164,7 @@ export default function FAQSection() {
                     itemProp="acceptedAnswer" 
                     itemType="https://schema.org/Answer"
                   >
-                    <p className="text-charcoal-200 leading-relaxed" itemProp="text">
+                    <p className="text-charcoal-100 leading-relaxed" itemProp="text">
                        {item.answer}
                      </p>
                   </div>
@@ -175,7 +175,7 @@ export default function FAQSection() {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-charcoal-200 mb-6">
+          <p className="text-charcoal-100 mb-6">
               Don&apos;t see your question answered? Contact us for personalized tree care guidance.
             </p>
           <Button

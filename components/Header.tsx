@@ -49,7 +49,7 @@ export default function Header() {
       classNames={{
         base: "bg-charcoal-900/95 backdrop-blur-md border-b border-evergreen-900/20",
         wrapper: "px-4 sm:px-6",
-        item: "data-[active=true]:text-evergreen-400"
+        item: "data-[active=true]:text-evergreen-300"
       }}
       as="nav"
       aria-label="Main navigation"
@@ -57,7 +57,7 @@ export default function Header() {
       <NavbarContent className="lg:basis-0 lg:grow" justify="center">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="lg:hidden text-charcoal-200"
+          className="lg:hidden text-charcoal-100"
         />
         <NavbarBrand className="lg:justify-start lg:max-w-fit">
           <Link href="/" className="flex items-center gap-3 group" aria-label="Barker Tree Services home page">
@@ -72,10 +72,10 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col transition-all duration-300 group-hover:translate-x-1">
-              <span className="text-xl lg:text-2xl font-bold tracking-tight bg-gradient-to-r from-evergreen-400 via-evergreen-300 to-sage-400 bg-clip-text text-transparent leading-tight">
+              <span className="text-xl lg:text-2xl font-bold tracking-tight bg-gradient-to-r from-evergreen-300 via-evergreen-200 to-sage-300 bg-clip-text text-transparent leading-tight">
                 BARKER
               </span>
-              <span className="text-xs lg:text-sm font-semibold tracking-wider text-charcoal-200 uppercase -mt-1">
+              <span className="text-xs lg:text-sm font-semibold tracking-wider text-charcoal-100 uppercase -mt-1">
                  Tree Services
                </span>
             </div>
@@ -93,14 +93,14 @@ export default function Header() {
                 href={item.href}
                 className={`group flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
                   isActive
-                    ? 'text-evergreen-400 bg-evergreen-950/40'
-                    : 'text-charcoal-200 hover:text-evergreen-400 hover:bg-charcoal-800/50'
+                    ? 'text-evergreen-300 bg-evergreen-950/40'
+                    : 'text-charcoal-100 hover:text-evergreen-300 hover:bg-charcoal-800/50'
                 }`}
                 aria-current={isActive ? 'page' : undefined}
                 aria-label={`Navigate to ${item.label}`}
               >
                 <Icon className={`w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${
-                  isActive ? 'text-evergreen-400' : 'text-sage-400'
+                  isActive ? 'text-evergreen-300' : 'text-sage-300'
                 }`} aria-hidden="true" />
                 <span>{item.label}</span>
               </Link>
@@ -137,14 +137,14 @@ export default function Header() {
                 href={item.href}
                 className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg font-semibold text-base transition-all duration-200 ${
                   isActive
-                    ? 'text-evergreen-400 bg-evergreen-950/40'
-                    : 'text-charcoal-200 hover:text-evergreen-400 hover:bg-charcoal-800/50'
+                    ? 'text-evergreen-300 bg-evergreen-950/40'
+                    : 'text-charcoal-100 hover:text-evergreen-300 hover:bg-charcoal-800/50'
                 }`}
                 aria-current={isActive ? 'page' : undefined}
                 aria-label={`Navigate to ${item.label}`}
               >
                 <Icon className={`w-6 h-6 ${
-                  isActive ? 'text-evergreen-400' : 'text-sage-400'
+                  isActive ? 'text-evergreen-300' : 'text-sage-300'
                 }`} aria-hidden="true" />
                 <span>{item.label}</span>
               </Link>

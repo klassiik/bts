@@ -146,7 +146,7 @@ const TREE_CARE_GUIDES: TreeCareGuide[] = [
 export default function TreeCareGuides() {
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'seasonal': return 'bg-evergreen-900/30 text-evergreen-400 border-evergreen-700/30'
+      case 'seasonal': return 'bg-evergreen-900/30 text-evergreen-300 border-evergreen-700/30'
       case 'safety': return 'bg-red-900/30 text-red-400 border-red-700/30'
       case 'maintenance': return 'bg-sage-900/30 text-sage-400 border-sage-700/30'
       case 'emergency': return 'bg-amber-900/30 text-amber-400 border-amber-700/30'
@@ -168,7 +168,7 @@ export default function TreeCareGuides() {
           <h2 className="text-4xl font-bold text-sage-400 mb-4">
             Expert Tree Care Guides
           </h2>
-          <p className="text-xl text-charcoal-200 max-w-3xl mx-auto">
+          <p className="text-xl text-charcoal-100 max-w-3xl mx-auto">
              Learn from our 6 years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
            </p>
         </div>
@@ -195,22 +195,22 @@ export default function TreeCareGuides() {
                         >
                           {guide.category}
                         </Chip>
-                        <span className="text-charcoal-500 text-sm">{guide.readTime}</span>
+                        <span className="text-charcoal-300 text-sm">{guide.readTime}</span>
                       </div>
                       <h3 className="text-xl font-bold text-charcoal-50 mb-2">{guide.title}</h3>
-                      <p className="text-charcoal-200 mb-4">{guide.description}</p>
+                      <p className="text-charcoal-100 mb-4">{guide.description}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-semibold text-sage-400 mb-2">Overview</h4>
-                      <p className="text-charcoal-200 text-sm leading-relaxed">{guide.content.overview}</p>
+                      <p className="text-charcoal-100 text-sm leading-relaxed">{guide.content.overview}</p>
                     </div>
                     
                     <div>
                       <h4 className="font-semibold text-sage-400 mb-2">Key Points</h4>
-                      <ul className="text-charcoal-200 text-sm space-y-1">
+                      <ul className="text-charcoal-100 text-sm space-y-1">
                         {guide.content.keyPoints.map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2">
                             <span className="text-sage-500 mt-1 flex-shrink-0">•</span>
@@ -226,8 +226,8 @@ export default function TreeCareGuides() {
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           {Object.entries(guide.content.seasonalTips).map(([season, tips]) => (
                             <div key={season} className="bg-charcoal-900/30 p-3 rounded">
-                              <h5 className="font-medium text-charcoal-200 mb-2 capitalize">{season}</h5>
-                              <ul className="text-charcoal-200 space-y-1">
+                              <h5 className="font-medium text-charcoal-100 mb-2 capitalize">{season}</h5>
+                              <ul className="text-charcoal-100 space-y-1">
                                 {tips.map((tip, idx) => (
                                   <li key={idx} className="text-xs">• {tip}</li>
                                 ))}
@@ -241,7 +241,7 @@ export default function TreeCareGuides() {
                     {guide.content.warningSigns && (
                       <div>
                         <h4 className="font-semibold text-red-400 mb-2">Warning Signs to Watch For</h4>
-                        <ul className="text-charcoal-200 text-sm space-y-1">
+                        <ul className="text-charcoal-100 text-sm space-y-1">
                           {guide.content.warningSigns.map((sign, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <span className="text-red-500 mt-1 flex-shrink-0">!</span>

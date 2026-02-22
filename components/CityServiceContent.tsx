@@ -56,7 +56,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
         
         <div className="relative max-w-6xl mx-auto">
           <Chip 
-            className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-400"
+            className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             startContent={<MapPinIcon className="w-4 h-4" />}
             aria-label={`Serving ${city}, ${state}`}
@@ -66,7 +66,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-charcoal-50">
             Expert Tree Services in {city}, {state}
           </h1>
-          <p className="text-xl text-charcoal-200 mb-8 max-w-3xl">
+          <p className="text-xl text-charcoal-100 mb-8 max-w-3xl">
              Professional tree trimming, removal, stump grinding, and emergency services in {city}. Licensed tree care specialists with 6 years of experience serving {city} and surrounding communities.
            </p>
           <div className="flex gap-4 flex-wrap">
@@ -85,7 +85,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               as="a"
               size="lg"
               variant="bordered"
-              className="border-evergreen-600 text-evergreen-400 hover:bg-evergreen-950/30 font-bold"
+              className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
               aria-label={`Request free estimate for ${city} tree services`}
             >
               Free Estimate
@@ -97,7 +97,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
       {/* Local Service Highlights */}
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label={`Why choose tree services in ${city}`}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-evergreen-400 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
             Why Choose Tree Services in {city}?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" role="list">
@@ -105,7 +105,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               <Card key={index} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
                 <CardBody className="text-center p-6">
                   <CheckCircleIcon className="w-8 h-8 text-evergreen-500 mx-auto mb-3" aria-hidden="true" />
-                  <p className="text-charcoal-200 font-medium">{highlight}</p>
+                  <p className="text-charcoal-100 font-medium">{highlight}</p>
                 </CardBody>
               </Card>
             ))}
@@ -116,43 +116,43 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
       {/* Services Section */}
       <section className="py-20 px-4" aria-label={`Tree care services available in ${city}`}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-evergreen-400 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
             Tree Services in {city}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Tree trimming service icon" role="img">✂️</div>
-                <h3 className="font-bold text-evergreen-400 mb-2">Tree Trimming</h3>
-                <p className="text-charcoal-200 text-sm">Professional pruning for health and beauty</p>
+                <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
+                <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Tree removal service icon" role="img">🪓</div>
-                <h3 className="font-bold text-evergreen-400 mb-2">Tree Removal</h3>
-                <p className="text-charcoal-200 text-sm">Safe removal of hazardous trees</p>
+                <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
+                <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Stump grinding service icon" role="img">🪚</div>
-                <h3 className="font-bold text-evergreen-400 mb-2">Stump Grinding</h3>
-                <p className="text-charcoal-200 text-sm">Complete stump removal solutions</p>
+                <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
+                <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Emergency tree service icon" role="img">⚡</div>
                 <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
-                <p className="text-charcoal-200 text-sm">24/7 storm damage response</p>
+                <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
               </CardBody>
             </Card>
           </div>
 
           <Card className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
             <CardBody className="p-8">
-              <h3 className="text-2xl font-bold text-evergreen-400 mb-6">
+              <h3 className="text-2xl font-bold text-evergreen-300 mb-6">
                 Tree Care Specialists Serving {city}
               </h3>
               {/* Local work clip */}
@@ -165,20 +165,20 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               </div>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="font-semibold text-evergreen-400 mb-2">Local Expertise</h4>
-                  <p className="text-charcoal-200 text-sm">
+                  <h4 className="font-semibold text-evergreen-300 mb-2">Local Expertise</h4>
+                  <p className="text-charcoal-100 text-sm">
                      We understand the unique tree species and growing conditions specific to {city} and the surrounding Placer and Nevada County areas.
                    </p>
                  </div>
                  <div>
-                   <h4 className="font-semibold text-evergreen-400 mb-2">Licensed & Insured</h4>
-                   <p className="text-charcoal-200 text-sm">
+                   <h4 className="font-semibold text-evergreen-300 mb-2">Licensed & Insured</h4>
+                   <p className="text-charcoal-100 text-sm">
                      CSLB #{BUSINESS_INFO.cslb} licensed contractor with full liability and workers&apos; compensation insurance for your protection.
                    </p>
                  </div>
                  <div>
-                   <h4 className="font-semibold text-evergreen-400 mb-2">Fast Response</h4>
-                   <p className="text-charcoal-200 text-sm">
+                   <h4 className="font-semibold text-evergreen-300 mb-2">Fast Response</h4>
+                   <p className="text-charcoal-100 text-sm">
                      Quick response times for both scheduled services and emergency tree situations throughout the {city} area.
                    </p>
                 </div>
@@ -188,25 +188,25 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
 
           <Card className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
             <CardBody className="p-8">
-              <h3 className="text-2xl font-bold text-evergreen-400 mb-4">
+              <h3 className="text-2xl font-bold text-evergreen-300 mb-4">
                 Why Choose Barker Tree Services in {city}?
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="font-semibold text-evergreen-400 mb-2">Local Expertise</h4>
-                  <p className="text-charcoal-200 text-sm">
+                  <h4 className="font-semibold text-evergreen-300 mb-2">Local Expertise</h4>
+                  <p className="text-charcoal-100 text-sm">
                      We understand the unique tree species and conditions in {city} and the surrounding area.
                    </p>
                  </div>
                  <div>
-                   <h4 className="font-semibold text-evergreen-400 mb-2">Licensed & Insured</h4>
-                   <p className="text-charcoal-200 text-sm">
+                   <h4 className="font-semibold text-evergreen-300 mb-2">Licensed & Insured</h4>
+                   <p className="text-charcoal-100 text-sm">
                      CSLB #{BUSINESS_INFO.cslb} with full liability and workers&apos; compensation coverage.
                    </p>
                  </div>
                  <div>
-                   <h4 className="font-semibold text-evergreen-400 mb-2">Fast Response</h4>
-                   <p className="text-charcoal-200 text-sm">
+                   <h4 className="font-semibold text-evergreen-300 mb-2">Fast Response</h4>
+                   <p className="text-charcoal-100 text-sm">
                      Quick response times for both scheduled services and emergency tree situations.
                    </p>
                 </div>
@@ -218,7 +218,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           {localTestimonials.length > 0 && (
             <section className="py-20 px-4 bg-charcoal-900/30" aria-label={`Customer reviews from ${city}`}>
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold text-evergreen-400 mb-8 text-center">
+                <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
                   What {city} Customers Say
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8 mb-12" role="list">
@@ -230,15 +230,15 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                             <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
                           ))}
                         </div>
-                        <p className="text-charcoal-200 mb-4 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
+                        <p className="text-charcoal-100 mb-4 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
                         <div className="flex justify-between items-center text-sm">
                           <div>
-                            <p className="font-semibold text-evergreen-400">{testimonial.name}</p>
-                            <p className="text-charcoal-500">{testimonial.location}</p>
+                            <p className="font-semibold text-evergreen-300">{testimonial.name}</p>
+                            <p className="text-charcoal-300">{testimonial.location}</p>
                           </div>
                           <div className="text-right">
-                            <p className="text-evergreen-400 font-medium">{testimonial.service}</p>
-                            <p className="text-charcoal-500 text-xs">{testimonial.date}</p>
+                            <p className="text-evergreen-300 font-medium">{testimonial.service}</p>
+                            <p className="text-charcoal-300 text-xs">{testimonial.date}</p>
                           </div>
                         </div>
                       </CardBody>
