@@ -1,15 +1,68 @@
+# Robots.txt for Barker Tree Services
+# https://barkertreeservices.com
+
+# Allow all crawlers to access public content
 User-agent: *
 Allow: /
-Disallow: /api
-Disallow: /private
+Disallow: /api/
+Disallow: /private/
 
+# Crawl delay for less aggressive bots
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://barkertreeservices.com/sitemap.xml
 
+# Explicitly allow important pages for all bots
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /emergency
+Allow: /services
+Allow: /service-areas
+Allow: /service-areas/colfax
+Allow: /service-areas/grass-valley
+Allow: /service-areas/nevada-city
+Allow: /service-areas/rough-and-ready
+Allow: /service-areas/smartville
+Allow: /service-areas/penryn
+Allow: /service-areas/loomis
+Allow: /service-areas/rocklin
+Allow: /service-areas/lincoln
+Allow: /service-areas/auburn
+
+# Google - full access
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
+# Bing - full access
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
 
+# Ahrefs - for SEO analysis
 User-agent: AhrefsBot
 Allow: /
+Crawl-delay: 2
+
+# Semrush - for SEO analysis
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block aggressive/unnecessary bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /api/
+
+User-agent: SemrushBot
+Disallow: /api/
