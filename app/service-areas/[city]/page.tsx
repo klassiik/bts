@@ -3,6 +3,7 @@ import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
 import { notFound } from 'next/navigation'
 import CityServiceContent from '@/components/CityServiceContent'
 import { generateLocalBusinessSchema } from '@/lib/schema'
+import { cityToSlug } from '@/lib/utils'
 
 interface PageProps {
   params: Promise<{
@@ -11,14 +12,14 @@ interface PageProps {
 }
 
 function getCityFromSlug(slug: string) {
-  return SERVICE_AREAS.find(area => 
-    area.city.toLowerCase().replace(/\s+/g, '-') === slug
+  return SERVICE_AREAS.find((area) =>
+    cityToSlug(area.city) === slug
   )
 }
 
 export async function generateStaticParams() {
-  return SERVICE_AREAS.map(area => ({
-    city: area.city.toLowerCase().replace(/\s+/g, '-')
+  return SERVICE_AREAS.map((area) => ({
+    city: cityToSlug(area.city)
   }))
 }
 

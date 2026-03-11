@@ -1,6 +1,7 @@
 /* GEO: Footer with semantic contentinfo landmark, navigation, and contact information */
 import Link from 'next/link'
-import { BUSINESS_INFO } from '@/lib/config'
+import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
+import { cityToSlug } from '@/lib/utils'
 import { PhoneIcon, EnvelopeIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="bg-charcoal-950 border-t border-evergreen-900/20 py-12 px-4" role="contentinfo" aria-label="Site footer">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-charcoal-800/50">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8 pb-8 border-b border-charcoal-800/50">
           <div itemScope itemType="https://schema.org/LocalBusiness">
             <h3 className="font-bold text-evergreen-300 mb-4 text-lg" itemProp="name">Barker Tree Services</h3>
             <p className="text-sm text-charcoal-100 leading-relaxed" itemProp="description">Expert tree care serving Colfax and surrounding areas. Licensed & insured.</p>
@@ -51,6 +52,30 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+              <li className="list-none">
+                <Link href="/emergency" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to emergency services page">
+                  <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
+                  Emergency
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Service areas navigation">
+            <h3 className="font-bold text-evergreen-300 mb-4 text-lg">Service Areas</h3>
+            <ul className="space-y-2.5 text-sm">
+              {SERVICE_AREAS.map((area) => (
+                <li key={`${area.city}-${area.state}-${cityToSlug(area.city)}`} className="list-none">
+                  <Link
+                    href={`/service-areas/${cityToSlug(area.city)}`}
+                    className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group"
+                    aria-label={`Tree services in ${area.city}, ${area.state}`}
+                  >
+                    <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
+                    {area.city}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 

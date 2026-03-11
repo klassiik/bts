@@ -9,7 +9,12 @@ export const BUSINESS_INFO = {
   zip: '95713',
   hours: 'Mon-Fri: 7:00 AM - 7:00 PM',
   cslb: '1085329',
-  url: 'https://barkertreeservices.com'
+  url: 'https://barkertreeservices.com',
+  socialProfiles: [
+    'https://www.facebook.com/barkertreeservices',
+    'https://www.yelp.com/biz/barker-tree-services-colfax',
+    'https://www.bbb.org/us/ca/colfax/profile/not-elsewhere-classified/barker-tree-services-1156-90094954'
+  ]
 }
 
 export const SERVICE_AREAS = [

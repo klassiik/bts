@@ -12,7 +12,7 @@ interface PageSeoProps {
 /* GEO: Enhanced metadata generator with comprehensive AI search optimization */
 export function generateMetadata({ title, description, path, keywords }: PageSeoProps): Metadata {
   const url = `${BUSINESS_INFO.url}${path}`
-  const fullTitle = `${title} | Barker Tree Services - Colfax, CA`
+  const fullTitle = `${title} | Barker Tree Services`
   
   /* GEO: Base keywords enriched with location and service intent modifiers */
   const enhancedKeywords = [

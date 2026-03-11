@@ -33,7 +33,7 @@ export function generateLocalBusinessSchema(options: LocalBusinessSchemaOptions 
   const areaServed = options.areaServed ?? SERVICE_AREAS
   const id = options.id ?? `${url}#business`
   const name = options.name ?? BUSINESS_INFO.name
-  const sameAs = options.sameAs ?? []
+  const sameAs = options.sameAs || BUSINESS_INFO.socialProfiles || []
 
   return {
     '@context': 'https://schema.org',
@@ -135,6 +135,13 @@ export function generateLocalBusinessSchema(options: LocalBusinessSchemaOptions 
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         opens: '07:00',
         closes: '19:00'
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+        description: 'Emergency tree services available 24/7'
       }
     ],
     /* GEO: Contact point for direct communication queries */
@@ -154,12 +161,6 @@ export function generateLocalBusinessSchema(options: LocalBusinessSchemaOptions 
       '@type': 'GeoCoordinates',
       latitude: 39.1003,
       longitude: -120.9530
-    },
-    /* GEO: Social proof signals */
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: 5.0,
-      reviewCount: 50
     }
   }
 }

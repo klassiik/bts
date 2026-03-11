@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: 'Licensed tree removal, trimming, and emergency services serving Colfax, Grass Valley, Nevada City, and surrounding Northern California communities since 2018.',
     images: [
       {
-        url: '/logo.webp',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'Barker Tree Services - Professional Tree Care',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Barker Tree Services - Expert Tree Care in Colfax, CA',
     description: 'Licensed & insured tree services. 6 years experience. 24/7 emergency response.',
-    images: ['/logo.webp'],
+    images: ['/logo.png'],
   },
   /* GEO: Robots configuration for optimal AI crawler access */
   robots: {
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   /* GEO: Verification and canonical for authority signals */
   verification: {
-    google: '',
+    google: 'modeQBIMvT2MhcUbo_vVl1ZacdxozszdxgjStaUh8dg',
     yandex: '',
   },
   /* GEO: Favicon configuration for brand recognition across devices */
