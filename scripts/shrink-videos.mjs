@@ -49,7 +49,8 @@ async function main() {
     return;
   }
   const files = await fs.readdir(MEDIA_DIR);
-  for (const file of files) {
+
+  const optimizationPromises = files.map(async (file) => {
     const ext = path.extname(file).toLowerCase();
     if (ext === '.mp4') {
       const input = path.join(MEDIA_DIR, file);
@@ -60,7 +61,10 @@ async function main() {
       const webmOut = path.join(MEDIA_DIR, file.replace(/\.mp4$/i, '.webm'));
       await createWebm(input, webmOut);
     }
-  }
+  });
+
+  await Promise.all(optimizationPromises);
+
   console.log('Video optimization complete.');
 }
 
