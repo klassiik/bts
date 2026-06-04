@@ -10,41 +10,44 @@ interface CityServiceContentProps {
   state: string
 }
 
+// Local service highlights based on city
+const HIGHLIGHTS: Record<string, string[]> = {
+  'Colfax': [
+    'Serving Placer Hills area since 2018',
+    'Expert knowledge of local oak and pine species',
+    'Fast response times for mountain weather emergencies'
+  ],
+  'Grass Valley': [
+    'Gold Country region specialists',
+    'Experience with historic property tree care',
+    'Professional grounds maintenance for businesses'
+  ],
+  'Nevada City': [
+    'Victorian architecture tree preservation',
+    'Narrow access emergency tree removal',
+    'Historic district compliance expertise'
+  ],
+  'Auburn': [
+    'Placer County licensed contractors',
+    'Highway 49 corridor emergency services',
+    'Commercial property maintenance'
+  ]
+};
+
+const DEFAULT_HIGHLIGHTS = [
+  'Local area specialists since 2018',
+  'Quick response times for emergency services',
+  'Fully licensed and insured operations'
+];
+
+const getLocalHighlights = (cityName: string) => {
+  return HIGHLIGHTS[cityName] || DEFAULT_HIGHLIGHTS;
+}
+
 export default function CityServiceContent({ city, state }: CityServiceContentProps) {
   // Get local testimonials for this city
   const localTestimonials = DETAILED_TESTIMONIALS.filter(t => t.location.includes(city))
   
-  // Local service highlights based on city
-  const getLocalHighlights = (cityName: string) => {
-    const highlights: Record<string, string[]> = {
-      'Colfax': [
-        'Serving Placer Hills area since 2018',
-        'Expert knowledge of local oak and pine species',
-        'Fast response times for mountain weather emergencies'
-      ],
-      'Grass Valley': [
-        'Gold Country region specialists',
-        'Experience with historic property tree care',
-        'Professional grounds maintenance for businesses'
-      ],
-      'Nevada City': [
-        'Victorian architecture tree preservation',
-        'Narrow access emergency tree removal',
-        'Historic district compliance expertise'
-      ],
-      'Auburn': [
-        'Placer County licensed contractors',
-        'Highway 49 corridor emergency services',
-        'Commercial property maintenance'
-      ]
-    }
-    return highlights[cityName] || [
-      'Local area specialists since 2018',
-      'Quick response times for emergency services',
-      'Fully licensed and insured operations'
-    ]
-  }
-
   const localHighlights = getLocalHighlights(city)
 
   return (
