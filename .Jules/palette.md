@@ -1,0 +1,3 @@
+## 2025-06-05 - Meaningful Screen Reader Labels for Service Cards
+**Learning:** Generic links like "Learn More" are a major accessibility issue when there are multiple identical links on a page (violates WCAG 2.4.4 Link Purpose). Screen reader users often tab through links and hear "Learn More, Learn More, Learn More" without context. Additionally, decorative text like arrows and checkmarks can add noise to the screen reader experience.
+**Action:** Always add descriptive `aria-label`s to generic links (e.g., `aria-label="Learn more about Tree Trimming"`), add `aria-hidden="true"` to purely decorative elements, and ensure keyboard focus states (`focus-visible:ring`) are present when overriding default outlines.

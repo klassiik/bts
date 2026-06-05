@@ -14,7 +14,7 @@ export default function ServiceCard({ title, description, features }: ServiceCar
       <div className="space-y-2 mb-6">
         {features.map(feature => (
           <div key={feature} className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-emerald-900 rounded-full flex items-center justify-center">
+            <div className="w-5 h-5 bg-emerald-900 rounded-full flex items-center justify-center" aria-hidden="true">
               <span className="text-white text-xs font-bold">✓</span>
             </div>
             <span className="text-gray-700 font-semibold text-sm">{feature}</span>
@@ -22,8 +22,13 @@ export default function ServiceCard({ title, description, features }: ServiceCar
         ))}
       </div>
 
-      <a href="/contact" className="inline-flex items-center gap-2 bg-emerald-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-emerald-800 transition text-sm">
-        Learn More →
+      <a
+        href="/contact"
+        className="inline-flex items-center gap-2 bg-emerald-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-emerald-800 transition text-sm focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none focus-visible:ring-offset-2"
+        aria-label={`Learn more about ${title}`}
+      >
+        <span>Learn More</span>
+        <span aria-hidden="true">→</span>
       </a>
     </div>
   )
