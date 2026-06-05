@@ -19,6 +19,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 const RATE_LIMIT = new Map<string, { count: number, lastReset: number }>()
 const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
 const MAX_REQUESTS = 5 // Max requests per minute
+const MAX_MAP_SIZE = 10000 // Max entries to prevent OOM
 
 const truncate = (value: string | undefined, max = 2000) => (value || '').slice(0, max)
 const sanitizeText = (value: string | undefined) => purify.sanitize(truncate(value, 2000))
@@ -27,9 +28,26 @@ export async function POST(request: Request) {
   try {
     // Rate limiting check
     const forwardedFor = request.headers.get('x-forwarded-for')
-    const clientIP = forwardedFor?.split(',')[0].trim() || request.headers.get('x-real-ip') || '127.0.0.1'
+    // Use the right-most IP in X-Forwarded-For if present, or fallback to X-Real-IP to prevent IP spoofing
+    const forwardedIps = forwardedFor ? forwardedFor.split(',').map(ip => ip.trim()) : []
+    const clientIP = request.headers.get('x-real-ip') || (forwardedIps.length > 0 ? forwardedIps[forwardedIps.length - 1] : '127.0.0.1')
     const currentTime = Date.now()
     
+    // Periodically clean up the rate limiting map if it gets too large
+    if (RATE_LIMIT.size > MAX_MAP_SIZE) {
+      // Clear all entries that are past their window
+      for (const [key, val] of RATE_LIMIT.entries()) {
+        if (currentTime - val.lastReset > RATE_LIMIT_WINDOW) {
+          RATE_LIMIT.delete(key)
+        }
+      }
+
+      // If it's still too large, just clear it all to prevent OOM
+      if (RATE_LIMIT.size > MAX_MAP_SIZE) {
+        RATE_LIMIT.clear()
+      }
+    }
+
     if (!RATE_LIMIT.has(clientIP)) {
       RATE_LIMIT.set(clientIP, { count: 1, lastReset: currentTime })
     } else {

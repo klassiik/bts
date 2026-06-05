@@ -156,6 +156,12 @@ export function generateLocalBusinessSchema(options: LocalBusinessSchemaOptions 
     /* GEO: Credentials and certifications for trust */
     award: 'Licensed Tree Care Provider',
     knowsAbout: ['Tree Care', 'Arboriculture', 'Tree Removal', 'Emergency Tree Services', 'Stump Grinding'],
+    /* GEO: Aggregate rating based on testimonials */
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: 5.0,
+      reviewCount: 6
+    },
     /* GEO: Service area radius for proximity-based AI queries */
     geo: {
       '@type': 'GeoCoordinates',
