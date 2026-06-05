@@ -16,17 +16,20 @@ async function convertToWebp(inputPath) {
 
 async function processDirectory(directory) {
   const files = fs.readdirSync(directory);
-  
+  const promises = [];
+
   for (const file of files) {
     const filePath = path.join(directory, file);
     const stat = fs.statSync(filePath);
 
     if (stat.isDirectory()) {
-      await processDirectory(filePath);
+      promises.push(processDirectory(filePath));
     } else if (/\.(png|jpe?g)$/i.test(file) && !/\.(svg|webp)$/i.test(file)) {
-      await convertToWebp(filePath);
+      promises.push(convertToWebp(filePath));
     }
   }
+
+  await Promise.all(promises);
 };
 
 // Process public directory
