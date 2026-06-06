@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
 
@@ -74,34 +74,102 @@ const FAQ_DATA: FAQItem[] = [
   }
 ]
 
+const CATEGORY_COLORS = {
+  general: 'bg-evergreen-900/30 text-evergreen-300 border-evergreen-700/30',
+  services: 'bg-sage-900/30 text-sage-300 border-sage-700/30',
+  pricing: 'bg-amber-900/30 text-amber-300 border-amber-700/30',
+  emergency: 'bg-red-900/30 text-red-300 border-red-700/30',
+  default: 'bg-charcoal-800/30 text-charcoal-300 border-charcoal-700/30'
+} as const;
+
+const FAQItemCard = React.memo(({
+  item,
+  isOpen,
+  onToggle
+}: {
+  item: FAQItem,
+  isOpen: boolean,
+  onToggle: (id: string) => void
+}) => {
+  return (
+    <Card
+      className="bg-charcoal-800/50 border border-evergreen-900/20"
+      itemScope
+      itemType="https://schema.org/Question"
+    >
+      <CardBody className="p-0">
+        <button
+          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-charcoal-700/30 transition-colors focus:outline-none focus:bg-charcoal-700/30"
+          onClick={() => onToggle(item.id)}
+          aria-expanded={isOpen}
+          aria-controls={`faq-answer-${item.id}`}
+        >
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-2">
+              <Chip
+                size="sm"
+                variant="bordered"
+                className={CATEGORY_COLORS[item.category as keyof typeof CATEGORY_COLORS] || CATEGORY_COLORS.default}
+              >
+                {item.category}
+              </Chip>
+            </div>
+            <h3
+              className="text-lg font-semibold text-charcoal-50 pr-4"
+              itemProp="name"
+            >
+              {item.question}
+            </h3>
+          </div>
+          <div className="flex-shrink-0">
+            {isOpen ? (
+              <ChevronUpIcon className="w-5 h-5 text-evergreen-300" aria-hidden="true" />
+            ) : (
+              <ChevronDownIcon className="w-5 h-5 text-charcoal-300" aria-hidden="true" />
+            )}
+          </div>
+        </button>
+
+        {isOpen && (
+          <div
+            id={`faq-answer-${item.id}`}
+            className="px-6 pb-4 pt-2 border-t border-evergreen-900/20"
+            itemScope
+            itemProp="acceptedAnswer"
+            itemType="https://schema.org/Answer"
+          >
+            <p className="text-charcoal-100 leading-relaxed" itemProp="text">
+               {item.answer}
+             </p>
+          </div>
+        )}
+      </CardBody>
+    </Card>
+  )
+})
+
+FAQItemCard.displayName = 'FAQItemCard'
+
 export default function FAQSection() {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set())
 
-  const toggleItem = (id: string) => {
-    const newOpenItems = new Set(openItems)
-    if (newOpenItems.has(id)) {
-      newOpenItems.delete(id)
-    } else {
-      newOpenItems.add(id)
-    }
-    setOpenItems(newOpenItems)
-  }
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'general': return 'bg-evergreen-900/30 text-evergreen-300 border-evergreen-700/30'
-      case 'services': return 'bg-sage-900/30 text-sage-300 border-sage-700/30'
-      case 'pricing': return 'bg-amber-900/30 text-amber-300 border-amber-700/30'
-      case 'emergency': return 'bg-red-900/30 text-red-300 border-red-700/30'
-      default: return 'bg-charcoal-800/30 text-charcoal-300 border-charcoal-700/30'
-    }
-  }
+  const toggleItem = useCallback((id: string) => {
+    setOpenItems(prev => {
+      const newOpenItems = new Set(prev)
+      if (newOpenItems.has(id)) {
+        newOpenItems.delete(id)
+      } else {
+        newOpenItems.add(id)
+      }
+      return newOpenItems
+    })
+  }, [])
 
   return (
     <section className="py-20 px-4 bg-charcoal-950" aria-label="Frequently asked questions about tree services">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <Chip 
+          <Chip
             className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
           >
@@ -117,60 +185,12 @@ export default function FAQSection() {
 
         <div className="space-y-4">
           {FAQ_DATA.map((item) => (
-            <Card 
-              key={item.id} 
-              className="bg-charcoal-800/50 border border-evergreen-900/20"
-              itemScope 
-              itemType="https://schema.org/Question"
-            >
-              <CardBody className="p-0">
-                <button
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-charcoal-700/30 transition-colors focus:outline-none focus:bg-charcoal-700/30"
-                  onClick={() => toggleItem(item.id)}
-                  aria-expanded={openItems.has(item.id)}
-                  aria-controls={`faq-answer-${item.id}`}
-                >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Chip 
-                        size="sm" 
-                        variant="bordered" 
-                        className={getCategoryColor(item.category)}
-                      >
-                        {item.category}
-                      </Chip>
-                    </div>
-                    <h3 
-                      className="text-lg font-semibold text-charcoal-50 pr-4"
-                      itemProp="name"
-                    >
-                      {item.question}
-                    </h3>
-                  </div>
-                  <div className="flex-shrink-0">
-                    {openItems.has(item.id) ? (
-                      <ChevronUpIcon className="w-5 h-5 text-evergreen-300" aria-hidden="true" />
-                    ) : (
-                      <ChevronDownIcon className="w-5 h-5 text-charcoal-300" aria-hidden="true" />
-                    )}
-                  </div>
-                </button>
-                
-                {openItems.has(item.id) && (
-                  <div 
-                    id={`faq-answer-${item.id}`}
-                    className="px-6 pb-4 pt-2 border-t border-evergreen-900/20"
-                    itemScope 
-                    itemProp="acceptedAnswer" 
-                    itemType="https://schema.org/Answer"
-                  >
-                    <p className="text-charcoal-100 leading-relaxed" itemProp="text">
-                       {item.answer}
-                     </p>
-                  </div>
-                )}
-              </CardBody>
-            </Card>
+            <FAQItemCard
+              key={item.id}
+              item={item}
+              isOpen={openItems.has(item.id)}
+              onToggle={toggleItem}
+            />
           ))}
         </div>
 
