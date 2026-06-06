@@ -27,7 +27,8 @@ export async function POST(request: Request) {
   try {
     // Rate limiting check
     const forwardedFor = request.headers.get('x-forwarded-for')
-    const clientIP = forwardedFor?.split(',')[0].trim() || request.headers.get('x-real-ip') || '127.0.0.1'
+    const forwardedIps = forwardedFor ? forwardedFor.split(',').map(ip => ip.trim()) : []
+    const clientIP = request.headers.get('x-real-ip') || (forwardedIps.length > 0 ? forwardedIps[forwardedIps.length - 1] : '127.0.0.1')
     const currentTime = Date.now()
     
     if (!RATE_LIMIT.has(clientIP)) {

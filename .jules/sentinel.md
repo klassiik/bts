@@ -1,0 +1,4 @@
+## 2024-06-06 - Rate Limit IP Spoofing
+**Vulnerability:** The rate limiting middleware in `app/api/contact/route.ts` used `x-forwarded-for?.split(',')[0]` to determine the client's IP. This is a vulnerability because the `x-forwarded-for` header can be spoofed by an attacker. When requests go through a proxy (like Vercel), the real IP is appended to the end of the `x-forwarded-for` list, meaning the first IP is attacker-controlled.
+**Learning:** Always validate IP addresses from the `x-forwarded-for` header carefully. The right-most IP is typically the most reliable if it's appended by the load balancer/proxy, but `x-real-ip` (if set by the trusted proxy) is generally safer to prioritize.
+**Prevention:** Prioritize `x-real-ip` if provided by the proxy. If using `x-forwarded-for`, extract the right-most IP address rather than the left-most one to prevent spoofing.
