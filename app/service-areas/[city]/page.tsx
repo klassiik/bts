@@ -3,7 +3,7 @@ import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
 import { notFound } from 'next/navigation'
 import CityServiceContent from '@/components/CityServiceContent'
 import { generateLocalBusinessSchema } from '@/lib/schema'
-import { cityToSlug } from '@/lib/utils'
+import { cityToSlug, toSafeJsonLd } from '@/lib/utils'
 
 interface PageProps {
   params: Promise<{
@@ -55,7 +55,7 @@ export default async function CityServicePage({ params }: PageProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(citySchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(citySchema) }} />
       <CityServiceContent city={cityData.city} state={cityData.state} />
     </>
   )

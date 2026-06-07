@@ -9,3 +9,7 @@ export function cityToSlug(city: string): string {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
 }
+
+export function toSafeJsonLd(value: unknown) {
+  return JSON.stringify(value).replace(/<\/script>/gi, '<\\/script>')
+}

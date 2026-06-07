@@ -1,6 +1,7 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/seo'
 import { SERVICES, BUSINESS_INFO } from '@/lib/config'
 import { notFound } from 'next/navigation'
+import { toSafeJsonLd } from '@/lib/utils'
 import { generateLocalBusinessSchema } from '@/lib/schema'
 import ServiceDetailContent from '@/components/ServiceDetailContent'
 
@@ -21,10 +22,6 @@ function truncateAtWordBoundary(text: string, maxLength: number) {
   const lastSpaceIndex = truncated.lastIndexOf(' ')
 
   return lastSpaceIndex > 0 ? truncated.slice(0, lastSpaceIndex) : truncated
-}
-
-function toSafeJsonLd(value: unknown) {
-  return JSON.stringify(value).replace(/<\/script>/gi, '<\\/script>')
 }
 
 export async function generateStaticParams() {

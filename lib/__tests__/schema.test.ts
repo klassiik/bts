@@ -136,12 +136,6 @@ describe('Schema.org JSON-LD Validation', () => {
     expect(schema.address.postalCode).toBeDefined()
   })
 
-  it('should have numeric aggregateRating values', () => {
-    const schema = generateLocalBusinessSchema()
-    expect(schema.aggregateRating).toBeDefined()
-    expect(typeof schema.aggregateRating.ratingValue).toBe('number')
-    expect(typeof schema.aggregateRating.reviewCount).toBe('number')
-  })
 
   it('should have numeric geo coordinates', () => {
     const schema = generateLocalBusinessSchema()

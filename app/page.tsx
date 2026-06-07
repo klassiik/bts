@@ -1,6 +1,7 @@
 ﻿import { generateMetadata as generatePageMetadata } from '@/lib/seo'
 import { generateLocalBusinessSchema, generateFAQSchema } from '@/lib/schema'
 import HomeContent from '@/components/HomeContent'
+import { toSafeJsonLd } from '@/lib/utils'
 
 /* GEO: Enhanced homepage metadata with comprehensive service and location keywords */
 export const metadata = generatePageMetadata({
@@ -26,9 +27,9 @@ export default function Home() {
   return (
     <>
       {/* GEO: LocalBusiness schema for business entity recognition by AI */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(businessSchema) }} />
       {/* GEO: FAQ schema for question-answer extraction by LLMs */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(faqSchema) }} />
       <HomeContent />
     </>
   )
