@@ -19,6 +19,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 const RATE_LIMIT = new Map<string, { count: number, lastReset: number }>()
 const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
 const MAX_REQUESTS = 5 // Max requests per minute
+const MAX_RATE_LIMIT_ENTRIES = 10000 // Prevent OOM
 
 const truncate = (value: string | undefined, max = 2000) => (value || '').slice(0, max)
 const sanitizeText = (value: string | undefined) => purify.sanitize(truncate(value, 2000))
@@ -27,9 +28,15 @@ export async function POST(request: Request) {
   try {
     // Rate limiting check
     const forwardedFor = request.headers.get('x-forwarded-for')
-    const clientIP = forwardedFor?.split(',')[0].trim() || request.headers.get('x-real-ip') || '127.0.0.1'
+    // Use x-real-ip or the last IP in x-forwarded-for to prevent spoofing bypass
+    const clientIP = request.headers.get('x-real-ip') || forwardedFor?.split(',').pop()?.trim() || '127.0.0.1'
     const currentTime = Date.now()
     
+    // Prevent OOM by clearing old map entries
+    if (RATE_LIMIT.size > MAX_RATE_LIMIT_ENTRIES) {
+      RATE_LIMIT.clear()
+    }
+
     if (!RATE_LIMIT.has(clientIP)) {
       RATE_LIMIT.set(clientIP, { count: 1, lastReset: currentTime })
     } else {
