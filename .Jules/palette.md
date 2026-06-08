@@ -1,0 +1,3 @@
+## 2024-06-08 - Added focus-visible styles to FAQ toggles
+**Learning:** Using `focus:outline-none` on interactive elements without explicitly adding `focus-visible` styles can negatively impact keyboard users who depend on visible focus rings for navigation. It's crucial to always provide a prominent focus indicator when overriding the default outline, while maintaining aesthetics for mouse users using `focus-visible`.
+**Action:** When using `focus:outline-none` on a focusable element, I should ensure it's accompanied by strong `focus-visible` ring utilities (like `focus-visible:ring-2 focus-visible:ring-[color] focus-visible:ring-inset`).

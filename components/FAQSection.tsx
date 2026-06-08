@@ -125,7 +125,7 @@ export default function FAQSection() {
             >
               <CardBody className="p-0">
                 <button
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-charcoal-700/30 transition-colors focus:outline-none focus:bg-charcoal-700/30"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-charcoal-700/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-evergreen-500 focus-visible:ring-inset focus:bg-charcoal-700/30"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={openItems.has(item.id)}
                   aria-controls={`faq-answer-${item.id}`}
