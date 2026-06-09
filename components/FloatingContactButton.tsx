@@ -9,17 +9,34 @@ export default function FloatingContactButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
 
+  // BOLT OPTIMIZATION: Throttled scroll listener using requestAnimationFrame and caching last state
+  // Impact: Prevents state updates on every scroll tick, reducing main thread blocking and React re-renders.
+  // We also use { passive: true } to prevent the event listener from delaying scroll compositing.
   useEffect(() => {
+    let ticking = false
+    let lastVisibility = false
+
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-        setIsExpanded(false)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldBeVisible = window.pageYOffset > 300
+          // Only update state if visibility threshold crossed (prevents redundant React renders)
+          if (shouldBeVisible !== lastVisibility) {
+            lastVisibility = shouldBeVisible
+            if (shouldBeVisible) {
+              setIsVisible(true)
+            } else {
+              setIsVisible(false)
+              setIsExpanded(false)
+            }
+          }
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', toggleVisibility)
+    window.addEventListener('scroll', toggleVisibility, { passive: true })
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
 
@@ -50,7 +67,7 @@ export default function FloatingContactButton() {
           >
             ✉️
           </Button>
-          
+
           {/* Call option with full number */}
           <Button
             color="primary"
@@ -73,8 +90,8 @@ export default function FloatingContactButton() {
         variant="solid"
         size="lg"
         className={`w-14 h-14 rounded-full shadow-xl backdrop-blur-md transition-all duration-300 ${
-          isExpanded 
-            ? 'bg-charcoal-700 hover:bg-charcoal-600' 
+          isExpanded
+            ? 'bg-charcoal-700 hover:bg-charcoal-600'
             : 'bg-gradient-to-r from-evergreen-600 to-evergreen-700 hover:from-evergreen-500 hover:to-evergreen-600 animate-pulse'
         }`}
         onClick={() => setIsExpanded(!isExpanded)}
