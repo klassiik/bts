@@ -6,7 +6,9 @@ import '@/styles/globals.css'
 // Import components directly for better LCP - they're needed immediately
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import FloatingContactButton from '@/components/FloatingContactButton'
+import dynamic from "next/dynamic"
+// Dynamically import FloatingContactButton since it is only needed on scroll
+const FloatingContactButton = dynamic(() => import("@/components/FloatingContactButton"))
 
 /* GEO: Enhanced root metadata for AI search engines with comprehensive business context */
 export const metadata: Metadata = {
