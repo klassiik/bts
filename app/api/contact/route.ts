@@ -21,10 +21,15 @@ const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
 const MAX_REQUESTS = 5 // Max requests per minute
 
 const truncate = (value: string | undefined, max = 2000) => (value || '').slice(0, max)
-const sanitizeText = (value: string | undefined) => purify.sanitize(truncate(value, 2000))
+const sanitizeText = (value: string | undefined) => purify.sanitize(truncate(value, 2000), { ALLOWED_TAGS: [] })
 
 export async function POST(request: Request) {
   try {
+    // Prevent memory exhaustion from unbounded map growth (DoS protection)
+    if (RATE_LIMIT.size > 10000) {
+      RATE_LIMIT.clear()
+    }
+
     // Rate limiting check
     const forwardedFor = request.headers.get('x-forwarded-for')
     const clientIP = forwardedFor?.split(',')[0].trim() || request.headers.get('x-real-ip') || '127.0.0.1'
