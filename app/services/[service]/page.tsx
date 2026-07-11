@@ -40,13 +40,15 @@ export async function generateMetadata({ params }: PageProps) {
   const truncatedDescription = truncateAtWordBoundary(serviceData.description, 100)
 
   return generatePageMetadata({
-    title: `${serviceData.title} in Colfax, CA`,
-    description: `Professional ${serviceData.title.toLowerCase()} services in Colfax and Northern California. ${truncatedDescription}... Licensed CSLB #1085329. Free estimates.`,
+    title: `${serviceData.title} in Placer & Nevada Counties, CA`,
+    description: `Professional ${serviceData.title.toLowerCase()} in Grass Valley, Auburn, Nevada City & across Placer & Nevada Counties. ${truncatedDescription}... Licensed CSLB #1085329. Free estimates.`,
     path: `/services/${service}`,
     keywords: [
-      `${serviceData.title.toLowerCase()} Colfax CA`,
+      `${serviceData.title.toLowerCase()} Grass Valley CA`,
+      `${serviceData.title.toLowerCase()} Auburn CA`,
       `${serviceData.title.toLowerCase()} near me`,
-      `${serviceData.title.toLowerCase()} Northern California`,
+      `${serviceData.title.toLowerCase()} Placer County`,
+      `${serviceData.title.toLowerCase()} Nevada County CA`,
       ...serviceData.features.slice(0, 3).map(f => f.toLowerCase())
     ]
   })
@@ -96,7 +98,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <ServiceDetailContent
         service={{
           ...serviceData,
-          location: `${BUSINESS_INFO.city}, ${BUSINESS_INFO.state}`,
+          location: 'Placer & Nevada Counties',
         }}
       />
     </>

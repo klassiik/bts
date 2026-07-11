@@ -10,7 +10,7 @@ export default function ServicesContent() {
   return (
     <div className="bg-charcoal-950 min-h-screen">
       {/* GEO: Hero section optimized with location and service keywords for AI extraction */}
-      <section className="relative py-20 px-4 overflow-hidden" aria-label="Hero - Expert tree services in Colfax, CA">
+      <section className="relative py-20 px-4 overflow-hidden" aria-label="Hero - Expert tree services in Placer & Nevada Counties">
         <div className="absolute inset-0 bg-gradient-to-br from-evergreen-950/50 via-charcoal-950 to-charcoal-950" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" />
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-evergreen-500/10 rounded-full blur-3xl" />
@@ -29,7 +29,7 @@ export default function ServicesContent() {
             Expert Tree Services
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-             Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Colfax and surrounding communities.
+             Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Grass Valley, Auburn, Nevada City, and communities across Placer & Nevada Counties.
            </p>
           <Button 
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
