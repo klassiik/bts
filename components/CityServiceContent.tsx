@@ -1,6 +1,7 @@
 'use client'
 
 import { BUSINESS_INFO, DETAILED_TESTIMONIALS } from '@/lib/config'
+import { getCityDetail } from '@/lib/cityContent'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/outline'
 import Video from '@/components/Video'
@@ -11,41 +12,21 @@ interface CityServiceContentProps {
 }
 
 export default function CityServiceContent({ city, state }: CityServiceContentProps) {
-  // Get local testimonials for this city
-  const localTestimonials = DETAILED_TESTIMONIALS.filter(t => t.location.includes(city))
-  
-  // Local service highlights based on city
-  const getLocalHighlights = (cityName: string) => {
-    const highlights: Record<string, string[]> = {
-      'Colfax': [
-        'Serving Placer Hills area since 2018',
-        'Expert knowledge of local oak and pine species',
-        'Fast response times for mountain weather emergencies'
-      ],
-      'Grass Valley': [
-        'Gold Country region specialists',
-        'Experience with historic property tree care',
-        'Professional grounds maintenance for businesses'
-      ],
-      'Nevada City': [
-        'Victorian architecture tree preservation',
-        'Narrow access emergency tree removal',
-        'Historic district compliance expertise'
-      ],
-      'Auburn': [
-        'Placer County licensed contractors',
-        'Highway 49 corridor emergency services',
-        'Commercial property maintenance'
-      ]
-    }
-    return highlights[cityName] || [
-      'Local area specialists since 2018',
-      'Quick response times for emergency services',
-      'Fully licensed and insured operations'
-    ]
-  }
+  const detail = getCityDetail(city)
 
-  const localHighlights = getLocalHighlights(city)
+  // Prefer testimonials from this city; fall back to nearby communities
+  // (honestly labeled) rather than rendering an empty social-proof section
+  const cityTestimonials = DETAILED_TESTIMONIALS.filter(t => t.location.includes(city))
+  const hasLocalTestimonials = cityTestimonials.length > 0
+  const shownTestimonials = hasLocalTestimonials
+    ? cityTestimonials.slice(0, 2)
+    : DETAILED_TESTIMONIALS.slice(0, 2)
+
+  const localHighlights = detail?.highlights ?? [
+    'Local area specialists since 2018',
+    'Quick response times for emergency services',
+    'Fully licensed and insured operations'
+  ]
 
   return (
     <div className="bg-charcoal-950 min-h-screen" itemScope itemType="https://schema.org/LocalBusiness">
@@ -67,8 +48,9 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Expert Tree Services in {city}, {state}
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl">
-             Professional tree trimming, removal, stump grinding, and emergency services in {city}. Licensed tree care specialists with 6 years of experience serving {city} and surrounding communities.
-           </p>
+            {detail?.intro ??
+              `Professional tree trimming, removal, stump grinding, and emergency services in ${city}. Licensed tree care specialists with 6 years of experience serving ${city} and surrounding communities.`}
+          </p>
           <div className="flex gap-4 flex-wrap">
             <Button
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
@@ -155,34 +137,35 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               <h3 className="text-2xl font-bold text-evergreen-300 mb-6">
                 Tree Care Specialists Serving {city}
               </h3>
-              {/* Local work clip */}
+              {/* Work clip (crew footage, not city-specific) */}
               <div className="mb-6 rounded-lg overflow-hidden relative">
                 <Video
                   src="/media/554341283_24812556778411123_8495766478130270581_n.mp4"
                   className="w-full h-auto aspect-[9/16] relative z-0"
-                  aria-label={`Local tree work in ${city}`}
+                  aria-label="Barker Tree Services crew at work"
                 />
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <h4 className="font-semibold text-evergreen-300 mb-2">Local Expertise</h4>
-                  <p className="text-charcoal-100 text-sm">
-                     We understand the unique tree species and growing conditions specific to {city} and the surrounding Placer and Nevada County areas.
-                   </p>
-                 </div>
-                 <div>
-                   <h4 className="font-semibold text-evergreen-300 mb-2">Licensed & Insured</h4>
-                   <p className="text-charcoal-100 text-sm">
-                     CSLB #{BUSINESS_INFO.cslb} licensed contractor with full liability and workers&apos; compensation insurance for your protection.
-                   </p>
-                 </div>
-                 <div>
-                   <h4 className="font-semibold text-evergreen-300 mb-2">Fast Response</h4>
-                   <p className="text-charcoal-100 text-sm">
-                     Quick response times for both scheduled services and emergency tree situations throughout the {city} area.
-                   </p>
+              {detail ? (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-semibold text-evergreen-300 mb-2">
+                      Trees &amp; Terrain in {city}
+                    </h4>
+                    <p className="text-charcoal-100 text-sm leading-relaxed">{detail.landscape}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-evergreen-300 mb-2">
+                      Permits, Fire Safety &amp; Local Rules
+                    </h4>
+                    <p className="text-charcoal-100 text-sm leading-relaxed">{detail.regulations}</p>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <p className="text-charcoal-100 text-sm">
+                  We understand the unique tree species and growing conditions specific to {city} and
+                  the surrounding Placer and Nevada County areas.
+                </p>
+              )}
             </CardBody>
           </Card>
 
@@ -195,7 +178,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 <div>
                   <h4 className="font-semibold text-evergreen-300 mb-2">Local Expertise</h4>
                   <p className="text-charcoal-100 text-sm">
-                     We understand the unique tree species and conditions in {city} and the surrounding area.
+                     Working in {detail ? `${city} and across ${detail.county} County` : `${city} and the surrounding area`} means knowing its trees, terrain, and weather — not just its zip code.
                    </p>
                  </div>
                  <div>
@@ -214,15 +197,18 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             </CardBody>
           </Card>
 
-          {/* Local Testimonials */}
-          {localTestimonials.length > 0 && (
-            <section className="py-20 px-4 bg-charcoal-900/30" aria-label={`Customer reviews from ${city}`}>
+          {/* Testimonials — city-specific when we have them, honestly labeled
+              regional ones otherwise */}
+          {shownTestimonials.length > 0 && (
+            <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Customer reviews">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
-                  What {city} Customers Say
+                  {hasLocalTestimonials
+                    ? `What ${city} Customers Say`
+                    : 'What Customers in Nearby Communities Say'}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8 mb-12" role="list">
-                  {localTestimonials.slice(0, 2).map((testimonial, idx) => (
+                  {shownTestimonials.map((testimonial, idx) => (
                     <Card key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
                       <CardBody className="p-6">
                         <div className="flex items-center gap-1 mb-3">
