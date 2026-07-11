@@ -1,7 +1,8 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/seo'
 import { SERVICES, BUSINESS_INFO } from '@/lib/config'
+import { getServiceContent } from '@/lib/serviceContent'
 import { notFound } from 'next/navigation'
-import { generateServiceSchema, generateBreadcrumbSchema, toSafeJsonLd } from '@/lib/schema'
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema, toSafeJsonLd } from '@/lib/schema'
 import ServiceDetailContent from '@/components/ServiceDetailContent'
 
 interface PageProps {
@@ -68,10 +69,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     { name: serviceData.title, path: `/services/${service}` }
   ])
 
+  const serviceExtra = getServiceContent(serviceData.id)
+  const faqSchema = serviceExtra ? generateFAQSchema(serviceExtra.faqs) : null
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
+      {faqSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(faqSchema) }} />
+      )}
       <ServiceDetailContent
         service={{
           ...serviceData,

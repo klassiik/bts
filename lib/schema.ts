@@ -145,6 +145,17 @@ export function generateLocalBusinessSchema() {
       }
     ],
     knowsAbout: ['Tree Care', 'Arboriculture', 'Tree Removal', 'Emergency Tree Services', 'Stump Grinding'],
+    // Verified CSLB public record: C-49 (Tree and Palm), current & active
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'license',
+      name: `CSLB ${BUSINESS_INFO.cslbClassification} (Tree and Palm) Contractor License #${BUSINESS_INFO.cslb}`,
+      recognizedBy: {
+        '@type': 'GovernmentOrganization',
+        name: 'California Contractors State License Board',
+        url: 'https://www.cslb.ca.gov'
+      }
+    },
     geo: {
       '@type': 'GeoCoordinates',
       latitude: 39.1003,
@@ -212,15 +223,16 @@ export function generateBreadcrumbSchema(items: { name: string; path: string }[]
   }
 }
 
-/* FAQPage schema generated from the same FAQ_DATA the visible FAQSection
- * renders, so JSON-LD and on-page content cannot drift apart.
+/* FAQPage schema. Defaults to the homepage FAQ_DATA the visible FAQSection
+ * renders (so JSON-LD and on-page content cannot drift), but any page can
+ * pass its own {question, answer} items — e.g. the per-service FAQs.
  * Note: Google retired FAQ rich results (May 2026); this markup is kept for
  * its AI/LLM citation and entity-resolution value. */
-export function generateFAQSchema() {
+export function generateFAQSchema(items: { question: string; answer: string }[] = FAQ_DATA) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ_DATA.map(item => ({
+    mainEntity: items.map(item => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {

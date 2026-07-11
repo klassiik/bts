@@ -1,8 +1,9 @@
 import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
 import { getWorkPhotosForService } from '@/lib/workGallery'
+import { getServiceContent } from '@/lib/serviceContent'
 import { cityToSlug } from '@/lib/utils'
 import { ButtonLink, StaticCard, StaticCardBody } from '@/components/ui'
-import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon } from '@heroicons/react/24/solid'
+import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon, CurrencyDollarIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 import Video from '@/components/Video'
 import WorkGallery from '@/components/WorkGallery'
@@ -24,6 +25,7 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
   const benefits = service.benefits ?? []
   const serviceLocation = service.location?.trim() || 'Northern California'
   const workPhotos = getWorkPhotosForService(service.id)
+  const extra = getServiceContent(service.id)
 
   return (
     <>
@@ -159,12 +161,77 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
         </div>
       </section>
 
+      {/* What affects the cost */}
+      {extra && (
+        <section className="py-16 px-4 bg-charcoal-950" aria-label={`What affects the cost of ${service.title.toLowerCase()}`}>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <CurrencyDollarIcon className="w-7 h-7 text-evergreen-400" aria-hidden="true" />
+              <h2 className="text-3xl font-bold text-evergreen-300">
+                What Affects the Cost of {service.title}?
+              </h2>
+            </div>
+            <p className="text-charcoal-100 mb-6 leading-relaxed">{extra.costIntro}</p>
+            <ul className="space-y-3 mb-8">
+              {extra.costFactors.map((factor, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-charcoal-100">
+                  <CheckCircleIcon className="w-5 h-5 text-evergreen-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <span>{factor}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-charcoal-100 leading-relaxed">
+              Rather than quote a number sight-unseen, we give you a{' '}
+              <span className="text-evergreen-300 font-semibold">free on-site estimate</span> with an
+              exact price before any work begins — no obligation. Call{' '}
+              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="text-evergreen-300 underline hover:text-evergreen-200">
+                {BUSINESS_INFO.phone}
+              </a>{' '}to schedule.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* Service FAQ */}
+      {extra && (
+        <section className="py-16 px-4 bg-charcoal-900" aria-label={`${service.title} frequently asked questions`}>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-8">
+              <QuestionMarkCircleIcon className="w-7 h-7 text-evergreen-400" aria-hidden="true" />
+              <h2 className="text-3xl font-bold text-evergreen-300">
+                {service.title} Questions, Answered
+              </h2>
+            </div>
+            <div className="space-y-6">
+              {extra.faqs.map((faq, idx) => (
+                <div key={idx}>
+                  <h3 className="text-lg font-semibold text-evergreen-300 mb-2">{faq.question}</h3>
+                  <p className="text-charcoal-100 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA Section */}
       <section className="py-16 px-4 bg-charcoal-950" aria-label="Contact us">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-evergreen-300 mb-4">Ready to Get Started?</h2>
-          <p className="text-charcoal-100 mb-8 text-lg">
-            Contact Barker Tree Services today for a free {service.title.toLowerCase()} estimate. Licensed (CSLB #{BUSINESS_INFO.cslb}) and fully insured.
+          <p className="text-charcoal-100 mb-4 text-lg">
+            Contact Barker Tree Services today for a free {service.title.toLowerCase()} estimate.
+          </p>
+          <p className="text-charcoal-200 mb-8 text-sm">
+            California licensed &amp; insured — CSLB {BUSINESS_INFO.cslbClassification} (Tree &amp; Palm) #{BUSINESS_INFO.cslb}.{' '}
+            <a
+              href={BUSINESS_INFO.cslbLookupUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-evergreen-300 underline hover:text-evergreen-200"
+            >
+              Verify our license at CSLB
+            </a>
+            .
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <ButtonLink

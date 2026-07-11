@@ -14,6 +14,10 @@ export const BUSINESS_INFO = {
   zip: '95713',
   hours: 'Mon-Fri: 7:00 AM - 7:00 PM',
   cslb: '1085329',
+  // Verified via CSLB public license lookup: C-49 (Tree and Palm) is
+  // California's dedicated tree-service classification. Current & active.
+  cslbClassification: 'C-49',
+  cslbLookupUrl: 'https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx',
   url: 'https://barkertreeservices.com',
   socialProfiles: [
     'https://maps.google.com/?cid=12582642690419062828',
@@ -146,7 +150,7 @@ export const COMPANY_CREDENTIALS = {
   founded: String(FOUNDING_YEAR),
   experience: `${YEARS_IN_BUSINESS} years in business since ${FOUNDING_YEAR}`,
   certifications: [
-    'CSLB Licensed Contractor #1085329',
+    'CSLB C-49 Licensed Contractor (Tree & Palm) #1085329',
     'Tree Risk Assessment Qualified (TRAQ)',
     'OSHA Safety Certified',
     'Fully Insured (General Liability & Workers Comp)'
