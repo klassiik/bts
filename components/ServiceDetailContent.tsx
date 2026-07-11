@@ -1,9 +1,7 @@
-'use client'
-
 import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
 import { getWorkPhotosForService } from '@/lib/workGallery'
 import { cityToSlug } from '@/lib/utils'
-import { Button, Card, CardBody } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody } from '@/components/ui'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 import Video from '@/components/Video'
@@ -38,18 +36,14 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
             Professional {service.title} in <span className="text-evergreen-300">{serviceLocation}</span>
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 leading-relaxed">{service.description}</p>
-          <Button
-            as="a"
+          <ButtonLink
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
-            color="primary"
-            size="lg"
-            variant="shadow"
             startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
             className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 font-bold shadow-lg shadow-evergreen-900/50"
             aria-label="Call for a free estimate"
           >
             Call {BUSINESS_INFO.phone} for Free Estimate
-          </Button>
+          </ButtonLink>
         </div>
       </section>
 
@@ -100,24 +94,24 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
       {/* Equipment & Seasonality */}
       <section className="py-16 px-4 bg-charcoal-950" aria-label="Equipment and timing">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20">
-            <CardBody className="p-6">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+            <StaticCardBody className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <WrenchScrewdriverIcon className="w-6 h-6 text-evergreen-400" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300">Equipment Used</h3>
               </div>
               <p className="text-charcoal-100">{service.equipment}</p>
-            </CardBody>
-          </Card>
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20">
-            <CardBody className="p-6">
+            </StaticCardBody>
+          </StaticCard>
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+            <StaticCardBody className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <CalendarDaysIcon className="w-6 h-6 text-evergreen-400" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300">Best Time of Year</h3>
               </div>
               <p className="text-charcoal-100">{service.seasonality}</p>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
 
@@ -173,27 +167,21 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
             Contact Barker Tree Services today for a free {service.title.toLowerCase()} estimate. Licensed (CSLB #{BUSINESS_INFO.cslb}) and fully insured.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button
-              as="a"
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
               aria-label="Call for a free estimate"
-              color="primary"
-              size="lg"
-              variant="shadow"
               startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 font-bold shadow-lg shadow-evergreen-900/50"
             >
               {BUSINESS_INFO.phone}
-            </Button>
-            <Button
-              as="a"
+            </ButtonLink>
+            <ButtonLink
               href="/contact"
-              size="lg"
               variant="bordered"
               className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
             >
               Request Free Estimate
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>

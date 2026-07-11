@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   // (fixes Vercel/CI builds that detect the wrong root when lockfiles
   // exist in parent folders).
   outputFileTracingRoot: path.resolve(__dirname),
+
+  experimental: {
+    optimizePackageImports: ['@heroui/react']
+  },
   
   images: {
     formats: ['image/webp'],

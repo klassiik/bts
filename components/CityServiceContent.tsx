@@ -1,8 +1,6 @@
-'use client'
-
 import { BUSINESS_INFO, DETAILED_TESTIMONIALS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
-import { Card, CardBody, Button, Chip } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/outline'
 import Video from '@/components/Video'
 
@@ -36,14 +34,14 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-evergreen-500/10 rounded-full blur-3xl" />
         
         <div className="relative max-w-6xl mx-auto">
-          <Chip 
+          <StaticChip 
             className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             startContent={<MapPinIcon className="w-4 h-4" />}
             aria-label={`Serving ${city}, ${state}`}
           >
             Serving {city}, {state}
-          </Chip>
+          </StaticChip>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-charcoal-50">
             Expert Tree Services in {city}, {state}
           </h1>
@@ -52,26 +50,22 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               `Professional tree trimming, removal, stump grinding, and emergency services in ${city}. Licensed tree care specialists serving ${city} and surrounding communities since 2018.`}
           </p>
           <div className="flex gap-4 flex-wrap">
-            <Button
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              as="a"
-              size="lg"
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white font-bold shadow-lg"
               startContent={<PhoneIcon className="w-5 h-5" />}
               aria-label={`Call Barker Tree Services for ${city} tree services`}
             >
               Call {BUSINESS_INFO.phone}
-            </Button>
-            <Button
+            </ButtonLink>
+            <ButtonLink
               href="/contact"
-              as="a"
-              size="lg"
               variant="bordered"
               className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
               aria-label={`Request free estimate for ${city} tree services`}
             >
               Free Estimate
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>
@@ -84,12 +78,12 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" role="list">
             {localHighlights.map((highlight, index) => (
-              <Card key={index} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
-                <CardBody className="text-center p-6">
+              <StaticCard key={index} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
+                <StaticCardBody className="text-center p-6">
                   <CheckCircleIcon className="w-8 h-8 text-evergreen-500 mx-auto mb-3" aria-hidden="true" />
                   <p className="text-charcoal-100 font-medium">{highlight}</p>
-                </CardBody>
-              </Card>
+                </StaticCardBody>
+              </StaticCard>
             ))}
           </div>
         </div>
@@ -102,38 +96,38 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Tree Services in {city}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Tree trimming service icon" role="img">✂️</div>
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
                 <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Tree removal service icon" role="img">🪓</div>
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
                 <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Stump grinding service icon" role="img">🪚</div>
                 <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
                 <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <div className="text-4xl mb-3" aria-label="Emergency tree service icon" role="img">⚡</div>
                 <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
                 <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
 
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
-            <CardBody className="p-8">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
+            <StaticCardBody className="p-8">
               <h3 className="text-2xl font-bold text-evergreen-300 mb-6">
                 Tree Care Specialists Serving {city}
               </h3>
@@ -166,11 +160,11 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                   the surrounding Placer and Nevada County areas.
                 </p>
               )}
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
 
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
-            <CardBody className="p-8">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
+            <StaticCardBody className="p-8">
               <h3 className="text-2xl font-bold text-evergreen-300 mb-4">
                 Why Choose Barker Tree Services in {city}?
               </h3>
@@ -194,8 +188,8 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                    </p>
                 </div>
               </div>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
 
           {/* Testimonials — city-specific when we have them, honestly labeled
               regional ones otherwise */}
@@ -209,8 +203,8 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8 mb-12" role="list">
                   {shownTestimonials.map((testimonial, idx) => (
-                    <Card key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
-                      <CardBody className="p-6">
+                    <StaticCard key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
+                      <StaticCardBody className="p-6">
                         <div className="flex items-center gap-1 mb-3">
                           {[...Array(testimonial.rating)].map((_, i) => (
                             <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
@@ -227,8 +221,8 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                             <p className="text-charcoal-300 text-xs">{testimonial.date}</p>
                           </div>
                         </div>
-                      </CardBody>
-                    </Card>
+                      </StaticCardBody>
+                    </StaticCard>
                   ))}
                 </div>
               </div>
@@ -236,8 +230,8 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           )}
 
           {/* Call to Action */}
-          <Card className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30">
-            <CardBody className="p-8 text-center">
+          <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30">
+            <StaticCardBody className="p-8 text-center">
               <h3 className="text-2xl font-bold text-evergreen-300 mb-4">
                 Ready for Tree Services in {city}?
               </h3>
@@ -245,32 +239,28 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 Contact Barker Tree Services today for your free estimate on tree trimming, removal, stump grinding, or emergency services in {city} and surrounding areas.
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
-                <Button
+                <ButtonLink
                   href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                  as="a"
-                  size="lg"
                   className="bg-charcoal-50 text-evergreen-900 font-bold shadow-lg hover:bg-white"
                   startContent={<PhoneIcon className="w-5 h-5" />}
                   aria-label={`Call now for tree services in ${city}`}
                 >
                   Call Now
-                </Button>
-                <Button
+                </ButtonLink>
+                <ButtonLink
                   href="/services"
-                  as="a"
-                  size="lg"
                   variant="bordered"
                   className="border-evergreen-300 text-evergreen-300 hover:bg-evergreen-900/30 font-bold"
                   aria-label="View all tree services"
                 >
                   View All Services
-                </Button>
+                </ButtonLink>
               </div>
               <p className="text-evergreen-300 text-sm mt-4">
                 Licensed & Insured • CSLB #1085329 • {YEARS_IN_BUSINESS} Years Experience
               </p>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
     </div>

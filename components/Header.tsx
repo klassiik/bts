@@ -117,7 +117,7 @@ export default function Header() {
           color="primary"
           variant="shadow"
           size="sm"
-          className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 hover:from-evergreen-500 hover:to-evergreen-600 font-bold text-white shadow-lg shadow-evergreen-900/50 lg:size-lg"
+          className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 hover:from-evergreen-500 hover:to-evergreen-600 font-bold text-white shadow-lg shadow-evergreen-900/50 h-11"
           startContent={<PhoneIcon className="w-4 h-4 lg:w-5 lg:h-5" aria-hidden="true" />}
           aria-label="Call Barker Tree Services now"
         >
