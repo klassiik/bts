@@ -10,6 +10,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
 import Video from '@/components/Video'
+import { getVideoUrl } from '@/lib/media'
 
 export default function EmergencyResponseContent() {
   const emergencyScenarios = [
@@ -79,7 +80,7 @@ export default function EmergencyResponseContent() {
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden bg-gradient-to-br from-red-950/30 via-charcoal-950 to-charcoal-950">
         <Video
-          src="/media/555764101_25387785744161354_2365138505705379783_n.mp4"
+          src={getVideoUrl('555764101_25387785744161354_2365138505705379783_n')}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 0 }}
           aria-hidden="true"

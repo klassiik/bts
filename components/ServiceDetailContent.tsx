@@ -7,6 +7,7 @@ import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon, Cu
 import Link from 'next/link'
 import Video from '@/components/Video'
 import WorkGallery from '@/components/WorkGallery'
+import { getVideoUrl } from '@/lib/media'
 
 interface ServiceData {
   id: string
@@ -127,7 +128,7 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
             {service.id === 'removal' && (
               <div className="mb-8 rounded-lg overflow-hidden max-w-md mx-auto">
                 <Video
-                  src="/media/tree-removal-limbing.mp4"
+                  src={getVideoUrl('tree-removal-limbing')}
                   className="w-full h-auto aspect-[9/16]"
                   aria-label="Barker climber limbing a tall pine during a sectional removal"
                 />

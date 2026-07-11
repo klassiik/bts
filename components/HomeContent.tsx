@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/outline'
 import dynamic from 'next/dynamic'
 import Video from '@/components/Video'
+import { getVideoUrl } from '@/lib/media'
 
 // Lazy load below-the-fold components for better initial load performance
 const FAQSection = dynamic(() => import('@/components/FAQSection'), {
@@ -33,7 +34,7 @@ export default function HomeContent() {
       {/* GEO: Hero section with semantic article landmark for main business proposition */}
       <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Professional Tree Services in Colfax, CA">
         <Video
-          src="/media/552252494_24763328253355339_8075536204197305204_n.mp4"
+          src={getVideoUrl('552252494_24763328253355339_8075536204197305204_n')}
           className="absolute inset-0 w-full h-full object-cover opacity-40"
           style={{ zIndex: 0 }}
           aria-hidden="true"

@@ -6,6 +6,7 @@ import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
 import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon, AcademicCapIcon, GlobeAmericasIcon, HeartIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import TreeCareGuides from '@/components/TreeCareGuides'
+import { getVideoUrl } from '@/lib/media'
 
 export default function AboutContent() {
   return (
@@ -55,7 +56,7 @@ export default function AboutContent() {
               <CardBody className="p-8">
                 <div className="mb-6 rounded-lg overflow-hidden relative">
                   <Video
-                    src="/media/554478983_25636593632607805_5041281570766047163_n.mp4"
+                    src={getVideoUrl('554478983_25636593632607805_5041281570766047163_n')}
                     className="w-full h-auto relative z-0"
                     aria-label="About Barker Tree Services"
                   />

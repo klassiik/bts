@@ -5,6 +5,7 @@ import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon, AcademicCapIcon, ShieldCheckIcon, BoltIcon } from '@heroicons/react/24/outline'
+import { getVideoUrl } from '@/lib/media'
 
 export default function ServicesContent() {
   return (
@@ -54,7 +55,7 @@ export default function ServicesContent() {
           <Card className="bg-charcoal-800/50 border border-evergreen-900/20 overflow-hidden">
             <CardBody className="p-0 relative">
               <Video
-                src="/media/553827505_24841983355418125_3276620820634142277_n.mp4"
+                src={getVideoUrl('553827505_24841983355418125_3276620820634142277_n')}
                 className="w-full h-auto relative z-0"
                 aria-label="Barker Tree Services professional tree care work demonstration"
               />
