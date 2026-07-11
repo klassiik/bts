@@ -8,12 +8,18 @@ import { ContactSchema } from '@/lib/schema'
 const window = new JSDOM('').window
 const purify = DOMPurify(window)
 
-// Validate environment configuration
-if (!process.env.RESEND_API_KEY) {
-  throw new Error('Missing RESEND_API_KEY environment variable')
+// Lazily construct the Resend client so a missing key only fails requests,
+// not the entire build (Next.js loads this module during page-data collection).
+let resend: Resend | null = null
+function getResendClient(): Resend {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('Missing RESEND_API_KEY environment variable')
+  }
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
 }
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Rate limiting configuration (per-IP, in-memory)
 const RATE_LIMIT = new Map<string, { count: number, lastReset: number }>()
@@ -68,7 +74,7 @@ export async function POST(request: Request) {
     const safeService = sanitizeText(service)
 
     // Send email using Resend
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResendClient().emails.send({
       from: 'Barker Tree Services Website <onboarding@resend.dev>',
       to: ['jacob@barkertreeservices.com'],
       replyTo: safeEmail,
