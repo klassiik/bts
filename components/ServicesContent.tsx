@@ -1,7 +1,7 @@
 'use client'
 
 /* GEO: Services page component with comprehensive Service schema markers for AI discovery */
-import { SERVICES, BUSINESS_INFO } from '@/lib/config'
+import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon } from '@heroicons/react/24/outline'
@@ -29,7 +29,7 @@ export default function ServicesContent() {
             Expert Tree Services
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-             Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Grass Valley, Auburn, Nevada City, and communities across Placer & Nevada Counties.
+             Comprehensive tree care services backed by experienced professionals, professional equipment, and {YEARS_IN_BUSINESS} years of experience serving Grass Valley, Auburn, Nevada City, and communities across Placer & Nevada Counties.
            </p>
           <Button 
             href={`tel:${BUSINESS_INFO.phoneRaw}`}

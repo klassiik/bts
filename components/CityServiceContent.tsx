@@ -1,6 +1,6 @@
 'use client'
 
-import { BUSINESS_INFO, DETAILED_TESTIMONIALS } from '@/lib/config'
+import { BUSINESS_INFO, DETAILED_TESTIMONIALS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/outline'
@@ -49,7 +49,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl">
             {detail?.intro ??
-              `Professional tree trimming, removal, stump grinding, and emergency services in ${city}. Licensed tree care specialists with 6 years of experience serving ${city} and surrounding communities.`}
+              `Professional tree trimming, removal, stump grinding, and emergency services in ${city}. Licensed tree care specialists serving ${city} and surrounding communities since 2018.`}
           </p>
           <div className="flex gap-4 flex-wrap">
             <Button
@@ -267,7 +267,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 </Button>
               </div>
               <p className="text-evergreen-300 text-sm mt-4">
-                Licensed & Insured • CSLB #1085329 • 6 Years Experience
+                Licensed & Insured • CSLB #1085329 • {YEARS_IN_BUSINESS} Years Experience
               </p>
             </CardBody>
           </Card>

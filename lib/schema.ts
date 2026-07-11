@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
+import { BUSINESS_INFO, SERVICE_AREAS, YEARS_IN_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 
 type ServiceArea = { city: string; state: string }
 
@@ -208,7 +208,7 @@ export function generateFAQSchema() {
         name: 'How much experience does Barker Tree Services have?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Barker Tree Services has over 6 years of experience in arboriculture and tree care, serving Northern California communities since 2018.'
+          text: `Barker Tree Services has ${YEARS_IN_BUSINESS} years of experience in arboriculture and tree care, serving Northern California communities since ${FOUNDING_YEAR}.`
         }
       }
     ]

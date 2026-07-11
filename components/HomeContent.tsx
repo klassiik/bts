@@ -1,6 +1,6 @@
 'use client'
 
-import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS } from '@/lib/config'
+import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { Button, Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
 import dynamic from 'next/dynamic'
@@ -34,7 +34,7 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 10 }}>
           <div>
             <Chip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
-              <span className="text-evergreen-300 font-semibold">6 Years Experience</span>
+              <span className="text-evergreen-300 font-semibold">{YEARS_IN_BUSINESS} Years Experience</span>
             </Chip>
             {/* GEO: H1 optimized with location and service keywords for AI understanding */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-charcoal-50">

@@ -8,7 +8,7 @@ import {
   WrenchScrewdriverIcon,
   PhoneIcon 
 } from '@heroicons/react/24/outline'
-import { BUSINESS_INFO } from '@/lib/config'
+import { BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
 
 interface TreeCareGuide {
   id: string
@@ -169,7 +169,7 @@ export default function TreeCareGuides() {
             Expert Tree Care Guides
           </h2>
           <p className="text-xl text-charcoal-100 max-w-3xl mx-auto">
-             Learn from our 6 years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
+             Learn from {YEARS_IN_BUSINESS} years of experience with comprehensive guides to tree care, safety, and maintenance in Northern California
            </p>
         </div>
 

@@ -1,3 +1,8 @@
+export const FOUNDING_YEAR = 2018
+// Computed at build time — refreshes on each deploy. Prefer "since 2018"
+// phrasing in copy where possible; use this only where a number is needed.
+export const YEARS_IN_BUSINESS = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR)
+
 export const BUSINESS_INFO = {
   name: 'Barker Tree Services',
   phone: '(530) 802-1271',
@@ -127,8 +132,8 @@ export const DETAILED_TESTIMONIALS = [
 
 // Company credentials and certifications
 export const COMPANY_CREDENTIALS = {
-  founded: '2018',
-  experience: '6 years combined team experience',
+  founded: String(FOUNDING_YEAR),
+  experience: `${YEARS_IN_BUSINESS} years in business since ${FOUNDING_YEAR}`,
   certifications: [
     'CSLB Licensed Contractor #1085329',
     'Tree Risk Assessment Qualified (TRAQ)',
