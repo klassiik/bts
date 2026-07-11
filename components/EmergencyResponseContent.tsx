@@ -7,7 +7,8 @@ import {
   ClockIcon,
   ShieldCheckIcon,
   DocumentTextIcon,
-  WrenchScrewdriverIcon 
+  WrenchScrewdriverIcon,
+  BoltIcon
 } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
 import Video from '@/components/Video'
@@ -137,8 +138,9 @@ export default function EmergencyResponseContent() {
             </Button>
           </div>
 
-          <div className="mt-6 text-red-300 font-semibold">
-            ⚡ Average Response Time: 2-4 Hours ⚡
+          <div className="mt-6 text-red-300 font-semibold flex items-center justify-center gap-2">
+            <BoltIcon className="w-5 h-5" aria-hidden="true" />
+            Average Response Time: 2-4 Hours
           </div>
         </div>
       </section>
