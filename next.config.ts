@@ -35,10 +35,6 @@ const nextConfig: NextConfig = {
             value: 'SAMEORIGIN'
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          },
-          {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
           },
@@ -65,14 +61,21 @@ const nextConfig: NextConfig = {
             key: 'Cross-Origin-Resource-Policy',
             value: 'same-origin'
           },
-          // Cache control
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
-          },
           {
             key: 'X-Canonical-URL',
             value: 'https://barkertreeservices.com'
+          }
+        ]
+      },
+      // Media files are re-encoded in place under stable filenames, so they
+      // must NOT be immutable. Next.js already serves /_next/static/* with
+      // immutable caching; HTML/robots/sitemap use Vercel's defaults.
+      {
+        source: '/media/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800'
           }
         ]
       }
