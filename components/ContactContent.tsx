@@ -9,7 +9,7 @@ import Video from '@/components/Video'
 
 export default function ContactContent() {
   return (
-    <section className="relative py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)] overflow-hidden" aria-label="Contact Barker Tree Services" itemScope itemType="https://schema.org/ContactPage">
+    <section className="relative py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)] overflow-hidden" aria-label="Contact Barker Tree Services">
       <Video
         src="/media/556677411_32055543104036746_2204476273704338762_n.mp4"
         className="absolute inset-0 w-full h-full object-cover opacity-30"
@@ -32,8 +32,7 @@ export default function ContactContent() {
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* GEO: Contact information cards with ContactPoint schema markers */}
-          <div className="space-y-6" role="list" aria-label="Contact methods" itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
-            <meta itemProp="contactType" content="customer service" />
+          <div className="space-y-6" role="list" aria-label="Contact methods">
             <Card 
               as="a"
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
@@ -46,7 +45,7 @@ export default function ContactContent() {
                 <PhoneIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
                   <h2 className="font-bold text-lg text-evergreen-300">Phone</h2>
-                  <p className="text-evergreen-300 font-semibold" itemProp="telephone">{BUSINESS_INFO.phone}</p>
+                  <p className="text-evergreen-300 font-semibold">{BUSINESS_INFO.phone}</p>
                   <p className="text-charcoal-100 text-sm">Call for immediate assistance</p>
                 </div>
               </CardBody>
@@ -64,7 +63,7 @@ export default function ContactContent() {
                 <EnvelopeIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
                   <h2 className="font-bold text-lg text-evergreen-300">Email</h2>
-                  <p className="text-evergreen-300 font-semibold" itemProp="email">{BUSINESS_INFO.email}</p>
+                  <p className="text-evergreen-300 font-semibold">{BUSINESS_INFO.email}</p>
                   <p className="text-charcoal-100 text-sm">Send us a message anytime</p>
                 </div>
               </CardBody>
@@ -73,10 +72,10 @@ export default function ContactContent() {
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem" aria-label="Service area information">
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <MapPinIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
-                <address className="not-italic" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                <address className="not-italic">
                   <h2 className="font-bold text-lg text-evergreen-300">Service Area</h2>
-                  <p className="text-charcoal-100" itemProp="streetAddress">{BUSINESS_INFO.address}</p>
-                  <p className="text-charcoal-100 text-sm mt-1" itemProp="areaServed">Serving Placer & Nevada Counties</p>
+                  <p className="text-charcoal-100">{BUSINESS_INFO.address}</p>
+                  <p className="text-charcoal-100 text-sm mt-1">Serving Placer & Nevada Counties</p>
                 </address>
               </CardBody>
             </Card>
@@ -86,7 +85,7 @@ export default function ContactContent() {
                 <ClockIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <div>
                   <h2 className="font-bold text-lg text-evergreen-300">Business Hours</h2>
-                  <p className="text-charcoal-100" itemProp="hoursAvailable">{BUSINESS_INFO.hours}</p>
+                  <p className="text-charcoal-100">{BUSINESS_INFO.hours}</p>
                   <Chip 
                     className="mt-2 bg-amber-900/30 border border-amber-600/30 text-amber-400"
                     size="sm"

@@ -3,7 +3,7 @@ import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { notFound } from 'next/navigation'
 import CityServiceContent from '@/components/CityServiceContent'
-import { generateLocalBusinessSchema } from '@/lib/schema'
+import { generateServiceSchema, generateBreadcrumbSchema, toSafeJsonLd } from '@/lib/schema'
 import { cityToSlug } from '@/lib/utils'
 
 interface PageProps {
@@ -48,19 +48,23 @@ export default async function CityServicePage({ params }: PageProps) {
   const cityData = getCityFromSlug(city)
   if (!cityData) notFound()
 
-  const citySchema = generateLocalBusinessSchema({
-    city: cityData.city,
-    state: cityData.state,
+  const cityServiceSchema = generateServiceSchema({
+    name: `Tree Services in ${cityData.city}, ${cityData.state}`,
+    description: `Tree trimming, removal, stump grinding, and 24/7 emergency tree services for homes and businesses in ${cityData.city}, ${cityData.state}.`,
     path: `/service-areas/${city}`,
-    id: `${BUSINESS_INFO.url}/service-areas/${city}#business`,
-    name: `${BUSINESS_INFO.name} - ${cityData.city}`,
-    description: `Professional tree trimming, removal, stump grinding, and 24/7 emergency tree services in ${cityData.city}, CA. Licensed (CSLB #${BUSINESS_INFO.cslb}), insured, and serving Northern California since 2018.`,
     areaServed: [{ city: cityData.city, state: cityData.state }]
   })
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Service Areas', path: '/service-areas' },
+    { name: cityData.city, path: `/service-areas/${city}` }
+  ])
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(citySchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(cityServiceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
       <CityServiceContent city={cityData.city} state={cityData.state} />
     </>
   )

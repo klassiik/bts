@@ -115,8 +115,11 @@ describe('Schema.org JSON-LD Validation', () => {
   it('should have correct context and type for LocalBusiness', () => {
     const schema = generateLocalBusinessSchema()
     expect(schema['@context']).toBe('https://schema.org')
-    expect(Array.isArray(schema['@type'])).toBe(true)
-    expect(schema['@type']).toContain('LocalBusiness')
+    // Single specific subtype — HomeAndConstructionBusiness inherits
+    // LocalBusiness, so stacking both types is redundant
+    expect(schema['@type']).toBe('HomeAndConstructionBusiness')
+    // One canonical entity id, referenced by every other schema block
+    expect(schema['@id']).toBe('https://barkertreeservices.com/#business')
   })
 
   it('should have required contact fields', () => {
@@ -136,11 +139,11 @@ describe('Schema.org JSON-LD Validation', () => {
     expect(schema.address.postalCode).toBeDefined()
   })
 
-  it('should have numeric aggregateRating values', () => {
-    const schema = generateLocalBusinessSchema()
-    expect(schema.aggregateRating).toBeDefined()
-    expect(typeof schema.aggregateRating.ratingValue).toBe('number')
-    expect(typeof schema.aggregateRating.reviewCount).toBe('number')
+  it('should not claim aggregateRating without verifiable review data', () => {
+    // Google's review-snippet policy excludes self-serving ratings; only add
+    // aggregateRating once it reflects real, attributed GBP/Yelp review counts
+    const schema = generateLocalBusinessSchema() as Record<string, unknown>
+    expect(schema.aggregateRating).toBeUndefined()
   })
 
   it('should have numeric geo coordinates', () => {

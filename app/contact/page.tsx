@@ -1,4 +1,5 @@
 ﻿import { generateMetadata as generatePageMetadata } from '@/lib/seo'
+import { generateBreadcrumbSchema, generateServiceSchema, toSafeJsonLd } from '@/lib/schema'
 import { BUSINESS_INFO } from '@/lib/config'
 import ContactContent from '@/components/ContactContent'
 
@@ -9,5 +10,15 @@ export const metadata = generatePageMetadata({
 })
 
 export default function ContactPage() {
-  return <ContactContent />
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' }
+  ])
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
+      <ContactContent />
+    </>
+  )
 }

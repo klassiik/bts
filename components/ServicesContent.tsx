@@ -67,16 +67,16 @@ export default function ServicesContent() {
       <section className="py-20 px-4" aria-label="Complete tree service catalog">
         <div className="max-w-6xl mx-auto space-y-16">
           {SERVICES.map((service, index) => (
-            <article key={service.id} className={`grid md:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''}`} itemScope itemType="https://schema.org/Service">
+            <article key={service.id} className={`grid md:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''}`}>
               {/* Main Content */}
               <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
-                <h2 className="text-4xl font-bold text-evergreen-300 mb-4" itemProp="name">{service.title}</h2>
-                <p className="text-lg text-charcoal-100 mb-6 leading-relaxed" itemProp="description">{service.description}</p>
+                <h2 className="text-4xl font-bold text-evergreen-300 mb-4">{service.title}</h2>
+                <p className="text-lg text-charcoal-100 mb-6 leading-relaxed">{service.description}</p>
                 
                 <Card className="mb-6 bg-charcoal-900/50 border border-evergreen-900/20" role="region" aria-label="Service process details">
                   <CardBody className="p-6">
                     <h3 className="text-xl font-semibold text-evergreen-300 mb-3">Our Process</h3>
-                    <p className="text-charcoal-100 leading-relaxed" itemProp="serviceOutput">{service.process}</p>
+                    <p className="text-charcoal-100 leading-relaxed">{service.process}</p>
                   </CardBody>
                 </Card>
 
@@ -127,7 +127,7 @@ export default function ServicesContent() {
                       <CalendarIcon className="w-5 h-5" aria-hidden="true" />
                       Best Timing
                     </h4>
-                    <p className="text-sm text-charcoal-100 leading-relaxed" itemProp="serviceType">{service.seasonality}</p>
+                    <p className="text-sm text-charcoal-100 leading-relaxed">{service.seasonality}</p>
                   </div>
 
                   <div className="pt-4 border-t border-evergreen-900/20">

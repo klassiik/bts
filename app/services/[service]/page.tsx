@@ -1,7 +1,7 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/seo'
 import { SERVICES, BUSINESS_INFO } from '@/lib/config'
 import { notFound } from 'next/navigation'
-import { generateLocalBusinessSchema } from '@/lib/schema'
+import { generateServiceSchema, generateBreadcrumbSchema, toSafeJsonLd } from '@/lib/schema'
 import ServiceDetailContent from '@/components/ServiceDetailContent'
 
 interface PageProps {
@@ -21,10 +21,6 @@ function truncateAtWordBoundary(text: string, maxLength: number) {
   const lastSpaceIndex = truncated.lastIndexOf(' ')
 
   return lastSpaceIndex > 0 ? truncated.slice(0, lastSpaceIndex) : truncated
-}
-
-function toSafeJsonLd(value: unknown) {
-  return JSON.stringify(value).replace(/<\/script>/gi, '<\\/script>')
 }
 
 export async function generateStaticParams() {
@@ -59,42 +55,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const serviceData = getServiceFromSlug(service)
   if (!serviceData) notFound()
 
-  const serviceSchema = generateLocalBusinessSchema({
-    path: `/services/${service}`,
-    id: `${BUSINESS_INFO.url}/services/${service}#business`,
-    description: serviceData.description
-  })
-
-  // Service-specific schema
-  const serviceItemSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
+  const serviceSchema = generateServiceSchema({
     name: serviceData.title,
     description: serviceData.description,
-    provider: {
-      '@type': 'LocalBusiness',
-      name: BUSINESS_INFO.name,
-      telephone: BUSINESS_INFO.phoneRaw,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: BUSINESS_INFO.address,
-        addressLocality: BUSINESS_INFO.city,
-        addressRegion: BUSINESS_INFO.state,
-        postalCode: BUSINESS_INFO.zip,
-        addressCountry: 'US'
-      }
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'California'
-    },
-    serviceType: serviceData.title
-  }
+    path: `/services/${service}`,
+    available24x7: serviceData.id === 'emergency'
+  })
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: serviceData.title, path: `/services/${service}` }
+  ])
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(serviceItemSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
       <ServiceDetailContent
         service={{
           ...serviceData,

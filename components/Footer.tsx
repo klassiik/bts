@@ -11,9 +11,9 @@ export default function Footer() {
     <footer className="bg-charcoal-950 border-t border-evergreen-900/20 py-12 px-4" role="contentinfo" aria-label="Site footer">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8 pb-8 border-b border-charcoal-800/50">
-          <div itemScope itemType="https://schema.org/LocalBusiness">
-            <h3 className="font-bold text-evergreen-300 mb-4 text-lg" itemProp="name">Barker Tree Services</h3>
-            <p className="text-sm text-charcoal-100 leading-relaxed" itemProp="description">Expert tree care serving Colfax and surrounding areas. Licensed & insured.</p>
+          <div>
+            <h3 className="font-bold text-evergreen-300 mb-4 text-lg">Barker Tree Services</h3>
+            <p className="text-sm text-charcoal-100 leading-relaxed">Expert tree care serving Colfax and surrounding areas. Licensed & insured.</p>
             <div className="mt-4 inline-block px-3 py-1.5 bg-evergreen-950/40 border border-evergreen-900/30 rounded-lg">
               <p className="text-xs text-evergreen-300 font-semibold">CSLB License #{BUSINESS_INFO.cslb}</p>
             </div>
@@ -79,14 +79,14 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <address className="not-italic" itemScope itemType="https://schema.org/ContactPoint">
+          <address className="not-italic">
             <h3 className="font-bold text-evergreen-300 mb-4 text-lg">Contact</h3>
             <div className="space-y-3">
-              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Call Barker Tree Services" itemProp="telephone">
+              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Call Barker Tree Services">
                 <PhoneIcon className="w-5 h-5 text-sage-400 group-hover:text-evergreen-400 transition-colors" aria-hidden="true" />
                 {BUSINESS_INFO.phone}
               </a>
-              <a href={`mailto:${BUSINESS_INFO.email}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Email Barker Tree Services" itemProp="email">
+              <a href={`mailto:${BUSINESS_INFO.email}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Email Barker Tree Services">
                 <EnvelopeIcon className="w-5 h-5 text-sage-400 group-hover:text-evergreen-400 transition-colors" aria-hidden="true" />
                 {BUSINESS_INFO.email}
               </a>

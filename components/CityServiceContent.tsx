@@ -29,7 +29,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
   ]
 
   return (
-    <div className="bg-charcoal-950 min-h-screen" itemScope itemType="https://schema.org/LocalBusiness">
+    <div className="bg-charcoal-950 min-h-screen">
       <section className="relative py-20 px-4 overflow-hidden" aria-label={`Tree services in ${city}, ${state}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-evergreen-950/50 via-charcoal-950 to-charcoal-950" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" />

@@ -1,4 +1,5 @@
 ﻿import { generateMetadata as generatePageMetadata } from '@/lib/seo'
+import { generateBreadcrumbSchema, generateServiceSchema, toSafeJsonLd } from '@/lib/schema'
 import ServicesContent from '@/components/ServicesContent'
 
 export const metadata = generatePageMetadata({
@@ -9,5 +10,15 @@ export const metadata = generatePageMetadata({
 })
 
 export default function ServicesPage() {
-  return <ServicesContent />
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' }
+  ])
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
+      <ServicesContent />
+    </>
+  )
 }
