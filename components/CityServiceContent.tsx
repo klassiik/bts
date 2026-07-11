@@ -225,7 +225,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                   {localTestimonials.slice(0, 2).map((testimonial, idx) => (
                     <Card key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
                       <CardBody className="p-6">
-                        <div className="flex items-center gap-1 mb-3" itemProp="reviewRating">
+                        <div className="flex items-center gap-1 mb-3">
                           {[...Array(testimonial.rating)].map((_, i) => (
                             <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
                           ))}

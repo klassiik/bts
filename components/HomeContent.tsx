@@ -125,7 +125,8 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* GEO: Social proof section with Review schema markers for AI extraction */}
+      {/* Social proof section — no Review schema: first-party testimonials are
+          "self-serving reviews" under Google's review-snippet policy */}
       <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer testimonials and reviews">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">What Our Customers Say</h2>
@@ -133,20 +134,18 @@ export default function HomeContent() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" aria-label="Customer reviews">
             {DETAILED_TESTIMONIALS.slice(0, 6).map((testimonial, idx) => (
-              <Card key={idx} className="bg-charcoal-800/80 border border-evergreen-900/20" itemScope itemType="https://schema.org/Review">
+              <Card key={idx} className="bg-charcoal-800/80 border border-evergreen-900/20">
                 <CardBody className="p-6">
-                  <div className="flex items-center gap-1 mb-3" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-                    <meta itemProp="ratingValue" content={testimonial.rating.toString()} />
-                    <meta itemProp="bestRating" content="5" />
+                  <div className="flex items-center gap-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
                     ))}
                   </div>
-                  <p className="text-charcoal-50 mb-4 leading-relaxed text-sm" itemProp="reviewBody">&ldquo;{testimonial.text}&rdquo;</p>
-                  <div className="flex justify-between items-center text-sm" itemProp="author" itemScope itemType="https://schema.org/Person">
+                  <p className="text-charcoal-50 mb-4 leading-relaxed text-sm">&ldquo;{testimonial.text}&rdquo;</p>
+                  <div className="flex justify-between items-center text-sm">
                     <div>
-                      <p className="font-semibold text-evergreen-200" itemProp="name">{testimonial.name}</p>
-                      <p className="text-charcoal-200" itemProp="address">{testimonial.location}</p>
+                      <p className="font-semibold text-evergreen-200">{testimonial.name}</p>
+                      <p className="text-charcoal-200">{testimonial.location}</p>
                     </div>
                     <div className="text-right">
                       <Chip size="sm" className="bg-evergreen-900/50 text-evergreen-200 border border-evergreen-700/50" variant="bordered">
