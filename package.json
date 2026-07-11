@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "eslint",
     "prebuild": "node scripts/sync-media.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs",
     "print:schema": "tsx scripts/print-schema.ts",
     "test:schema": "jest --testPathPattern=schema",
     "test": "jest"
