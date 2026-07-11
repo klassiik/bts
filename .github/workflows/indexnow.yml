@@ -1,0 +1,33 @@
+name: IndexNow submission
+
+# Pings IndexNow (Bing/Yandex/DuckDuckGo/Naver) with the site's URLs after a
+# push to main. Waits briefly so Vercel has time to publish the new deploy
+# before the sitemap is fetched. No secrets required — the public key file at
+# /b24d4e716b6d93179d1c0d894d7a02af.txt is the ownership proof.
+
+on:
+  push:
+    branches: [main]
+    # Skip runs that can't change any indexable content
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+      - 'media/**'
+
+# One run at a time; let a newer push supersede an in-flight run
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Wait for Vercel deploy to publish
+        run: sleep 90
+      - name: Submit URLs to IndexNow
+        run: node scripts/indexnow-submit.mjs

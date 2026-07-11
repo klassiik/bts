@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 export default function ServiceAreasContent() {
   return (
-    <section className="py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)]" aria-label="Service areas coverage" itemScope itemType="https://schema.org/Service">
+    <section className="py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)]" aria-label="Service areas coverage">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <Chip 
@@ -20,8 +20,8 @@ export default function ServiceAreasContent() {
             Serving Northern California
           </Chip>
           {/* GEO: H1 optimized with geographic keywords for AI discovery */}
-          <h1 className="text-5xl font-bold text-charcoal-50 mb-4" itemProp="name">Service Areas</h1>
-          <p className="text-xl text-charcoal-100" itemProp="areaServed">Proudly serving Colfax and all surrounding communities</p>
+          <h1 className="text-5xl font-bold text-charcoal-50 mb-4">Service Areas</h1>
+          <p className="text-xl text-charcoal-100">Proudly serving Colfax and all surrounding communities</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -37,7 +37,7 @@ export default function ServiceAreasContent() {
                     aria-label={`View tree services in ${area.city}`}
                   >
                     <CheckCircleIcon className="w-5 h-5 text-evergreen-500 group-hover:text-evergreen-300 transition-colors" aria-hidden="true" />
-                    <span className="font-semibold text-charcoal-100 group-hover:text-evergreen-300 transition-colors" itemProp="areaServed">{area.city}</span>
+                    <span className="font-semibold text-charcoal-100 group-hover:text-evergreen-300 transition-colors">{area.city}</span>
                   </Link>
                 ))}
               </nav>

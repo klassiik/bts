@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 import { Providers } from './providers'
 import Script from 'next/script'
+import { generateLocalBusinessSchema, generateWebSiteSchema, toSafeJsonLd } from '@/lib/schema'
 import '@/styles/globals.css'
 
 const geistSans = Geist({
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Barker Tree Services - Expert Tree Care in Colfax, CA',
-    description: 'Licensed & insured tree services. 6 years experience. 24/7 emergency response.',
+    description: 'Licensed & insured tree services. Serving Northern California since 2018. 24/7 emergency response.',
     images: ['/logo.png'],
   },
   /* GEO: Robots configuration for optimal AI crawler access */
@@ -88,6 +89,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`dark ${geistSans.variable}`}>
       <body className="bg-charcoal-950 text-charcoal-50">
+        {/* Canonical business + website entities - rendered once so every
+            page inherits the same @id; pages add only page-type schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(generateLocalBusinessSchema()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(generateWebSiteSchema()) }} />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-M4RBSN9VCN"
@@ -108,7 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Microsoft Clarity Analytics */}
         <Script
           id="microsoft-clarity"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){

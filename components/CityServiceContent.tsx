@@ -1,7 +1,6 @@
-'use client'
-
-import { BUSINESS_INFO, DETAILED_TESTIMONIALS } from '@/lib/config'
-import { Card, CardBody, Button, Chip } from '@heroui/react'
+import { BUSINESS_INFO, DETAILED_TESTIMONIALS, YEARS_IN_BUSINESS } from '@/lib/config'
+import { getCityDetail } from '@/lib/cityContent'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon } from '@heroicons/react/24/outline'
 import Video from '@/components/Video'
 
@@ -11,85 +10,62 @@ interface CityServiceContentProps {
 }
 
 export default function CityServiceContent({ city, state }: CityServiceContentProps) {
-  // Get local testimonials for this city
-  const localTestimonials = DETAILED_TESTIMONIALS.filter(t => t.location.includes(city))
-  
-  // Local service highlights based on city
-  const getLocalHighlights = (cityName: string) => {
-    const highlights: Record<string, string[]> = {
-      'Colfax': [
-        'Serving Placer Hills area since 2018',
-        'Expert knowledge of local oak and pine species',
-        'Fast response times for mountain weather emergencies'
-      ],
-      'Grass Valley': [
-        'Gold Country region specialists',
-        'Experience with historic property tree care',
-        'Professional grounds maintenance for businesses'
-      ],
-      'Nevada City': [
-        'Victorian architecture tree preservation',
-        'Narrow access emergency tree removal',
-        'Historic district compliance expertise'
-      ],
-      'Auburn': [
-        'Placer County licensed contractors',
-        'Highway 49 corridor emergency services',
-        'Commercial property maintenance'
-      ]
-    }
-    return highlights[cityName] || [
-      'Local area specialists since 2018',
-      'Quick response times for emergency services',
-      'Fully licensed and insured operations'
-    ]
-  }
+  const detail = getCityDetail(city)
 
-  const localHighlights = getLocalHighlights(city)
+  // Prefer testimonials from this city; fall back to nearby communities
+  // (honestly labeled) rather than rendering an empty social-proof section
+  const cityTestimonials = DETAILED_TESTIMONIALS.filter(t => t.location.includes(city))
+  const hasLocalTestimonials = cityTestimonials.length > 0
+  const shownTestimonials = hasLocalTestimonials
+    ? cityTestimonials.slice(0, 2)
+    : DETAILED_TESTIMONIALS.slice(0, 2)
+
+  const localHighlights = detail?.highlights ?? [
+    'Local area specialists since 2018',
+    'Quick response times for emergency services',
+    'Fully licensed and insured operations'
+  ]
 
   return (
-    <div className="bg-charcoal-950 min-h-screen" itemScope itemType="https://schema.org/LocalBusiness">
+    <div className="bg-charcoal-950 min-h-screen">
       <section className="relative py-20 px-4 overflow-hidden" aria-label={`Tree services in ${city}, ${state}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-evergreen-950/50 via-charcoal-950 to-charcoal-950" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" />
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-evergreen-500/10 rounded-full blur-3xl" />
         
         <div className="relative max-w-6xl mx-auto">
-          <Chip 
+          <StaticChip 
             className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             startContent={<MapPinIcon className="w-4 h-4" />}
             aria-label={`Serving ${city}, ${state}`}
           >
             Serving {city}, {state}
-          </Chip>
+          </StaticChip>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-charcoal-50">
             Expert Tree Services in {city}, {state}
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl">
-             Professional tree trimming, removal, stump grinding, and emergency services in {city}. Licensed tree care specialists with 6 years of experience serving {city} and surrounding communities.
-           </p>
+            {detail?.intro ??
+              `Professional tree trimming, removal, stump grinding, and emergency services in ${city}. Licensed tree care specialists serving ${city} and surrounding communities since 2018.`}
+          </p>
           <div className="flex gap-4 flex-wrap">
-            <Button
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              as="a"
-              size="lg"
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white font-bold shadow-lg"
               startContent={<PhoneIcon className="w-5 h-5" />}
               aria-label={`Call Barker Tree Services for ${city} tree services`}
             >
               Call {BUSINESS_INFO.phone}
-            </Button>
-            <Button
+            </ButtonLink>
+            <ButtonLink
               href="/contact"
-              as="a"
-              size="lg"
               variant="bordered"
               className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
               aria-label={`Request free estimate for ${city} tree services`}
             >
               Free Estimate
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>
@@ -102,12 +78,12 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" role="list">
             {localHighlights.map((highlight, index) => (
-              <Card key={index} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
-                <CardBody className="text-center p-6">
+              <StaticCard key={index} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
+                <StaticCardBody className="text-center p-6">
                   <CheckCircleIcon className="w-8 h-8 text-evergreen-500 mx-auto mb-3" aria-hidden="true" />
                   <p className="text-charcoal-100 font-medium">{highlight}</p>
-                </CardBody>
-              </Card>
+                </StaticCardBody>
+              </StaticCard>
             ))}
           </div>
         </div>
@@ -120,74 +96,75 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Tree Services in {city}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
                 <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
                 <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
                 <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <BoltIcon className="w-10 h-10 text-amber-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
                 <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
 
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
-            <CardBody className="p-8">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
+            <StaticCardBody className="p-8">
               <h3 className="text-2xl font-bold text-evergreen-300 mb-6">
                 Tree Care Specialists Serving {city}
               </h3>
-              {/* Local work clip */}
+              {/* Work clip (crew footage, not city-specific) */}
               <div className="mb-6 rounded-lg overflow-hidden relative">
                 <Video
                   src="/media/554341283_24812556778411123_8495766478130270581_n.mp4"
-                  className="w-full h-auto relative z-0"
-                  aria-label={`Local tree work in ${city}`}
+                  className="w-full h-auto aspect-[9/16] relative z-0"
+                  aria-label="Barker Tree Services crew at work"
                 />
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <h4 className="font-semibold text-evergreen-300 mb-2">Local Expertise</h4>
-                  <p className="text-charcoal-100 text-sm">
-                     We understand the unique tree species and growing conditions specific to {city} and the surrounding Placer and Nevada County areas.
-                   </p>
-                 </div>
-                 <div>
-                   <h4 className="font-semibold text-evergreen-300 mb-2">Licensed & Insured</h4>
-                   <p className="text-charcoal-100 text-sm">
-                     CSLB #{BUSINESS_INFO.cslb} licensed contractor with full liability and workers&apos; compensation insurance for your protection.
-                   </p>
-                 </div>
-                 <div>
-                   <h4 className="font-semibold text-evergreen-300 mb-2">Fast Response</h4>
-                   <p className="text-charcoal-100 text-sm">
-                     Quick response times for both scheduled services and emergency tree situations throughout the {city} area.
-                   </p>
+              {detail ? (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-semibold text-evergreen-300 mb-2">
+                      Trees &amp; Terrain in {city}
+                    </h4>
+                    <p className="text-charcoal-100 text-sm leading-relaxed">{detail.landscape}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-evergreen-300 mb-2">
+                      Permits, Fire Safety &amp; Local Rules
+                    </h4>
+                    <p className="text-charcoal-100 text-sm leading-relaxed">{detail.regulations}</p>
+                  </div>
                 </div>
-              </div>
-            </CardBody>
-          </Card>
+              ) : (
+                <p className="text-charcoal-100 text-sm">
+                  We understand the unique tree species and growing conditions specific to {city} and
+                  the surrounding Placer and Nevada County areas.
+                </p>
+              )}
+            </StaticCardBody>
+          </StaticCard>
 
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
-            <CardBody className="p-8">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">
+            <StaticCardBody className="p-8">
               <h3 className="text-2xl font-bold text-evergreen-300 mb-4">
                 Why Choose Barker Tree Services in {city}?
               </h3>
@@ -195,7 +172,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 <div>
                   <h4 className="font-semibold text-evergreen-300 mb-2">Local Expertise</h4>
                   <p className="text-charcoal-100 text-sm">
-                     We understand the unique tree species and conditions in {city} and the surrounding area.
+                     Working in {detail ? `${city} and across ${detail.county} County` : `${city} and the surrounding area`} means knowing its trees, terrain, and weather — not just its zip code.
                    </p>
                  </div>
                  <div>
@@ -211,21 +188,24 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                    </p>
                 </div>
               </div>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
 
-          {/* Local Testimonials */}
-          {localTestimonials.length > 0 && (
-            <section className="py-20 px-4 bg-charcoal-900/30" aria-label={`Customer reviews from ${city}`}>
+          {/* Testimonials — city-specific when we have them, honestly labeled
+              regional ones otherwise */}
+          {shownTestimonials.length > 0 && (
+            <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Customer reviews">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
-                  What {city} Customers Say
+                  {hasLocalTestimonials
+                    ? `What ${city} Customers Say`
+                    : 'What Customers in Nearby Communities Say'}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8 mb-12" role="list">
-                  {localTestimonials.slice(0, 2).map((testimonial, idx) => (
-                    <Card key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
-                      <CardBody className="p-6">
-                        <div className="flex items-center gap-1 mb-3" itemProp="reviewRating">
+                  {shownTestimonials.map((testimonial, idx) => (
+                    <StaticCard key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
+                      <StaticCardBody className="p-6">
+                        <div className="flex items-center gap-1 mb-3">
                           {[...Array(testimonial.rating)].map((_, i) => (
                             <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
                           ))}
@@ -241,8 +221,8 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                             <p className="text-charcoal-300 text-xs">{testimonial.date}</p>
                           </div>
                         </div>
-                      </CardBody>
-                    </Card>
+                      </StaticCardBody>
+                    </StaticCard>
                   ))}
                 </div>
               </div>
@@ -250,8 +230,8 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           )}
 
           {/* Call to Action */}
-          <Card className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30">
-            <CardBody className="p-8 text-center">
+          <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30">
+            <StaticCardBody className="p-8 text-center">
               <h3 className="text-2xl font-bold text-evergreen-300 mb-4">
                 Ready for Tree Services in {city}?
               </h3>
@@ -259,32 +239,28 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 Contact Barker Tree Services today for your free estimate on tree trimming, removal, stump grinding, or emergency services in {city} and surrounding areas.
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
-                <Button
+                <ButtonLink
                   href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                  as="a"
-                  size="lg"
                   className="bg-charcoal-50 text-evergreen-900 font-bold shadow-lg hover:bg-white"
                   startContent={<PhoneIcon className="w-5 h-5" />}
                   aria-label={`Call now for tree services in ${city}`}
                 >
                   Call Now
-                </Button>
-                <Button
+                </ButtonLink>
+                <ButtonLink
                   href="/services"
-                  as="a"
-                  size="lg"
                   variant="bordered"
                   className="border-evergreen-300 text-evergreen-300 hover:bg-evergreen-900/30 font-bold"
                   aria-label="View all tree services"
                 >
                   View All Services
-                </Button>
+                </ButtonLink>
               </div>
               <p className="text-evergreen-300 text-sm mt-4">
-                Licensed & Insured • CSLB #1085329 • 6 Years Experience
+                Licensed & Insured • CSLB #1085329 • {YEARS_IN_BUSINESS} Years Experience
               </p>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
     </div>

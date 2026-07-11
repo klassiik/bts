@@ -1,10 +1,12 @@
-'use client'
-
 import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
+import { getWorkPhotosForService } from '@/lib/workGallery'
+import { getServiceContent } from '@/lib/serviceContent'
 import { cityToSlug } from '@/lib/utils'
-import { Button, Card, CardBody } from '@heroui/react'
-import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon } from '@heroicons/react/24/solid'
+import { ButtonLink, StaticCard, StaticCardBody } from '@/components/ui'
+import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon, CurrencyDollarIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
+import Video from '@/components/Video'
+import WorkGallery from '@/components/WorkGallery'
 
 interface ServiceData {
   id: string
@@ -22,6 +24,8 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
   const features = service.features ?? []
   const benefits = service.benefits ?? []
   const serviceLocation = service.location?.trim() || 'Northern California'
+  const workPhotos = getWorkPhotosForService(service.id)
+  const extra = getServiceContent(service.id)
 
   return (
     <>
@@ -34,18 +38,14 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
             Professional {service.title} in <span className="text-evergreen-300">{serviceLocation}</span>
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 leading-relaxed">{service.description}</p>
-          <Button
-            as="a"
+          <ButtonLink
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
-            color="primary"
-            size="lg"
-            variant="shadow"
             startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
             className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 font-bold shadow-lg shadow-evergreen-900/50"
             aria-label="Call for a free estimate"
           >
             Call {BUSINESS_INFO.phone} for Free Estimate
-          </Button>
+          </ButtonLink>
         </div>
       </section>
 
@@ -96,29 +96,50 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
       {/* Equipment & Seasonality */}
       <section className="py-16 px-4 bg-charcoal-950" aria-label="Equipment and timing">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20">
-            <CardBody className="p-6">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+            <StaticCardBody className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <WrenchScrewdriverIcon className="w-6 h-6 text-evergreen-400" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300">Equipment Used</h3>
               </div>
               <p className="text-charcoal-100">{service.equipment}</p>
-            </CardBody>
-          </Card>
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20">
-            <CardBody className="p-6">
+            </StaticCardBody>
+          </StaticCard>
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+            <StaticCardBody className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <CalendarDaysIcon className="w-6 h-6 text-evergreen-400" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300">Best Time of Year</h3>
               </div>
               <p className="text-charcoal-100">{service.seasonality}</p>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
 
+      {/* Recent work — real photos/footage from jobs matching this service */}
+      {(workPhotos.length > 0 || service.id === 'removal') && (
+        <section className="py-16 px-4 bg-charcoal-900" aria-label={`Recent ${service.title} work`}>
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
+              Recent {service.title} Work
+            </h2>
+            {service.id === 'removal' && (
+              <div className="mb-8 rounded-lg overflow-hidden max-w-md mx-auto">
+                <Video
+                  src="/media/tree-removal-limbing.mp4"
+                  className="w-full h-auto aspect-[9/16]"
+                  aria-label="Barker climber limbing a tall pine during a sectional removal"
+                />
+              </div>
+            )}
+            <WorkGallery photos={workPhotos} />
+          </div>
+        </section>
+      )}
+
       {/* Service Areas for this service */}
-      <section className="py-16 px-4 bg-charcoal-900" aria-label="Service areas">
+      <section className="py-16 px-4 bg-charcoal-950" aria-label="Service areas">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-evergreen-300 mb-6">
             We Offer {service.title} Throughout Northern California
@@ -140,35 +161,94 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
         </div>
       </section>
 
+      {/* What affects the cost */}
+      {extra && (
+        <section className="py-16 px-4 bg-charcoal-950" aria-label={`What affects the cost of ${service.title.toLowerCase()}`}>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <CurrencyDollarIcon className="w-7 h-7 text-evergreen-400" aria-hidden="true" />
+              <h2 className="text-3xl font-bold text-evergreen-300">
+                What Affects the Cost of {service.title}?
+              </h2>
+            </div>
+            <p className="text-charcoal-100 mb-6 leading-relaxed">{extra.costIntro}</p>
+            <ul className="space-y-3 mb-8">
+              {extra.costFactors.map((factor, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-charcoal-100">
+                  <CheckCircleIcon className="w-5 h-5 text-evergreen-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <span>{factor}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-charcoal-100 leading-relaxed">
+              Rather than quote a number sight-unseen, we give you a{' '}
+              <span className="text-evergreen-300 font-semibold">free on-site estimate</span> with an
+              exact price before any work begins — no obligation. Call{' '}
+              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="text-evergreen-300 underline hover:text-evergreen-200">
+                {BUSINESS_INFO.phone}
+              </a>{' '}to schedule.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* Service FAQ */}
+      {extra && (
+        <section className="py-16 px-4 bg-charcoal-900" aria-label={`${service.title} frequently asked questions`}>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-8">
+              <QuestionMarkCircleIcon className="w-7 h-7 text-evergreen-400" aria-hidden="true" />
+              <h2 className="text-3xl font-bold text-evergreen-300">
+                {service.title} Questions, Answered
+              </h2>
+            </div>
+            <div className="space-y-6">
+              {extra.faqs.map((faq, idx) => (
+                <div key={idx}>
+                  <h3 className="text-lg font-semibold text-evergreen-300 mb-2">{faq.question}</h3>
+                  <p className="text-charcoal-100 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA Section */}
       <section className="py-16 px-4 bg-charcoal-950" aria-label="Contact us">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-evergreen-300 mb-4">Ready to Get Started?</h2>
-          <p className="text-charcoal-100 mb-8 text-lg">
-            Contact Barker Tree Services today for a free {service.title.toLowerCase()} estimate. Licensed (CSLB #{BUSINESS_INFO.cslb}) and fully insured.
+          <p className="text-charcoal-100 mb-4 text-lg">
+            Contact Barker Tree Services today for a free {service.title.toLowerCase()} estimate.
+          </p>
+          <p className="text-charcoal-200 mb-8 text-sm">
+            California licensed &amp; insured — CSLB {BUSINESS_INFO.cslbClassification} (Tree &amp; Palm) #{BUSINESS_INFO.cslb}.{' '}
+            <a
+              href={BUSINESS_INFO.cslbLookupUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-evergreen-300 underline hover:text-evergreen-200"
+            >
+              Verify our license at CSLB
+            </a>
+            .
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button
-              as="a"
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
               aria-label="Call for a free estimate"
-              color="primary"
-              size="lg"
-              variant="shadow"
               startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 font-bold shadow-lg shadow-evergreen-900/50"
             >
               {BUSINESS_INFO.phone}
-            </Button>
-            <Button
-              as="a"
+            </ButtonLink>
+            <ButtonLink
               href="/contact"
-              size="lg"
               variant="bordered"
               className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
             >
               Request Free Estimate
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>

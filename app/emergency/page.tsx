@@ -1,4 +1,5 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/seo'
+import { generateBreadcrumbSchema, generateServiceSchema, toSafeJsonLd } from '@/lib/schema'
 import { BUSINESS_INFO } from '@/lib/config'
 import EmergencyResponseContent from '@/components/EmergencyResponseContent'
 
@@ -17,5 +18,22 @@ export const metadata = generatePageMetadata({
 })
 
 export default function EmergencyPage() {
-  return <EmergencyResponseContent />
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Emergency Tree Services', path: '/emergency' }
+  ])
+  const emergencySchema = generateServiceSchema({
+    name: 'Emergency Tree Services',
+    description: '24/7 emergency response for storm damage, fallen trees, and hazardous tree situations throughout Placer & Nevada Counties.',
+    path: '/emergency',
+    available24x7: true
+  })
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(emergencySchema) }} />
+      <EmergencyResponseContent />
+    </>
+  )
 }

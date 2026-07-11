@@ -1,7 +1,7 @@
 'use client'
 
 /* GEO: Services page component with comprehensive Service schema markers for AI discovery */
-import { SERVICES, BUSINESS_INFO } from '@/lib/config'
+import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon, AcademicCapIcon, ShieldCheckIcon, BoltIcon } from '@heroicons/react/24/outline'
@@ -10,7 +10,7 @@ export default function ServicesContent() {
   return (
     <div className="bg-charcoal-950 min-h-screen">
       {/* GEO: Hero section optimized with location and service keywords for AI extraction */}
-      <section className="relative py-20 px-4 overflow-hidden" aria-label="Hero - Expert tree services in Colfax, CA">
+      <section className="relative py-20 px-4 overflow-hidden" aria-label="Hero - Expert tree services in Placer & Nevada Counties">
         <div className="absolute inset-0 bg-gradient-to-br from-evergreen-950/50 via-charcoal-950 to-charcoal-950" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" />
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-evergreen-500/10 rounded-full blur-3xl" />
@@ -29,7 +29,7 @@ export default function ServicesContent() {
             Expert Tree Services
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-             Comprehensive tree care services backed by experienced professionals, professional equipment, and 6 years of experience serving Colfax and surrounding communities.
+             Comprehensive tree care services backed by experienced professionals, professional equipment, and {YEARS_IN_BUSINESS} years of experience serving Grass Valley, Auburn, Nevada City, and communities across Placer & Nevada Counties.
            </p>
           <Button 
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
@@ -67,16 +67,16 @@ export default function ServicesContent() {
       <section className="py-20 px-4" aria-label="Complete tree service catalog">
         <div className="max-w-6xl mx-auto space-y-16">
           {SERVICES.map((service, index) => (
-            <article key={service.id} className={`grid md:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''}`} itemScope itemType="https://schema.org/Service">
+            <article key={service.id} className={`grid md:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''}`}>
               {/* Main Content */}
               <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
-                <h2 className="text-4xl font-bold text-evergreen-300 mb-4" itemProp="name">{service.title}</h2>
-                <p className="text-lg text-charcoal-100 mb-6 leading-relaxed" itemProp="description">{service.description}</p>
+                <h2 className="text-4xl font-bold text-evergreen-300 mb-4">{service.title}</h2>
+                <p className="text-lg text-charcoal-100 mb-6 leading-relaxed">{service.description}</p>
                 
                 <Card className="mb-6 bg-charcoal-900/50 border border-evergreen-900/20" role="region" aria-label="Service process details">
                   <CardBody className="p-6">
                     <h3 className="text-xl font-semibold text-evergreen-300 mb-3">Our Process</h3>
-                    <p className="text-charcoal-100 leading-relaxed" itemProp="serviceOutput">{service.process}</p>
+                    <p className="text-charcoal-100 leading-relaxed">{service.process}</p>
                   </CardBody>
                 </Card>
 
@@ -127,7 +127,7 @@ export default function ServicesContent() {
                       <CalendarIcon className="w-5 h-5" aria-hidden="true" />
                       Best Timing
                     </h4>
-                    <p className="text-sm text-charcoal-100 leading-relaxed" itemProp="serviceType">{service.seasonality}</p>
+                    <p className="text-sm text-charcoal-100 leading-relaxed">{service.seasonality}</p>
                   </div>
 
                   <div className="pt-4 border-t border-evergreen-900/20">

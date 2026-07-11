@@ -1,3 +1,8 @@
+export const FOUNDING_YEAR = 2018
+// Computed at build time — refreshes on each deploy. Prefer "since 2018"
+// phrasing in copy where possible; use this only where a number is needed.
+export const YEARS_IN_BUSINESS = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR)
+
 export const BUSINESS_INFO = {
   name: 'Barker Tree Services',
   phone: '(530) 802-1271',
@@ -9,12 +14,27 @@ export const BUSINESS_INFO = {
   zip: '95713',
   hours: 'Mon-Fri: 7:00 AM - 7:00 PM',
   cslb: '1085329',
+  // Verified via CSLB public license lookup: C-49 (Tree and Palm) is
+  // California's dedicated tree-service classification. Current & active.
+  cslbClassification: 'C-49',
+  cslbLookupUrl: 'https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx',
   url: 'https://barkertreeservices.com',
   socialProfiles: [
+    'https://maps.google.com/?cid=12582642690419062828',
     'https://www.facebook.com/barkertreeservices',
     'https://www.yelp.com/biz/barker-tree-services-colfax',
     'https://www.bbb.org/us/ca/colfax/profile/not-elsewhere-classified/barker-tree-services-1156-90094954'
   ]
+}
+
+// Google Business Profile — canonical Maps URL (stable CID form).
+// rating/reviewCount are a manually verified snapshot; update them (and
+// verifiedAt) when the live numbers change meaningfully.
+export const GOOGLE_BUSINESS = {
+  url: 'https://maps.google.com/?cid=12582642690419062828',
+  rating: 5.0,
+  reviewCount: 17,
+  verifiedAt: '2026-07-11'
 }
 
 export const SERVICE_AREAS = [
@@ -127,10 +147,10 @@ export const DETAILED_TESTIMONIALS = [
 
 // Company credentials and certifications
 export const COMPANY_CREDENTIALS = {
-  founded: '2018',
-  experience: '6 years combined team experience',
+  founded: String(FOUNDING_YEAR),
+  experience: `${YEARS_IN_BUSINESS} years in business since ${FOUNDING_YEAR}`,
   certifications: [
-    'CSLB Licensed Contractor #1085329',
+    'CSLB C-49 Licensed Contractor (Tree & Palm) #1085329',
     'Tree Risk Assessment Qualified (TRAQ)',
     'OSHA Safety Certified',
     'Fully Insured (General Liability & Workers Comp)'

@@ -1,6 +1,4 @@
-'use client'
-
-import { Card, CardBody, Button, Chip } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { 
   PhoneIcon, 
   ExclamationTriangleIcon, 
@@ -90,13 +88,13 @@ export default function EmergencyResponseContent() {
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" style={{ zIndex: 1 }} />
         
         <div className="relative max-w-6xl mx-auto text-center">
-          <Chip 
+          <StaticChip 
             className="mb-6 bg-red-900/30 border border-red-500/20 text-red-400 animate-pulse"
             variant="bordered"
             startContent={<ClockIcon className="w-4 h-4" />}
           >
             Available 24/7
-          </Chip>
+          </StaticChip>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-charcoal-50">
             Emergency Tree Services
@@ -107,15 +105,13 @@ export default function EmergencyResponseContent() {
           </p>
           
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl mx-auto">
-             Professional emergency tree services throughout Colfax and surrounding areas. 
+             Professional emergency tree services throughout Placer & Nevada Counties. 
              Licensed, insured, and ready to respond to your tree emergencies 24/7.
            </p>
 
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              as="a"
-              size="lg"
               className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold shadow-xl shadow-red-900/50 text-lg px-8 py-4"
               startContent={<PhoneIcon className="w-6 h-6" />}
               aria-label="Call emergency tree services now"
@@ -124,18 +120,16 @@ export default function EmergencyResponseContent() {
                 <div className="text-xl font-bold">CALL NOW</div>
                 <div className="text-sm opacity-90">{BUSINESS_INFO.phone}</div>
               </div>
-            </Button>
+            </ButtonLink>
             
-            <Button
+            <ButtonLink
               href="mailto:emergency@barkertreeservices.com"
-              as="a"
-              size="lg"
               variant="bordered"
               className="border-red-600 text-red-400 hover:bg-red-950/30 font-bold text-lg px-8 py-4"
               aria-label="Email for emergency tree services"
             >
               Emergency Email
-            </Button>
+            </ButtonLink>
           </div>
 
           <div className="mt-6 text-red-300 font-semibold flex items-center justify-center gap-2">
@@ -156,22 +150,21 @@ export default function EmergencyResponseContent() {
             {emergencyScenarios.map((scenario, index) => {
               const Icon = scenario.icon
               return (
-                <Card key={index} className="bg-charcoal-800/50 border border-red-900/20 hover:border-red-600/40 transition-all">
-                  <CardBody className="p-8 text-center">
+                <StaticCard key={index} className="bg-charcoal-800/50 border border-red-900/20 hover:border-red-600/40 transition-all">
+                  <StaticCardBody className="p-8 text-center">
                     <div className="bg-red-900/30 p-4 rounded-full w-fit mx-auto mb-4">
                       <Icon className={`w-8 h-8 ${scenario.color}`} aria-hidden="true" />
                     </div>
                     <h3 className="text-xl font-bold text-charcoal-50 mb-3">{scenario.title}</h3>
                     <p className="text-charcoal-100 mb-4 leading-relaxed">{scenario.description}</p>
-                    <Chip 
-                      size="sm" 
+                    <StaticChip 
                       className="bg-red-900/30 text-red-400 border-red-700/30"
                       variant="bordered"
                     >
                       {scenario.urgency}
-                    </Chip>
-                  </CardBody>
-                </Card>
+                    </StaticChip>
+                  </StaticCardBody>
+                </StaticCard>
               )
             })}
           </div>
@@ -187,16 +180,16 @@ export default function EmergencyResponseContent() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {responseProcess.map((process, index) => (
-              <Card key={index} className="bg-charcoal-800/50 border border-red-900/20 relative">
-                <CardBody className="p-6">
+              <StaticCard key={index} className="bg-charcoal-800/50 border border-red-900/20 relative">
+                <StaticCardBody className="p-6">
                   <div className="absolute -top-4 -left-4 bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
                     {process.step}
                   </div>
                   <h3 className="text-lg font-bold text-red-400 mb-3 mt-2">{process.title}</h3>
                   <p className="text-charcoal-100 text-sm leading-relaxed mb-4">{process.description}</p>
                   <div className="text-red-300 font-semibold text-sm">{process.action}</div>
-                </CardBody>
-              </Card>
+                </StaticCardBody>
+              </StaticCard>
             ))}
           </div>
         </div>
@@ -205,8 +198,8 @@ export default function EmergencyResponseContent() {
       {/* Safety Information */}
       <section className="py-20 px-4" aria-label="Emergency safety guidelines">
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-gradient-to-br from-amber-950/80 to-charcoal-900/80 border border-amber-900/30">
-            <CardBody className="p-8">
+          <StaticCard className="bg-gradient-to-br from-amber-950/80 to-charcoal-900/80 border border-amber-900/30">
+            <StaticCardBody className="p-8">
               <div className="flex items-center gap-3 mb-6">
                 <ExclamationTriangleIcon className="w-8 h-8 text-amber-400" aria-hidden="true" />
                 <h3 className="text-2xl font-bold text-amber-400">Important Safety Information</h3>
@@ -232,8 +225,8 @@ export default function EmergencyResponseContent() {
                   </ul>
                 </div>
               </div>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
 
@@ -245,8 +238,8 @@ export default function EmergencyResponseContent() {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-charcoal-800/50 border border-red-900/20">
-              <CardBody className="p-8">
+            <StaticCard className="bg-charcoal-800/50 border border-red-900/20">
+              <StaticCardBody className="p-8">
                 <DocumentTextIcon className="w-10 h-10 text-red-400 mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-red-400 mb-4">We Help with Insurance Claims</h3>
                 <p className="text-charcoal-100 mb-4">
@@ -259,11 +252,11 @@ export default function EmergencyResponseContent() {
                   <li>• Photo documentation</li>
                   <li>• Insurance liaison services</li>
                 </ul>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
 
-            <Card className="bg-charcoal-800/50 border border-red-900/20">
-              <CardBody className="p-8">
+            <StaticCard className="bg-charcoal-800/50 border border-red-900/20">
+              <StaticCardBody className="p-8">
                 <ShieldCheckIcon className="w-10 h-10 text-red-400 mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-red-400 mb-4">Licensed & Insured Protection</h3>
                 <p className="text-charcoal-100 mb-4">
@@ -276,8 +269,8 @@ export default function EmergencyResponseContent() {
                   <li>• Workers compensation coverage</li>
                   <li>• Emergency bond protection</li>
                 </ul>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
         </div>
       </section>
@@ -285,8 +278,8 @@ export default function EmergencyResponseContent() {
       {/* Final CTA */}
       <section className="py-20 px-4" aria-label="Emergency contact call-to-action">
         <div className="max-w-4xl mx-auto text-center">
-          <Card className="bg-gradient-to-br from-red-950/80 to-charcoal-900/80 border border-red-700/30">
-            <CardBody className="p-12">
+          <StaticCard className="bg-gradient-to-br from-red-950/80 to-charcoal-900/80 border border-red-700/30">
+            <StaticCardBody className="p-12">
               <h2 className="text-4xl font-bold text-red-400 mb-6">
                 Don&apos;t Wait - Call Now
               </h2>
@@ -296,10 +289,8 @@ export default function EmergencyResponseContent() {
                </p>
               
               <div className="flex gap-6 justify-center flex-wrap mb-6">
-                <Button
+                <ButtonLink
                   href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                  as="a"
-                  size="lg"
                   className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold shadow-xl text-xl px-12 py-6"
                   startContent={<PhoneIcon className="w-6 h-6" />}
                   aria-label="Call emergency tree services immediately"
@@ -308,15 +299,15 @@ export default function EmergencyResponseContent() {
                     <div className="text-2xl font-bold">CALL NOW</div>
                     <div className="text-lg opacity-90">{BUSINESS_INFO.phone}</div>
                   </div>
-                </Button>
+                </ButtonLink>
               </div>
 
               <div className="text-red-300 space-y-1">
                 <div className="font-semibold">Available 24/7 • Same-Day Response • Licensed & Insured</div>
-                <div className="text-sm">Serving Colfax, Grass Valley, Nevada City & Surrounding Areas</div>
+                <div className="text-sm">Serving Colfax, Grass Valley, Nevada City, Auburn & Surrounding Areas</div>
               </div>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
     </div>

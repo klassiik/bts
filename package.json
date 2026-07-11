@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "eslint",
     "prebuild": "node scripts/sync-media.mjs",
-    "prepare-media": "node scripts/shrink-videos.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs",
     "print:schema": "tsx scripts/print-schema.ts",
     "test:schema": "jest --testPathPattern=schema",
     "test": "jest"
@@ -31,6 +31,7 @@
     "react-dom": "19.1.0",
     "resend": "^6.1.2",
     "sharp": "^0.34.5",
+    "tailwind-merge": "3.3.1",
     "zod": "^4.1.13"
   },
   "devDependencies": {

@@ -17,10 +17,14 @@ export default function Video({
   children,
   ...rest
 }: VideoProps) {
+  // sync-media.mjs emits a WebP poster next to every optimized mp4, so the
+  // browser has an immediate paint candidate instead of waiting on video bytes
+  const resolvedPoster =
+    poster ?? (src.endsWith('.mp4') ? src.replace(/\.mp4$/, '.webp') : undefined);
   return (
     <video
       src={src}
-      poster={poster}
+      poster={resolvedPoster}
       autoPlay={autoPlay}
       loop={loop}
       muted={muted}
