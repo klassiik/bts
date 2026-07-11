@@ -4,7 +4,7 @@
 import { BUSINESS_INFO, COMPANY_CREDENTIALS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
-import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon, AcademicCapIcon, GlobeAmericasIcon, HeartIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import TreeCareGuides from '@/components/TreeCareGuides'
 
 export default function AboutContent() {
@@ -63,21 +63,21 @@ export default function AboutContent() {
                 <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Why We&apos;re Different</h3>
                 <ul className="space-y-4" role="list" aria-label="Key differentiators">
                   <li className="flex items-start gap-3">
-                    <span className="text-4xl" aria-label="Education icon" role="img">🎓</span>
+                    <AcademicCapIcon className="w-8 h-8 text-evergreen-400 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <strong className="text-evergreen-300">Education First</strong>
                       <p className="text-charcoal-100 text-sm">Continuous training in latest arboriculture techniques and safety protocols</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-4xl" aria-label="Environmental focus icon" role="img">🌱</span>
+                    <GlobeAmericasIcon className="w-8 h-8 text-evergreen-400 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <strong className="text-evergreen-300">Environmental Focus</strong>
                       <p className="text-charcoal-100 text-sm">Sustainable practices that benefit both your property and the ecosystem</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-4xl" aria-label="Community commitment icon" role="img">🤝</span>
+                    <HeartIcon className="w-8 h-8 text-evergreen-400 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <strong className="text-evergreen-300">Community Commitment</strong>
                       <p className="text-charcoal-100 text-sm">Proud to support local community events and environmental initiatives</p>
@@ -156,7 +156,7 @@ export default function AboutContent() {
                   To provide expert, safe, and environmentally responsible tree care services that enhance the beauty, safety, and value of properties throughout our community while fostering long-term relationships built on trust and excellence.
                 </p>
                 <div className="flex items-center gap-3 text-evergreen-300">
-                  <span className="text-3xl" aria-label="Service area icon" role="img">🎯</span>
+                  <MapPinIcon className="w-7 h-7 flex-shrink-0" aria-hidden="true" />
                   <span className="font-semibold">Serving Colfax & Surrounding Areas</span>
                 </div>
               </CardBody>

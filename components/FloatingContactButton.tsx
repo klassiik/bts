@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@heroui/react'
-import { PhoneIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, XMarkIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
 
 export default function FloatingContactButton() {
@@ -48,7 +48,7 @@ export default function FloatingContactButton() {
             onClick={handleEmail}
             aria-label="Email Barker Tree Services"
           >
-            ✉️
+            <EnvelopeIcon className="w-6 h-6" aria-hidden="true" />
           </Button>
           
           {/* Call option with full number */}

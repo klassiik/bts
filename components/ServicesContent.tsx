@@ -4,7 +4,7 @@
 import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
-import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon, AcademicCapIcon, ShieldCheckIcon, BoltIcon } from '@heroicons/react/24/outline'
 
 export default function ServicesContent() {
   return (
@@ -155,21 +155,21 @@ export default function ServicesContent() {
           <div className="grid md:grid-cols-3 gap-8" role="list" aria-label="Service differentiators">
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-8">
-                <div className="text-5xl mb-4" aria-label="Trained experts icon" role="img">🎓</div>
+                <AcademicCapIcon className="w-12 h-12 text-evergreen-400 mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300 mb-3">Trained Experts</h3>
                 <p className="text-charcoal-100">Experienced professionals with ongoing education and training</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-8">
-                <div className="text-5xl mb-4" aria-label="Fully insured icon" role="img">🛡️</div>
+                <ShieldCheckIcon className="w-12 h-12 text-evergreen-400 mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300 mb-3">Fully Insured</h3>
                 <p className="text-charcoal-100">Complete liability and workers&apos; compensation coverage</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <CardBody className="text-center p-8">
-                <div className="text-5xl mb-4" aria-label="24/7 emergency service icon" role="img">⚡</div>
+                <BoltIcon className="w-12 h-12 text-evergreen-400 mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300 mb-3">Emergency Ready</h3>
                 <p className="text-charcoal-100">24/7 response for storm damage and urgent situations</p>
               </CardBody>

@@ -9,6 +9,14 @@
   --color-emerald-950: #032817;
 }
 
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
 * {
   @apply scroll-smooth;
 }
