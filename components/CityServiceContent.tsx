@@ -2,7 +2,7 @@
 
 import { BUSINESS_INFO, DETAILED_TESTIMONIALS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
-import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon } from '@heroicons/react/24/outline'
 import Video from '@/components/Video'
 
 interface CityServiceContentProps {
@@ -122,28 +122,28 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
-                <div className="text-4xl mb-3" aria-label="Tree trimming service icon" role="img">✂️</div>
+                <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
                 <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
-                <div className="text-4xl mb-3" aria-label="Tree removal service icon" role="img">🪓</div>
+                <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
                 <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
-                <div className="text-4xl mb-3" aria-label="Stump grinding service icon" role="img">🪚</div>
+                <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
                 <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
               </CardBody>
             </Card>
             <Card className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
               <CardBody className="text-center p-6">
-                <div className="text-4xl mb-3" aria-label="Emergency tree service icon" role="img">⚡</div>
+                <BoltIcon className="w-10 h-10 text-amber-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
                 <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
               </CardBody>
