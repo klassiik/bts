@@ -1,6 +1,8 @@
 'use client'
 
-import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS } from '@/lib/config'
+import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS, GOOGLE_BUSINESS } from '@/lib/config'
+import { WORK_PHOTOS } from '@/lib/workGallery'
+import WorkGallery from '@/components/WorkGallery'
 import { Button, Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
 import dynamic from 'next/dynamic'
@@ -130,7 +132,19 @@ export default function HomeContent() {
       <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer testimonials and reviews">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">What Our Customers Say</h2>
-          <p className="text-charcoal-50 text-center mb-12">Real reviews from satisfied customers across our service areas</p>
+          <p className="text-charcoal-50 text-center mb-12">
+            Rated{' '}
+            <a
+              href={GOOGLE_BUSINESS.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
+              aria-label={`Read our ${GOOGLE_BUSINESS.rating}-star reviews on Google`}
+            >
+              {GOOGLE_BUSINESS.rating.toFixed(1)} ★ on Google ({GOOGLE_BUSINESS.reviewCount} reviews)
+            </a>
+            {' '}— read them for yourself
+          </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" aria-label="Customer reviews">
             {DETAILED_TESTIMONIALS.slice(0, 6).map((testimonial, idx) => (
@@ -172,6 +186,17 @@ export default function HomeContent() {
               Get Your Free Estimate Today
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Recent work — real job-site photos (visual proof of work) */}
+      <section className="py-20 px-4 bg-charcoal-950" aria-label="Photos of recent tree work">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-4 text-center">Recent Work</h2>
+          <p className="text-charcoal-50 text-center mb-12">
+            Real jobs from around Placer &amp; Nevada Counties — sectional removals, rigging, and cleanup
+          </p>
+          <WorkGallery photos={WORK_PHOTOS} />
         </div>
       </section>
 

@@ -16,10 +16,21 @@ export const BUSINESS_INFO = {
   cslb: '1085329',
   url: 'https://barkertreeservices.com',
   socialProfiles: [
+    'https://maps.google.com/?cid=12582642690419062828',
     'https://www.facebook.com/barkertreeservices',
     'https://www.yelp.com/biz/barker-tree-services-colfax',
     'https://www.bbb.org/us/ca/colfax/profile/not-elsewhere-classified/barker-tree-services-1156-90094954'
   ]
+}
+
+// Google Business Profile — canonical Maps URL (stable CID form).
+// rating/reviewCount are a manually verified snapshot; update them (and
+// verifiedAt) when the live numbers change meaningfully.
+export const GOOGLE_BUSINESS = {
+  url: 'https://maps.google.com/?cid=12582642690419062828',
+  rating: 5.0,
+  reviewCount: 17,
+  verifiedAt: '2026-07-11'
 }
 
 export const SERVICE_AREAS = [

@@ -1,7 +1,7 @@
 'use client'
 
 /* GEO: Contact page with ContactPoint schema markers and semantic address structure */
-import { BUSINESS_INFO } from '@/lib/config'
+import { BUSINESS_INFO, GOOGLE_BUSINESS } from '@/lib/config'
 import ContactForm from '@/components/ContactForm'
 import { Card, CardBody, Chip } from '@heroui/react'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, ClockIcon } from '@heroicons/react/24/outline'
@@ -69,13 +69,22 @@ export default function ContactContent() {
               </CardBody>
             </Card>
 
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem" aria-label="Service area information">
+            <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem" aria-label="Address and Google Business Profile">
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <MapPinIcon className="w-8 h-8 text-evergreen-500" aria-hidden="true" />
                 <address className="not-italic">
-                  <h2 className="font-bold text-lg text-evergreen-300">Service Area</h2>
+                  <h2 className="font-bold text-lg text-evergreen-300">Address</h2>
                   <p className="text-charcoal-100">{BUSINESS_INFO.address}</p>
-                  <p className="text-charcoal-100 text-sm mt-1">Serving Placer & Nevada Counties</p>
+                  <p className="text-charcoal-100 text-sm mt-1">Serving Placer &amp; Nevada Counties</p>
+                  <a
+                    href={GOOGLE_BUSINESS.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-evergreen-300 text-sm underline hover:text-evergreen-200 mt-1 inline-block"
+                    aria-label={`Find Barker Tree Services on Google — rated ${GOOGLE_BUSINESS.rating} stars from ${GOOGLE_BUSINESS.reviewCount} reviews`}
+                  >
+                    Find us on Google — {GOOGLE_BUSINESS.rating.toFixed(1)} ★ ({GOOGLE_BUSINESS.reviewCount} reviews)
+                  </a>
                 </address>
               </CardBody>
             </Card>

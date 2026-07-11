@@ -1,10 +1,13 @@
 'use client'
 
 import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
+import { getWorkPhotosForService } from '@/lib/workGallery'
 import { cityToSlug } from '@/lib/utils'
 import { Button, Card, CardBody } from '@heroui/react'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
+import Video from '@/components/Video'
+import WorkGallery from '@/components/WorkGallery'
 
 interface ServiceData {
   id: string
@@ -22,6 +25,7 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
   const features = service.features ?? []
   const benefits = service.benefits ?? []
   const serviceLocation = service.location?.trim() || 'Northern California'
+  const workPhotos = getWorkPhotosForService(service.id)
 
   return (
     <>
@@ -117,8 +121,29 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
         </div>
       </section>
 
+      {/* Recent work — real photos/footage from jobs matching this service */}
+      {(workPhotos.length > 0 || service.id === 'removal') && (
+        <section className="py-16 px-4 bg-charcoal-900" aria-label={`Recent ${service.title} work`}>
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
+              Recent {service.title} Work
+            </h2>
+            {service.id === 'removal' && (
+              <div className="mb-8 rounded-lg overflow-hidden max-w-md mx-auto">
+                <Video
+                  src="/media/tree-removal-limbing.mp4"
+                  className="w-full h-auto aspect-[9/16]"
+                  aria-label="Barker climber limbing a tall pine during a sectional removal"
+                />
+              </div>
+            )}
+            <WorkGallery photos={workPhotos} />
+          </div>
+        </section>
+      )}
+
       {/* Service Areas for this service */}
-      <section className="py-16 px-4 bg-charcoal-900" aria-label="Service areas">
+      <section className="py-16 px-4 bg-charcoal-950" aria-label="Service areas">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-evergreen-300 mb-6">
             We Offer {service.title} Throughout Northern California

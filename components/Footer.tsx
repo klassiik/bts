@@ -1,6 +1,6 @@
 /* GEO: Footer with semantic contentinfo landmark, navigation, and contact information */
 import Link from 'next/link'
-import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
+import { BUSINESS_INFO, SERVICE_AREAS, GOOGLE_BUSINESS } from '@/lib/config'
 import { cityToSlug } from '@/lib/utils'
 import { PhoneIcon, EnvelopeIcon, ClockIcon } from '@heroicons/react/24/outline'
 
@@ -89,6 +89,16 @@ export default function Footer() {
               <a href={`mailto:${BUSINESS_INFO.email}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Email Barker Tree Services">
                 <EnvelopeIcon className="w-5 h-5 text-sage-400 group-hover:text-evergreen-400 transition-colors" aria-hidden="true" />
                 {BUSINESS_INFO.email}
+              </a>
+              <a
+                href={GOOGLE_BUSINESS.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group"
+                aria-label={`Barker Tree Services on Google — rated ${GOOGLE_BUSINESS.rating} stars`}
+              >
+                <span className="text-amber-400" aria-hidden="true">★</span>
+                {GOOGLE_BUSINESS.rating.toFixed(1)} on Google ({GOOGLE_BUSINESS.reviewCount} reviews)
               </a>
             </div>
           </address>
