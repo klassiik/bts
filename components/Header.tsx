@@ -56,7 +56,7 @@ export default function Header() {
       <div className="flex items-center gap-2 lg:basis-0 lg:grow lg:justify-start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="lg:hidden text-charcoal-100"
+          className="lg:hidden text-charcoal-100 h-11 w-11 min-w-11"
         />
         <NavbarBrand className="lg:justify-start lg:max-w-fit">
           <Link href="/" className="flex items-center gap-3 group" aria-label="Barker Tree Services home page">

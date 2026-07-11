@@ -159,7 +159,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               <div className="mb-6 rounded-lg overflow-hidden relative">
                 <Video
                   src="/media/554341283_24812556778411123_8495766478130270581_n.mp4"
-                  className="w-full h-auto relative z-0"
+                  className="w-full h-auto aspect-[9/16] relative z-0"
                   aria-label={`Local tree work in ${city}`}
                 />
               </div>

@@ -12,7 +12,6 @@
     "start": "next start",
     "lint": "eslint",
     "prebuild": "node scripts/sync-media.mjs",
-    "prepare-media": "node scripts/shrink-videos.mjs",
     "print:schema": "tsx scripts/print-schema.ts",
     "test:schema": "jest --testPathPattern=schema",
     "test": "jest"
