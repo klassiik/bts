@@ -13,6 +13,8 @@ const services = [
 ]
 
 const MAX_DETAILS_LENGTH = 2000
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || ''
 
 function validateForm(data: { name: string; phone: string; email: string; service: string; details: string }) {
   const phoneDigits = (data.phone || '').replace(/\D/g, '')
@@ -59,15 +61,29 @@ export default function ContactForm() {
     }
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Free Estimate Request - ${data.service}`,
+          from_name: 'Barker Tree Services Website',
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          service: data.service,
+          message: data.details || 'No additional details provided.',
+          replyto: data.email,
+          botcheck: data.honeypot,
+        }),
       })
 
-      if (!response.ok) {
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
         throw new Error('Failed to send message')
       }
 
