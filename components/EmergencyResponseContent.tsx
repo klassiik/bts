@@ -88,7 +88,7 @@ export default function EmergencyResponseContent() {
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" style={{ zIndex: 1 }} />
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" style={{ zIndex: 1 }} />
         
-        <div className="relative max-w-6xl mx-auto text-center">
+        <div className="relative max-w-6xl mx-auto text-center" style={{ zIndex: 10 }}>
           <StaticChip 
             className="mb-6 bg-red-900/30 border border-red-500/20 text-red-400 animate-pulse"
             variant="bordered"
