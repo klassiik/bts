@@ -131,9 +131,15 @@ async function processVideo(srcPath, baseName, manifest) {
     ...(isBackdrop ? { mp4Mobile: `/media/${mobileName}` } : {}),
   };
 
+  // Every output has to exist, not just the mp4: if poster extraction failed
+  // after the mp4 was renamed into place, checking only the mp4 would make
+  // every subsequent run skip the work while the manifest kept pointing at a
+  // poster that isn't there — costing the <video> its LCP paint candidate.
   const built = async (f) => fs.stat(f).then((s) => s.size > 0).catch(() => false);
   const alreadyBuilt =
-    (await built(mp4Out)) && (!isBackdrop || (await built(mobileOut)));
+    (await built(mp4Out)) &&
+    (await built(posterOut)) &&
+    (!isBackdrop || (await built(mobileOut)));
   if (alreadyBuilt) {
     console.log(`Up to date: ${mp4Name}`);
     return;

@@ -139,7 +139,7 @@ export default function HomeContent() {
                 {GOOGLE_BUSINESS.rating.toFixed(1)} out of 5 on Google
               </p>
               <p className="text-charcoal-100 mb-6">
-                Based on {GOOGLE_BUSINESS.reviewCount} verified customer reviews
+                Based on {GOOGLE_BUSINESS.reviewCount} reviews on Google
               </p>
               <a
                 href={GOOGLE_BUSINESS.url}

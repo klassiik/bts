@@ -206,7 +206,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                 {GOOGLE_BUSINESS.rating.toFixed(1)} out of 5 on Google
               </p>
               <p className="text-charcoal-100 mb-4">
-                Based on {GOOGLE_BUSINESS.reviewCount} verified reviews from across Placer &amp; Nevada Counties
+                Based on {GOOGLE_BUSINESS.reviewCount} reviews on Google from across Placer &amp; Nevada Counties
               </p>
               <a
                 href={GOOGLE_BUSINESS.url}
