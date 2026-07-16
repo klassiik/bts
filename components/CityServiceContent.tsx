@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { BUSINESS_INFO, DETAILED_TESTIMONIALS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
@@ -97,34 +98,42 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Tree Services in {city}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <StaticCardBody className="text-center p-6">
-                <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
-                <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
-              </StaticCardBody>
-            </StaticCard>
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <StaticCardBody className="text-center p-6">
-                <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
-                <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
-              </StaticCardBody>
-            </StaticCard>
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <StaticCardBody className="text-center p-6">
-                <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
-                <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
-              </StaticCardBody>
-            </StaticCard>
-            <StaticCard className="bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
-              <StaticCardBody className="text-center p-6">
-                <BoltIcon className="w-10 h-10 text-amber-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
-                <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
-              </StaticCardBody>
-            </StaticCard>
+            <Link href="/services/trimming" className="block" aria-label={`Tree trimming in ${city}: details, costs and FAQs`}>
+              <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+                <StaticCardBody className="text-center p-6">
+                  <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                  <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
+                  <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
+                </StaticCardBody>
+              </StaticCard>
+            </Link>
+            <Link href="/services/removal" className="block" aria-label={`Tree removal in ${city}: details, costs and FAQs`}>
+              <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+                <StaticCardBody className="text-center p-6">
+                  <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                  <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
+                  <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
+                </StaticCardBody>
+              </StaticCard>
+            </Link>
+            <Link href="/services/stump" className="block" aria-label={`Stump grinding in ${city}: details, costs and FAQs`}>
+              <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+                <StaticCardBody className="text-center p-6">
+                  <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                  <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
+                  <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
+                </StaticCardBody>
+              </StaticCard>
+            </Link>
+            <Link href="/services/emergency" className="block" aria-label={`Emergency tree service in ${city}: details, costs and FAQs`}>
+              <StaticCard className="h-full bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
+                <StaticCardBody className="text-center p-6">
+                  <BoltIcon className="w-10 h-10 text-amber-400 mx-auto mb-3" aria-hidden="true" />
+                  <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
+                  <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
+                </StaticCardBody>
+              </StaticCard>
+            </Link>
           </div>
 
           <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">

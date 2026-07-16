@@ -1,5 +1,5 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/seo'
-import { SERVICES, BUSINESS_INFO } from '@/lib/config'
+import { SERVICES } from '@/lib/config'
 import { getServiceContent } from '@/lib/serviceContent'
 import { notFound } from 'next/navigation'
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema, toSafeJsonLd } from '@/lib/schema'
@@ -24,6 +24,19 @@ function truncateAtWordBoundary(text: string, maxLength: number) {
   return lastSpaceIndex > 0 ? truncated.slice(0, lastSpaceIndex) : truncated
 }
 
+/* Hand-written to stay within Google's ~155-char display budget; the previous
+ * assembled string only truncated its middle clause and ran 238-250 chars. */
+const SERVICE_META_DESCRIPTIONS: Record<string, string> = {
+  trimming:
+    'Professional tree trimming & pruning in Grass Valley, Auburn, Nevada City & across Placer & Nevada Counties. Licensed CSLB #1085329. Free estimates.',
+  removal:
+    'Safe, insured tree removal in Grass Valley, Auburn, Nevada City & across Placer & Nevada Counties. Licensed CSLB #1085329. Free estimates.',
+  stump:
+    'Stump removal & grinding in Grass Valley, Auburn, Nevada City & across Placer & Nevada Counties. Licensed CSLB #1085329. Free estimates.',
+  emergency:
+    '24/7 emergency tree service in Grass Valley, Auburn, Nevada City & across Placer & Nevada Counties. Fast storm damage response. CSLB #1085329.'
+}
+
 export async function generateStaticParams() {
   return SERVICES.map(service => ({
     service: service.id
@@ -34,11 +47,16 @@ export async function generateMetadata({ params }: PageProps) {
   const { service } = await params
   const serviceData = getServiceFromSlug(service)
   if (!serviceData) return {}
-  const truncatedDescription = truncateAtWordBoundary(serviceData.description, 100)
+  const description =
+    SERVICE_META_DESCRIPTIONS[serviceData.id] ??
+    truncateAtWordBoundary(
+      `Professional ${serviceData.title.toLowerCase()} in Placer & Nevada Counties. ${serviceData.description} Licensed CSLB #1085329. Free estimates.`,
+      155
+    )
 
   return generatePageMetadata({
     title: `${serviceData.title} in Placer & Nevada Counties, CA`,
-    description: `Professional ${serviceData.title.toLowerCase()} in Grass Valley, Auburn, Nevada City & across Placer & Nevada Counties. ${truncatedDescription}... Licensed CSLB #1085329. Free estimates.`,
+    description,
     path: `/services/${service}`,
     keywords: [
       `${serviceData.title.toLowerCase()} Grass Valley CA`,
