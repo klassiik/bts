@@ -37,7 +37,7 @@ export default function FloatingContactButton() {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Quick contact options when expanded */}
       {isExpanded && (
-        <div className="flex flex-col gap-3 animate-in slide-in-from-bottom-2">
+        <div id="floating-contact-menu" className="flex flex-col gap-3 animate-in slide-in-from-bottom-2">
           {/* Email option */}
           <Button
             isIconOnly
@@ -79,6 +79,8 @@ export default function FloatingContactButton() {
         }`}
         onClick={() => setIsExpanded(!isExpanded)}
         aria-label={isExpanded ? "Close contact options" : "Open contact options"}
+        aria-expanded={isExpanded}
+        aria-controls={isExpanded ? "floating-contact-menu" : undefined}
       >
         {isExpanded ? (
           <XMarkIcon className="w-6 h-6 text-white" aria-hidden="true" />
