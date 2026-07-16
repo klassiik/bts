@@ -1,6 +1,6 @@
 /* GEO: Footer with semantic contentinfo landmark, navigation, and contact information */
 import Link from 'next/link'
-import { BUSINESS_INFO, SERVICE_AREAS, GOOGLE_BUSINESS } from '@/lib/config'
+import { BUSINESS_INFO, SERVICE_AREAS, GOOGLE_BUSINESS, CITATION_PROFILES } from '@/lib/config'
 import { cityToSlug } from '@/lib/utils'
 import { PhoneIcon, EnvelopeIcon, ClockIcon } from '@heroicons/react/24/outline'
 
@@ -100,6 +100,35 @@ export default function Footer() {
                 <span className="text-amber-400" aria-hidden="true">★</span>
                 {GOOGLE_BUSINESS.rating.toFixed(1)} on Google ({GOOGLE_BUSINESS.reviewCount} reviews)
               </a>
+            </div>
+
+            {/* Citation profiles. These were previously only in JSON-LD
+                sameAs — as visible links they double as trust signals. */}
+            <div className="mt-4 pt-4 border-t border-evergreen-900/20">
+              <p className="text-xs text-charcoal-200 mb-2">Find us on</p>
+              <div className="flex flex-wrap gap-x-4 gap-y-2">
+                {CITATION_PROFILES.filter(profile => profile.name !== 'Google').map(profile => (
+                  <a
+                    key={profile.name}
+                    href={profile.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center py-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors"
+                    aria-label={`Barker Tree Services on ${profile.name}`}
+                  >
+                    {profile.name}
+                  </a>
+                ))}
+                <a
+                  href={BUSINESS_INFO.cslbLookupUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center py-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors"
+                  aria-label={`Verify CSLB license number ${BUSINESS_INFO.cslb} on the California Contractors State License Board site`}
+                >
+                  Verify our CSLB license →
+                </a>
+              </div>
             </div>
           </address>
 

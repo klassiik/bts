@@ -1,8 +1,6 @@
-'use client'
-
 /* GEO: About page with Organization schema markers and semantic article structure for AI extraction */
 import { BUSINESS_INFO, COMPANY_CREDENTIALS } from '@/lib/config'
-import { Card, CardBody, Button, Chip } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import Video from '@/components/Video'
 import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon, AcademicCapIcon, GlobeAmericasIcon, HeartIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import TreeCareGuides from '@/components/TreeCareGuides'
@@ -18,13 +16,13 @@ export default function AboutContent() {
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-evergreen-500/10 rounded-full blur-3xl" />
         
         <div className="relative max-w-6xl mx-auto text-center">
-          <Chip 
+          <StaticChip 
             className="mb-6 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             aria-label="Company founding date"
           >
             <span>Since {COMPANY_CREDENTIALS.founded}</span>
-          </Chip>
+          </StaticChip>
           {/* GEO: H1 with organization name for AI understanding */}
           <h1 className="text-5xl font-bold mb-6 text-charcoal-50">About Barker Tree Services</h1>
           <p className="text-xl text-charcoal-100 max-w-3xl mx-auto">
@@ -52,8 +50,8 @@ export default function AboutContent() {
               </div>
             </article>
 
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="complementary" aria-label="Company differentiators">
-              <CardBody className="p-8">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="complementary" aria-label="Company differentiators">
+              <StaticCardBody className="p-8">
                 <div className="mb-6 rounded-lg overflow-hidden relative">
                   <Video
                     src={getVideoUrl('554478983_25636593632607805_5041281570766047163_n')}
@@ -85,8 +83,8 @@ export default function AboutContent() {
                     </div>
                   </li>
                 </ul>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
         </div>
       </section>
@@ -97,8 +95,8 @@ export default function AboutContent() {
           <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Credentials & Certifications</h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional certifications">
-              <CardBody className="p-8">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional certifications">
+              <StaticCardBody className="p-8">
                 <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Professional Certifications</h3>
                 <ul className="space-y-3" role="list" aria-label="List of certifications">
                   {COMPANY_CREDENTIALS.certifications.map((cert, index) => (
@@ -108,11 +106,11 @@ export default function AboutContent() {
                     </li>
                   ))}
                 </ul>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
 
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional equipment">
-              <CardBody className="p-8">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional equipment">
+              <StaticCardBody className="p-8">
                 <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Professional Equipment</h3>
                 <ul className="space-y-3" role="list" aria-label="Equipment used">
                   {COMPANY_CREDENTIALS.equipment.map((equipment, index) => (
@@ -122,27 +120,27 @@ export default function AboutContent() {
                     </li>
                   ))}
                 </ul>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
 
-          <Card className="bg-gradient-to-br from-evergreen-950/80 to-charcoal-900/80 border border-evergreen-900/30" role="region" aria-label="Core company values">
-            <CardBody className="p-8">
+          <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-charcoal-900/80 border border-evergreen-900/30" role="region" aria-label="Core company values">
+            <StaticCardBody className="p-8">
               <h3 className="text-2xl font-bold mb-6 text-center text-evergreen-300">Our Core Values</h3>
               <div className="grid md:grid-cols-3 gap-6" role="list" aria-label="Company values">
                 {COMPANY_CREDENTIALS.values.map((value, index) => (
                   <div key={index} className="text-center" role="listitem">
-                    <Chip 
+                    <StaticChip 
                       className="w-full bg-evergreen-900/50 border border-evergreen-700/30 text-evergreen-300 p-4 h-auto"
                       variant="bordered"
                     >
                       {value}
-                    </Chip>
+                    </StaticChip>
                   </div>
                 ))}
               </div>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
       </section>
 
@@ -150,8 +148,8 @@ export default function AboutContent() {
       <section className="py-20 px-4" aria-label="Company mission and vision">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="article" aria-label="Mission statement">
-              <CardBody className="p-8">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="article" aria-label="Mission statement">
+              <StaticCardBody className="p-8">
                 <h3 className="text-3xl font-bold text-evergreen-300 mb-6">Our Mission</h3>
                 <p className="text-charcoal-100 leading-relaxed mb-6">
                   To provide expert, safe, and environmentally responsible tree care services that enhance the beauty, safety, and value of properties throughout our community while fostering long-term relationships built on trust and excellence.
@@ -160,11 +158,11 @@ export default function AboutContent() {
                   <MapPinIcon className="w-7 h-7 flex-shrink-0" aria-hidden="true" />
                   <span className="font-semibold">Serving Colfax & Surrounding Areas</span>
                 </div>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
 
-            <Card className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30" role="article" aria-label="Vision statement">
-              <CardBody className="p-8">
+            <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30" role="article" aria-label="Vision statement">
+              <StaticCardBody className="p-8">
                 <h3 className="text-3xl font-bold text-evergreen-300 mb-6">Our Vision</h3>
                 <p className="text-evergreen-200 leading-relaxed mb-6">
                   To be the most trusted and respected tree care company in Northern California, known for our expertise, safety standards, environmental stewardship, and unwavering commitment to customer satisfaction.
@@ -173,8 +171,8 @@ export default function AboutContent() {
                   <SparklesIcon className="w-8 h-8" aria-hidden="true" />
                   <span className="font-semibold">Excellence in Every Service</span>
                 </div>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
         </div>
       </section>
@@ -190,27 +188,23 @@ export default function AboutContent() {
             Experience the Barker Tree Services difference. Contact us today for your free consultation and estimate.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button 
+            <ButtonLink 
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              as="a"
-              size="lg"
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white font-bold shadow-lg"
               startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
               aria-label="Call Barker Tree Services"
             >
               {BUSINESS_INFO.phone}
-            </Button>
-            <Button 
+            </ButtonLink>
+            <ButtonLink 
               href={`mailto:${BUSINESS_INFO.email}`}
-              as="a"
-              size="lg"
               variant="bordered"
               className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-900/30 font-bold"
               startContent={<EnvelopeIcon className="w-5 h-5" aria-hidden="true" />}
               aria-label="Email Barker Tree Services"
             >
               Send Email
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>

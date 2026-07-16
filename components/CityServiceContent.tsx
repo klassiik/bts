@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BUSINESS_INFO, DETAILED_TESTIMONIALS, YEARS_IN_BUSINESS } from '@/lib/config'
+import { BUSINESS_INFO, GOOGLE_BUSINESS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon } from '@heroicons/react/24/outline'
@@ -13,14 +13,6 @@ interface CityServiceContentProps {
 
 export default function CityServiceContent({ city, state }: CityServiceContentProps) {
   const detail = getCityDetail(city)
-
-  // Prefer testimonials from this city; fall back to nearby communities
-  // (honestly labeled) rather than rendering an empty social-proof section
-  const cityTestimonials = DETAILED_TESTIMONIALS.filter(t => t.location.includes(city))
-  const hasLocalTestimonials = cityTestimonials.length > 0
-  const shownTestimonials = hasLocalTestimonials
-    ? cityTestimonials.slice(0, 2)
-    : DETAILED_TESTIMONIALS.slice(0, 2)
 
   const localHighlights = detail?.highlights ?? [
     'Local area specialists since 2018',
@@ -201,43 +193,32 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             </StaticCardBody>
           </StaticCard>
 
-          {/* Testimonials — city-specific when we have them, honestly labeled
-              regional ones otherwise */}
-          {shownTestimonials.length > 0 && (
-            <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Customer reviews">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
-                  {hasLocalTestimonials
-                    ? `What ${city} Customers Say`
-                    : 'What Customers in Nearby Communities Say'}
-                </h2>
-                <div className="grid md:grid-cols-2 gap-8 mb-12" role="list">
-                  {shownTestimonials.map((testimonial, idx) => (
-                    <StaticCard key={idx} className="bg-charcoal-800/50 border border-evergreen-900/20" role="listitem">
-                      <StaticCardBody className="p-6">
-                        <div className="flex items-center gap-1 mb-3">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
-                          ))}
-                        </div>
-                        <p className="text-charcoal-100 mb-4 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
-                        <div className="flex justify-between items-center text-sm">
-                          <div>
-                            <p className="font-semibold text-evergreen-300">{testimonial.name}</p>
-                            <p className="text-charcoal-300">{testimonial.location}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-evergreen-300 font-medium">{testimonial.service}</p>
-                            <p className="text-charcoal-300 text-xs">{testimonial.date}</p>
-                          </div>
-                        </div>
-                      </StaticCardBody>
-                    </StaticCard>
-                  ))}
-                </div>
+          {/* Social proof: the linked Google profile only. Hosted testimonial
+              copy was removed sitewide — see HomeContent.tsx for rationale. */}
+          <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Customer reviews">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="flex justify-center items-center gap-1 mb-4" aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                  <StarIcon key={i} className="w-6 h-6 text-amber-400" />
+                ))}
               </div>
-            </section>
-          )}
+              <p className="text-xl font-bold text-evergreen-300 mb-2">
+                {GOOGLE_BUSINESS.rating.toFixed(1)} out of 5 on Google
+              </p>
+              <p className="text-charcoal-100 mb-4">
+                Based on {GOOGLE_BUSINESS.reviewCount} reviews on Google from across Placer &amp; Nevada Counties
+              </p>
+              <a
+                href={GOOGLE_BUSINESS.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
+                aria-label={`Read all ${GOOGLE_BUSINESS.reviewCount} reviews on our Google Business Profile`}
+              >
+                Read every review on Google →
+              </a>
+            </div>
+          </section>
 
           {/* Call to Action */}
           <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30">

@@ -1,5 +1,6 @@
 import Ajv from 'ajv'
 import { generateLocalBusinessSchema, generateFAQSchema } from '../schema'
+import { GOOGLE_BUSINESS } from '../config'
 
 const ajv = new Ajv({ strict: false })
 
@@ -139,11 +140,18 @@ describe('Schema.org JSON-LD Validation', () => {
     expect(schema.address.postalCode).toBeDefined()
   })
 
-  it('should not claim aggregateRating without verifiable review data', () => {
-    // Google's review-snippet policy excludes self-serving ratings; only add
-    // aggregateRating once it reflects real, attributed GBP/Yelp review counts
-    const schema = generateLocalBusinessSchema() as Record<string, unknown>
-    expect(schema.aggregateRating).toBeUndefined()
+  it('should source aggregateRating from the verified Google Business Profile', () => {
+    // Google's review-snippet policy excludes self-serving ratings, so this
+    // must stay pinned to third-party GBP data that is displayed on-site with
+    // a link to the source — never to hand-written testimonial copy.
+    const schema = generateLocalBusinessSchema()
+    expect(schema.aggregateRating).toEqual({
+      '@type': 'AggregateRating',
+      ratingValue: GOOGLE_BUSINESS.rating,
+      reviewCount: GOOGLE_BUSINESS.reviewCount,
+      bestRating: 5,
+      worstRating: 1
+    })
   })
 
   it('should have numeric geo coordinates', () => {
