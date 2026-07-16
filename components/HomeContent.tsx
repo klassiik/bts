@@ -1,6 +1,6 @@
 'use client'
 
-import { SERVICE_AREAS, BUSINESS_INFO, DETAILED_TESTIMONIALS, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS, GOOGLE_BUSINESS } from '@/lib/config'
+import { SERVICE_AREAS, BUSINESS_INFO, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS, GOOGLE_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 import { WORK_PHOTOS } from '@/lib/workGallery'
 import WorkGallery from '@/components/WorkGallery'
 import { Button, Card, CardBody, Chip } from '@heroui/react'
@@ -137,54 +137,41 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* Social proof section — no Review schema: first-party testimonials are
-          "self-serving reviews" under Google's review-snippet policy */}
-      <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer testimonials and reviews">
+      {/* Social proof: the real, verifiable Google profile only. On-site
+          testimonial copy was removed — unverifiable first-party quotes are
+          "self-serving reviews" under Google's review-snippet policy, and the
+          linked GBP rating is a stronger signal than any quote we host. */}
+      <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer reviews">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">What Our Customers Say</h2>
-          <p className="text-charcoal-50 text-center mb-12">
-            Rated{' '}
-            <a
-              href={GOOGLE_BUSINESS.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
-              aria-label={`Read our ${GOOGLE_BUSINESS.rating}-star reviews on Google`}
-            >
-              {GOOGLE_BUSINESS.rating.toFixed(1)} ★ on Google ({GOOGLE_BUSINESS.reviewCount} reviews)
-            </a>
-            {' '}— read them for yourself
-          </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" aria-label="Customer reviews">
-            {DETAILED_TESTIMONIALS.slice(0, 6).map((testimonial, idx) => (
-              <Card key={idx} className="bg-charcoal-800/80 border border-evergreen-900/20">
-                <CardBody className="p-6">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <StarIcon key={i} className="w-5 h-5 text-amber-400" aria-hidden="true" />
-                    ))}
-                  </div>
-                  <p className="text-charcoal-50 mb-4 leading-relaxed text-sm">&ldquo;{testimonial.text}&rdquo;</p>
-                  <div className="flex justify-between items-center text-sm">
-                    <div>
-                      <p className="font-semibold text-evergreen-200">{testimonial.name}</p>
-                      <p className="text-charcoal-200">{testimonial.location}</p>
-                    </div>
-                    <div className="text-right">
-                      <Chip size="sm" className="bg-evergreen-900/50 text-evergreen-200 border border-evergreen-700/50" variant="bordered">
-                        {testimonial.service}
-                      </Chip>
-                      <p className="text-charcoal-200 text-xs mt-1">{testimonial.date}</p>
-                    </div>
-                  </div>
-                </CardBody>
-              </Card>
-            ))}
-          </div>
+
+          <Card className="max-w-2xl mx-auto mb-12 bg-charcoal-800/80 border border-evergreen-900/20">
+            <CardBody className="text-center p-8">
+              <div className="flex justify-center items-center gap-1 mb-4" aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                  <StarIcon key={i} className="w-7 h-7 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-2xl font-bold text-evergreen-200 mb-2">
+                {GOOGLE_BUSINESS.rating.toFixed(1)} out of 5 on Google
+              </p>
+              <p className="text-charcoal-100 mb-6">
+                Based on {GOOGLE_BUSINESS.reviewCount} verified customer reviews
+              </p>
+              <a
+                href={GOOGLE_BUSINESS.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
+                aria-label={`Read all ${GOOGLE_BUSINESS.reviewCount} reviews on our Google Business Profile`}
+              >
+                Read every review on Google →
+              </a>
+            </CardBody>
+          </Card>
 
           <div className="text-center">
-            <p className="text-charcoal-50 mb-6">Join hundreds of satisfied customers in Colfax and surrounding areas</p>
+            <p className="text-charcoal-50 mb-6">Licensed, insured, and serving Colfax and surrounding areas since {FOUNDING_YEAR}</p>
             <Button
               as="a"
               href={`tel:${BUSINESS_INFO.phoneRaw}`}

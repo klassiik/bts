@@ -3,6 +3,16 @@ export const FOUNDING_YEAR = 2018
 // phrasing in copy where possible; use this only where a number is needed.
 export const YEARS_IN_BUSINESS = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR)
 
+// Canonical citation profiles. Single source for both the schema sameAs list
+// and the footer's visible links, so a profile can't appear in one and not
+// the other. Keep NAP identical on every one of these listings.
+export const CITATION_PROFILES = [
+  { name: 'Google', url: 'https://maps.google.com/?cid=12582642690419062828' },
+  { name: 'Facebook', url: 'https://www.facebook.com/barkertreeservices' },
+  { name: 'Yelp', url: 'https://www.yelp.com/biz/barker-tree-services-colfax' },
+  { name: 'BBB', url: 'https://www.bbb.org/us/ca/colfax/profile/not-elsewhere-classified/barker-tree-services-1156-90094954' }
+]
+
 export const BUSINESS_INFO = {
   name: 'Barker Tree Services',
   phone: '(530) 802-1271',
@@ -19,12 +29,7 @@ export const BUSINESS_INFO = {
   cslbClassification: 'C-49',
   cslbLookupUrl: 'https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx',
   url: 'https://barkertreeservices.com',
-  socialProfiles: [
-    'https://maps.google.com/?cid=12582642690419062828',
-    'https://www.facebook.com/barkertreeservices',
-    'https://www.yelp.com/biz/barker-tree-services-colfax',
-    'https://www.bbb.org/us/ca/colfax/profile/not-elsewhere-classified/barker-tree-services-1156-90094954'
-  ]
+  socialProfiles: CITATION_PROFILES.map(profile => profile.url)
 }
 
 // Google Business Profile — canonical Maps URL (stable CID form).
@@ -90,58 +95,6 @@ export const SERVICES = [
     benefits: ['Immediate safety restoration', 'Prevents additional damage', 'Insurance claim support', 'Professional damage assessment', 'Quick property access restoration', 'Peace of mind during crisis'],
     equipment: 'Emergency response vehicles, portable lighting, chainsaws, rigging equipment, and safety barriers',
     seasonality: 'Available 24/7 year-round, with increased demand during winter storms and summer thunderstorms'
-  }
-]
-
-// Enhanced testimonials with more detail and variety
-export const DETAILED_TESTIMONIALS = [
-  {
-    name: 'John Mitchell',
-    location: 'Colfax, CA',
-    service: 'Tree Trimming',
-    text: 'Barker Tree Services completely transformed our backyard! They trimmed our massive oak tree that was blocking all sunlight to our garden. The crew was professional, cleaned up everything, and our tree looks healthier than ever. The garden is thriving now with the improved light.',
-    rating: 5,
-    date: 'September 2024'
-  },
-  {
-    name: 'Sarah Coleman',
-    location: 'Auburn, CA',
-    service: 'Emergency Removal',
-    text: 'When a huge pine tree fell across our driveway during the winter storm, Barker Tree Services responded within 2 hours! They safely removed the tree and cleared the debris so we could get to work. Best emergency service in the area - highly skilled and reliable.',
-    rating: 5,
-    date: 'January 2024'
-  },
-  {
-    name: 'Michael Torres',
-    location: 'Grass Valley, CA',
-    service: 'Stump Removal',
-    text: 'Had three old stumps that were eyesores in our front yard. The team ground them all down and left the area perfectly clean. They even helped us plan new landscaping for the space. Excellent attention to detail and fair pricing.',
-    rating: 5,
-    date: 'May 2024'
-  },
-  {
-    name: 'Lisa Thompson',
-    location: 'Nevada City, CA',
-    service: 'Tree Removal',
-    text: 'We had a diseased maple tree very close to our house that needed removal. The crew used amazing rigging techniques to take it down piece by piece without any damage to our roof or garden. True professionals who know what they\'re doing.',
-    rating: 5,
-    date: 'August 2024'
-  },
-  {
-    name: 'Robert Chen',
-    location: 'Loomis, CA',
-    service: 'Tree Trimming',
-    text: 'Our fruit trees hadn\'t been properly pruned in years. Jacob and his team did an incredible job bringing them back to health. They explained everything they were doing and why. This season we had the best fruit harvest in a decade!',
-    rating: 5,
-    date: 'March 2024'
-  },
-  {
-    name: 'Jennifer Walsh',
-    location: 'Rocklin, CA',
-    service: 'Emergency Services',
-    text: 'During the last big windstorm, a large branch crashed into our power lines. Barker Tree Services coordinated with PG&E and safely removed the hazard. They went above and beyond to make sure our family was safe. Cannot recommend them enough.',
-    rating: 5,
-    date: 'February 2024'
   }
 ]
 
