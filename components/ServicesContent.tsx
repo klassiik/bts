@@ -1,6 +1,7 @@
 'use client'
 
 /* GEO: Services page component with comprehensive Service schema markers for AI discovery */
+import Link from 'next/link'
 import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
 import { Card, CardBody, Button, Chip } from '@heroui/react'
 import Video from '@/components/Video'
@@ -71,7 +72,11 @@ export default function ServicesContent() {
             <article key={service.id} className={`grid md:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''}`}>
               {/* Main Content */}
               <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
-                <h2 className="text-4xl font-bold text-evergreen-300 mb-4">{service.title}</h2>
+                <h2 className="text-4xl font-bold text-evergreen-300 mb-4">
+                  <Link href={`/services/${service.id}`} className="hover:text-evergreen-200 transition-colors">
+                    {service.title}
+                  </Link>
+                </h2>
                 <p className="text-lg text-charcoal-100 mb-6 leading-relaxed">{service.description}</p>
                 
                 <Card className="mb-6 bg-charcoal-900/50 border border-evergreen-900/20" role="region" aria-label="Service process details">
@@ -140,6 +145,15 @@ export default function ServicesContent() {
                       aria-label={`Get quote for ${service.title} service`}
                     >
                       Get Quote for {service.title}
+                    </Button>
+                    <Button
+                      href={`/services/${service.id}`}
+                      as={Link}
+                      variant="bordered"
+                      className="w-full mt-3 border-evergreen-600/40 text-evergreen-300 font-semibold"
+                      aria-label={`${service.title}: details, costs and FAQs`}
+                    >
+                      {service.title} Costs & FAQs
                     </Button>
                   </div>
                 </CardBody>

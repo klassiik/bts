@@ -71,15 +71,15 @@ const nextConfig: NextConfig = {
           }
         ]
       },
-      // Media files are re-encoded in place under stable filenames, so they
-      // must NOT be immutable. Next.js already serves /_next/static/* with
-      // immutable caching; HTML/robots/sitemap use Vercel's defaults.
+      // Media filenames are content-hashed from the source file's SHA-256
+      // (scripts/sync-media.mjs), so any content change gets a new URL and
+      // cached bytes can never go stale — safe to cache forever.
       {
         source: '/media/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, stale-while-revalidate=604800'
+            value: 'public, max-age=31536000, immutable'
           }
         ]
       }

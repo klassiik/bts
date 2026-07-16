@@ -48,8 +48,9 @@ export function generateLocalBusinessSchema() {
     url: BUSINESS_INFO.url,
     telephone: BUSINESS_INFO.phoneRaw,
     email: BUSINESS_INFO.email,
-    image: `${BUSINESS_INFO.url}/logo.webp`,
-    logo: `${BUSINESS_INFO.url}/logo.webp`,
+    // Both files must exist in public/ — /logo.webp never did (served 404s).
+    image: `${BUSINESS_INFO.url}/logo.png`,
+    logo: `${BUSINESS_INFO.url}/android-chrome-512x512.webp`,
     sameAs: BUSINESS_INFO.socialProfiles,
     slogan: 'Expert Tree Care, Trusted Service',
     foundingDate: String(FOUNDING_YEAR),
