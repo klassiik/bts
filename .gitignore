@@ -55,3 +55,8 @@ venv/
 env/
 *.pyc
 __pycache__/
+
+# SEO audit artifacts. Must stay ignored: Tailwind v4 scans all
+# non-gitignored files, and the HTML-entity-escaped class names in these
+# crawled snapshots generate invalid CSS that breaks next build/dev.
+barkertreeservices.com-audit/

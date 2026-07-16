@@ -38,7 +38,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     id: 'tree-trimming-cost',
     question: 'How much does tree trimming cost?',
-    answer: 'Tree trimming costs vary based on tree size, location, and complexity. Generally, basic trimming ranges from $300-$800, while complex or emergency work may cost more. We provide free estimates for all tree services.',
+    answer: 'Tree trimming cost depends on the tree\'s size and species, how close it is to structures or power lines, how much access the crew has, and how much debris needs hauling. Rather than quote a range that would go stale, we give a free on-site estimate for every job.',
     category: 'pricing'
   },
   {

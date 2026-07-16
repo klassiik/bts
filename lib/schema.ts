@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { BUSINESS_INFO, SERVICE_AREAS, FOUNDING_YEAR } from '@/lib/config'
+import { BUSINESS_INFO, SERVICE_AREAS, SERVICES, FOUNDING_YEAR, GOOGLE_BUSINESS } from '@/lib/config'
 import { FAQ_DATA } from '@/lib/faqData'
 
 type ServiceArea = { city: string; state: string }
@@ -9,6 +9,10 @@ type ServiceArea = { city: string; state: string }
 // and AI knowledge graphs see 10+ "different" businesses that merely share
 // a name and phone number.
 export const BUSINESS_ID = `${BUSINESS_INFO.url}/#business`
+
+// Same rule as BUSINESS_ID, applied to services: the offer catalog and the
+// page-level Service entity must mint the same @id for a given path.
+const serviceIdFor = (path: string) => `${BUSINESS_INFO.url}${path}#service`
 
 // Zod schema for contact form validation
 export const ContactSchema = z.object({
@@ -68,47 +72,30 @@ export function generateLocalBusinessSchema() {
       addressCountry: 'US'
     },
     areaServed: formatAreaServed(SERVICE_AREAS),
+    // Third-party Google Business Profile data, displayed on-site with a link
+    // to the source — not self-serving first-party review copy.
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: GOOGLE_BUSINESS.rating,
+      reviewCount: GOOGLE_BUSINESS.reviewCount,
+      bestRating: 5,
+      worstRating: 1
+    },
+    // Derived from SERVICES so the catalog can't drift from the Service
+    // entity each /services/[id] page emits: same @id, same name. Without the
+    // shared @id these read as separate services that merely share a name.
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Tree Care Services',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Tree Trimming & Pruning',
-            description: 'Professional tree trimming and pruning for health, safety, and aesthetics',
-            provider: { '@id': BUSINESS_ID }
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Tree Removal',
-            description: 'Safe and efficient removal of hazardous, diseased, or unwanted trees',
-            provider: { '@id': BUSINESS_ID }
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Stump Grinding',
-            description: 'Complete stump removal and grinding services',
-            provider: { '@id': BUSINESS_ID }
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Emergency Tree Services',
-            description: '24/7 emergency response for storm damage and hazardous tree situations',
-            provider: { '@id': BUSINESS_ID }
-          }
+      itemListElement: SERVICES.map(service => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          '@id': serviceIdFor(`/services/${service.id}`),
+          name: service.title,
+          provider: { '@id': BUSINESS_ID }
         }
-      ]
+      }))
     },
     priceRange: '$$',
     // Regular business hours only — the 24/7 emergency availability lives on
@@ -191,7 +178,7 @@ export function generateServiceSchema(options: {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': `${BUSINESS_INFO.url}${path}#service`,
+    '@id': serviceIdFor(path),
     name,
     description,
     serviceType: name,
