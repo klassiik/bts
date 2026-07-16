@@ -1,4 +1,5 @@
 import { ReactNode, AnchorHTMLAttributes, HTMLAttributes } from 'react'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
 // Server-safe replacements for the HeroUI primitives on static pages.
@@ -16,19 +17,29 @@ type ButtonLinkProps = {
 } & AnchorHTMLAttributes<HTMLAnchorElement>
 
 export function ButtonLink({ href, className, variant = 'solid', startContent, children, ...rest }: ButtonLinkProps) {
+  const classes = twMerge(
+    // min-h-12 keeps every CTA at/above the 44px touch-target minimum;
+    // whitespace-normal + max-w-full lets long labels wrap instead of
+    // overflowing narrow viewports
+    'inline-flex items-center justify-center gap-3 rounded-xl px-6 py-2 min-h-12 font-medium text-center whitespace-normal max-w-full transition-all hover:opacity-90 active:scale-[0.98]',
+    variant === 'bordered' && 'border-2 bg-transparent',
+    className
+  )
+
+  // Route internal hrefs through next/link so they keep prefetch and soft
+  // navigation; tel:/mailto:/external stay plain anchors. Link renders fine
+  // from a server component, so this costs no extra client JS.
+  if (href.startsWith('/')) {
+    return (
+      <Link href={href} className={classes} {...rest}>
+        {startContent}
+        {children}
+      </Link>
+    )
+  }
+
   return (
-    <a
-      href={href}
-      className={twMerge(
-        // min-h-12 keeps every CTA at/above the 44px touch-target minimum;
-        // whitespace-normal + max-w-full lets long labels wrap instead of
-        // overflowing narrow viewports
-        'inline-flex items-center justify-center gap-3 rounded-xl px-6 py-2 min-h-12 font-medium text-center whitespace-normal max-w-full transition-all hover:opacity-90 active:scale-[0.98]',
-        variant === 'bordered' && 'border-2 bg-transparent',
-        className
-      )}
-      {...rest}
-    >
+    <a href={href} className={classes} {...rest}>
       {startContent}
       {children}
     </a>

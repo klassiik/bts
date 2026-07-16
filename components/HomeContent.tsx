@@ -1,9 +1,7 @@
-'use client'
-
 import { SERVICE_AREAS, BUSINESS_INFO, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS, GOOGLE_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 import { WORK_PHOTOS } from '@/lib/workGallery'
 import WorkGallery from '@/components/WorkGallery'
-import { Button, Card, CardBody, Chip } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
 import {
   CheckBadgeIcon,
@@ -14,19 +12,9 @@ import {
   TruckIcon,
   Cog6ToothIcon
 } from '@heroicons/react/24/outline'
-import dynamic from 'next/dynamic'
+import FAQSection from '@/components/FAQSection'
 import Video from '@/components/Video'
 import { getVideoUrl } from '@/lib/media'
-
-// Lazy load below-the-fold components for better initial load performance
-const FAQSection = dynamic(() => import('@/components/FAQSection'), {
-  loading: () => (
-    <div className="py-20 px-4 bg-charcoal-900/30 flex items-center justify-center">
-      <div className="animate-pulse text-evergreen-300">Loading FAQ...</div>
-    </div>
-  ),
-  ssr: true // Keep SSR for SEO
-})
 
 export default function HomeContent() {
   return (
@@ -45,9 +33,9 @@ export default function HomeContent() {
         
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 10 }}>
           <div>
-            <Chip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
+            <StaticChip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
               <span className="text-evergreen-300 font-semibold">{YEARS_IN_BUSINESS} Years Experience</span>
-            </Chip>
+            </StaticChip>
             {/* GEO: H1 optimized with location and service keywords for AI understanding */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-charcoal-50">
               Expert Tree Services in <span className="text-evergreen-300">Colfax, CA</span>
@@ -57,34 +45,28 @@ export default function HomeContent() {
              </p>
             <div className="flex gap-4 flex-wrap">
               {/* GEO: Primary CTA with semantic link relationship */}
-              <Button
-                as="a"
+              <ButtonLink
                 href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                color="primary"
-                size="lg"
-                variant="shadow"
                 startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
-                className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 font-bold shadow-lg shadow-evergreen-900/50"
+                className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white text-lg font-bold shadow-lg shadow-evergreen-900/50"
                 aria-label="Call Barker Tree Services now"
               >
                 {BUSINESS_INFO.phone}
-              </Button>
-              <Button
-                as="a"
+              </ButtonLink>
+              <ButtonLink
                 href="/services"
-                size="lg"
                 variant="bordered"
-                className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
+                className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 text-lg font-bold"
                 aria-label="View our tree care services"
               >
                 View Services
-              </Button>
+              </ButtonLink>
             </div>
           </div>
           
           {/* GEO: Service areas card with structured location data for geographic AI queries */}
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/30 backdrop-blur-sm" role="region" aria-label="Service coverage areas">
-             <CardBody className="p-6">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/30 backdrop-blur-sm" role="region" aria-label="Service coverage areas">
+             <StaticCardBody className="p-6">
                <h2 className="text-2xl font-bold text-evergreen-300 mb-4">Our Service Areas</h2>
                <ul className="grid grid-cols-2 gap-3" aria-label="Cities served by Barker Tree Services">
                  {SERVICE_AREAS.map((area) => (
@@ -94,8 +76,8 @@ export default function HomeContent() {
                    </li>
                  ))}
                </ul>
-             </CardBody>
-           </Card>
+             </StaticCardBody>
+           </StaticCard>
          </div>
       </section>
 
@@ -105,34 +87,34 @@ export default function HomeContent() {
           <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Why Choose Barker Tree Services?</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {/* GEO: Value proposition cards with list item roles for structured AI extraction */}
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <CheckBadgeIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="text-lg font-bold text-evergreen-300 mb-2">Licensed & Insured</h3>
                 <p className="text-charcoal-100 text-sm">CSLB #{BUSINESS_INFO.cslb}</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <AcademicCapIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Training</h3>
                 <p className="text-charcoal-100 text-sm">Ongoing education & training</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <UserGroupIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Team</h3>
                 <p className="text-charcoal-100 text-sm">{COMPANY_CREDENTIALS.experience}</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <BoltIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="text-lg font-bold text-evergreen-300 mb-2">Emergency Ready</h3>
                 <p className="text-charcoal-100 text-sm">24/7 storm response</p>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
         </div>
       </section>
@@ -145,8 +127,8 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">What Our Customers Say</h2>
 
-          <Card className="max-w-2xl mx-auto mb-12 bg-charcoal-800/80 border border-evergreen-900/20">
-            <CardBody className="text-center p-8">
+          <StaticCard className="max-w-2xl mx-auto mb-12 bg-charcoal-800/80 border border-evergreen-900/20">
+            <StaticCardBody className="text-center p-8">
               <div className="flex justify-center items-center gap-1 mb-4" aria-hidden="true">
                 {[...Array(5)].map((_, i) => (
                   <StarIcon key={i} className="w-7 h-7 text-amber-400" />
@@ -167,21 +149,19 @@ export default function HomeContent() {
               >
                 Read every review on Google →
               </a>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
 
           <div className="text-center">
             <p className="text-charcoal-50 mb-6">Licensed, insured, and serving Colfax and surrounding areas since {FOUNDING_YEAR}</p>
-            <Button
-              as="a"
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              size="lg"
-              className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white font-bold shadow-lg"
+              className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white text-lg font-bold shadow-lg"
               startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
               aria-label="Call now for free estimate"
             >
               Get Your Free Estimate Today
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>
@@ -202,46 +182,44 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Our Professional Services</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" aria-label="Tree care services offered">
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
-              <CardBody className="text-center p-6">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
                 <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
                 <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
                 <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
-              </CardBody>
-            </Card>
-            <Card className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
-              <CardBody className="text-center p-6">
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:scale-105 hover:border-evergreen-600/40 transition-all">
+              <StaticCardBody className="text-center p-6">
                 <BoltIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="font-bold text-evergreen-300 mb-2">Emergency</h3>
                 <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
-              </CardBody>
-            </Card>
+              </StaticCardBody>
+            </StaticCard>
           </div>
           <div className="text-center mt-8">
-            <Button
-              as="a"
+            <ButtonLink
               href="/services"
-              size="lg"
               aria-label="View all tree care services"
               variant="bordered"
-              className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 font-bold"
+              className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 text-lg font-bold"
             >
               View All Services →
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>

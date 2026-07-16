@@ -1,8 +1,6 @@
-'use client'
-
 /* GEO: Service areas page with geographic schema markers and semantic navigation */
 import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
-import { Card, CardBody, Button, Chip } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, CheckCircleIcon, HomeIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline'
 import { BoltIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
@@ -12,21 +10,21 @@ export default function ServiceAreasContent() {
     <section className="py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)]" aria-label="Service areas coverage">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <Chip 
+          <StaticChip 
             className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"
             aria-label="Service region badge"
           >
             Serving Northern California
-          </Chip>
+          </StaticChip>
           {/* GEO: H1 optimized with geographic keywords for AI discovery */}
           <h1 className="text-5xl font-bold text-charcoal-50 mb-4">Service Areas</h1>
           <p className="text-xl text-charcoal-100">Proudly serving Colfax and all surrounding communities</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="navigation" aria-label="Cities served navigation">
-            <CardBody className="p-8">
+          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="navigation" aria-label="Cities served navigation">
+            <StaticCardBody className="p-8">
               <h2 className="text-2xl font-bold text-evergreen-300 mb-6">Cities We Serve</h2>
               <nav className="grid grid-cols-2 gap-4" aria-label="Service area cities">
                 {SERVICE_AREAS.map(area => (
@@ -41,11 +39,11 @@ export default function ServiceAreasContent() {
                   </Link>
                 ))}
               </nav>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
 
-          <Card className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30" role="region" aria-label="Service coverage types">
-            <CardBody className="p-8">
+          <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30" role="region" aria-label="Service coverage types">
+            <StaticCardBody className="p-8">
               <h2 className="text-2xl font-bold text-evergreen-300 mb-6">Service Coverage</h2>
               <ul className="space-y-6" role="list" aria-label="Types of properties serviced">
                 <li className="flex items-start gap-4">
@@ -76,26 +74,24 @@ export default function ServiceAreasContent() {
                   </div>
                 </li>
               </ul>
-            </CardBody>
-          </Card>
+            </StaticCardBody>
+          </StaticCard>
         </div>
 
-        <Card className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Contact for unlisted areas">
-          <CardBody className="p-8 text-center">
+        <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Contact for unlisted areas">
+          <StaticCardBody className="p-8 text-center">
             <h3 className="text-2xl font-bold text-evergreen-300 mb-4">Not seeing your area?</h3>
             <p className="text-charcoal-100 mb-6">We may still be able to help! Give us a call to discuss your location.</p>
-            <Button
+            <ButtonLink
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              as="a"
-              size="lg"
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white font-bold shadow-lg"
               startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
               aria-label="Call to inquire about service in your area"
             >
               Call {BUSINESS_INFO.phone}
-            </Button>
-          </CardBody>
-        </Card>
+            </ButtonLink>
+          </StaticCardBody>
+        </StaticCard>
       </div>
     </section>
   )

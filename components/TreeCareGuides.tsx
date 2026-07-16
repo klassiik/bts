@@ -1,6 +1,4 @@
-'use client'
-
-import { Card, CardBody, Button, Chip } from '@heroui/react'
+import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { 
   CalendarIcon, 
   ExclamationTriangleIcon, 
@@ -158,13 +156,13 @@ export default function TreeCareGuides() {
     <section className="py-20 px-4 bg-charcoal-950" aria-label="Educational tree care guides">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <Chip 
+          <StaticChip 
             className="mb-4 bg-sage-900/30 border border-sage-500/20 text-sage-400"
             variant="bordered"
             startContent={<LightBulbIcon className="w-4 h-4" />}
           >
             Tree Care Education
-          </Chip>
+          </StaticChip>
           <h2 className="text-4xl font-bold text-sage-400 mb-4">
             Expert Tree Care Guides
           </h2>
@@ -177,24 +175,24 @@ export default function TreeCareGuides() {
           {TREE_CARE_GUIDES.map((guide) => {
             const Icon = guide.icon
             return (
-              <Card 
+              <StaticCard 
                 key={guide.id} 
                 className="bg-charcoal-800/50 border border-charcoal-700/20 hover:border-sage-600/40 hover:scale-105 transition-all"
               >
-                <CardBody className="p-8">
+                <StaticCardBody className="p-8">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-sage-900/30 p-3 rounded-lg">
                       <Icon className="w-8 h-8 text-sage-400" aria-hidden="true" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <Chip 
+                        <StaticChip 
                           size="sm" 
                           variant="bordered" 
                           className={getCategoryColor(guide.category)}
                         >
                           {guide.category}
-                        </Chip>
+                        </StaticChip>
                         <span className="text-charcoal-300 text-sm">{guide.readTime}</span>
                       </div>
                       <h3 className="text-xl font-bold text-charcoal-50 mb-2">{guide.title}</h3>
@@ -252,14 +250,14 @@ export default function TreeCareGuides() {
                       </div>
                     )}
                   </div>
-                </CardBody>
-              </Card>
+                </StaticCardBody>
+              </StaticCard>
             )
           })}
         </div>
 
-        <Card className="bg-gradient-to-br from-sage-950/80 to-sage-900/50 border border-sage-700/30">
-          <CardBody className="p-8 text-center">
+        <StaticCard className="bg-gradient-to-br from-sage-950/80 to-sage-900/50 border border-sage-700/30">
+          <StaticCardBody className="p-8 text-center">
             <h3 className="text-2xl font-bold text-sage-300 mb-4">
               Need Professional Tree Care Assistance?
             </h3>
@@ -268,29 +266,25 @@ export default function TreeCareGuides() {
               Contact our certified arborists for expert advice and service.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button
+              <ButtonLink
                 href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                as="a"
-                size="lg"
                 className="bg-sage-600 hover:bg-sage-500 text-white font-bold shadow-lg"
                 startContent={<PhoneIcon className="w-5 h-5" />}
                 aria-label="Call Barker Tree Services for professional assistance"
               >
                 Call {BUSINESS_INFO.phone}
-              </Button>
-              <Button
+              </ButtonLink>
+              <ButtonLink
                 href="/contact"
-                as="a"
-                size="lg"
                 variant="bordered"
                 className="border-sage-300 text-sage-300 hover:bg-sage-900/30 font-bold"
                 aria-label="Request professional tree care consultation"
               >
                 Get Free Consultation
-              </Button>
+              </ButtonLink>
             </div>
-          </CardBody>
-        </Card>
+          </StaticCardBody>
+        </StaticCard>
       </div>
     </section>
   )
