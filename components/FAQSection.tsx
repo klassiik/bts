@@ -49,7 +49,7 @@ export default function FAQSection() {
               className="bg-charcoal-800/50 border border-evergreen-900/20"
             >
               <details className="group">
-                <summary className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-charcoal-700/30 transition-colors [&::-webkit-details-marker]:hidden">
+                <summary className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-charcoal-700/30 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-evergreen-400 outline-none transition-colors [&::-webkit-details-marker]:hidden">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <StaticChip
@@ -60,9 +60,10 @@ export default function FAQSection() {
                         {item.category}
                       </StaticChip>
                     </div>
-                    <h3 className="text-lg font-semibold text-charcoal-50 pr-4">
+                    {/* span, not h3: see CityServiceContent FAQ note */}
+                    <span className="block text-lg font-semibold text-charcoal-50 pr-4">
                       {item.question}
-                    </h3>
+                    </span>
                   </div>
                   <ChevronDownIcon
                     className="w-5 h-5 flex-shrink-0 text-charcoal-300 transition-transform group-open:-rotate-180 group-open:text-evergreen-300"

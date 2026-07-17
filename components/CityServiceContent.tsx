@@ -206,8 +206,12 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                   {detail.faqs.map((faq) => (
                     <StaticCard key={faq.question} className="bg-charcoal-800/50 border border-evergreen-900/20">
                       <details className="group">
-                        <summary className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-charcoal-700/30 transition-colors [&::-webkit-details-marker]:hidden">
-                          <h3 className="text-lg font-semibold text-charcoal-50">{faq.question}</h3>
+                        <summary className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-charcoal-700/30 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-evergreen-400 outline-none transition-colors [&::-webkit-details-marker]:hidden">
+                          {/* span, not h3: some screen readers treat <summary>
+                              as a button and drop a nested heading from the
+                              outline anyway; the FAQPage schema carries the
+                              question semantics that matter. */}
+                          <span className="text-lg font-semibold text-charcoal-50">{faq.question}</span>
                           <ChevronDownIcon
                             className="w-5 h-5 flex-shrink-0 text-charcoal-300 transition-transform group-open:-rotate-180 group-open:text-evergreen-300"
                             aria-hidden="true"
