@@ -19,7 +19,8 @@ import {
   WrenchScrewdriverIcon,
   MapPinIcon,
   InformationCircleIcon,
-  EnvelopeIcon
+  EnvelopeIcon,
+  BookOpenIcon
 } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
 
@@ -27,6 +28,7 @@ const navItems = [
   { href: '/', label: 'Home', icon: HomeIcon },
   { href: '/services', label: 'Services', icon: WrenchScrewdriverIcon },
   { href: '/service-areas', label: 'Service Areas', icon: MapPinIcon },
+  { href: '/guides', label: 'Guides', icon: BookOpenIcon },
   { href: '/about', label: 'About', icon: InformationCircleIcon },
   { href: '/contact', label: 'Contact', icon: EnvelopeIcon }
 ]

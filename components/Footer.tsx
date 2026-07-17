@@ -47,6 +47,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="list-none">
+                <Link href="/guides" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to tree care guides">
+                  <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
+                  Guides
+                </Link>
+              </li>
+              <li className="list-none">
                 <Link href="/contact" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to contact page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Contact
