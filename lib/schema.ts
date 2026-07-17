@@ -230,3 +230,33 @@ export function generateFAQSchema(items: { question: string; answer: string }[] 
     }))
   }
 }
+
+/* Article schema for the /guides pages. author/publisher both resolve to the
+ * business @id so the guide is attributed to a real, credentialed local
+ * entity rather than an anonymous byline — which is what E-E-A-T and AI
+ * citation reward. datePublished/dateModified come from the guide's own
+ * `updated` field so they reflect real edits, not the build time. */
+export function generateArticleSchema(options: {
+  headline: string
+  description: string
+  path: string
+  updated: string
+}) {
+  const { headline, description, path, updated } = options
+  const url = `${BUSINESS_INFO.url}${path}`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline,
+    description,
+    url,
+    datePublished: updated,
+    dateModified: updated,
+    inLanguage: 'en-US',
+    image: `${BUSINESS_INFO.url}/logo.png`,
+    author: { '@id': BUSINESS_ID },
+    publisher: { '@id': BUSINESS_ID },
+    mainEntityOfPage: url
+  }
+}
