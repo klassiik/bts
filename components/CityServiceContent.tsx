@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { BUSINESS_INFO, GOOGLE_BUSINESS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
-import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import Video from '@/components/Video'
 import { getVideoUrl } from '@/lib/media'
 
@@ -192,6 +192,41 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               </div>
             </StaticCardBody>
           </StaticCard>
+
+          {/* City-specific FAQs. Native <details> for the same reasons as
+              FAQSection: zero client JS, and every answer stays in the DOM so
+              crawlers and AI engines can read it without hydrating first. */}
+          {detail && detail.faqs.length > 0 && (
+            <section className="py-20 px-4" aria-label={`Frequently asked questions about tree services in ${city}`}>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
+                  Tree Service Questions from {city} Homeowners
+                </h2>
+                <div className="space-y-4">
+                  {detail.faqs.map((faq) => (
+                    <StaticCard key={faq.question} className="bg-charcoal-800/50 border border-evergreen-900/20">
+                      <details className="group">
+                        <summary className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-charcoal-700/30 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-evergreen-400 outline-none transition-colors [&::-webkit-details-marker]:hidden">
+                          {/* span, not h3: some screen readers treat <summary>
+                              as a button and drop a nested heading from the
+                              outline anyway; the FAQPage schema carries the
+                              question semantics that matter. */}
+                          <span className="text-lg font-semibold text-charcoal-50">{faq.question}</span>
+                          <ChevronDownIcon
+                            className="w-5 h-5 flex-shrink-0 text-charcoal-300 transition-transform group-open:-rotate-180 group-open:text-evergreen-300"
+                            aria-hidden="true"
+                          />
+                        </summary>
+                        <div className="px-6 pb-4 pt-2 border-t border-evergreen-900/20">
+                          <p className="text-charcoal-100 leading-relaxed">{faq.answer}</p>
+                        </div>
+                      </details>
+                    </StaticCard>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Social proof: the linked Google profile only. Hosted testimonial
               copy was removed sitewide — see HomeContent.tsx for rationale. */}

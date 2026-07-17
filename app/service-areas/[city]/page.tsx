@@ -3,7 +3,7 @@ import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { notFound } from 'next/navigation'
 import CityServiceContent from '@/components/CityServiceContent'
-import { generateServiceSchema, generateBreadcrumbSchema, toSafeJsonLd } from '@/lib/schema'
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema, toSafeJsonLd } from '@/lib/schema'
 import { cityToSlug } from '@/lib/utils'
 
 interface PageProps {
@@ -61,10 +61,19 @@ export default async function CityServicePage({ params }: PageProps) {
     { name: cityData.city, path: `/service-areas/${city}` }
   ])
 
+  // City-specific FAQs only — passing the sitewide FAQ_DATA default here would
+  // emit the same FAQPage on all 10 city pages, which is the duplicate-content
+  // problem these pages exist to avoid.
+  const detail = getCityDetail(cityData.city)
+  const faqSchema = detail?.faqs.length ? generateFAQSchema(detail.faqs) : null
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(cityServiceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbSchema) }} />
+      {faqSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(faqSchema) }} />
+      )}
       <CityServiceContent city={cityData.city} state={cityData.state} />
     </>
   )

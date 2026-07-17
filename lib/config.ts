@@ -10,6 +10,13 @@ export const CITATION_PROFILES = [
   { name: 'Google', url: 'https://maps.google.com/?cid=12582642690419062828' },
   { name: 'Facebook', url: 'https://www.facebook.com/barkertreeservices' },
   { name: 'Yelp', url: 'https://www.yelp.com/biz/barker-tree-services-colfax' },
+  { name: 'HomeAdvisor', url: 'https://www.homeadvisor.com/rated.BarkerTreeService.87252061.html' },
+  // Live, correct NAP, but the slug is a leftover from a prior claim under
+  // another business's name. Worth asking Nextdoor to re-slug it; until then
+  // this is still the canonical Nextdoor profile and belongs in sameAs.
+  { name: 'Nextdoor', url: 'https://nextdoor.com/pages/hollingsworth-tree-service-colfax-ca/' },
+  // TODO: the BBB profile is filed under "not elsewhere classified" — ask BBB
+  // to recategorize to a tree-service category, then update this URL.
   { name: 'BBB', url: 'https://www.bbb.org/us/ca/colfax/profile/not-elsewhere-classified/barker-tree-services-1156-90094954' }
 ]
 
