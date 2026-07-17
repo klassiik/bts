@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { BUSINESS_INFO, GOOGLE_BUSINESS, YEARS_IN_BUSINESS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
+import { getCityServiceCombo } from '@/lib/cityServices'
+import { cityToSlug } from '@/lib/utils'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import Video from '@/components/Video'
@@ -11,8 +13,16 @@ interface CityServiceContentProps {
   state: string
 }
 
+const SERVICE_CARDS = [
+  { id: 'trimming', icon: ScissorsIcon, title: 'Tree Trimming', blurb: 'Professional pruning for health and beauty', accent: 'evergreen' },
+  { id: 'removal', icon: TruckIcon, title: 'Tree Removal', blurb: 'Safe removal of hazardous trees', accent: 'evergreen' },
+  { id: 'stump', icon: Cog6ToothIcon, title: 'Stump Grinding', blurb: 'Complete stump removal solutions', accent: 'evergreen' },
+  { id: 'emergency', icon: BoltIcon, title: 'Emergency', blurb: '24/7 storm damage response', accent: 'amber' },
+] as const
+
 export default function CityServiceContent({ city, state }: CityServiceContentProps) {
   const detail = getCityDetail(city)
+  const citySlug = cityToSlug(city)
 
   const localHighlights = detail?.highlights ?? [
     'Local area specialists since 2018',
@@ -90,42 +100,29 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Tree Services in {city}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Link href="/services/trimming" className="block" aria-label={`Tree trimming in ${city}: details, costs and FAQs`}>
-              <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-                <StaticCardBody className="text-center p-6">
-                  <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                  <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
-                  <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
-                </StaticCardBody>
-              </StaticCard>
-            </Link>
-            <Link href="/services/removal" className="block" aria-label={`Tree removal in ${city}: details, costs and FAQs`}>
-              <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-                <StaticCardBody className="text-center p-6">
-                  <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                  <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
-                  <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
-                </StaticCardBody>
-              </StaticCard>
-            </Link>
-            <Link href="/services/stump" className="block" aria-label={`Stump grinding in ${city}: details, costs and FAQs`}>
-              <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all">
-                <StaticCardBody className="text-center p-6">
-                  <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                  <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
-                  <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
-                </StaticCardBody>
-              </StaticCard>
-            </Link>
-            <Link href="/services/emergency" className="block" aria-label={`Emergency tree service in ${city}: details, costs and FAQs`}>
-              <StaticCard className="h-full bg-charcoal-800/50 border border-amber-900/20 hover:border-amber-600/40 hover:scale-105 transition-all">
-                <StaticCardBody className="text-center p-6">
-                  <BoltIcon className="w-10 h-10 text-amber-400 mx-auto mb-3" aria-hidden="true" />
-                  <h3 className="font-bold text-amber-400 mb-2">Emergency</h3>
-                  <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
-                </StaticCardBody>
-              </StaticCard>
-            </Link>
+            {SERVICE_CARDS.map(({ id, icon: Icon, title, blurb, accent }) => {
+              // Point at the city-specific combo page when one exists (the more
+              // specific, better-targeted page); otherwise the generic service.
+              const hasCombo = Boolean(getCityServiceCombo(citySlug, id))
+              const href = hasCombo ? `/service-areas/${citySlug}/${id}` : `/services/${id}`
+              const isAmber = accent === 'amber'
+              return (
+                <Link
+                  key={id}
+                  href={href}
+                  className="block"
+                  aria-label={`${title} in ${city}: details, costs and FAQs`}
+                >
+                  <StaticCard className={`h-full bg-charcoal-800/50 border ${isAmber ? 'border-amber-900/20 hover:border-amber-600/40' : 'border-evergreen-900/20 hover:border-evergreen-600/40'} hover:scale-105 transition-all`}>
+                    <StaticCardBody className="text-center p-6">
+                      <Icon className={`w-10 h-10 mx-auto mb-3 ${isAmber ? 'text-amber-400' : 'text-evergreen-400'}`} aria-hidden="true" />
+                      <h3 className={`font-bold mb-2 ${isAmber ? 'text-amber-400' : 'text-evergreen-300'}`}>{title}</h3>
+                      <p className="text-charcoal-100 text-sm">{blurb}</p>
+                    </StaticCardBody>
+                  </StaticCard>
+                </Link>
+              )
+            })}
           </div>
 
           <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 mb-12">

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { SERVICE_AREAS } from '@/lib/config'
 import { GUIDES } from '@/lib/guides'
+import { CITY_SERVICE_COMBOS } from '@/lib/cityServices'
 import { cityToSlug } from '@/lib/utils'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -77,5 +78,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...staticPages, ...servicePages, ...cityPages, ...guidePages]
+  // Pilot city×service combo pages (only the ones that actually exist)
+  const cityServicePages: MetadataRoute.Sitemap = CITY_SERVICE_COMBOS.map((combo) => ({
+    url: `${baseUrl}/service-areas/${combo.citySlug}/${combo.serviceId}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }))
+
+  return [...staticPages, ...servicePages, ...cityPages, ...cityServicePages, ...guidePages]
 }
