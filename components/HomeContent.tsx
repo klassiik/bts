@@ -28,7 +28,7 @@ export default function HomeContent() {
             getVideoHeroUrl('553827505_24841983355418125_3276620820634142277_n') ??
             getVideoUrl('553827505_24841983355418125_3276620820634142277_n')
           }
-          mobileSrc={getVideoMobileUrl('552252494_24763328253355339_8075536204197305204_n')}
+          mobileSrc={getVideoMobileUrl('553827505_24841983355418125_3276620820634142277_n')}
           poster={getVideoPosterUrl('553827505_24841983355418125_3276620820634142277_n')}
           className="absolute inset-0 w-full h-full object-cover opacity-40"
           style={{ zIndex: 0 }}
