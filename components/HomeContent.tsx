@@ -170,105 +170,6 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* GEO: Value propositions section with semantic article structure */}
-      <section className="py-20 px-4 bg-charcoal-950" aria-label="Why choose us - Key differentiators">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Why Choose Barker Tree Services?</h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {/* GEO: Value proposition cards with list item roles for structured AI extraction */}
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
-              <StaticCardBody className="text-center p-6">
-                <CheckBadgeIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Licensed & Insured</h3>
-                <p className="text-charcoal-100 text-sm">CSLB #{BUSINESS_INFO.cslb}</p>
-              </StaticCardBody>
-            </StaticCard>
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
-              <StaticCardBody className="text-center p-6">
-                <AcademicCapIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Training</h3>
-                <p className="text-charcoal-100 text-sm">Ongoing education & training</p>
-              </StaticCardBody>
-            </StaticCard>
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
-              <StaticCardBody className="text-center p-6">
-                <UserGroupIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Team</h3>
-                <p className="text-charcoal-100 text-sm">{COMPANY_CREDENTIALS.experience}</p>
-              </StaticCardBody>
-            </StaticCard>
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
-              <StaticCardBody className="text-center p-6">
-                <BoltIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Emergency Ready</h3>
-                <p className="text-charcoal-100 text-sm">24/7 storm response</p>
-              </StaticCardBody>
-            </StaticCard>
-          </div>
-        </div>
-      </section>
-
-      {/* Social proof: the real, verifiable Google profile only. On-site
-          testimonial copy was removed — unverifiable first-party quotes are
-          "self-serving reviews" under Google's review-snippet policy, and the
-          linked GBP rating is a stronger signal than any quote we host. */}
-      <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer reviews">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">Rated {GOOGLE_BUSINESS.rating.toFixed(1)} on Google</h2>
-
-          <StaticCard className="max-w-2xl mx-auto mb-12 bg-charcoal-800/80 border border-evergreen-900/20">
-            <StaticCardBody className="text-center p-8">
-              <div className="flex justify-center items-center gap-1 mb-4" aria-hidden="true">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className="w-7 h-7 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-charcoal-100 mb-6">
-                Based on {GOOGLE_BUSINESS.reviewCount} reviews on Google
-              </p>
-              <a
-                href={GOOGLE_BUSINESS.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
-                aria-label={`Read all ${GOOGLE_BUSINESS.reviewCount} reviews on our Google Business Profile`}
-              >
-                Read every review on Google <span aria-hidden="true">→</span>
-              </a>
-            </StaticCardBody>
-          </StaticCard>
-
-          <div className="text-center">
-            <p className="text-charcoal-50 mb-6">Licensed, insured, and serving Colfax and surrounding areas since {FOUNDING_YEAR}</p>
-            <ButtonLink
-              href="/contact"
-              className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white text-lg font-bold shadow-lg"
-              startContent={<ClipboardDocumentListIcon className="w-5 h-5" aria-hidden="true" />}
-              aria-label="Request a free estimate"
-            >
-              Get Your Free Estimate
-            </ButtonLink>
-            <p className="mt-4 text-charcoal-100">
-              Prefer to talk?{' '}
-              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="font-semibold text-evergreen-300 underline hover:text-evergreen-200">
-                Call {BUSINESS_INFO.phone}
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Recent work — real job-site photos (visual proof of work) */}
-      <section className="py-20 px-4 bg-charcoal-950" aria-label="Photos of recent tree work">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-300 mb-4 text-center">Recent Work</h2>
-          <p className="text-charcoal-50 text-center mb-12">
-            Real jobs from around Placer &amp; Nevada Counties — sectional removals, rigging, and cleanup
-          </p>
-          <WorkGallery photos={WORK_PHOTOS} />
-        </div>
-      </section>
-
       {/* GEO: Services preview with structured offer catalog for AI extraction */}
       <section className="py-20 px-4 bg-charcoal-950" aria-label="Professional tree services preview">
         <div className="max-w-6xl mx-auto">
@@ -337,6 +238,105 @@ export default function HomeContent() {
               View All Services <span aria-hidden="true">→</span>
             </ButtonLink>
           </div>
+        </div>
+      </section>
+
+      {/* GEO: Value propositions section with semantic article structure */}
+      <section className="py-20 px-4 bg-charcoal-900" aria-label="Why choose us - Key differentiators">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Why Choose Barker Tree Services?</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {/* GEO: Value proposition cards with list item roles for structured AI extraction */}
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+              <StaticCardBody className="text-center p-6">
+                <CheckBadgeIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Licensed & Insured</h3>
+                <p className="text-charcoal-100 text-sm">CSLB #{BUSINESS_INFO.cslb}</p>
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+              <StaticCardBody className="text-center p-6">
+                <AcademicCapIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Training</h3>
+                <p className="text-charcoal-100 text-sm">Ongoing education & training</p>
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+              <StaticCardBody className="text-center p-6">
+                <UserGroupIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Team</h3>
+                <p className="text-charcoal-100 text-sm">{COMPANY_CREDENTIALS.experience}</p>
+              </StaticCardBody>
+            </StaticCard>
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
+              <StaticCardBody className="text-center p-6">
+                <BoltIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Emergency Ready</h3>
+                <p className="text-charcoal-100 text-sm">24/7 storm response</p>
+              </StaticCardBody>
+            </StaticCard>
+          </div>
+        </div>
+      </section>
+
+      {/* Social proof: the real, verifiable Google profile only. On-site
+          testimonial copy was removed — unverifiable first-party quotes are
+          "self-serving reviews" under Google's review-snippet policy, and the
+          linked GBP rating is a stronger signal than any quote we host. */}
+      <section className="py-20 px-4 bg-charcoal-950" aria-label="Customer reviews">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">Rated {GOOGLE_BUSINESS.rating.toFixed(1)} on Google</h2>
+
+          <StaticCard className="max-w-2xl mx-auto mb-12 bg-charcoal-800/80 border border-evergreen-900/20">
+            <StaticCardBody className="text-center p-8">
+              <div className="flex justify-center items-center gap-1 mb-4" aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                  <StarIcon key={i} className="w-7 h-7 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-charcoal-100 mb-6">
+                Based on {GOOGLE_BUSINESS.reviewCount} reviews on Google
+              </p>
+              <a
+                href={GOOGLE_BUSINESS.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
+                aria-label={`Read all ${GOOGLE_BUSINESS.reviewCount} reviews on our Google Business Profile`}
+              >
+                Read every review on Google <span aria-hidden="true">→</span>
+              </a>
+            </StaticCardBody>
+          </StaticCard>
+
+          <div className="text-center">
+            <p className="text-charcoal-50 mb-6">Licensed, insured, and serving Colfax and surrounding areas since {FOUNDING_YEAR}</p>
+            <ButtonLink
+              href="/contact"
+              className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white text-lg font-bold shadow-lg"
+              startContent={<ClipboardDocumentListIcon className="w-5 h-5" aria-hidden="true" />}
+              aria-label="Request a free estimate"
+            >
+              Get Your Free Estimate
+            </ButtonLink>
+            <p className="mt-4 text-charcoal-100">
+              Prefer to talk?{' '}
+              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="font-semibold text-evergreen-300 underline hover:text-evergreen-200">
+                Call {BUSINESS_INFO.phone}
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent work — real job-site photos (visual proof of work) */}
+      <section className="py-20 px-4 bg-charcoal-900" aria-label="Photos of recent tree work">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-4 text-center">Recent Work</h2>
+          <p className="text-charcoal-50 text-center mb-12">
+            Real jobs from around Placer &amp; Nevada Counties — sectional removals, rigging, and cleanup
+          </p>
+          <WorkGallery photos={WORK_PHOTOS} />
         </div>
       </section>
 
