@@ -9,11 +9,22 @@ interface PageSeoProps {
   keywords?: string[]
 }
 
+const BRAND_SUFFIX = ' | Barker Tree Services'
+// Google cuts titles at roughly 600px (~60-70 characters). Past this length
+// the suffix would be truncated anyway, and Google already shows the site
+// name above the result, so long page titles go out without it.
+export const MAX_BRANDED_TITLE_LENGTH = 70
+
+export function pageTitle(title: string): string {
+  const branded = `${title}${BRAND_SUFFIX}`
+  return branded.length <= MAX_BRANDED_TITLE_LENGTH ? branded : title
+}
+
 /* GEO: Enhanced metadata generator with comprehensive AI search optimization */
 export function generateMetadata({ title, description, path, keywords }: PageSeoProps): Metadata {
   const url = `${BUSINESS_INFO.url}${path}`
-  const fullTitle = `${title} | Barker Tree Services`
-  
+  const fullTitle = pageTitle(title)
+
   /* GEO: Base keywords enriched with location and service intent modifiers */
   const enhancedKeywords = [
     'tree services Colfax CA',
