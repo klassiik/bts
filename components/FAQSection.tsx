@@ -13,16 +13,6 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 
 import { FAQ_DATA } from '@/lib/faqData'
 
-function getCategoryColor(category: string) {
-  switch (category) {
-    case 'general': return 'bg-evergreen-900/30 text-evergreen-300 border-evergreen-700/30'
-    case 'services': return 'bg-sage-900/30 text-sage-300 border-sage-700/30'
-    case 'pricing': return 'bg-amber-900/30 text-amber-300 border-amber-700/30'
-    case 'emergency': return 'bg-red-900/30 text-red-300 border-red-700/30'
-    default: return 'bg-charcoal-800/30 text-charcoal-300 border-charcoal-700/30'
-  }
-}
-
 export default function FAQSection() {
   return (
     <section className="py-20 px-4 bg-charcoal-950" aria-label="Frequently asked questions about tree services">
@@ -51,15 +41,6 @@ export default function FAQSection() {
               <details className="group">
                 <summary className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-charcoal-700/30 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-evergreen-400 outline-none transition-colors [&::-webkit-details-marker]:hidden">
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <StaticChip
-                        size="sm"
-                        variant="bordered"
-                        className={getCategoryColor(item.category)}
-                      >
-                        {item.category}
-                      </StaticChip>
-                    </div>
                     {/* span, not h3: see CityServiceContent FAQ note */}
                     <span className="block text-lg font-semibold text-charcoal-50 pr-4">
                       {item.question}

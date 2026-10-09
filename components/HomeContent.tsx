@@ -214,7 +214,7 @@ export default function HomeContent() {
           linked GBP rating is a stronger signal than any quote we host. */}
       <section className="py-20 px-4 bg-charcoal-900" aria-label="Customer reviews">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">What Our Customers Say</h2>
+          <h2 className="text-4xl font-bold text-evergreen-200 mb-4 text-center">Rated {GOOGLE_BUSINESS.rating.toFixed(1)} on Google</h2>
 
           <StaticCard className="max-w-2xl mx-auto mb-12 bg-charcoal-800/80 border border-evergreen-900/20">
             <StaticCardBody className="text-center p-8">
@@ -223,9 +223,6 @@ export default function HomeContent() {
                   <StarIcon key={i} className="w-7 h-7 text-amber-400" />
                 ))}
               </div>
-              <p className="text-2xl font-bold text-evergreen-200 mb-2">
-                {GOOGLE_BUSINESS.rating.toFixed(1)} out of 5 on Google
-              </p>
               <p className="text-charcoal-100 mb-6">
                 Based on {GOOGLE_BUSINESS.reviewCount} reviews on Google
               </p>
@@ -236,7 +233,7 @@ export default function HomeContent() {
                 className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
                 aria-label={`Read all ${GOOGLE_BUSINESS.reviewCount} reviews on our Google Business Profile`}
               >
-                Read every review on Google →
+                Read every review on Google <span aria-hidden="true">→</span>
               </a>
             </StaticCardBody>
           </StaticCard>
@@ -286,7 +283,7 @@ export default function HomeContent() {
                   <ScissorsIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                   <h3 className="font-bold text-evergreen-300 mb-2">Tree Trimming</h3>
                   <p className="text-charcoal-100 text-sm">Professional pruning for health and beauty</p>
-                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more →</span>
+                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more <span aria-hidden="true">→</span></span>
                 </StaticCardBody>
               </StaticCard>
             </Link>
@@ -299,7 +296,7 @@ export default function HomeContent() {
                   <TruckIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                   <h3 className="font-bold text-evergreen-300 mb-2">Tree Removal</h3>
                   <p className="text-charcoal-100 text-sm">Safe removal of hazardous trees</p>
-                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more →</span>
+                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more <span aria-hidden="true">→</span></span>
                 </StaticCardBody>
               </StaticCard>
             </Link>
@@ -312,7 +309,7 @@ export default function HomeContent() {
                   <Cog6ToothIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                   <h3 className="font-bold text-evergreen-300 mb-2">Stump Grinding</h3>
                   <p className="text-charcoal-100 text-sm">Complete stump removal solutions</p>
-                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more →</span>
+                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more <span aria-hidden="true">→</span></span>
                 </StaticCardBody>
               </StaticCard>
             </Link>
@@ -325,7 +322,7 @@ export default function HomeContent() {
                   <BoltIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                   <h3 className="font-bold text-evergreen-300 mb-2">Emergency</h3>
                   <p className="text-charcoal-100 text-sm">24/7 storm damage response</p>
-                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more →</span>
+                  <span className="mt-3 text-sm font-semibold text-evergreen-300 group-hover:text-evergreen-200">Learn more <span aria-hidden="true">→</span></span>
                 </StaticCardBody>
               </StaticCard>
             </Link>
@@ -337,7 +334,7 @@ export default function HomeContent() {
               variant="bordered"
               className="border-evergreen-600 text-evergreen-300 hover:bg-evergreen-950/30 text-lg font-bold"
             >
-              View All Services →
+              View All Services <span aria-hidden="true">→</span>
             </ButtonLink>
           </div>
         </div>

@@ -21,45 +21,45 @@ export default function Footer() {
 
           <nav aria-label="Footer navigation">
             <h3 className="font-bold text-evergreen-300 mb-4 text-lg">Navigation</h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-0 text-sm">
               <li className="list-none">
-                <Link href="/" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to home page">
+                <Link href="/"className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to home page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Home
                 </Link>
               </li>
               <li className="list-none">
-                <Link href="/services" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to services page">
+                <Link href="/services" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to services page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Services
                 </Link>
               </li>
               <li className="list-none">
-                <Link href="/service-areas" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to service areas page">
+                <Link href="/service-areas" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to service areas page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Service Areas
                 </Link>
               </li>
               <li className="list-none">
-                <Link href="/about" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to about page">
+                <Link href="/about" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to about page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   About
                 </Link>
               </li>
               <li className="list-none">
-                <Link href="/guides" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to tree care guides">
+                <Link href="/guides" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to tree care guides">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Guides
                 </Link>
               </li>
               <li className="list-none">
-                <Link href="/contact" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to contact page">
+                <Link href="/contact" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to contact page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Contact
                 </Link>
               </li>
               <li className="list-none">
-                <Link href="/emergency" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group" aria-label="Navigate to emergency services page">
+                <Link href="/emergency" className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group" aria-label="Navigate to emergency services page">
                   <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
                   Emergency
                 </Link>
@@ -69,12 +69,12 @@ export default function Footer() {
 
           <nav aria-label="Service areas navigation">
             <h3 className="font-bold text-evergreen-300 mb-4 text-lg">Service Areas</h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-0 text-sm">
               {SERVICE_AREAS.map((area) => (
                 <li key={`${area.city}-${area.state}-${cityToSlug(area.city)}`} className="list-none">
                   <Link
                     href={`/service-areas/${cityToSlug(area.city)}`}
-                    className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 group"
+                    className="text-charcoal-100 hover:text-evergreen-300 transition-colors flex items-center gap-2 py-2 group"
                     aria-label={`Tree services in ${area.city}, ${area.state}`}
                   >
                     <span className="w-1.5 h-1.5 bg-sage-500 rounded-full group-hover:bg-evergreen-400 transition-colors" aria-hidden="true"></span>
@@ -87,12 +87,12 @@ export default function Footer() {
 
           <address className="not-italic">
             <h3 className="font-bold text-evergreen-300 mb-4 text-lg">Contact</h3>
-            <div className="space-y-3">
-              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Call Barker Tree Services">
+            <div className="space-y-1">
+              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="flex items-center gap-2 py-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Call Barker Tree Services">
                 <PhoneIcon className="w-5 h-5 text-sage-400 group-hover:text-evergreen-400 transition-colors" aria-hidden="true" />
                 {BUSINESS_INFO.phone}
               </a>
-              <a href={`mailto:${BUSINESS_INFO.email}`} className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Email Barker Tree Services">
+              <a href={`mailto:${BUSINESS_INFO.email}`} className="flex items-center gap-2 py-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group" aria-label="Email Barker Tree Services">
                 <EnvelopeIcon className="w-5 h-5 text-sage-400 group-hover:text-evergreen-400 transition-colors" aria-hidden="true" />
                 {BUSINESS_INFO.email}
               </a>
@@ -100,7 +100,7 @@ export default function Footer() {
                 href={GOOGLE_BUSINESS.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group"
+                className="flex items-center gap-2 py-2 text-sm text-charcoal-100 hover:text-evergreen-300 transition-colors group"
                 aria-label={`Barker Tree Services on Google — rated ${GOOGLE_BUSINESS.rating} stars`}
               >
                 <span className="text-amber-400" aria-hidden="true">★</span>

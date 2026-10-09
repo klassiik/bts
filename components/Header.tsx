@@ -2,7 +2,6 @@
 
 /* GEO: Header navigation with semantic nav landmarks and aria-current for AI understanding */
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import {
@@ -108,13 +107,9 @@ export default function Header() {
           <div className="flex basis-0 flex-row flex-grow flex-nowrap justify-start bg-transparent items-center no-underline text-base whitespace-nowrap box-border lg:justify-start lg:max-w-fit">
             <Link href="/" className="flex items-center gap-3 group" aria-label="Barker Tree Services home page">
               <div className="relative transition-transform duration-300 group-hover:scale-110">
-                <Image
-                  src="/logo1.svg"
-                  alt="Barker Tree Services Logo"
-                  width={48}
-                  height={48}
-                  className="h-10 w-10 lg:h-12 lg:w-12"
-                  priority
+                <span
+                  aria-hidden="true"
+                  className="block h-10 w-10 lg:h-12 lg:w-12 bg-evergreen-300 [mask-image:url('/logo1.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url('/logo1.svg')] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
                 />
               </div>
               <div className="flex flex-col transition-all duration-300 group-hover:translate-x-1">
@@ -138,11 +133,12 @@ export default function Header() {
               <li key={item.href} role="listitem">
                 <Link
                   href={item.href}
-                  className={`group flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${linkTone(isActive)}`}
+                  className={`group flex items-center gap-2 px-3 xl:px-4 py-2 rounded-lg font-semibold text-sm whitespace-nowrap transition-all duration-200 ${linkTone(isActive)}`}
                   aria-current={isActive ? 'page' : undefined}
                   aria-label={`Navigate to ${item.label}`}
                 >
-                  <Icon className={`w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${
+                  {/* Icons only from xl: at 1024px they push "Service Areas" onto two lines */}
+                  <Icon className={`hidden xl:block w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${
                     isActive ? 'text-evergreen-300' : 'text-sage-300'
                   }`} aria-hidden="true" />
                   <span>{item.label}</span>
