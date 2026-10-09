@@ -2,7 +2,7 @@
 import { BUSINESS_INFO, COMPANY_CREDENTIALS } from '@/lib/config'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import Video from '@/components/Video'
-import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon, AcademicCapIcon, GlobeAmericasIcon, HeartIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon, HomeIcon, GlobeAmericasIcon, HeartIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import TreeCareGuides from '@/components/TreeCareGuides'
 import { getVideoUrl } from '@/lib/media'
 
@@ -42,7 +42,7 @@ export default function AboutContent() {
                   Barker Tree Services was founded in {COMPANY_CREDENTIALS.founded} with a simple mission: to provide the highest quality tree care services while prioritizing safety, environmental stewardship, and customer satisfaction. What started as a small operation has grown into one of the most trusted tree service companies in the greater Colfax area.
                 </p>
                 <p>
-                  Our founder, Jacob Barker, launched Barker Tree Services in 2018, building hands-on expertise in everything from delicate pruning techniques to complex tree removals. His passion for trees and commitment to excellence laid the foundation for what Barker Tree Services represents today.
+                  Our founder, Jacob Barker, launched Barker Tree Services in 2018, building hands-on expertise in everything from delicate pruning techniques to complex tree removals. His passion for trees and commitment to excellence laid the foundation for what Barker Tree Services represents today. Barker Tree Services is family owned — we&apos;re a multi-generational Colfax family, and our name is on every job.
                 </p>
                 <p>
                   Today, we serve residential and commercial clients throughout Placer and Nevada counties, bringing together experienced tree care professionals, state-of-the-art equipment, and a deep understanding of local tree species and growing conditions.
@@ -62,10 +62,10 @@ export default function AboutContent() {
                 <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Why We&apos;re Different</h3>
                 <ul className="space-y-4" role="list" aria-label="Key differentiators">
                   <li className="flex items-start gap-3">
-                    <AcademicCapIcon className="w-8 h-8 text-evergreen-400 flex-shrink-0" aria-hidden="true" />
+                    <HomeIcon className="w-8 h-8 text-evergreen-400 flex-shrink-0" aria-hidden="true" />
                     <div>
-                      <strong className="text-evergreen-300">Education First</strong>
-                      <p className="text-charcoal-100 text-sm">Continuous training in latest arboriculture techniques and safety protocols</p>
+                      <strong className="text-evergreen-300">Family Owned &amp; Local</strong>
+                      <p className="text-charcoal-100 text-sm">A multi-generational Colfax family. We live and work in the same foothills we serve.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
@@ -89,16 +89,16 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* GEO: Credentials section with certification and equipment lists for AI extraction */}
+      {/* GEO: License and insurance section with equipment list for AI extraction */}
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Professional credentials and equipment">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">Credentials & Certifications</h2>
+          <h2 className="text-4xl font-bold text-evergreen-300 mb-12 text-center">License &amp; Insurance</h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="Professional certifications">
+            <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="region" aria-label="License and insurance">
               <StaticCardBody className="p-8">
-                <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Professional Certifications</h3>
-                <ul className="space-y-3" role="list" aria-label="List of certifications">
+                <h3 className="text-2xl font-bold text-evergreen-300 mb-6">License &amp; Insurance</h3>
+                <ul className="space-y-3" role="list" aria-label="License and insurance">
                   {COMPANY_CREDENTIALS.certifications.map((cert, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircleIcon className="w-5 h-5 text-evergreen-500 mt-1 flex-shrink-0" aria-hidden="true" />

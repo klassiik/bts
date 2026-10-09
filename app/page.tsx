@@ -12,7 +12,7 @@ export const metadata = generatePageMetadata({
     'tree removal Colfax CA',
     'tree trimming Grass Valley',
     'emergency tree service Northern California',
-    'licensed arborist Colfax',
+    'licensed tree service Colfax',
     'stump grinding Nevada City',
     'tree care Auburn CA'
   ]

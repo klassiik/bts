@@ -26,13 +26,13 @@ export const FAQ_DATA: FAQItem[] = [
   {
     id: 'licensed-insured',
     question: 'Is Barker Tree Services licensed and insured?',
-    answer: 'Yes, Barker Tree Services is fully licensed (CSLB #1085329) and insured with complete liability and workers compensation coverage. We maintain all required certifications for safe tree care operations in California.',
+    answer: 'Yes. Barker Tree Services holds California contractor license C-49 (Tree & Palm), CSLB #1085329, and is fully insured. You can verify the license on the CSLB website.',
     category: 'general'
   },
   {
     id: 'emergency-services',
     question: 'Do you offer emergency tree services?',
-    answer: 'Yes, we provide 24/7 emergency tree services for storm damage, fallen trees, and hazardous tree situations throughout our service area. Our rapid response team is equipped to handle urgent tree emergencies that threaten property or safety.',
+    answer: 'Yes, we provide 24/7 emergency tree services for storm damage, fallen trees, and hazardous tree situations throughout our service area. Our crew is equipped to handle urgent tree emergencies that threaten property or safety.',
     category: 'emergency'
   },
   {
@@ -56,7 +56,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     id: 'emergency-response-time',
     question: 'How quickly can you respond to emergency tree situations?',
-    answer: 'We typically respond to emergency tree situations within 2-4 hours during business hours, and within 24 hours for after-hours emergencies. During major storms, response times may vary based on demand and safety conditions.',
+    answer: 'Emergencies get a same-day response, 24/7. During major storms, when many properties are hit at once, we prioritize situations that threaten people, homes, or access. For non-emergency work, we\'re out the next day.',
     category: 'emergency'
   },
   {
@@ -74,7 +74,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     id: 'equipment-used',
     question: 'What equipment do you use for tree services?',
-    answer: 'We use professional-grade equipment including chainsaws, pole saws, climbing gear, aerial lifts, stump grinders, chippers, and cranes when needed. All equipment is regularly maintained for safety and efficiency.',
+    answer: 'We use professional-grade equipment including chainsaws, pole saws, climbing gear, aerial lifts, stump grinders, and chippers. All equipment is regularly maintained for safety and efficiency.',
     category: 'services'
   }
 ]

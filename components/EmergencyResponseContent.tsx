@@ -32,7 +32,7 @@ export default function EmergencyResponseContent() {
       icon: WrenchScrewdriverIcon,
       title: 'Emergency Pruning',
       description: 'Immediate removal of dangerous branches that could fall and cause injury or damage',
-      urgency: 'Within 24 Hours',
+      urgency: 'Same Day',
       color: 'text-orange-400'
     }
   ]
@@ -135,7 +135,7 @@ export default function EmergencyResponseContent() {
 
           <div className="mt-6 text-red-300 font-semibold flex items-center justify-center gap-2">
             <BoltIcon className="w-5 h-5" aria-hidden="true" />
-            Average Response Time: 2-4 Hours
+            Same-Day Emergency Response, 24/7
           </div>
         </div>
       </section>
@@ -266,9 +266,7 @@ export default function EmergencyResponseContent() {
                  </p>
                  <ul className="text-charcoal-100 text-sm space-y-1">
                   <li>• CSLB #1085329 Licensed</li>
-                  <li>• Full liability insurance</li>
-                  <li>• Workers compensation coverage</li>
-                  <li>• Emergency bond protection</li>
+                  <li>• Fully insured</li>
                 </ul>
               </StaticCardBody>
             </StaticCard>

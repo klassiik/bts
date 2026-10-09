@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://barkertreeservices.com',
     siteName: 'Barker Tree Services',
-    title: 'Professional Tree Care Services in Colfax, CA | Licensed Arborists',
+    title: 'Professional Tree Care Services in Colfax, CA | Licensed & Insured',
     description: 'Licensed tree removal, trimming, and emergency services serving Colfax, Grass Valley, Nevada City, and surrounding Northern California communities since 2018.',
     images: [
       {

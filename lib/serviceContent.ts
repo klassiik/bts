@@ -129,7 +129,7 @@ export const SERVICE_CONTENT: Record<string, ServiceExtra> = {
       {
         question: 'How quickly can you respond to a tree emergency?',
         answer:
-          'We typically reach emergencies within 2–4 hours during business hours and within 24 hours after hours. During major storms, when many properties are hit at once, response times can stretch — we prioritize the most dangerous, life-safety situations first.'
+          'Emergencies get a same-day response, 24/7. During major storms, when many properties are hit at once, we prioritize situations that threaten people, homes, or access first, and we\'ll tell you honestly when we can be there.'
       },
       {
         question: 'What should I do if a tree falls on my house or a power line?',

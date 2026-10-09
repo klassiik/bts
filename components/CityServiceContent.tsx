@@ -26,7 +26,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
 
   const localHighlights = detail?.highlights ?? [
     'Local area specialists since 2018',
-    'Quick response times for emergency services',
+    'Same-day emergency response, 24/7',
     'Fully licensed and insured operations'
   ]
 
@@ -183,7 +183,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                  <div>
                    <h4 className="font-semibold text-evergreen-300 mb-2">Fast Response</h4>
                    <p className="text-charcoal-100 text-sm">
-                     Quick response times for both scheduled services and emergency tree situations.
+                     Next-day service for regular work and same-day response for emergencies.
                    </p>
                 </div>
               </div>
