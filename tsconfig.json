@@ -18,7 +18,8 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "baseUrl": ".",
+    "rootDir": ".",
+    "types": ["node", "jest"],
     "paths": {
       "@/*": [
         "./*"
