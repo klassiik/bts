@@ -39,13 +39,13 @@ export default function AboutContent() {
               <h2 className="text-4xl font-bold text-evergreen-300 mb-6">Our Story</h2>
               <div className="space-y-4 text-charcoal-100 leading-relaxed">
                 <p>
-                  Barker Tree Services was founded in {COMPANY_CREDENTIALS.founded} with a simple mission: to provide the highest quality tree care services while prioritizing safety, environmental stewardship, and customer satisfaction. What started as a small operation has grown into one of the most trusted tree service companies in the greater Colfax area.
+                  Barker Tree Services was founded in {COMPANY_CREDENTIALS.founded} with a simple mission: to provide the highest quality tree care services while prioritizing safety, environmental stewardship, and customer satisfaction. What started as a small, local operation is still run that way: by a Colfax family, on every job.
                 </p>
                 <p>
                   Our founder, Jacob Barker, launched Barker Tree Services in 2018, building hands-on expertise in everything from delicate pruning techniques to complex tree removals. His passion for trees and commitment to excellence laid the foundation for what Barker Tree Services represents today. Barker Tree Services is family owned — we&apos;re a multi-generational Colfax family, and our name is on every job.
                 </p>
                 <p>
-                  Today, we serve residential and commercial clients throughout Placer and Nevada counties, bringing together experienced tree care professionals, state-of-the-art equipment, and a deep understanding of local tree species and growing conditions.
+                  Today, we serve residential and commercial clients throughout Placer and Nevada counties, bringing together an experienced crew, professional climbing and aerial lift equipment, and a deep understanding of local tree species and growing conditions.
                 </p>
               </div>
             </article>

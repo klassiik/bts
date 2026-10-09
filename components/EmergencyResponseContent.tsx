@@ -261,8 +261,8 @@ export default function EmergencyResponseContent() {
                 <ShieldCheckIcon className="w-10 h-10 text-red-400 mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-red-400 mb-4">Licensed & Insured Protection</h3>
                 <p className="text-charcoal-100 mb-4">
-                   Work with confidence knowing you&apos;re protected. Our comprehensive insurance 
-                   and licensing provides peace of mind during emergency situations.
+                   Work with confidence knowing you&apos;re protected. We&apos;re a licensed
+                   California tree contractor and fully insured, including on emergency jobs.
                  </p>
                  <ul className="text-charcoal-100 text-sm space-y-1">
                   <li>• CSLB #1085329 Licensed</li>
