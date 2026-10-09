@@ -45,19 +45,27 @@ const ENCODE_PROFILES = {
   // into the landscape hero box looked soft; this one is 1280px wide at its
   // native aspect, and trimmed to 15s to keep the transfer bounded.
   hero: { crf: 30, maxrate: '1000k', bufsize: '2000k', longEdge: 1280, maxDuration: 15 },
+  // `heroMobile` is the phone counterpart of `hero`: the same landscape clip,
+  // center-cropped to a 9:16 portrait slice (cropPortrait) before scaling, so
+  // the 720px long edge is spent on the visible part of the frame instead of
+  // on pixels object-cover would crop away. Served under 768px.
+  heroMobile: { crf: 34, maxrate: '300k', bufsize: '600k', longEdge: 720, maxDuration: 15, cropPortrait: true },
 };
 
 const BACKDROP_CLIPS = new Set([
-  '552252494_24763328253355339_8075536204197305204_n', // homepage hero (mobile)
   '556677411_32055543104036746_2204476273704338762_n', // contact hero
   '555764101_25387785744161354_2365138505705379783_n', // emergency hero
 ]);
 
+// Clips that get the sharp `hero` encode (.h.mp4, desktop) and the cropped
+// `heroMobile` encode (.m.mp4, phones). Covers desktop + mobile, so these
+// clips don't also need to be in BACKDROP_CLIPS.
 const HERO_CLIPS = new Set([
-  '553827505_24841983355418125_3276620820634142277_n', // homepage hero (desktop)
+  '553827505_24841983355418125_3276620820634142277_n', // homepage hero (desktop + mobile)
 ]);
 
-const videoFilterFor = ({ longEdge }) =>
+const videoFilterFor = ({ longEdge, cropPortrait }) =>
+  (cropPortrait ? 'crop=trunc(ih*9/16/2)*2:ih,' : '') +
   `scale='if(gt(iw,ih),min(${longEdge},iw),-2)':'if(gt(iw,ih),-2,min(${longEdge},ih))'`;
 
 async function ensureDir(p) {
@@ -126,9 +134,13 @@ async function processVideo(srcPath, baseName, manifest) {
   const isHero = HERO_CLIPS.has(baseName);
   const profiles = {
     standard: ENCODE_PROFILES.standard,
-    ...(isBackdrop ? { mobile: ENCODE_PROFILES.backdropMobile } : {}),
-    ...(isHero ? { hero: ENCODE_PROFILES.hero } : {}),
+    ...(isHero
+      ? { mobile: ENCODE_PROFILES.heroMobile, hero: ENCODE_PROFILES.hero }
+      : isBackdrop
+        ? { mobile: ENCODE_PROFILES.backdropMobile }
+        : {}),
   };
+  const hasMobile = Boolean(profiles.mobile);
 
   const hash = await hashFile(srcPath, profiles);
   const mp4Name = `${baseName}.${hash}.mp4`;
@@ -143,7 +155,7 @@ async function processVideo(srcPath, baseName, manifest) {
   manifest[baseName] = {
     mp4: `/media/${mp4Name}`,
     webp: `/media/${webpName}`,
-    ...(isBackdrop ? { mp4Mobile: `/media/${mobileName}` } : {}),
+    ...(hasMobile ? { mp4Mobile: `/media/${mobileName}` } : {}),
     ...(isHero ? { mp4Hero: `/media/${heroName}` } : {}),
   };
 
@@ -155,7 +167,7 @@ async function processVideo(srcPath, baseName, manifest) {
   const alreadyBuilt =
     (await built(mp4Out)) &&
     (await built(posterOut)) &&
-    (!isBackdrop || (await built(mobileOut))) &&
+    (!hasMobile || (await built(mobileOut))) &&
     (!isHero || (await built(heroOut)));
   if (alreadyBuilt) {
     console.log(`Up to date: ${mp4Name}`);
@@ -169,7 +181,7 @@ async function processVideo(srcPath, baseName, manifest) {
   const keep = new Set([
     mp4Name,
     webpName,
-    ...(isBackdrop ? [mobileName] : []),
+    ...(hasMobile ? [mobileName] : []),
     ...(isHero ? [heroName] : []),
   ]);
   await Promise.all(
@@ -187,7 +199,7 @@ async function processVideo(srcPath, baseName, manifest) {
   const [inStat, outStat] = await Promise.all([fs.stat(srcPath), fs.stat(mp4Out)]);
   let line = `  ${(inStat.size / 1e6).toFixed(1)}MB -> ${(outStat.size / 1e6).toFixed(1)}MB (+ poster)`;
 
-  if (isBackdrop) {
+  if (hasMobile) {
     const mtmp = `${mobileOut}.tmp.mp4`;
     await encodeMp4(srcPath, mtmp, profiles.mobile);
     await fs.rename(mtmp, mobileOut);
