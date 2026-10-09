@@ -3,20 +3,23 @@ import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components
 import { PhoneIcon, ChevronDownIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
 import type { CityServiceCombo } from '@/lib/cityServices'
+import Breadcrumbs, { type Crumb } from '@/components/Breadcrumbs'
 
 interface Props {
   combo: CityServiceCombo
   cityName: string
   serviceTitle: string
   serviceId: string
+  breadcrumbs: Crumb[]
 }
 
-export default function CityServiceComboContent({ combo, cityName, serviceTitle, serviceId }: Props) {
+export default function CityServiceComboContent({ combo, cityName, serviceTitle, serviceId, breadcrumbs }: Props) {
   return (
     <div className="bg-charcoal-950 min-h-screen">
       <section className="relative py-16 px-4 overflow-hidden" aria-label={combo.h1}>
         <div className="absolute inset-0 bg-gradient-to-br from-evergreen-950/50 via-charcoal-950 to-charcoal-950" />
         <div className="relative max-w-3xl mx-auto">
+          <Breadcrumbs items={breadcrumbs} />
           <StaticChip
             className="mb-4 bg-evergreen-900/30 border border-evergreen-500/20 text-evergreen-300"
             variant="bordered"

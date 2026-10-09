@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { SERVICE_AREAS, BUSINESS_INFO, YEARS_IN_BUSINESS, GOOGLE_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 import { cityToSlug } from '@/lib/utils'
+import { CITY_SERVICE_COMBOS } from '@/lib/cityServices'
 import { WORK_PHOTOS } from '@/lib/workGallery'
 import WorkGallery from '@/components/WorkGallery'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
@@ -228,6 +229,22 @@ export default function HomeContent() {
               </StaticCard>
             </Link>
           </div>
+          {/* Every city×service page linked from the strongest page on the
+              site, so none depends on a single city page for discovery. */}
+          <p className="text-charcoal-100 text-sm text-center mt-8">
+            Local guides:{' '}
+            {CITY_SERVICE_COMBOS.map((combo, i) => (
+              <span key={`${combo.citySlug}/${combo.serviceId}`}>
+                {i > 0 && ' · '}
+                <Link
+                  href={`/service-areas/${combo.citySlug}/${combo.serviceId}`}
+                  className="font-semibold text-evergreen-300 underline underline-offset-2 hover:text-evergreen-200"
+                >
+                  {combo.h1.replace(/, CA$/, '')}
+                </Link>
+              </span>
+            ))}
+          </p>
           <div className="text-center mt-8">
             <ButtonLink
               href="/services"
