@@ -15,6 +15,13 @@
 
 export interface CityDetail {
   county: string
+  /**
+   * YYYY-MM-DD of the last real edit to this city's copy. Drives the sitemap
+   * <lastmod>, so bump it whenever intro/landscape/regulations/highlights/faqs
+   * change — and only then. Sitewide template tweaks don't count; Google
+   * stops trusting lastmod that moves without the content moving.
+   */
+  updated: string
   /** 2-3 sentence city-specific hero paragraph */
   intro: string
   /** Trees & terrain: species, soils, growth conditions */
@@ -44,6 +51,7 @@ export interface CityDetail {
 export const CITY_DETAILS: Record<string, CityDetail> = {
   'Colfax': {
     county: 'Placer',
+    updated: '2026-07-16',
     intro:
       'Colfax is our home base — Barker Tree Services operates from Placer Hills Road, so crews reach most Colfax properties faster than anywhere else we serve. At roughly 2,400 feet on the I-80 corridor, this historic railroad town sits squarely in mixed-conifer country, and we work in it every day.',
     landscape:
@@ -76,6 +84,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Grass Valley': {
     county: 'Nevada',
+    updated: '2026-07-16',
     intro:
       'Grass Valley grew up around the Empire Mine, and its older neighborhoods still carry the mature landscape trees to prove it. At about 2,400 feet in the western Nevada County foothills, the town mixes big conifers with century-old hardwoods — beautiful, and demanding to maintain safely.',
     landscape:
@@ -108,6 +117,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Nevada City': {
     county: 'Nevada',
+    updated: '2026-10-08',
     intro:
       'Nevada City packs towering conifers, Victorian architecture, and some of the narrowest streets in the Sierra foothills into one historic district — which makes tree work here a rigging problem as much as a cutting problem. We bring trees down in sections over rooftops and gardens that large equipment often cannot reach.',
     landscape:
@@ -140,6 +150,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Rough and Ready': {
     county: 'Nevada',
+    updated: '2026-07-16',
     intro:
       'Rough and Ready — the Gold Rush camp that famously declared itself its own republic in 1850 — is today a community of rural parcels off Rough and Ready Highway, where homes sit among the trees at the end of long private drives. That setting is exactly where a leaning pine or a dead oak goes from scenery to liability.',
     landscape:
@@ -172,6 +183,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Smartville': {
     county: 'Yuba',
+    updated: '2026-07-16',
     intro:
       'Smartville sits on the Highway 20 corridor where Nevada County meets Yuba County — Gold Rush hydraulic-mining country that is now open, rolling ranchland at about 670 feet. Out here the trees cluster around homes, barns, and fence lines, and summer turns the surrounding grassland bone-dry.',
     landscape:
@@ -204,6 +216,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Penryn': {
     county: 'Placer',
+    updated: '2026-07-16',
     intro:
       'Penryn was built on granite — a Welsh quarryman founded the town around his 1864 quarry, and Griffith Quarry Park still anchors it today. That same granite is why tree work here is different: oaks grow on shallow, rocky soils and decomposed-granite slopes among the mandarin orchards that made this stretch of Placer County famous.',
     landscape:
@@ -236,6 +249,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Loomis': {
     county: 'Placer',
+    updated: '2026-07-16',
     intro:
       'Loomis has deliberately kept its small-town, horse-property character — and its tree canopy is a big part of that. The town takes its oaks seriously enough to protect them by ordinance, and so do the homeowners who bought here for exactly that landscape.',
     landscape:
@@ -268,6 +282,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Rocklin': {
     county: 'Placer',
+    updated: '2026-07-16',
     intro:
       "Rocklin's granite-quarry history still shows at Quarry Park, but today it is an established suburban city where native oaks share space with maturing landscape trees in neighborhoods from Stanford Ranch to Whitney Ranch. Both kinds of trees are now old enough to need real care.",
     landscape:
@@ -300,6 +315,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Lincoln': {
     county: 'Placer',
+    updated: '2026-10-08',
     intro:
       'Lincoln has been one of the fastest-growing cities in California, but it is still the town where Gladding McBean has fired clay since 1875 — new subdivisions on the valley floor ringed by ranchland and heritage oaks. The tree work here splits the same way: young landscape trees in the newer neighborhoods, big legacy oaks on the edges.',
     landscape:
@@ -332,6 +348,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Auburn': {
     county: 'Placer',
+    updated: '2026-07-16',
     intro:
       'Auburn stacks three tree environments into one town: the historic Old Town core, established neighborhoods at 1,200 feet, and the steep American River canyon rim where the Western States Trail drops away below backyards. We work all three — including the canyon-edge removals most companies pass on.',
     landscape:

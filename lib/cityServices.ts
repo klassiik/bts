@@ -21,6 +21,8 @@
 export interface CityServiceCombo {
   citySlug: string
   serviceId: string
+  /** YYYY-MM-DD of the last real edit to this combo's copy; drives sitemap <lastmod>. */
+  updated: string
   /** <h1> and the base for titles/schema names, e.g. "Tree Removal in Grass Valley, CA" */
   h1: string
   /** ~150-char meta description, geo + service qualified */
@@ -36,6 +38,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'colfax',
     serviceId: 'removal',
+    updated: '2026-07-16',
     h1: 'Tree Removal in Colfax, CA',
     metaDescription:
       'Tree removal in Colfax, CA from a local crew on Placer Hills Road. Sloped, wooded parcels a bucket truck can’t reach are our everyday work. CSLB #1085329.',
@@ -67,6 +70,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'grass-valley',
     serviceId: 'removal',
+    updated: '2026-07-16',
     h1: 'Tree Removal in Grass Valley, CA',
     metaDescription:
       'Tree removal in Grass Valley, CA — mature Empire Mine-era trees over roofs and drought-killed conifers, to Nevada County standards. CSLB #1085329.',
@@ -98,6 +102,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'nevada-city',
     serviceId: 'stump',
+    updated: '2026-07-16',
     h1: 'Stump Grinding in Nevada City, CA',
     metaDescription:
       'Stump grinding in Nevada City, CA — track machines that fit tight historic-district lots and steep Deer Creek slopes. CSLB #1085329.',
@@ -129,6 +134,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'auburn',
     serviceId: 'emergency',
+    updated: '2026-07-16',
     h1: 'Emergency Tree Service in Auburn, CA',
     metaDescription:
       '24/7 emergency tree service in Auburn, CA. Positioned at the I-80/Highway 49 crossroads for fast storm response, including canyon-rim failures. CSLB #1085329.',
@@ -160,6 +166,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'rocklin',
     serviceId: 'trimming',
+    updated: '2026-07-16',
     h1: 'Tree Trimming in Rocklin, CA',
     metaDescription:
       'Tree trimming in Rocklin, CA — structural pruning for native oaks and aging ornamentals. Pruning usually avoids the city oak permit. CSLB #1085329.',
