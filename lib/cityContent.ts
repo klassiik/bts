@@ -295,7 +295,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Rocklin': {
     county: 'Placer',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       "Rocklin's granite-quarry history still shows at Quarry Park, but today it is an established suburban city where native oaks share space with maturing landscape trees in neighborhoods from Stanford Ranch to Whitney Ranch. Both kinds of trees are now old enough to need real care.",
     landscape:
@@ -313,7 +313,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove an oak in Rocklin?',
         answer:
-          'Yes, if it is a native oak six inches or larger in trunk diameter: the City of Rocklin requires a permit before removal. The useful details are that the permit itself is free, mitigation such as replanting or an in-lieu fee can apply, and dead or hazardous oaks are typically exempt from that mitigation. That exemption is why an honest assessment matters. We prepare the documentation the city looks for, which keeps a straightforward hazard removal from stalling for weeks.',
+          'Yes, if it is a native oak six inches or larger in trunk diameter: the City of Rocklin requires a permit before removal, and the permit itself is free. Mitigation, meaning replanting or an in-lieu fee, can follow depending on the condition of the tree. We prepare the documentation the city looks for, which keeps a straightforward hazard removal from stalling for weeks.',
       },
       {
         question: 'There is a 200-year-old oak over my roof. Does it have to come out?',
@@ -321,9 +321,9 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
           'Usually not. Many Rocklin subdivisions were built around their native oaks rather than clearing them, so mature oaks over newer roofs are the normal condition here, not an emergency. The question is whether the tree has an actual defect such as included bark, a split union, deadwood over the target, or root damage from construction, or whether it is simply large. Large is not the same as hazardous. We tell you which one you have, and preservation pruning is often the whole answer.',
       },
       {
-        question: 'My ornamental pear split in a storm. Can it be saved?',
+        question: 'Will I have to replant after removing an oak in Rocklin?',
         answer:
-          'Sometimes, and it is a common call in Rocklin. The ornamental pears, ashes, and maples planted when these neighborhoods went in are now hitting the age where included bark and storm splits show up, along with roots heaving sidewalks. If the split is a single limb and the union is sound, corrective pruning works. If the trunk itself has failed at an included-bark union, the tree is structurally compromised and removal is the honest answer, because patching it usually just defers a bigger failure.',
+          'It depends on the condition of the tree. When the City of Rocklin permits removal of a native oak, mitigation can apply: replanting, or an in-lieu fee instead. Dead or hazardous oaks are typically exempt from that mitigation, so the condition assessment is what decides it. We document what we actually find, with the evidence the city looks for, so a genuinely dead or failing oak is recognized as one and a healthy oak is not presented as something it is not.',
       },
     ],
   },
