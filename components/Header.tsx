@@ -38,6 +38,8 @@ export default function Header() {
   const pathname = usePathname()
 
   useEffect(() => {
+    // Close the mobile menu on route change (intentional sync reset).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMenuOpen(false)
   }, [pathname])
 

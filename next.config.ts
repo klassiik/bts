@@ -5,10 +5,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
-  // Debug: Log the current directory to help diagnose Vercel issues
-  eslint: {
-    ignoreDuringBuilds: false
-  },
   // Ensures Next's output tracing root is the project directory so Next
   // doesn't accidentally infer a parent directory as the workspace root
   // (fixes Vercel/CI builds that detect the wrong root when lockfiles
