@@ -13,7 +13,7 @@ import { cityToSlug } from '@/lib/utils'
 const PAGE_UPDATED: Record<string, string> = {
   '/': '2026-10-08',
   '/services': '2026-10-08',
-  '/service-areas': '2026-07-15',
+  '/service-areas': '2026-10-09',
   '/emergency': '2026-10-08',
   '/about': '2026-10-08',
   '/contact': '2026-10-08',
