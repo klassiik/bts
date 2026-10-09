@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
-import { Providers } from './providers'
 import Script from 'next/script'
 import { generateLocalBusinessSchema, generateWebSiteSchema, toSafeJsonLd } from '@/lib/schema'
 import '@/styles/globals.css'
@@ -124,16 +123,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-        <Providers>
-          {/* GEO: Header wrapped in semantic nav for site navigation context */}
-          <Header />
-          {/* GEO: Main landmark for primary content identification by AI parsers */}
-          <main role="main" id="main-content">{children}</main>
-          {/* GEO: Footer as contentinfo landmark for business details extraction */}
-          <Footer />
-          {/* GEO: Floating contact button for mobile click-to-call enhancement */}
-          <FloatingContactButton />
-        </Providers>
+        {/* GEO: Header wrapped in semantic nav for site navigation context */}
+        <Header />
+        {/* GEO: Main landmark for primary content identification by AI parsers */}
+        <main role="main" id="main-content">{children}</main>
+        {/* GEO: Footer as contentinfo landmark for business details extraction */}
+        <Footer />
+        {/* GEO: Floating contact button for mobile click-to-call enhancement */}
+        <FloatingContactButton />
       </body>
     </html>
   )

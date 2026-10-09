@@ -2,11 +2,9 @@ import { ReactNode, AnchorHTMLAttributes, HTMLAttributes } from 'react'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-// Server-safe replacements for the HeroUI primitives on static pages.
-// Service, city, and emergency pages have no interactivity, so hydrating
-// @heroui/react + framer-motion for them was pure INP cost (Lighthouse
-// measured 380-570ms TBT). These render identical-looking markup with
-// zero client JavaScript. Interactive pages (Header, forms) keep HeroUI.
+// Plain, server-safe card/chip/button primitives. They replaced HeroUI
+// (@heroui/react + framer-motion), which cost hundreds of ms of INP/TBT in
+// Lighthouse on static pages; these render with zero client JavaScript.
 
 type ButtonLinkProps = {
   href: string
@@ -53,6 +51,25 @@ export function StaticCard({ className, children, ...rest }: DivProps) {
     <div className={twMerge('flex flex-col relative overflow-hidden rounded-2xl shadow-md', className)} {...rest}>
       {children}
     </div>
+  )
+}
+
+// A whole-card link (tel:/mailto:) that looks like StaticCard. Focus ring and
+// press feedback match the other interactive controls on the site.
+type CardLinkProps = { href: string; className?: string; children: ReactNode } & AnchorHTMLAttributes<HTMLAnchorElement>
+
+export function StaticCardLink({ href, className, children, ...rest }: CardLinkProps) {
+  return (
+    <a
+      href={href}
+      className={twMerge(
+        'flex flex-col relative overflow-hidden rounded-2xl shadow-md cursor-pointer outline-solid outline-transparent focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-evergreen-600 focus-visible:outline-offset-2 active:scale-[0.97] motion-reduce:transition-none',
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </a>
   )
 }
 

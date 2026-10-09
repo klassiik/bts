@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('tailwindcss').Config} */
-const { heroui } = require("@heroui/react");
-
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}'
+    './components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     extend: {
@@ -70,29 +66,5 @@ module.exports = {
     }
   },
   darkMode: "class",
-  plugins: [heroui({
-    themes: {
-      dark: {
-        colors: {
-          background: "#1a1b1c",
-          foreground: "#e6e6e7",
-          primary: {
-            50: "#f0fdf5",
-            100: "#dcfce8",
-            200: "#bbf7d1",
-            300: "#86efad",
-            400: "#4ade80",
-            500: "#22c55e",
-            600: "#16a34a",
-            700: "#15803d",
-            800: "#166534",
-            900: "#14532d",
-            DEFAULT: "#16a34a",
-            foreground: "#ffffff",
-          },
-          focus: "#16a34a",
-        },
-      },
-    },
-  })],
+  plugins: [],
 };

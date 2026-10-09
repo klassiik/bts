@@ -2,7 +2,6 @@
 @import "tailwindcss";
 @source "../app/**/*.{js,ts,jsx,tsx}";
 @source "../components/**/*.{js,ts,jsx,tsx}";
-@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 
 :root {
   --color-emerald-900: #05472A;
@@ -11,6 +10,23 @@
 
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  --animate-menu-in: menu-in 150ms ease-out;
+
+  @keyframes menu-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* Dark theme basics (formerly supplied by the HeroUI plugin): native controls,
+   scrollbars and the select popup render dark, and the root canvas matches. */
+html.dark {
+  color-scheme: dark;
+  color: #e6e6e7;
+  background-color: #1a1b1c;
 }
 
 body {
