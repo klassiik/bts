@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SERVICE_AREAS, BUSINESS_INFO, COMPANY_CREDENTIALS, YEARS_IN_BUSINESS, GOOGLE_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
+import { SERVICE_AREAS, BUSINESS_INFO, YEARS_IN_BUSINESS, GOOGLE_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 import { cityToSlug } from '@/lib/utils'
 import { WORK_PHOTOS } from '@/lib/workGallery'
 import WorkGallery from '@/components/WorkGallery'
@@ -7,8 +7,8 @@ import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components
 import { PhoneIcon, StarIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
 import {
   CheckBadgeIcon,
-  AcademicCapIcon,
-  UserGroupIcon,
+  HomeIcon,
+  CalendarDaysIcon,
   BoltIcon,
   ClockIcon,
   ScissorsIcon,
@@ -251,28 +251,28 @@ export default function HomeContent() {
               <StaticCardBody className="text-center p-6">
                 <CheckBadgeIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
                 <h3 className="text-lg font-bold text-evergreen-300 mb-2">Licensed & Insured</h3>
-                <p className="text-charcoal-100 text-sm">CSLB #{BUSINESS_INFO.cslb}</p>
+                <p className="text-charcoal-100 text-sm">CSLB C-49 #{BUSINESS_INFO.cslb} · fully insured</p>
               </StaticCardBody>
             </StaticCard>
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
               <StaticCardBody className="text-center p-6">
-                <AcademicCapIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Training</h3>
-                <p className="text-charcoal-100 text-sm">Ongoing education & training</p>
+                <HomeIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Family Owned</h3>
+                <p className="text-charcoal-100 text-sm">A multi-generational Colfax family</p>
               </StaticCardBody>
             </StaticCard>
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
               <StaticCardBody className="text-center p-6">
-                <UserGroupIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Expert Team</h3>
-                <p className="text-charcoal-100 text-sm">{COMPANY_CREDENTIALS.experience}</p>
+                <CalendarDaysIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Next-Day Service</h3>
+                <p className="text-charcoal-100 text-sm">We&apos;re out the next day for non-emergency work</p>
               </StaticCardBody>
             </StaticCard>
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20">
               <StaticCardBody className="text-center p-6">
                 <BoltIcon className="w-10 h-10 text-evergreen-400 mx-auto mb-3" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Emergency Ready</h3>
-                <p className="text-charcoal-100 text-sm">24/7 storm response</p>
+                <h3 className="text-lg font-bold text-evergreen-300 mb-2">Same-Day Emergencies</h3>
+                <p className="text-charcoal-100 text-sm">24/7 storm and hazard response</p>
               </StaticCardBody>
             </StaticCard>
           </div>

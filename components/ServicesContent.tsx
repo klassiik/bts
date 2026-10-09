@@ -1,9 +1,9 @@
 /* GEO: Services page component with comprehensive Service schema markers for AI discovery */
 import Link from 'next/link'
-import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS } from '@/lib/config'
+import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import Video from '@/components/Video'
-import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon, AcademicCapIcon, ShieldCheckIcon, BoltIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon, HomeIcon, ShieldCheckIcon, BoltIcon } from '@heroicons/react/24/outline'
 import { getVideoUrl } from '@/lib/media'
 
 export default function ServicesContent() {
@@ -164,9 +164,9 @@ export default function ServicesContent() {
           <div className="grid md:grid-cols-3 gap-8" role="list" aria-label="Service differentiators">
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">
               <StaticCardBody className="text-center p-8">
-                <AcademicCapIcon className="w-12 h-12 text-evergreen-400 mx-auto mb-4" aria-hidden="true" />
-                <h3 className="text-xl font-bold text-evergreen-300 mb-3">Trained Experts</h3>
-                <p className="text-charcoal-100">Experienced professionals with ongoing education and training</p>
+                <HomeIcon className="w-12 h-12 text-evergreen-400 mx-auto mb-4" aria-hidden="true" />
+                <h3 className="text-xl font-bold text-evergreen-300 mb-3">Local &amp; Family Owned</h3>
+                <p className="text-charcoal-100">An experienced, family-owned local crew, in business since {FOUNDING_YEAR}</p>
               </StaticCardBody>
             </StaticCard>
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">

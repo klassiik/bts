@@ -109,7 +109,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   'Nevada City': {
     county: 'Nevada',
     intro:
-      'Nevada City packs towering conifers, Victorian architecture, and some of the narrowest streets in the Sierra foothills into one historic district — which makes tree work here a rigging problem as much as a cutting problem. We bring trees down in sections over rooftops and gardens that a crane often cannot reach.',
+      'Nevada City packs towering conifers, Victorian architecture, and some of the narrowest streets in the Sierra foothills into one historic district — which makes tree work here a rigging problem as much as a cutting problem. We bring trees down in sections over rooftops and gardens that large equipment often cannot reach.',
     landscape:
       "At around 2,500 feet along Deer Creek, Nevada City's ponderosa pines, Douglas-firs, and incense cedars grow well over 100 feet, shading — and threatening — homes that are older than the trees. Tight lot lines, steep driveways, overhead lines, and slope down to the creek leave little room for error, so most removals here are technical climbs with careful lowering rather than straight fells.",
     regulations:
@@ -129,7 +129,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Can you remove a large tree in the historic district\'s narrow streets?',
         answer:
-          'That is most of what we do here. Nevada City\'s ponderosa, Douglas-fir, and incense cedar routinely exceed 100 feet over Victorian homes on tight lot lines with steep driveways and overhead lines, where a crane often cannot reach and a straight fell is not an option. We take these down in sections, climbing and lowering each piece under control over the roof or garden below. It is slower than felling, and it is the reason the tree ends up in the truck instead of through the porch.',
+          'That is most of what we do here. Nevada City\'s ponderosa, Douglas-fir, and incense cedar routinely exceed 100 feet over Victorian homes on tight lot lines with steep driveways and overhead lines, where large equipment often cannot reach and a straight fell is not an option. We take these down in sections, climbing and lowering each piece under control over the roof or garden below. It is slower than felling, and it is the reason the tree ends up in the truck instead of through the porch.',
       },
       {
         question: 'Will fire-safety clearing ruin the canopy that makes Nevada City look like Nevada City?',
@@ -321,7 +321,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'My subdivision trees are young. Is there anything to do now?',
         answer:
-          'Yes, and this is the highest-return tree work there is. Structural pruning in the first years establishes a single dominant leader and removes the co-dominant stems and weak attachments that become expensive failures around year twenty. A few cuts now on a young tree in Sun City or Twelve Bridges prevents the split trunk that later costs a crane removal and a new roof. It is cheap, fast, and almost nobody does it.',
+          'Yes, and this is the highest-return tree work there is. Structural pruning in the first years establishes a single dominant leader and removes the co-dominant stems and weak attachments that become expensive failures around year twenty. A few cuts now on a young tree in Sun City or Twelve Bridges prevents the split trunk that later costs a major removal and a new roof. It is cheap, fast, and almost nobody does it.',
       },
       {
         question: 'Why does everything have mistletoe out here?',

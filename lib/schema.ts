@@ -60,8 +60,9 @@ export function generateLocalBusinessSchema() {
     foundingDate: String(FOUNDING_YEAR),
     numberOfEmployees: {
       '@type': 'QuantitativeValue',
-      minValue: 5,
-      maxValue: 10
+      // Owner-verified crew size (2026-10-09)
+      minValue: 2,
+      maxValue: 4
     },
     address: {
       '@type': 'PostalAddress',

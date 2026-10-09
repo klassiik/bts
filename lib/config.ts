@@ -78,9 +78,9 @@ export const SERVICES = [
     title: 'Tree Removal',
     description: 'Safe, efficient tree removal services for hazardous, diseased, or unwanted trees. Our expert team handles trees of all sizes with precise techniques that protect your property and surrounding landscape.',
     features: ['Emergency removal service', 'Large and complex tree removal', 'Hazard assessment and mitigation', 'Complete debris cleanup', 'Stump grinding option', 'Property protection measures'],
-    process: 'We start with a thorough site assessment to identify potential hazards and plan the safest removal method. Our team uses advanced rigging techniques, cranes when necessary, and strategic sectional removal to bring down trees without damage to surrounding property. All debris is removed and the site is left clean.',
+    process: 'We start with a thorough site assessment to identify potential hazards and plan the safest removal method. Our team uses advanced rigging techniques and strategic sectional removal to bring down trees without damage to surrounding property. All debris is removed and the site is left clean.',
     benefits: ['Eliminates safety hazards', 'Prevents property damage', 'Creates space for new landscaping', 'Removes diseased/pest-infested trees', 'Improves views and sunlight', 'Increases property value'],
-    equipment: 'Chainsaws, rigging equipment, cranes for large removals, chippers, and specialized climbing gear',
+    equipment: 'Chainsaws, rigging equipment, aerial lifts, chippers, and specialized climbing gear',
     seasonality: 'Available year-round, with emergency services for storm damage. Winter removal is often preferred for deciduous trees.'
   },
   {
@@ -96,7 +96,7 @@ export const SERVICES = [
   {
     id: 'emergency',
     title: 'Emergency Tree Services',
-    description: '24/7 emergency response for storm damage, fallen trees, and hazardous situations. Our rapid response team is equipped to handle urgent tree emergencies that threaten property or safety.',
+    description: '24/7 emergency response for storm damage, fallen trees, and hazardous situations. Our crew is equipped to handle urgent tree emergencies that threaten property or safety.',
     features: ['24/7 emergency response', 'Storm damage cleanup', 'Hazardous tree removal', 'Property damage assessment', 'Insurance claim assistance', 'Temporary stabilization'],
     process: 'Upon emergency call, our team responds quickly to assess the situation and prioritize safety. We secure the area, remove immediate hazards, and develop a plan for complete cleanup. Our team works efficiently to restore safety while minimizing further property damage.',
     benefits: ['Immediate safety restoration', 'Prevents additional damage', 'Insurance claim support', 'Professional damage assessment', 'Quick property access restoration', 'Peace of mind during crisis'],
@@ -105,30 +105,27 @@ export const SERVICES = [
   }
 ]
 
-// Company credentials and certifications
+// Company credentials (verified with the owner — license + insurance only)
 export const COMPANY_CREDENTIALS = {
   founded: String(FOUNDING_YEAR),
   experience: `${YEARS_IN_BUSINESS} years in business since ${FOUNDING_YEAR}`,
   certifications: [
     'CSLB C-49 Licensed Contractor (Tree & Palm) #1085329',
-    'Tree Risk Assessment Qualified (TRAQ)',
-    'OSHA Safety Certified',
-    'Fully Insured (General Liability & Workers Comp)'
+    'Fully insured'
   ],
   equipment: [
     'Professional climbing gear',
     'Aerial lift equipment',
     'Commercial-grade chainsaws',
     'Stump grinding machines',
-    'Wood chippers',
-    'Crane services (when needed)'
+    'Wood chippers'
   ],
   values: [
     'Safety first in every operation',
     'Environmental stewardship',
     'Honest, transparent pricing',
     'Superior customer service',
-    'Continuous education and training',
+    'Family owned, Colfax rooted',
     'Community involvement'
   ]
 }
