@@ -81,3 +81,18 @@ describe('city×service combos', () => {
     }
   })
 })
+
+describe('city×service page titles', () => {
+  // The page title is `${h1} | Barker Tree Services` (lib/seo.ts appends the
+  // brand), so the h1 has to carry the state and stay short enough to show
+  // in full in results.
+  it('h1 ends with ", CA" and the full title fits in 60 characters', () => {
+    for (const combo of CITY_SERVICE_COMBOS) {
+      const title = `${combo.h1} | Barker Tree Services`
+      expect({ title, endsWithState: combo.h1.endsWith(', CA'), fits: title.length <= 60 }).toMatchObject({
+        endsWithState: true,
+        fits: true,
+      })
+    }
+  })
+})
