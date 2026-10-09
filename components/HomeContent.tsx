@@ -4,12 +4,13 @@ import { cityToSlug } from '@/lib/utils'
 import { WORK_PHOTOS } from '@/lib/workGallery'
 import WorkGallery from '@/components/WorkGallery'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
-import { PhoneIcon, CheckCircleIcon, StarIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
+import { PhoneIcon, StarIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
 import {
   CheckBadgeIcon,
   AcademicCapIcon,
   UserGroupIcon,
   BoltIcon,
+  ClockIcon,
   ScissorsIcon,
   TruckIcon,
   Cog6ToothIcon
@@ -17,6 +18,13 @@ import {
 import FAQSection from '@/components/FAQSection'
 import Video from '@/components/Video'
 import { getVideoUrl, getVideoHeroUrl, getVideoMobileUrl, getVideoPosterUrl } from '@/lib/media'
+
+// Hero city line: a short, high-signal subset; the rest are one click away.
+const HERO_CITIES = ['Colfax', 'Auburn', 'Grass Valley', 'Nevada City']
+const heroAreas = HERO_CITIES.map((city) => SERVICE_AREAS.find((a) => a.city === city)).filter(
+  (a): a is (typeof SERVICE_AREAS)[number] => a !== undefined
+)
+const moreCount = SERVICE_AREAS.length - heroAreas.length
 
 export default function HomeContent() {
   return (
@@ -30,14 +38,17 @@ export default function HomeContent() {
           }
           mobileSrc={getVideoMobileUrl('553827505_24841983355418125_3276620820634142277_n')}
           poster={getVideoPosterUrl('553827505_24841983355418125_3276620820634142277_n')}
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
           style={{ zIndex: 0 }}
           aria-hidden="true"
         />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-charcoal-950/50 via-charcoal-950/35 to-charcoal-950/25 md:bg-gradient-to-r md:from-charcoal-950/90 md:via-charcoal-950/60 md:to-charcoal-950/20 pointer-events-none"
+          style={{ zIndex: 1 }}
+          aria-hidden="true"
+        ></div>
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" style={{ zIndex: 1 }}></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-evergreen-600/10 rounded-full blur-3xl" style={{ zIndex: 1 }}></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl" style={{ zIndex: 1 }}></div>
-        
+
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 10 }}>
           <div>
             <StaticChip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
@@ -69,28 +80,94 @@ export default function HomeContent() {
                 View Services
               </ButtonLink>
             </div>
+
+            {/* Trust line: verifiable proof (Google profile + CSLB lookup) next to the CTAs */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-charcoal-100">
+              <a
+                href={GOOGLE_BUSINESS.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-evergreen-300"
+                aria-label={`Rated ${GOOGLE_BUSINESS.rating.toFixed(1)} out of 5 from ${GOOGLE_BUSINESS.reviewCount} Google reviews (opens in a new tab)`}
+              >
+                <span className="flex" aria-hidden="true">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} className="w-4 h-4 text-amber-400" />
+                  ))}
+                </span>
+                <span className="font-semibold text-charcoal-50">{GOOGLE_BUSINESS.rating.toFixed(1)}</span>
+                · {GOOGLE_BUSINESS.reviewCount} Google reviews
+              </a>
+              <span aria-hidden="true" className="hidden sm:inline text-charcoal-400">·</span>
+              <a
+                href={BUSINESS_INFO.cslbLookupUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-evergreen-300"
+                aria-label={`Verify CSLB license ${BUSINESS_INFO.cslbClassification} #${BUSINESS_INFO.cslb} (opens in a new tab)`}
+              >
+                CSLB {BUSINESS_INFO.cslbClassification} #<span className="font-semibold text-charcoal-50">{BUSINESS_INFO.cslb}</span>
+              </a>
+            </div>
+
+            {/* GEO: Service-area links give crawlers and AI direct city-level paths */}
+            <p className="mt-3 text-sm text-charcoal-200">
+              Serving{' '}
+              {heroAreas.map((area, i) => (
+                <span key={area.city}>
+                  {i > 0 && ', '}
+                  <Link
+                    href={`/service-areas/${cityToSlug(area.city)}`}
+                    className="underline decoration-charcoal-500 underline-offset-2 hover:text-evergreen-300"
+                  >
+                    {area.city}
+                  </Link>
+                </span>
+              ))}{' '}
+              <span className="whitespace-nowrap">
+                +{' '}
+                <Link href="/service-areas" className="font-semibold text-evergreen-300 hover:text-evergreen-200">
+                  {moreCount} more <span aria-hidden="true">→</span>
+                </Link>
+              </span>
+            </p>
           </div>
           
-          {/* GEO: Service areas card with structured location data for geographic AI queries */}
-          <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/30 backdrop-blur-sm" role="region" aria-label="Service coverage areas">
-             <StaticCardBody className="p-6">
-               <h2 className="text-2xl font-bold text-evergreen-300 mb-4">Our Service Areas</h2>
-               <ul className="grid grid-cols-2 gap-3" aria-label="Cities served by Barker Tree Services">
-                 {SERVICE_AREAS.map((area) => (
-                   <li key={area.city}>
-                     <Link
-                       href={`/service-areas/${cityToSlug(area.city)}`}
-                       className="flex items-center gap-2 py-1 text-charcoal-100 hover:text-evergreen-300 transition-colors"
-                     >
-                       <CheckCircleIcon className="w-5 h-5 text-evergreen-400 flex-shrink-0" aria-hidden="true" />
-                       <span>{area.city}</span>
-                     </Link>
-                   </li>
-                 ))}
-               </ul>
-             </StaticCardBody>
-           </StaticCard>
-         </div>
+          {/* Free-estimate card: primary conversion path, stacks under the copy on phones */}
+          <StaticCard
+            className="w-full md:max-w-sm md:justify-self-end bg-charcoal-900/80 border border-evergreen-800/40 backdrop-blur-sm shadow-xl"
+            role="region"
+            aria-label="Free estimate"
+          >
+            <StaticCardBody className="p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-evergreen-300">Free Estimates</h2>
+              <p className="mt-2 text-charcoal-100">On-site assessment, detailed pricing, no obligation.</p>
+              <ul className="mt-5 space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <ClockIcon className="w-5 h-5 text-evergreen-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="text-charcoal-100">{BUSINESS_INFO.hours}</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <BoltIcon className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="text-charcoal-50 font-semibold">24/7 emergency storm response</span>
+                </li>
+              </ul>
+              <ButtonLink
+                href="/contact"
+                className="mt-6 w-full justify-center bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white text-lg font-bold shadow-lg shadow-evergreen-900/50"
+                aria-label="Request a free estimate"
+              >
+                Request an Estimate <span aria-hidden="true">→</span>
+              </ButtonLink>
+              <p className="mt-4 text-center text-sm text-charcoal-100">
+                or call{' '}
+                <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="font-semibold text-evergreen-300 underline hover:text-evergreen-200">
+                  {BUSINESS_INFO.phone}
+                </a>
+              </p>
+            </StaticCardBody>
+          </StaticCard>
+        </div>
       </section>
 
       {/* GEO: Value propositions section with semantic article structure */}
