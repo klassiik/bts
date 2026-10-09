@@ -133,11 +133,12 @@ export default function Header() {
               <li key={item.href} role="listitem">
                 <Link
                   href={item.href}
-                  className={`group flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${linkTone(isActive)}`}
+                  className={`group flex items-center gap-2 px-3 xl:px-4 py-2 rounded-lg font-semibold text-sm whitespace-nowrap transition-all duration-200 ${linkTone(isActive)}`}
                   aria-current={isActive ? 'page' : undefined}
                   aria-label={`Navigate to ${item.label}`}
                 >
-                  <Icon className={`w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${
+                  {/* Icons only from xl: at 1024px they push "Service Areas" onto two lines */}
+                  <Icon className={`hidden xl:block w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${
                     isActive ? 'text-evergreen-300' : 'text-sage-300'
                   }`} aria-hidden="true" />
                   <span>{item.label}</span>
