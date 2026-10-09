@@ -40,12 +40,21 @@ const IMAGE_EXTS = ['.jpg', '.jpeg', '.png', '.webp'];
 const ENCODE_PROFILES = {
   standard: { crf: 32, maxrate: '500k', bufsize: '1000k', longEdge: 720 },
   backdropMobile: { crf: 36, maxrate: '200k', bufsize: '400k', longEdge: 540 },
+  // `hero` is a sharper, trimmed encode of the genuinely landscape homepage
+  // clip, served to desktop only. Stretching the portrait mobile clip ~3.5x
+  // into the landscape hero box looked soft; this one is 1280px wide at its
+  // native aspect, and trimmed to 15s to keep the transfer bounded.
+  hero: { crf: 30, maxrate: '1000k', bufsize: '2000k', longEdge: 1280, maxDuration: 15 },
 };
 
 const BACKDROP_CLIPS = new Set([
-  '552252494_24763328253355339_8075536204197305204_n', // homepage hero
+  '552252494_24763328253355339_8075536204197305204_n', // homepage hero (mobile)
   '556677411_32055543104036746_2204476273704338762_n', // contact hero
   '555764101_25387785744161354_2365138505705379783_n', // emergency hero
+]);
+
+const HERO_CLIPS = new Set([
+  '553827505_24841983355418125_3276620820634142277_n', // homepage hero (desktop)
 ]);
 
 const videoFilterFor = ({ longEdge }) =>
@@ -80,6 +89,7 @@ function encodeMp4(input, output, profile) {
         '-r 24',
         '-movflags +faststart',
         `-vf ${videoFilterFor(profile)}`,
+        ...(profile.maxDuration ? [`-t ${profile.maxDuration}`] : []),
       ])
       .noAudio()
       .on('error', reject)
@@ -113,22 +123,28 @@ function extractPoster(input, output, profile) {
 // across re-runs even though video encoding isn't byte-for-byte deterministic.
 async function processVideo(srcPath, baseName, manifest) {
   const isBackdrop = BACKDROP_CLIPS.has(baseName);
-  const profiles = isBackdrop
-    ? { standard: ENCODE_PROFILES.standard, mobile: ENCODE_PROFILES.backdropMobile }
-    : { standard: ENCODE_PROFILES.standard };
+  const isHero = HERO_CLIPS.has(baseName);
+  const profiles = {
+    standard: ENCODE_PROFILES.standard,
+    ...(isBackdrop ? { mobile: ENCODE_PROFILES.backdropMobile } : {}),
+    ...(isHero ? { hero: ENCODE_PROFILES.hero } : {}),
+  };
 
   const hash = await hashFile(srcPath, profiles);
   const mp4Name = `${baseName}.${hash}.mp4`;
   const webpName = `${baseName}.${hash}.webp`;
   const mobileName = `${baseName}.${hash}.m.mp4`;
+  const heroName = `${baseName}.${hash}.h.mp4`;
   const mp4Out = path.join(DEST_DIR, mp4Name);
   const posterOut = path.join(DEST_DIR, webpName);
   const mobileOut = path.join(DEST_DIR, mobileName);
+  const heroOut = path.join(DEST_DIR, heroName);
 
   manifest[baseName] = {
     mp4: `/media/${mp4Name}`,
     webp: `/media/${webpName}`,
     ...(isBackdrop ? { mp4Mobile: `/media/${mobileName}` } : {}),
+    ...(isHero ? { mp4Hero: `/media/${heroName}` } : {}),
   };
 
   // Every output has to exist, not just the mp4: if poster extraction failed
@@ -139,7 +155,8 @@ async function processVideo(srcPath, baseName, manifest) {
   const alreadyBuilt =
     (await built(mp4Out)) &&
     (await built(posterOut)) &&
-    (!isBackdrop || (await built(mobileOut)));
+    (!isBackdrop || (await built(mobileOut))) &&
+    (!isHero || (await built(heroOut)));
   if (alreadyBuilt) {
     console.log(`Up to date: ${mp4Name}`);
     return;
@@ -149,7 +166,12 @@ async function processVideo(srcPath, baseName, manifest) {
   // accumulate across repeated local dev runs.
   const dirEntries = await fs.readdir(DEST_DIR).catch(() => []);
   const stalePrefix = `${baseName}.`;
-  const keep = new Set([mp4Name, webpName, ...(isBackdrop ? [mobileName] : [])]);
+  const keep = new Set([
+    mp4Name,
+    webpName,
+    ...(isBackdrop ? [mobileName] : []),
+    ...(isHero ? [heroName] : []),
+  ]);
   await Promise.all(
     dirEntries
       .filter((f) => f.startsWith(stalePrefix) && !keep.has(f))
@@ -171,6 +193,14 @@ async function processVideo(srcPath, baseName, manifest) {
     await fs.rename(mtmp, mobileOut);
     const mStat = await fs.stat(mobileOut);
     line += ` | mobile ${(mStat.size / 1e6).toFixed(1)}MB`;
+  }
+
+  if (isHero) {
+    const htmp = `${heroOut}.tmp.mp4`;
+    await encodeMp4(srcPath, htmp, profiles.hero);
+    await fs.rename(htmp, heroOut);
+    const hStat = await fs.stat(heroOut);
+    line += ` | hero ${(hStat.size / 1e6).toFixed(1)}MB`;
   }
   console.log(line);
 }
