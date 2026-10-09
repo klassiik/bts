@@ -21,7 +21,7 @@ export default function FloatingContactButton() {
   return (
     <a
       href={`tel:${BUSINESS_INFO.phoneRaw}`}
-      aria-label={`Call Barker Tree Services at ${BUSINESS_INFO.phone}`}
+      aria-label={`Call ${BUSINESS_INFO.phone}`}
       className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group focus-visible:outline-none"
     >
       <span className="hidden md:inline-block bg-charcoal-800 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shadow-lg">
