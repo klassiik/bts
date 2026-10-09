@@ -1,5 +1,5 @@
-import { generateMetadata as generatePageMetadata } from '@/lib/seo'
-import { SERVICE_AREAS, BUSINESS_INFO } from '@/lib/config'
+import { generateMetadata as generatePageMetadata, cityMetaDescription } from '@/lib/seo'
+import { SERVICE_AREAS } from '@/lib/config'
 import { getCityDetail } from '@/lib/cityContent'
 import { notFound } from 'next/navigation'
 import CityServiceContent from '@/components/CityServiceContent'
@@ -31,10 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   const detail = getCityDetail(cityData.city)
   const title = `Tree Services in ${cityData.city}, ${cityData.state}`
-  // Lead with the city-specific hook so each city page has a unique description
-  const description = detail
-    ? `Tree trimming, removal, stump grinding & 24/7 emergency service in ${cityData.city}, CA. ${detail.highlights[0]}. Licensed CSLB #1085329. Call ${BUSINESS_INFO.phone}`
-    : `Expert tree trimming, removal, stump grinding & emergency services in ${cityData.city}, CA. Licensed (CSLB #1085329), insured. Call ${BUSINESS_INFO.phone}`
+  const description = cityMetaDescription(cityData.city, detail?.highlights[0])
 
   return generatePageMetadata({
     title,
