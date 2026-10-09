@@ -194,6 +194,10 @@ export function getCityServiceCombo(citySlug: string, serviceId: string): CitySe
   return CITY_SERVICE_COMBOS.find((c) => c.citySlug === citySlug && c.serviceId === serviceId)
 }
 
+export function getCombosForService(serviceId: string): CityServiceCombo[] {
+  return CITY_SERVICE_COMBOS.filter((c) => c.serviceId === serviceId)
+}
+
 export function getCombosForCity(citySlug: string): CityServiceCombo[] {
   return CITY_SERVICE_COMBOS.filter((c) => c.citySlug === citySlug)
 }

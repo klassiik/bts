@@ -2,6 +2,7 @@ import { BUSINESS_INFO, SERVICE_AREAS } from '@/lib/config'
 import { getWorkPhotosForService } from '@/lib/workGallery'
 import { getServiceContent } from '@/lib/serviceContent'
 import { cityToSlug } from '@/lib/utils'
+import { getCombosForService } from '@/lib/cityServices'
 import { ButtonLink, StaticCard, StaticCardBody } from '@/components/ui'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon, CurrencyDollarIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
@@ -27,6 +28,7 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
   const serviceLocation = service.location?.trim() || 'Northern California'
   const workPhotos = getWorkPhotosForService(service.id)
   const extra = getServiceContent(service.id)
+  const cityCombos = getCombosForService(service.id)
 
   return (
     <>
@@ -159,6 +161,24 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
               </Link>
             ))}
           </div>
+          {/* Pilot city×service pages: link them from their service page too, so
+              they aren't reachable only from a single city page */}
+          {cityCombos.length > 0 && (
+            <p className="text-charcoal-100 text-sm">
+              Local guides:{' '}
+              {cityCombos.map((combo, i) => (
+                <span key={combo.citySlug}>
+                  {i > 0 && ' · '}
+                  <Link
+                    href={`/service-areas/${combo.citySlug}/${combo.serviceId}`}
+                    className="font-semibold text-evergreen-300 underline underline-offset-2 hover:text-evergreen-200"
+                  >
+                    {combo.h1.replace(/, CA$/, '')}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          )}
         </div>
       </section>
 
