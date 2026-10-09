@@ -84,3 +84,16 @@ export function generateMetadata({ title, description, path, keywords }: PageSeo
     category: 'Tree Services',
   }
 }
+
+/**
+ * Meta description for a /service-areas/[city] page.
+ *
+ * Leads with the city's own hook (highlights[0] in lib/cityContent.ts) so the
+ * part Google shows first differs per city — the old version opened all 10
+ * cities with the same 70-character service list and the hook got truncated.
+ * Kept within 155 characters so nothing important is cut off in the SERP.
+ */
+export function cityMetaDescription(city: string, highlight?: string): string {
+  const services = `Tree removal, trimming, stump grinding & 24/7 emergency service in ${city}, CA.`
+  return highlight ? `${highlight}. ${services}` : `${services} Licensed CSLB #${BUSINESS_INFO.cslb}. Free estimates.`
+}
