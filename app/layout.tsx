@@ -92,10 +92,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             page inherits the same @id; pages add only page-type schema */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(generateLocalBusinessSchema()) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toSafeJsonLd(generateWebSiteSchema()) }} />
-        {/* Google Analytics */}
+        {/* Google Analytics. gtag.js (~180 KB, ~190 ms main thread on mobile)
+            waits for browser idle after load; the inline snippet below queues
+            the pageview in dataLayer, so it's sent once the library arrives */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-M4RBSN9VCN"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
           id="google-analytics"
