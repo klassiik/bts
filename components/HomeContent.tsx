@@ -4,7 +4,7 @@ import { cityToSlug } from '@/lib/utils'
 import { WORK_PHOTOS } from '@/lib/workGallery'
 import WorkGallery from '@/components/WorkGallery'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
-import { PhoneIcon, CheckCircleIcon, StarIcon } from '@heroicons/react/24/solid'
+import { PhoneIcon, CheckCircleIcon, StarIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
 import {
   CheckBadgeIcon,
   AcademicCapIcon,
@@ -167,13 +167,19 @@ export default function HomeContent() {
           <div className="text-center">
             <p className="text-charcoal-50 mb-6">Licensed, insured, and serving Colfax and surrounding areas since {FOUNDING_YEAR}</p>
             <ButtonLink
-              href={`tel:${BUSINESS_INFO.phoneRaw}`}
+              href="/contact"
               className="bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white text-lg font-bold shadow-lg"
-              startContent={<PhoneIcon className="w-5 h-5" aria-hidden="true" />}
-              aria-label="Call now for free estimate"
+              startContent={<ClipboardDocumentListIcon className="w-5 h-5" aria-hidden="true" />}
+              aria-label="Request a free estimate"
             >
-              Get Your Free Estimate Today
+              Get Your Free Estimate
             </ButtonLink>
+            <p className="mt-4 text-charcoal-100">
+              Prefer to talk?{' '}
+              <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="font-semibold text-evergreen-300 underline hover:text-evergreen-200">
+                Call {BUSINESS_INFO.phone}
+              </a>
+            </p>
           </div>
         </div>
       </section>
