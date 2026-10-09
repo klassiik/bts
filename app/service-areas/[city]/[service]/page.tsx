@@ -63,12 +63,14 @@ export default async function CityServicePage({ params }: PageProps) {
     available24x7: serviceData.id === 'emergency',
   })
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
+  // One list for both the schema and the visible trail, so they can't drift.
+  const breadcrumbs = [
     { name: 'Home', path: '/' },
     { name: 'Service Areas', path: '/service-areas' },
     { name: cityData.city, path: `/service-areas/${city}` },
     { name: serviceData.title, path: `/service-areas/${city}/${service}` },
-  ])
+  ]
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs)
 
   const faqSchema = generateFAQSchema(combo.faqs)
 
@@ -82,6 +84,7 @@ export default async function CityServicePage({ params }: PageProps) {
         cityName={cityData.city}
         serviceTitle={serviceData.title}
         serviceId={serviceData.id}
+        breadcrumbs={breadcrumbs}
       />
     </>
   )

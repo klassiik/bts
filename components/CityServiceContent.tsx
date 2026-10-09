@@ -17,12 +17,17 @@ const SERVICE_CARDS = [
   { id: 'trimming', icon: ScissorsIcon, title: 'Tree Trimming', blurb: 'Professional pruning for health and beauty', accent: 'evergreen' },
   { id: 'removal', icon: TruckIcon, title: 'Tree Removal', blurb: 'Safe removal of hazardous trees', accent: 'evergreen' },
   { id: 'stump', icon: Cog6ToothIcon, title: 'Stump Grinding', blurb: 'Complete stump removal solutions', accent: 'evergreen' },
-  { id: 'emergency', icon: BoltIcon, title: 'Emergency', blurb: '24/7 storm damage response', accent: 'amber' },
+  { id: 'emergency', icon: BoltIcon, title: 'Emergency Tree Service', blurb: '24/7 storm damage response', accent: 'amber' },
 ] as const
 
 export default function CityServiceContent({ city, state }: CityServiceContentProps) {
   const detail = getCityDetail(city)
   const citySlug = cityToSlug(city)
+
+  const nearbyCities = (detail?.nearby ?? []).flatMap((name) => {
+    const nearbyDetail = getCityDetail(name)
+    return nearbyDetail ? [{ name, detail: nearbyDetail }] : []
+  })
 
   const localHighlights = detail?.highlights ?? [
     'Local area specialists since 2018',
@@ -107,16 +112,11 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               const href = hasCombo ? `/service-areas/${citySlug}/${id}` : `/services/${id}`
               const isAmber = accent === 'amber'
               return (
-                <Link
-                  key={id}
-                  href={href}
-                  className="block"
-                  aria-label={`${title} in ${city}: details, costs and FAQs`}
-                >
+                <Link key={id} href={href} className="block">
                   <StaticCard className={`h-full bg-charcoal-800/50 border ${isAmber ? 'border-amber-900/20 hover:border-amber-600/40' : 'border-evergreen-900/20 hover:border-evergreen-600/40'} hover:scale-105 transition-all`}>
                     <StaticCardBody className="text-center p-6">
                       <Icon className={`w-10 h-10 mx-auto mb-3 ${isAmber ? 'text-amber-400' : 'text-evergreen-400'}`} aria-hidden="true" />
-                      <h3 className={`font-bold mb-2 ${isAmber ? 'text-amber-400' : 'text-evergreen-300'}`}>{title}</h3>
+                      <h3 className={`font-bold mb-2 ${isAmber ? 'text-amber-400' : 'text-evergreen-300'}`}>{title} in {city}</h3>
                       <p className="text-charcoal-100 text-sm">{blurb}</p>
                     </StaticCardBody>
                   </StaticCard>
@@ -251,6 +251,30 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               </a>
             </div>
           </section>
+
+          {/* Neighboring service areas: gives every city page links to and from
+              the cities around it instead of only the hub and footer. */}
+          {nearbyCities.length > 0 && (
+            <section className="py-20 px-4" aria-label={`Tree services near ${city}`}>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
+                  Also Serving Near {city}
+                </h2>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {nearbyCities.map(({ name, detail: nearbyDetail }) => (
+                    <Link key={name} href={`/service-areas/${cityToSlug(name)}`} className="block">
+                      <StaticCard className="h-full bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 transition-all">
+                        <StaticCardBody className="p-5">
+                          <h3 className="font-bold text-evergreen-300 mb-1">Tree Services in {name}, CA →</h3>
+                          <p className="text-charcoal-100 text-sm">{nearbyDetail.highlights[0]}</p>
+                        </StaticCardBody>
+                      </StaticCard>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Call to Action */}
           <StaticCard className="bg-gradient-to-br from-evergreen-950/80 to-evergreen-900/50 border border-evergreen-700/30">

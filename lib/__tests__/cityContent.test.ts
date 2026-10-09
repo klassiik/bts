@@ -65,3 +65,25 @@ describe('city FAQs', () => {
     }
   })
 })
+
+describe('nearby city links', () => {
+  const cityNames = new Set(SERVICE_AREAS.map((a) => a.city))
+
+  it('every city links 2-3 real neighbors, never itself', () => {
+    for (const [city, detail] of cities) {
+      expect({ city, count: detail.nearby.length >= 2 && detail.nearby.length <= 3 }).toEqual({ city, count: true })
+      for (const name of detail.nearby) {
+        expect({ city, name, real: cityNames.has(name), self: name === city }).toEqual({ city, name, real: true, self: false })
+      }
+    }
+  })
+
+  // Otherwise a city can end up reachable only from the hub and footer,
+  // which is the gap this section exists to close.
+  it('every city is linked from at least one neighbor', () => {
+    const linked = new Set(cities.flatMap(([, detail]) => detail.nearby))
+    for (const area of SERVICE_AREAS) {
+      expect({ city: area.city, linked: linked.has(area.city) }).toEqual({ city: area.city, linked: true })
+    }
+  })
+})

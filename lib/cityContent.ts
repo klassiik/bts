@@ -31,6 +31,12 @@ export interface CityDetail {
   /** 4 short city-specific selling points */
   highlights: string[]
   /**
+   * 2-3 neighboring SERVICE_AREAS cities, linked from this city's page
+   * ("Also serving nearby"). Geographic neighbors only: this is navigation
+   * between real adjacent service areas, not a link wheel.
+   */
+  nearby: string[]
+  /**
    * 3 city-specific Q&As, rendered on the page and emitted as FAQPage schema.
    *
    * Rules for these, learned the hard way:
@@ -64,6 +70,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Defensible-space thinning for Very High fire severity zones',
       'Snow-load and storm-damage response on the I-80 corridor',
     ],
+    nearby: ['Auburn', 'Grass Valley'],
     faqs: [
       {
         question: 'Do I need a permit to remove a tree in Colfax?',
@@ -97,6 +104,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Bark-beetle and drought-stress assessment for pine stands',
       'Grounds maintenance for Gold Country commercial properties',
     ],
+    nearby: ['Nevada City', 'Rough and Ready', 'Colfax'],
     faqs: [
       {
         question: 'Do I need a permit to remove a tree in Grass Valley?',
@@ -130,6 +138,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Canopy preservation balanced with fire-safety clearing',
       'Steep-slope work along the Deer Creek corridor',
     ],
+    nearby: ['Grass Valley', 'Rough and Ready'],
     faqs: [
       {
         question: 'Do I need a permit to remove a tree in Nevada City?',
@@ -163,6 +172,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Driveway and access-corridor clearance to CAL FIRE standards',
       'Deadwood cleanup on legacy homestead oaks',
     ],
+    nearby: ['Grass Valley', 'Smartville', 'Nevada City'],
     faqs: [
       {
         question: 'Do I need a permit to remove a tree in Rough and Ready?',
@@ -196,6 +206,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Deadwood and mistletoe management in legacy oaks',
       'Highway 20 corridor service between Penn Valley and Marysville',
     ],
+    nearby: ['Rough and Ready', 'Grass Valley'],
     faqs: [
       {
         question: 'What makes fire risk different in Smartville than up the hill?',
@@ -229,6 +240,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Clearance pruning around mandarin orchards and outbuildings',
       'Structural pruning for split-prone live oaks',
     ],
+    nearby: ['Loomis', 'Auburn', 'Rocklin'],
     faqs: [
       {
         question: 'Do I need a permit to remove an oak in Penryn?',
@@ -262,6 +274,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Paddock and pasture tree safety for livestock owners',
       'Structural pruning that avoids destructive topping',
     ],
+    nearby: ['Penryn', 'Rocklin', 'Auburn'],
     faqs: [
       {
         question: 'Do I need a permit to remove a tree in Loomis?',
@@ -295,6 +308,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Aging ornamental and landscape tree correction or removal',
       'HOA and commercial grounds maintenance',
     ],
+    nearby: ['Loomis', 'Lincoln', 'Penryn'],
     faqs: [
       {
         question: 'Do I need a permit to remove an oak in Rocklin?',
@@ -328,6 +342,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Mistletoe and heat-stress management on the valley floor',
       'Builder and HOA tree programs for growing communities',
     ],
+    nearby: ['Rocklin', 'Loomis'],
     faqs: [
       {
         question: 'Do I need a permit to remove an oak in Lincoln?',
@@ -361,6 +376,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Oak-to-pine transition species expertise',
       'Old Town commercial property maintenance',
     ],
+    nearby: ['Penryn', 'Colfax', 'Loomis'],
     faqs: [
       {
         question: 'Do I need a permit to remove a tree in Auburn?',
