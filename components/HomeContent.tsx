@@ -43,7 +43,7 @@ export default function HomeContent() {
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-charcoal-950/85 via-charcoal-950/70 to-charcoal-950/60 md:bg-gradient-to-r md:from-charcoal-950/90 md:via-charcoal-950/60 md:to-charcoal-950/20 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-b from-charcoal-950/50 via-charcoal-950/35 to-charcoal-950/25 md:bg-gradient-to-r md:from-charcoal-950/90 md:via-charcoal-950/60 md:to-charcoal-950/20 pointer-events-none"
           style={{ zIndex: 1 }}
           aria-hidden="true"
         ></div>
@@ -98,7 +98,7 @@ export default function HomeContent() {
                 <span className="font-semibold text-charcoal-50">{GOOGLE_BUSINESS.rating.toFixed(1)}</span>
                 · {GOOGLE_BUSINESS.reviewCount} Google reviews
               </a>
-              <span aria-hidden="true" className="text-charcoal-400">·</span>
+              <span aria-hidden="true" className="hidden sm:inline text-charcoal-400">·</span>
               <a
                 href={BUSINESS_INFO.cslbLookupUrl}
                 target="_blank"
@@ -124,10 +124,12 @@ export default function HomeContent() {
                   </Link>
                 </span>
               ))}{' '}
-              +{' '}
-              <Link href="/service-areas" className="font-semibold text-evergreen-300 hover:text-evergreen-200">
-                {moreCount} more →
-              </Link>
+              <span className="whitespace-nowrap">
+                +{' '}
+                <Link href="/service-areas" className="font-semibold text-evergreen-300 hover:text-evergreen-200">
+                  {moreCount} more <span aria-hidden="true">→</span>
+                </Link>
+              </span>
             </p>
           </div>
           
