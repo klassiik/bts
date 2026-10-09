@@ -5,7 +5,7 @@
  * HTML: crawlers and AI engines saw the questions and the FAQPage JSON-LD, but
  * none of the visible answer text. <details> keeps every answer in the DOM
  * (collapsed via the native disclosure widget), which is both citable and
- * free — it also drops @heroui/react + framer-motion from the homepage bundle,
+ * free — it also keeps this section out of the client bundle entirely,
  * and gives correct expand/collapse semantics without managing aria-expanded.
  */
 import { ButtonLink, StaticCard, StaticChip } from '@/components/ui'

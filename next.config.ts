@@ -11,10 +11,6 @@ const nextConfig: NextConfig = {
   // exist in parent folders).
   outputFileTracingRoot: path.resolve(__dirname),
 
-  experimental: {
-    optimizePackageImports: ['@heroui/react']
-  },
-  
   images: {
     formats: ['image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 365
