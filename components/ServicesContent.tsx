@@ -173,7 +173,7 @@ export default function ServicesContent() {
               <StaticCardBody className="text-center p-8">
                 <ShieldCheckIcon className="w-12 h-12 text-evergreen-400 mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-bold text-evergreen-300 mb-3">Fully Insured</h3>
-                <p className="text-charcoal-100">Complete liability and workers&apos; compensation coverage</p>
+                <p className="text-charcoal-100">CSLB {BUSINESS_INFO.cslbClassification} #{BUSINESS_INFO.cslb} · fully insured</p>
               </StaticCardBody>
             </StaticCard>
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 hover:border-evergreen-600/40 hover:scale-105 transition-all" role="listitem">

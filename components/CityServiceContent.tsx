@@ -177,7 +177,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
                  <div>
                    <h4 className="font-semibold text-evergreen-300 mb-2">Licensed & Insured</h4>
                    <p className="text-charcoal-100 text-sm">
-                     CSLB #{BUSINESS_INFO.cslb} with full liability and workers&apos; compensation coverage.
+                     CSLB {BUSINESS_INFO.cslbClassification} #{BUSINESS_INFO.cslb} (Tree &amp; Palm) and fully insured.
                    </p>
                  </div>
                  <div>
