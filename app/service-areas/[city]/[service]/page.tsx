@@ -41,7 +41,10 @@ export async function generateMetadata({ params }: PageProps) {
   if (!cityData || !serviceData || !combo) return {}
 
   return generatePageMetadata({
-    title: `${combo.h1.replace(/, CA$/, '')} | ${serviceData.title}`,
+    // h1 already names the service and the city ("Tree Removal in Colfax, CA");
+    // generatePageMetadata appends the brand. Adding serviceData.title here
+    // repeated the service ("Tree Removal in Colfax | Tree Removal | ...").
+    title: combo.h1,
     description: combo.metaDescription,
     path: `/service-areas/${city}/${service}`,
   })
