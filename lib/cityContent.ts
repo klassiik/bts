@@ -8,9 +8,26 @@
 // Facts (elevations, species zones, ordinances, fire-severity context) were
 // researched against county/city sources; verify before editing:
 // - Placer County Woodland Conservation (Article 19.50) covers the
-//   Horseshoe Bar/Penryn plan area: native oaks >=5" dbh
-// - Town of Loomis Tree Conservation (Ch. 13.54)
-// - City of Rocklin oak removal permit: native oaks >=6" dbh
+//   Horseshoe Bar/Penryn plan area: native oaks >=5" dbh. County code, so
+//   UNINCORPORATED land only; it never applies inside Auburn, Colfax,
+//   Lincoln, Loomis, or Rocklin (enforced in cityContent.test.ts)
+// - City of Auburn Tree Preservation (Mun. Code Ch. 161): native trees
+//   >=6" dbh; developed single-family lots under 1 acre exempt (161.04)
+// - City of Lincoln Oak Tree Preservation (Ch. 18.69) works through
+//   development review; developed-lot triggers NOT verified, so copy
+//   points to City of Lincoln Planning rather than stating a rule
+// - Town of Loomis Tree Conservation (Ch. 13.54): interior live, valley,
+//   oracle oaks >=6" dbh, blue oak >=4"; Town Manager issues permits
+// - City of Rocklin Oak Tree Preservation (Ch. 17.77): native-species
+//   oaks >=6" tdbh; dead/diseased/hazard exempt from mitigation (not from
+//   the permit) on single-family/duplex/triplex lots (17.77.045)
+// - City of Grass Valley Tree Preservation (Ch. 12.36): any tree >10" dbh
+//   on private land; Public Works issues; dead trees exempt (12.36.035)
+// - City of Nevada City Tree Preservation (Ch. 18.01): oak, madrone,
+//   manzanita >=4", most others >=6" cumulative dbh; dead/dangerous trees
+//   still need a (staff-level) permit
+// - Nevada County Sec. 12.04.215.C.9: Nevada City Sphere of Influence
+//   permit exempts developed residentially-zoned property
 // - Nevada County Fire Hazard Severity Zones / PRC 4291 defensible space
 
 export interface CityDetail {
@@ -57,7 +74,7 @@ export interface CityDetail {
 export const CITY_DETAILS: Record<string, CityDetail> = {
   'Colfax': {
     county: 'Placer',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       'Colfax is our home base — Barker Tree Services operates from Placer Hills Road, so crews reach most Colfax properties faster than anywhere else we serve. At roughly 2,400 feet on the I-80 corridor, this historic railroad town sits squarely in mixed-conifer country, and we work in it every day.',
     landscape:
@@ -75,7 +92,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Colfax?',
         answer:
-          'For most Colfax homeowners, no. Placer County\'s Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided, and its permit trigger is aimed at larger clearing: removing more than half of a parcel\'s native trees six inches in diameter or greater, with native oaks held to a stricter five-inch standard. Undeveloped or subdividable parcels are where a Minor Tree Permit usually comes in, and those are filed at least 30 days ahead. We tell you which side of that line your property falls on before we quote, and confirm with Placer County Planning when it is close.',
+          'It depends on which side of the city limit your property sits. Inside the City of Colfax, the city\'s own planning rules apply rather than the county\'s, so we confirm with City of Colfax Planning before cutting. Much of the Colfax area is outside city limits, in unincorporated Placer County, where the Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided and aims its permit trigger at larger clearing, with native oaks held to a stricter five-inch standard. We check which rules apply to your address before we quote.',
       },
       {
         question: 'How much does tree removal cost in Colfax?',
@@ -91,7 +108,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Grass Valley': {
     county: 'Nevada',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       'Grass Valley grew up around the Empire Mine, and its older neighborhoods still carry the mature landscape trees to prove it. At about 2,400 feet in the western Nevada County foothills, the town mixes big conifers with century-old hardwoods — beautiful, and demanding to maintain safely.',
     landscape:
@@ -109,7 +126,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Grass Valley?',
         answer:
-          'In unincorporated Nevada County, most tree removal on private property does not require a permit unless the parcel sits in a specific overlay zone, the notable exception being properties inside the Nevada City Sphere of Influence, which do need a permit from the County Planning Director. Inside Grass Valley city limits, check with the city before removing street or landmark trees. Defensible-space obligations apply whether or not a permit does, and we flag anything that looks like an overlay issue before starting.',
+          'Inside the City of Grass Valley, often yes. The city\'s Tree Preservation and Protection chapter (Municipal Code Chapter 12.36) requires a permit to remove any tree larger than ten inches in trunk diameter on private land, issued through Public Works, and replanting or an in-lieu fee can be a condition of approval. Dead trees and trees brought down by weather are exempt. Outside city limits, in unincorporated Nevada County, the county\'s tree standards attach mainly to development permits, so most removals on an already-developed lot need no county permit. Defensible-space obligations apply either way, and we confirm the permit position before starting.',
       },
       {
         question: 'Why are so many pines dying around Grass Valley?',
@@ -125,7 +142,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Nevada City': {
     county: 'Nevada',
-    updated: '2026-10-08',
+    updated: '2026-10-09',
     intro:
       'Nevada City packs towering conifers, Victorian architecture, and some of the narrowest streets in the Sierra foothills into one historic district — which makes tree work here a rigging problem as much as a cutting problem. We bring trees down in sections over rooftops and gardens that large equipment often cannot reach.',
     landscape:
@@ -143,7 +160,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Nevada City?',
         answer:
-          'Quite possibly. Nevada City is the exception to Nevada County\'s generally permissive rules: properties within the Nevada City Sphere of Influence require a tree removal permit from the County Planning Director before removal, with limited exceptions, and work near landmark structures in the historic district warrants extra care. We confirm the permit position with the county on Nevada City jobs before scheduling rather than have you find out afterward.',
+          'Inside the City of Nevada City, almost certainly. The city\'s Tree Preservation chapter (Municipal Code Chapter 18.01) requires a permit from the city planner to remove oaks, madrones, and manzanitas from four inches in cumulative trunk diameter and most other trees from six inches, and every sugar pine is protected. Unlike Grass Valley, a dead or dangerous tree still needs that permit, though staff can approve it directly. Just outside town, the county\'s Nevada City Sphere of Influence permit exempts developed residentially-zoned property. We confirm the permit position before scheduling rather than have you find out afterward.',
       },
       {
         question: 'Can you remove a large tree in the historic district\'s narrow streets?',
@@ -261,13 +278,13 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Loomis': {
     county: 'Placer',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       'Loomis has deliberately kept its small-town, horse-property character — and its tree canopy is a big part of that. The town takes its oaks seriously enough to protect them by ordinance, and so do the homeowners who bought here for exactly that landscape.',
     landscape:
       'Valley oak, interior live oak, and blue oak spread across large residential lots, pastures, and arena edges throughout Loomis. These are long-lived trees that need structural pruning young and weight management when mature; horse owners also need clean, safe paddock trees, since fallen oak limbs and certain deadfall are genuine hazards to stock. We prune for canopy health, clearance, and safety without the topping cuts that ruin oaks.',
     regulations:
-      "The Town of Loomis Tree Conservation ordinance (Chapter 13.54) protects native trees, and its stated first priority is preserving them — removals of protected trees generally require a town permit. We work within the ordinance routinely: assessing whether a tree qualifies as hazardous, documenting it properly, and pursuing pruning alternatives where the town expects preservation.",
+      "The Town of Loomis Tree Conservation ordinance (Chapter 13.54) protects native oaks, and names preserving them as its highest priority — removing a protected tree within town limits requires a town tree permit. We work within the ordinance routinely: assessing whether a tree qualifies as hazardous, documenting it properly, and pursuing pruning alternatives where the town expects preservation.",
     highlights: [
       'Heritage valley oak preservation on horse properties',
       'Town of Loomis tree-ordinance permits handled routinely',
@@ -279,7 +296,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Loomis?',
         answer:
-          'Generally yes, for protected natives. The Town of Loomis Tree Conservation ordinance (Chapter 13.54) protects native trees and states preservation as its first priority, so removals of protected trees typically require a town permit. In practice the town wants to see that pruning or another alternative was genuinely considered. We work inside this ordinance routinely: assessing whether a tree qualifies as hazardous, documenting it the way the town expects, and pursuing the preservation route where it is viable.',
+          'Generally yes, for protected oaks. The Town of Loomis Tree Conservation ordinance (Chapter 13.54) protects interior live, valley, and oracle oaks six inches and up in trunk diameter and blue oaks from four inches, and names preserving them as its highest priority, so removing one within town limits takes a tree permit from the town. Dead, dying, or hazardous trees are spared mitigation but still need the permit. In practice the town wants to see that pruning or another alternative was genuinely considered. We work inside this ordinance routinely: assessing whether a tree qualifies as hazardous, documenting it the way the town expects, and pursuing the preservation route where it is viable.',
       },
       {
         question: 'Are oak limbs actually dangerous to horses?',
@@ -301,7 +318,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
     landscape:
       'Native interior live oaks and blue oaks were built around, not removed, in many Rocklin subdivisions — so 200-year-old oaks now overhang 20-year-old roofs. Meanwhile the ornamental pears, ashes, and maples planted when these neighborhoods went in are reaching the age of included bark, storm splits, and root-heaved sidewalks. We handle both: preservation pruning for protected oaks and corrective work or removal for failing landscape trees.',
     regulations:
-      'The City of Rocklin requires a permit before removing any native oak six inches or larger in trunk diameter — the permit itself is free, but mitigation (replanting or an in-lieu fee) can apply, and dead or hazardous oaks are typically exempt from mitigation. We prepare the assessment and documentation the city looks for, which keeps straightforward hazard removals from stalling.',
+      'The City of Rocklin requires a permit before removing an oak of a native species six inches or larger in trunk diameter. On a single-family lot, mitigation (replanting or an in-lieu fee) can follow a healthy oak\'s removal, while a dead, diseased, or hazardous oak is exempt from mitigation but still needs the permit. We prepare the assessment and documentation the city looks for, which keeps straightforward hazard removals from stalling.',
     highlights: [
       'City oak-permit process handled start to finish',
       'Mature native oaks over homes in established subdivisions',
@@ -313,7 +330,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove an oak in Rocklin?',
         answer:
-          'Yes, if it is a native oak six inches or larger in trunk diameter: the City of Rocklin requires a permit before removal, and the permit itself is free. Mitigation, meaning replanting or an in-lieu fee, can follow depending on the condition of the tree. We prepare the documentation the city looks for, which keeps a straightforward hazard removal from stalling for weeks.',
+          'Yes, if it is an oak of a native species, such as valley, blue, or interior live oak, six inches or larger in trunk diameter: the City of Rocklin requires a permit before removal, and that holds for dead or hazardous oaks too. Mitigation, meaning replanting or an in-lieu fee, can follow depending on the condition of the tree. We prepare the documentation the city looks for, which keeps a straightforward hazard removal from stalling for weeks.',
       },
       {
         question: 'There is a 200-year-old oak over my roof. Does it have to come out?',
@@ -323,13 +340,13 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Will I have to replant after removing an oak in Rocklin?',
         answer:
-          'It depends on the condition of the tree. When the City of Rocklin permits removal of a native oak, mitigation can apply: replanting, or an in-lieu fee instead. Dead or hazardous oaks are typically exempt from that mitigation, so the condition assessment is what decides it. We document what we actually find, with the evidence the city looks for, so a genuinely dead or failing oak is recognized as one and a healthy oak is not presented as something it is not.',
+          'It depends on the condition of the tree and the kind of lot. When the City of Rocklin permits removal of a healthy oak on a single-family, duplex, or triplex lot, mitigation applies: replanting, or an in-lieu fee instead. A dead, diseased, or hazardous oak on that kind of lot is exempt from mitigation, so the condition assessment is what decides it; multifamily and commercial lots follow stricter rules. We document what we actually find, with the evidence the city looks for, so a genuinely dead or failing oak is recognized as one and a healthy oak is not presented as something it is not.',
       },
     ],
   },
   'Lincoln': {
     county: 'Placer',
-    updated: '2026-10-08',
+    updated: '2026-10-09',
     intro:
       'Lincoln has been one of the fastest-growing cities in California, but it is still the town where Gladding McBean has fired clay since 1875 — new subdivisions on the valley floor ringed by ranchland and heritage oaks. The tree work here splits the same way: young landscape trees in the newer neighborhoods, big legacy oaks on the edges.',
     landscape:
@@ -347,7 +364,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove an oak in Lincoln?',
         answer:
-          'It depends on the parcel, and it is worth asking first. Lincoln\'s policy is to preserve oaks wherever possible, largely through its development review process, so protections often attach to heritage trees that survived construction on newer lots. Rural acreage toward Sheridan sits under different considerations again. We check the specific parcel with the city rather than guess, because the answer here varies more than it does in Rocklin or Loomis.',
+          'It depends on the parcel, and it is worth asking first. The City of Lincoln\'s oak preservation chapter works through its development review process, so protections often attach as project conditions to heritage oaks that survived construction on newer lots. The city also has a protected-tree removal application, and whether yours needs one is a question for City of Lincoln Planning rather than something to guess at. Acreage toward Sheridan is largely outside city limits, in unincorporated Placer County, which has rules of its own. We check the specific parcel before cutting, because the answer here varies more than it does in Rocklin or Loomis.',
       },
       {
         question: 'My subdivision trees are young. Is there anything to do now?',
@@ -363,7 +380,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Auburn': {
     county: 'Placer',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       'Auburn stacks three tree environments into one town: the historic Old Town core, established neighborhoods at 1,200 feet, and the steep American River canyon rim where the Western States Trail drops away below backyards. We work all three — including the canyon-edge removals most companies pass on.',
     landscape:
@@ -381,7 +398,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Auburn?',
         answer:
-          'For most developed residential lots in the Auburn area, no. Placer County\'s Woodland Conservation ordinance generally exempts developed single-family parcels that cannot be subdivided, and its permit trigger targets larger clearing: more than half of a parcel\'s native trees six inches or greater in diameter, with native oaks held to a stricter five-inch standard. Undeveloped or subdividable land is a different conversation, and a Minor Tree Permit is filed at least 30 days ahead. Inside city limits, street and landmark trees have their own rules. We confirm before we cut.',
+          'Usually not on a developed home lot, but which rules apply depends on whether the address is inside the City of Auburn. In town, the city\'s Tree Preservation chapter (Municipal Code Chapter 161) protects native trees six inches or more in trunk diameter, yet generally exempts a developed single-family lot under an acre in a single-family zone, and has its own exemptions for dead and hazardous trees. Much of what people call Auburn, including North Auburn and Bowman, is unincorporated Placer County, where the county\'s Woodland Conservation ordinance (Article 19.50) applies instead and names the Auburn/Bowman community plan area specifically. We confirm with City of Auburn Planning or Placer County Planning, whichever covers your address, before we cut.',
       },
       {
         question: 'Can you remove a tree hanging over the American River canyon?',
