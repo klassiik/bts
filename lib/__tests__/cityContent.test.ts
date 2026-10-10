@@ -1,5 +1,6 @@
 import { CITY_DETAILS } from '../cityContent'
 import { CITY_SERVICE_COMBOS } from '../cityServices'
+import { pageTitle } from '../seo'
 import { SERVICE_AREAS } from '../config'
 import { generateFAQSchema } from '../schema'
 import { cityToSlug } from '../utils'
@@ -90,6 +91,52 @@ describe('nearby city links', () => {
   })
 })
 
+describe('per-city overrides', () => {
+  it('every title override fits the 60-char SERP budget once branded', () => {
+    for (const [city, detail] of cities) {
+      if (!detail.title) continue
+      expect({ city, fits: pageTitle(detail.title).length <= 60 }).toEqual({ city, fits: true })
+    }
+  })
+
+  it('every h1 override names its city', () => {
+    for (const [city, detail] of cities) {
+      if (!detail.h1) continue
+      expect({ city, named: detail.h1.includes(city) }).toEqual({ city, named: true })
+    }
+  })
+
+  it('every section is well formed, links internally, and states no dollar figure', () => {
+    for (const [city, detail] of cities) {
+      for (const section of detail.sections ?? []) {
+        expect({ city, heading: section.heading.trim().length > 0 }).toEqual({ city, heading: true })
+        expect(section.body.length).toBeGreaterThanOrEqual(1)
+        for (const p of section.body) expect(p.trim().length).toBeGreaterThan(0)
+        if (section.link) expect(section.link.href.startsWith('/')).toBe(true)
+        const text = [section.heading, ...section.body, ...(section.steps ?? [])].join(' ')
+        expect({ city, match: text.match(/\$\s?\d/) }).toEqual({ city, match: null })
+      }
+    }
+  })
+})
+
+describe('Colfax hub page', () => {
+  const colfax = CITY_DETAILS['Colfax']
+
+  it('carries the overrides and sections that make it the hub for "tree service Colfax CA"', () => {
+    expect(colfax.h1).toBe('Tree Service in Colfax, CA')
+    expect(colfax.title).toBe('Colfax Tree Service & 24/7 Removal')
+    expect(colfax.highlightsHeading).toBeTruthy()
+    expect(colfax.sections).toHaveLength(4)
+    expect(colfax.faqs).toHaveLength(3)
+  })
+
+  it('says plainly that it does not use cranes', () => {
+    const text = (colfax.sections ?? []).flatMap((s) => [...s.body, ...(s.steps ?? [])]).join(' ')
+    expect(text).toMatch(/don’t use cranes|don\'t use cranes/)
+  })
+})
+
 // County tree ordinances stop at the city limit. Placer County's Woodland
 // Conservation ordinance (Article 19.50) and Nevada County's Sphere of
 // Influence permit both govern unincorporated land only, so copy for an
@@ -124,6 +171,11 @@ describe('permit jurisdiction', () => {
       ...detail.faqs.flatMap((f, i) => [
         { where: `faqs[${i}].question`, text: f.question },
         { where: `faqs[${i}].answer`, text: f.answer },
+      ]),
+      ...(detail.sections ?? []).flatMap((sec, i) => [
+        { where: `sections[${i}].heading`, text: sec.heading },
+        ...sec.body.map((text, j) => ({ where: `sections[${i}].body[${j}]`, text })),
+        ...(sec.steps ?? []).map((text, j) => ({ where: `sections[${i}].steps[${j}]`, text })),
       ]),
       ...CITY_SERVICE_COMBOS.filter((c) => c.citySlug === cityToSlug(city)).flatMap((c) => [
         { where: `${c.serviceId}.intro`, text: c.intro },

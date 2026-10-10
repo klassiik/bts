@@ -11,7 +11,7 @@ import { cityToSlug } from '@/lib/utils'
 // their record; the hand-built pages below are dated here. Bump an entry when
 // that page's copy changes, not for sitewide chrome (header, footer, styling).
 const PAGE_UPDATED: Record<string, string> = {
-  '/': '2026-10-08',
+  '/': '2026-10-09',
   '/services': '2026-10-08',
   '/service-areas': '2026-10-09',
   '/emergency': '2026-10-08',

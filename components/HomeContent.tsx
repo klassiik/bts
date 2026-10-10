@@ -31,7 +31,7 @@ export default function HomeContent() {
   return (
     <>
       {/* GEO: Hero section with semantic article landmark for main business proposition */}
-      <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Professional Tree Services in Colfax, CA">
+      <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Tree service across the Sierra foothills, based in Colfax, CA">
         <Video
           src={
             getVideoHeroUrl('553827505_24841983355418125_3276620820634142277_n') ??
@@ -55,12 +55,12 @@ export default function HomeContent() {
             <StaticChip className="mb-4 bg-evergreen-950/40 border border-evergreen-600/30" variant="bordered" aria-label="Business experience badge">
               <span className="text-evergreen-300 font-semibold">{YEARS_IN_BUSINESS} Years Experience</span>
             </StaticChip>
-            {/* GEO: H1 optimized with location and service keywords for AI understanding */}
+            {/* GEO: H1 is regional (Sierra foothills). The Colfax city page (/service-areas/colfax) owns the explicit "Colfax" query, so the two pages no longer share an H1. */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-charcoal-50">
-              Expert Tree Services in <span className="text-evergreen-300">Colfax, CA</span>
+              Tree Service Across the <span className="text-evergreen-300">Sierra Foothills</span>
             </h1>
             <p className="text-xl text-charcoal-100 mb-8 leading-relaxed">
-               Professional tree trimming, removal, and emergency services. Licensed, insured, and available 24/7.
+               Family-owned and based in <Link href="/service-areas/colfax" className="text-evergreen-300 underline underline-offset-4 hover:text-evergreen-200">Colfax, CA</Link>. Tree trimming, removal, and emergency service across the Sierra foothills, from Rocklin to Nevada City. Licensed, insured, and available 24/7.
              </p>
             <div className="flex gap-4 flex-wrap">
               {/* GEO: Primary CTA with semantic link relationship */}

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!cityData) return {}
 
   const detail = getCityDetail(cityData.city)
-  const title = `Tree Services in ${cityData.city}, ${cityData.state}`
+  const title = detail?.title ?? `Tree Services in ${cityData.city}, ${cityData.state}`
   const description = cityMetaDescription(cityData.city, detail?.highlights[0])
 
   return generatePageMetadata({

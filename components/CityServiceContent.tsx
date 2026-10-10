@@ -52,7 +52,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
             Serving {city}, {state}
           </StaticChip>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-charcoal-50">
-            Expert Tree Services in {city}, {state}
+            {detail?.h1 ?? `Expert Tree Services in ${city}, ${state}`}
           </h1>
           <p className="text-xl text-charcoal-100 mb-8 max-w-3xl">
             {detail?.intro ??
@@ -83,7 +83,7 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label={`Why choose tree services in ${city}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-evergreen-300 mb-8 text-center">
-            Why Choose Tree Services in {city}?
+            {detail?.highlightsHeading ?? `Why Choose Tree Services in ${city}?`}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" role="list">
             {localHighlights.map((highlight, index) => (
@@ -189,6 +189,38 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               </div>
             </StaticCardBody>
           </StaticCard>
+
+          {/* Per-city long-form sections (see CitySection). Plain server markup,
+              rendered before the FAQs and only for cities that define them. */}
+          {detail?.sections?.map((section) => (
+            <section key={section.heading} className="py-12 px-4" aria-label={section.heading}>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-evergreen-300 mb-6">{section.heading}</h2>
+                <div className="space-y-4">
+                  {section.body.map((paragraph) => (
+                    <p key={paragraph} className="text-charcoal-100 leading-relaxed">{paragraph}</p>
+                  ))}
+                  {section.steps && section.steps.length > 0 && (
+                    <ol className="list-decimal list-outside pl-6 space-y-2 text-charcoal-100 leading-relaxed marker:text-evergreen-300 marker:font-semibold">
+                      {section.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                  )}
+                  {section.link && (
+                    <p>
+                      <Link
+                        href={section.link.href}
+                        className="text-evergreen-300 underline hover:text-evergreen-200 font-semibold"
+                      >
+                        {section.link.label} →
+                      </Link>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </section>
+          ))}
 
           {/* City-specific FAQs. Native <details> for the same reasons as
               FAQSection: zero client JS, and every answer stays in the DOM so
