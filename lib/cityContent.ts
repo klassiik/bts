@@ -13,6 +13,22 @@
 // - City of Rocklin oak removal permit: native oaks >=6" dbh
 // - Nevada County Fire Hazard Severity Zones / PRC 4291 defensible space
 
+/**
+ * A long-form content block rendered between a city's highlights and its FAQs.
+ * Used where a city page has to carry its own head-term content (see Colfax)
+ * rather than lean on the shared template.
+ */
+export interface CitySection {
+  /** Rendered as an <h2> */
+  heading: string
+  /** Paragraphs, in order */
+  body: string[]
+  /** Optional numbered list rendered after the body */
+  steps?: string[]
+  /** Optional internal link rendered last */
+  link?: { href: string; label: string }
+}
+
 export interface CityDetail {
   county: string
   /**
@@ -22,6 +38,20 @@ export interface CityDetail {
    * stops trusting lastmod that moves without the content moving.
    */
   updated: string
+  /**
+   * Overrides the page <title> base (default "Tree Services in {city}, {state}").
+   * pageTitle() still appends the brand suffix when the result fits.
+   */
+  title?: string
+  /** Overrides the hero H1 (default "Expert Tree Services in {city}, {state}") */
+  h1?: string
+  /** Overrides the highlights H2 (default "Why Choose Tree Services in {city}?") */
+  highlightsHeading?: string
+  /**
+   * Extra H2 sections rendered immediately before the FAQs. Optional: cities
+   * without them render the shared template unchanged.
+   */
+  sections?: CitySection[]
   /** 2-3 sentence city-specific hero paragraph */
   intro: string
   /** Trees & terrain: species, soils, growth conditions */
@@ -57,7 +87,10 @@ export interface CityDetail {
 export const CITY_DETAILS: Record<string, CityDetail> = {
   'Colfax': {
     county: 'Placer',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
+    title: 'Colfax Tree Service & 24/7 Removal',
+    h1: 'Tree Service in Colfax, CA',
+    highlightsHeading: 'Why Colfax Homeowners Call Us',
     intro:
       'Colfax is our home base — Barker Tree Services operates from Placer Hills Road, so crews reach most Colfax properties faster than anywhere else we serve. At roughly 2,400 feet on the I-80 corridor, this historic railroad town sits squarely in mixed-conifer country, and we work in it every day.',
     landscape:
@@ -71,21 +104,58 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       'Snow-load and storm-damage response on the I-80 corridor',
     ],
     nearby: ['Auburn', 'Grass Valley'],
+    sections: [
+      {
+        heading: 'Removing Large, Dead, and Leaning Trees in Colfax',
+        body: [
+          'Most removals here are tall ponderosa pine, incense cedar, and Douglas-fir growing close to the house on sloped, wooded lots: dead, leaning, beetle-killed, or storm-damaged trees that have to come out without hitting anything on the way down. Where a bucket truck can\'t set up, we climb the tree and take it down in rigged sections. We don\'t use cranes; climbing and rigging is how we handle the big ones.',
+        ],
+        link: { href: '/service-areas/colfax/removal', label: 'Tree removal in Colfax: how we handle it' },
+      },
+      {
+        heading: 'Tree Trimming and Pruning in Colfax',
+        body: [
+          'Trimming here is mostly about weight and clearance. Crown thinning takes load off pines and cedars before snow and ice settle into them; crown raising lifts limbs off roofs, driveways, and the PG&E service drop; deadwood removal takes out the branches most likely to come down in the next storm. Overgrown oaks and pines that haven\'t been touched in years usually need a few of these at once.',
+          'Timing matters. Major structural pruning is best done in winter, while deciduous trees like California black oak are dormant. Avoid heavy pruning in the summer heat: it stresses the tree, and stressed pines are what bark beetles go after.',
+        ],
+        link: { href: '/services/trimming', label: 'Tree trimming and pruning services' },
+      },
+      {
+        heading: 'Emergency and Storm Response in Colfax',
+        body: [
+          'Most Colfax storm calls follow a pattern: snow- and ice-loaded conifers that split, and shallow-rooted pines that let go in saturated winter ground. When a tree comes down on a house, across a driveway, or into a line:',
+        ],
+        steps: [
+          'Get everyone clear of the tree and anything it is touching.',
+          'If it is on or near a power line, stay back and call PG&E, and 911 if anyone is in danger. The utility makes the lines safe before any tree work starts.',
+          'Photograph the damage from a safe distance for your insurance company before anything is moved.',
+          'Call us. Colfax is our home base, and emergencies get a same-day response, 24/7.',
+        ],
+        link: { href: '/emergency', label: '24/7 emergency tree service' },
+      },
+      {
+        heading: 'What a Colfax Tree Job Costs',
+        body: [
+          'We don\'t publish a price list, because two trees of the same species and height can cost very different amounts to take down. In Colfax the biggest drivers are slope and access (whether a bucket truck can reach the tree or it has to be climbed and rigged), then how close it stands to the house, outbuildings, and power lines, its size, and how far the wood and brush have to be moved.',
+          'Estimates are free and on-site. For non-emergency work we can usually come out the next day.',
+        ],
+      },
+    ],
     faqs: [
-      {
-        question: 'Do I need a permit to remove a tree in Colfax?',
-        answer:
-          'For most Colfax homeowners, no. Placer County\'s Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided, and its permit trigger is aimed at larger clearing: removing more than half of a parcel\'s native trees six inches in diameter or greater, with native oaks held to a stricter five-inch standard. Undeveloped or subdividable parcels are where a Minor Tree Permit usually comes in, and those are filed at least 30 days ahead. We tell you which side of that line your property falls on before we quote, and confirm with Placer County Planning when it is close.',
-      },
-      {
-        question: 'How much does tree removal cost in Colfax?',
-        answer:
-          'We do not publish a price list, because the same species at the same height can differ several-fold in cost. In Colfax the real drivers are slope and access: sloped, wooded parcels off Placer Hills Road often cannot take a bucket truck, which turns a removal into a technical climb with sectional rigging. After that it is proximity to the house, outbuildings, and PG&E lines, the size of the conifer, and how far debris has to be dragged. We look at the tree and give you a firm number for free.',
-      },
       {
         question: 'How fast can you respond to a fallen tree in Colfax?',
         answer:
           'Colfax is our home base. We operate out of Placer Hills Road, so Colfax properties get our fastest response of anywhere we serve, and most of our storm work starts within a few miles of the shop. We run emergency service 24/7, which matters here because winter storms coming over the Sierra crest load ponderosa and cedar with snow and ice, and saturated ground drops shallow-rooted pines overnight.',
+      },
+      {
+        question: 'Do I need a permit to remove a tree in Colfax?',
+        answer:
+          'It depends on which side of the city limit your property sits. Inside the City of Colfax, the city\'s own planning rules apply rather than the county\'s, so we confirm with City of Colfax Planning before cutting. Much of the Colfax area is outside city limits, in unincorporated Placer County, where the Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided and aims its permit trigger at larger clearing, with native oaks held to a stricter five-inch standard. We check which rules apply to your address before we quote.',
+      },
+      {
+        question: 'Can you remove a big tree on a steep Colfax lot without a crane?',
+        answer:
+          'Yes, and that is most of our removal work here. On sloped, wooded lots where neither a crane nor a bucket truck can set up, we climb the tree and take it down in sections, rigging and lowering each piece so nothing drops onto the house, deck, or service line below. It takes longer than a straight fell, and it is the method this terrain calls for.',
       },
     ],
   },

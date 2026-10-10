@@ -38,7 +38,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'colfax',
     serviceId: 'removal',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     h1: 'Tree Removal in Colfax, CA',
     metaDescription:
       'Tree removal in Colfax, CA from a local crew on Placer Hills Road. Sloped, wooded parcels a bucket truck can’t reach are our everyday work. CSLB #1085329.',
@@ -47,7 +47,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
     body: [
       'Most Colfax removals are not straight fells. Ponderosa pine, incense cedar, and Douglas-fir grow tall and heavy close to homes on parcels that a bucket truck often cannot reach, so the tree comes down in sections — climbed, rigged, and lowered piece by piece over the roof, the deck, and the PG&E service drop rather than dropped in one go. That is the difference between a tree that ends up in our truck and one that goes through your porch.',
       'The trees we are called to remove here follow a pattern: shallow-rooted pines that let go in saturated winter ground, conifers snapped or split by snow and ice off the Sierra crest, and beetle-killed pines standing dead after a drought summer. Removing a dead pine before it fails on its own is both a fire-safety and a falling-hazard decision, and it is a large share of what we do within a few miles of the shop.',
-      'On permits, most Colfax homeowners are in the clear: Placer County’s Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided, and its permit trigger is aimed at larger clearing, not a hazard tree or two. We tell you which side of that line your property is on before we quote, and confirm with Placer County Planning when it is close.',
+      'Permits depend on where the property sits. Inside City of Colfax limits the city’s own planning rules apply, so we check with City of Colfax Planning before cutting. Outside them, and much of the Colfax area is, Placer County’s Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided, and its permit trigger is aimed at larger clearing, not a hazard tree or two. We tell you which rules apply before we quote.',
     ],
     faqs: [
       {
@@ -58,7 +58,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
       {
         question: 'Do I need a permit to remove a tree in Colfax?',
         answer:
-          'For most Colfax homeowners, no. Placer County’s Woodland Conservation ordinance generally exempts developed single-family lots that cannot be subdivided; its permit trigger targets larger clearing (more than half of a parcel’s native trees six inches or greater in diameter, with oaks stricter at five). Undeveloped or subdividable parcels are where a Minor Tree Permit comes in, filed at least 30 days ahead. We confirm before we cut.',
+          'It depends on the jurisdiction. Inside the City of Colfax, the city’s planning rules apply and we confirm with City of Colfax Planning first. In unincorporated Placer County, the Woodland Conservation ordinance generally exempts developed single-family lots that cannot be subdivided; its permit trigger targets larger clearing (more than half of a parcel’s native trees six inches or greater in diameter, with oaks stricter at five), and a Minor Tree Permit for that kind of work is filed at least 30 days ahead. We confirm before we cut.',
       },
       {
         question: 'How fast can you remove a hazardous tree in Colfax?',
