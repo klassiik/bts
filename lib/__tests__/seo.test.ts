@@ -1,6 +1,7 @@
-import { cityMetaDescription } from '../seo'
+import { cityMetaDescription, pageTitle, MAX_BRANDED_TITLE_LENGTH } from '../seo'
+import { GUIDES } from '../guides'
 import { getCityDetail } from '../cityContent'
-import { SERVICE_AREAS } from '../config'
+import { SERVICE_AREAS, SERVICES } from '../config'
 
 const descriptions = SERVICE_AREAS.map((area) => ({
   city: area.city,
@@ -37,6 +38,27 @@ describe('city meta descriptions', () => {
   it('name the city', () => {
     for (const { city, text } of descriptions) {
       expect(text).toContain(`${city}, CA`)
+    }
+  })
+})
+
+describe('page titles', () => {
+  it('keep the brand suffix when it fits', () => {
+    expect(pageTitle('About Us')).toBe('About Us | Barker Tree Services')
+    expect(pageTitle('Professional Tree Care & Emergency Services')).toBe(
+      'Professional Tree Care & Emergency Services | Barker Tree Services'
+    )
+  })
+
+  // Same title strings app/services/[service] and app/guides/[guide] pass in
+  it('stay within the truncation limit on service and guide pages', () => {
+    const titles = [
+      ...SERVICES.map((s) => `${s.title} in Placer & Nevada Counties, CA`),
+      ...GUIDES.map((g) => g.title),
+    ]
+    for (const title of titles) {
+      const full = pageTitle(title)
+      expect({ full, ok: full.length <= MAX_BRANDED_TITLE_LENGTH }).toEqual({ full, ok: true })
     }
   })
 })

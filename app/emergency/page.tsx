@@ -5,7 +5,7 @@ import EmergencyResponseContent from '@/components/EmergencyResponseContent'
 
 export const metadata = generatePageMetadata({
   title: 'Emergency Tree Services | 24/7 Storm Damage Response',
-  description: `24/7 emergency tree services in Colfax, CA. Storm damage cleanup, fallen tree removal, hazardous tree mitigation. Call ${BUSINESS_INFO.phone} now for immediate assistance.`,
+  description: `24/7 emergency tree service in Colfax & the foothills: storm damage, fallen trees, hazardous trees. Same-day response. Call ${BUSINESS_INFO.phone}.`,
   path: '/emergency',
   keywords: [
     'emergency tree service',

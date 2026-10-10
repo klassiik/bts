@@ -4,7 +4,7 @@ import AboutContent from '@/components/AboutContent'
 
 export const metadata = generatePageMetadata({
   title: 'About Us',
-  description: 'Learn about Barker Tree Services, our mission, values, and commitment to expert tree care. Family-owned, licensed & insured tree care serving Colfax & Northern California since 2018.',
+  description: 'Family-owned tree care from a multi-generational Colfax family, serving Placer & Nevada Counties since 2018. Licensed CSLB #1085329, fully insured.',
   path: '/about'
 })
 
