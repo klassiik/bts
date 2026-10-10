@@ -38,7 +38,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'colfax',
     serviceId: 'removal',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     h1: 'Tree Removal in Colfax, CA',
     metaDescription:
       'Tree removal in Colfax, CA from a local crew on Placer Hills Road. Sloped, wooded parcels a bucket truck can’t reach are our everyday work. CSLB #1085329.',
@@ -47,7 +47,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
     body: [
       'Most Colfax removals are not straight fells. Ponderosa pine, incense cedar, and Douglas-fir grow tall and heavy close to homes on parcels that a bucket truck often cannot reach, so the tree comes down in sections — climbed, rigged, and lowered piece by piece over the roof, the deck, and the PG&E service drop rather than dropped in one go. That is the difference between a tree that ends up in our truck and one that goes through your porch.',
       'The trees we are called to remove here follow a pattern: shallow-rooted pines that let go in saturated winter ground, conifers snapped or split by snow and ice off the Sierra crest, and beetle-killed pines standing dead after a drought summer. Removing a dead pine before it fails on its own is both a fire-safety and a falling-hazard decision, and it is a large share of what we do within a few miles of the shop.',
-      'On permits, most Colfax homeowners are in the clear: Placer County’s Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided, and its permit trigger is aimed at larger clearing, not a hazard tree or two. We tell you which side of that line your property is on before we quote, and confirm with Placer County Planning when it is close.',
+      'On permits, the first question is which side of the city limit the tree stands on. Inside the City of Colfax, the city’s own planning rules apply, and we confirm with City of Colfax Planning before cutting. Outside it, in unincorporated Placer County, the Woodland Conservation ordinance (Article 19.50) generally exempts developed single-family lots that cannot be subdivided, and its permit trigger is aimed at larger clearing, not a hazard tree or two.',
     ],
     faqs: [
       {
@@ -58,7 +58,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
       {
         question: 'Do I need a permit to remove a tree in Colfax?',
         answer:
-          'For most Colfax homeowners, no. Placer County’s Woodland Conservation ordinance generally exempts developed single-family lots that cannot be subdivided; its permit trigger targets larger clearing (more than half of a parcel’s native trees six inches or greater in diameter, with oaks stricter at five). Undeveloped or subdividable parcels are where a Minor Tree Permit comes in, filed at least 30 days ahead. We confirm before we cut.',
+          'It depends on the jurisdiction, so we check that first. Inside the City of Colfax, City of Colfax Planning sets the rules. In unincorporated Placer County, the Woodland Conservation ordinance generally exempts developed single-family lots that cannot be subdivided; its permit trigger targets larger clearing (more than half of a parcel’s native trees six inches or greater in diameter, with oaks stricter at five). We confirm before we cut.',
       },
       {
         question: 'How fast can you remove a hazardous tree in Colfax?',
@@ -70,7 +70,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'grass-valley',
     serviceId: 'removal',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     h1: 'Tree Removal in Grass Valley, CA',
     metaDescription:
       'Tree removal in Grass Valley, CA — mature Empire Mine-era trees over roofs and drought-killed conifers, to Nevada County standards. CSLB #1085329.',
@@ -79,7 +79,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
     body: [
       'Two kinds of removal dominate here. In town, it is mature ponderosa, cedar, and black oak — plus planted maples and elms from the mining era — that have outgrown their space and now lean over structures or lines. On the rural edges toward Penn Valley and Rough and Ready, it is drought-stressed, bark-beetle-killed pine out of crowded, never-thinned stands. That second kind is the removal we are called for most, because a faded pine is both a fire hazard and a tree that will come down on its own schedule if left.',
       'Because Grass Valley and the surrounding county sit largely in Very High Fire Hazard Severity Zones, removal is usually part of a bigger defensible-space picture. We plan the work so the property meets the 100-foot standard Nevada County enforces, and coordinate with the chipping and clearing programs the Fire Safe Council of Nevada County runs rather than have you pay us to haul what they will chip for free.',
-      'On permits, unincorporated Nevada County is generally permissive: most private-property removal needs no permit unless the parcel is in a specific overlay zone. The notable exception is property inside the Nevada City Sphere of Influence, which does require one. Inside Grass Valley city limits, street and landmark trees have their own rules. We flag anything that looks like an overlay issue before starting.',
+      'On permits, the city limit is the line that matters. Inside the City of Grass Valley, removing a living tree more than ten inches in diameter on private land takes a city tree permit through Public Works, though a beetle-killed pine that is already dead is exempt. Out in unincorporated Nevada County, tree standards attach mainly to development permits, so removal on an established lot is generally permit-free. We confirm which side of that line a job is on before starting.',
     ],
     faqs: [
       {
@@ -90,7 +90,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
       {
         question: 'Do I need a permit to remove a tree in Grass Valley?',
         answer:
-          'In unincorporated Nevada County, usually not — most private-property removal needs no permit unless the parcel is in a specific overlay zone, the exception being property inside the Nevada City Sphere of Influence. Inside Grass Valley city limits, check with the city before removing street or landmark trees. Defensible-space obligations apply either way.',
+          'Inside the City of Grass Valley, for anything sizable, yes: a living tree over ten inches in trunk diameter on private property needs a city permit before removal, and replanting or an in-lieu fee can come with it. Dead trees and storm-downed trees are exempt. Outside city limits, unincorporated Nevada County is generally permissive for developed lots. Defensible-space obligations apply either way.',
       },
       {
         question: 'Can you handle a large tree hanging over my roof in an older Grass Valley neighborhood?',
@@ -102,7 +102,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
   {
     citySlug: 'nevada-city',
     serviceId: 'stump',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     h1: 'Stump Grinding in Nevada City, CA',
     metaDescription:
       'Stump grinding in Nevada City, CA — track machines that fit tight historic-district lots and steep Deer Creek slopes. CSLB #1085329.',
@@ -111,7 +111,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
     body: [
       'Nevada City’s big ponderosa, Douglas-fir, and incense cedar leave big stumps, often in back corners of Victorian-era lots reached only through a side gate or down a grade. We run compact, track-mounted grinders for exactly these sites — machines narrow enough to fit through a standard gate and stable enough to work on a slope — so the stump comes out without tearing up the garden or the driveway to reach it.',
       'Grinding is usually the finish of a removal rather than a standalone job here, and on these lots it is worth doing properly: we grind well below grade and through the major surface roots, then leave the chips as backfill or haul them, so the spot can be replanted or leveled. On the steeper Deer Creek-side parcels we are deliberate about how much root mass we take out, because on a slope those roots are also holding soil in place.',
-      'Nevada City is the one part of our service area where removal permits are common — property inside the Nevada City Sphere of Influence needs a permit from the County Planning Director before a tree comes down. Grinding an existing stump is a different matter, but if the stump is from a tree that still needs to come out, we confirm the permit position with the county first.',
+      'Nevada City is the one part of our service area where removal permits are routine — inside the City of Nevada City, most trees need a permit from the city planner before they come down, dead or dangerous ones included. Just outside town, the county’s Sphere of Influence permit exempts developed residential property. Grinding an existing stump is a different matter, but if the stump is from a tree that still needs to come out, we confirm the permit position first.',
     ],
     faqs: [
       {
@@ -127,7 +127,7 @@ export const CITY_SERVICE_COMBOS: CityServiceCombo[] = [
       {
         question: 'Do I need a permit for stump grinding in Nevada City?',
         answer:
-          'Grinding an existing stump is generally not the permitted action — it’s tree removal that triggers a permit, and Nevada City is stricter than most of the county: property inside the Nevada City Sphere of Influence needs County Planning Director approval before a tree comes down. If your stump is from a tree that still needs removing, we confirm that with the county before scheduling.',
+          'Grinding an existing stump is generally not the permitted action — it’s tree removal that triggers a permit, and the City of Nevada City sets a low bar for that: oaks from four inches and most other trees from six inches in cumulative trunk diameter need a permit from the city planner, even when dead. If your stump is from a tree that still needs removing, we confirm with the city before scheduling.',
       },
     ],
   },
