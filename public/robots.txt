@@ -1,32 +1,17 @@
 # Robots.txt for Barker Tree Services
 # https://barkertreeservices.com
 
-# Allow all crawlers to access public content
+# Allow all crawlers (search engines and AI search/assistant crawlers alike)
 User-agent: *
 Allow: /
-Disallow: /api/
 
-# Google - full access
-User-agent: Googlebot
-Allow: /
-
-# Bing - full access
-User-agent: Bingbot
-Allow: /
-
-# DuckDuckGo
-User-agent: DuckDuckBot
-Allow: /
-
-# SEO analysis bots - allow with api restriction
+# SEO analysis bots - allow, but slow them down
 User-agent: AhrefsBot
 Allow: /
-Disallow: /api/
 Crawl-delay: 2
 
 User-agent: SemrushBot
 Allow: /
-Disallow: /api/
 Crawl-delay: 2
 
 # Block aggressive/unnecessary bots
