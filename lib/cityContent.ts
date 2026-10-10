@@ -126,7 +126,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Grass Valley?',
         answer:
-          'Inside the City of Grass Valley, often yes. The city\'s Tree Preservation and Protection chapter (Municipal Code Chapter 12.36) requires a permit to remove any tree larger than ten inches in trunk diameter on private land, issued through Public Works, and replanting or an in-lieu fee can be a condition of approval. Dead trees and trees brought down by weather are exempt. Outside city limits, in unincorporated Nevada County, the county\'s tree standards attach mainly to development permits, so most removals on an already-developed lot need no county permit. Defensible-space obligations apply either way, and we confirm the permit position before starting.',
+          'Inside the City of Grass Valley, often yes. The city\'s Tree Preservation and Protection chapter (Municipal Code Chapter 12.36) requires a permit to remove a tree larger than ten inches in trunk diameter on private land, issued through Public Works, and replanting or an in-lieu fee can be a condition of approval. Dead trees and trees brought down by weather are exempt. Outside city limits, in unincorporated Nevada County, the county\'s tree standards attach mainly to development permits, so most removals on an already-developed lot need no county permit. Defensible-space obligations apply either way, and we confirm the permit position before starting.',
       },
       {
         question: 'Why are so many pines dying around Grass Valley?',
@@ -176,7 +176,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
   },
   'Rough and Ready': {
     county: 'Nevada',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       'Rough and Ready — the Gold Rush camp that famously declared itself its own republic in 1850 — is today a community of rural parcels off Rough and Ready Highway, where homes sit among the trees at the end of long private drives. That setting is exactly where a leaning pine or a dead oak goes from scenery to liability.',
     landscape:
@@ -194,7 +194,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Rough and Ready?',
         answer:
-          'Usually not. Rough and Ready is unincorporated western Nevada County, where most private-property removals do not require a permit unless the parcel falls in a specific overlay zone, unlike the Nevada City Sphere of Influence nearby, which does. What does apply out here is defensible space: 100 feet around structures under PRC 4291, and Nevada County enforces it. We confirm your parcel\'s status before removing anything protected.',
+          'Usually not. Rough and Ready is unincorporated western Nevada County, where the county\'s tree standards attach mainly to development permits, so removal on an established parcel generally needs none; even the county\'s permit rule around Nevada City exempts developed residential property. What does apply out here is defensible space: 100 feet around structures under PRC 4291, and Nevada County enforces it. We confirm your parcel\'s status before removing anything protected.',
       },
       {
         question: 'Why do gray pines drop such big limbs?',
@@ -398,7 +398,7 @@ export const CITY_DETAILS: Record<string, CityDetail> = {
       {
         question: 'Do I need a permit to remove a tree in Auburn?',
         answer:
-          'Usually not on a developed home lot, but which rules apply depends on whether the address is inside the City of Auburn. In town, the city\'s Tree Preservation chapter (Municipal Code Chapter 161) protects native trees six inches or more in trunk diameter, yet generally exempts a developed single-family lot under an acre in a single-family zone, and has its own exemptions for dead and hazardous trees. Much of what people call Auburn, including North Auburn and Bowman, is unincorporated Placer County, where the county\'s Woodland Conservation ordinance (Article 19.50) applies instead and names the Auburn/Bowman community plan area specifically. We confirm with City of Auburn Planning or Placer County Planning, whichever covers your address, before we cut.',
+          'It depends on whether the address is inside the City of Auburn. In town, usually not on a developed home lot: the city\'s Tree Preservation chapter (Municipal Code Chapter 161) protects native trees six inches or more in trunk diameter, but generally exempts a developed single-family lot under an acre in a single-family zone, and has its own exemptions for dead and hazardous trees. Much of what people call Auburn, including North Auburn and Bowman, is unincorporated Placer County instead, and the Auburn/Bowman community plan area is one of the few places the county\'s Woodland Conservation ordinance (Article 19.50) reaches ordinary removals: there, taking out a healthy native tree six inches and up, or an oak from five inches, can require a county Minor Tree Permit, while dead, dying, or hazardous trees are generally exempt. We confirm with City of Auburn Planning or Placer County Planning, whichever covers your address, before we cut.',
       },
       {
         question: 'Can you remove a tree hanging over the American River canyon?',
