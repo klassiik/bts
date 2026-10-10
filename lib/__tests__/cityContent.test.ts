@@ -1,8 +1,9 @@
-import { CITY_DETAILS, type CityDetail } from '../cityContent'
+import { CITY_DETAILS } from '../cityContent'
 import { CITY_SERVICE_COMBOS } from '../cityServices'
 import { pageTitle } from '../seo'
 import { SERVICE_AREAS } from '../config'
 import { generateFAQSchema } from '../schema'
+import { cityToSlug } from '../utils'
 
 const cities = Object.entries(CITY_DETAILS)
 
@@ -119,44 +120,6 @@ describe('per-city overrides', () => {
   })
 })
 
-// Colfax is an incorporated city. Placer County's Woodland Conservation
-// ordinance (Article 19.50) governs only the unincorporated area, so any copy
-// that cites it must also say that City of Colfax limits follow the city's own
-// rules. Citing the county ordinance alone is wrong for in-town addresses.
-describe('Colfax permit jurisdiction', () => {
-  const colfax: CityDetail = CITY_DETAILS['Colfax']
-  const strings: { where: string; text: string }[] = [
-    { where: 'regulations', text: colfax.regulations },
-    ...colfax.faqs.flatMap((f, i) => [
-      { where: `faqs[${i}].question`, text: f.question },
-      { where: `faqs[${i}].answer`, text: f.answer },
-    ]),
-    ...(colfax.sections ?? []).flatMap((s, i) => [
-      { where: `sections[${i}].heading`, text: s.heading },
-      ...s.body.map((text, j) => ({ where: `sections[${i}].body[${j}]`, text })),
-      ...(s.steps ?? []).map((text, j) => ({ where: `sections[${i}].steps[${j}]`, text })),
-    ]),
-    ...CITY_SERVICE_COMBOS.filter((c) => c.citySlug === 'colfax').flatMap((c) => [
-      ...c.body.map((text, j) => ({ where: `${c.serviceId}.body[${j}]`, text })),
-      ...c.faqs.flatMap((f, j) => [
-        { where: `${c.serviceId}.faqs[${j}].question`, text: f.question },
-        { where: `${c.serviceId}.faqs[${j}].answer`, text: f.answer },
-      ]),
-    ]),
-  ]
-
-  it('never cites the county ordinance without distinguishing City of Colfax', () => {
-    const offenders = strings
-      .filter(({ text }) => /19\.50|Woodland Conservation/.test(text) && !text.includes('City of Colfax'))
-      .map(({ where }) => where)
-    expect(offenders).toEqual([])
-  })
-
-  it('actually cites the ordinance somewhere (guards against a vacuous pass)', () => {
-    expect(strings.some(({ text }) => /19\.50|Woodland Conservation/.test(text))).toBe(true)
-  })
-})
-
 describe('Colfax hub page', () => {
   const colfax = CITY_DETAILS['Colfax']
 
@@ -171,5 +134,89 @@ describe('Colfax hub page', () => {
   it('says plainly that it does not use cranes', () => {
     const text = (colfax.sections ?? []).flatMap((s) => [...s.body, ...(s.steps ?? [])]).join(' ')
     expect(text).toMatch(/don’t use cranes|don\'t use cranes/)
+  })
+})
+
+// County tree ordinances stop at the city limit. Placer County's Woodland
+// Conservation ordinance (Article 19.50) and Nevada County's Sphere of
+// Influence permit both govern unincorporated land only, so copy for an
+// incorporated city that cites them, without saying the city's own rules
+// apply inside its limits, is wrong for every in-town address. Auburn's
+// permit FAQ shipped exactly that.
+describe('permit jurisdiction', () => {
+  // Every SERVICE_AREAS city must be classified here, so adding a city forces
+  // the jurisdiction question before its permit copy is written.
+  const INCORPORATED: Record<string, string> = {
+    'Colfax': 'City of Colfax',
+    'Grass Valley': 'City of Grass Valley',
+    'Nevada City': 'City of Nevada City',
+    'Loomis': 'Town of Loomis',
+    'Rocklin': 'City of Rocklin',
+    'Lincoln': 'City of Lincoln',
+    'Auburn': 'City of Auburn',
+  }
+  const UNINCORPORATED = ['Rough and Ready', 'Smartville', 'Penryn']
+
+  // Phrases that mark a county permit rule. Bare "Nevada County" is not one:
+  // it appears in defensible-space copy that makes no permit claim.
+  const COUNTY_RULE: Record<string, RegExp> = {
+    Placer: /19\.50|Woodland Conservation|Minor Tree Permit/,
+    Nevada: /Sphere of Influence|County Planning Director/,
+  }
+
+  function cityStrings(city: string): { where: string; text: string }[] {
+    const detail = CITY_DETAILS[city]
+    return [
+      { where: 'regulations', text: detail.regulations },
+      ...detail.faqs.flatMap((f, i) => [
+        { where: `faqs[${i}].question`, text: f.question },
+        { where: `faqs[${i}].answer`, text: f.answer },
+      ]),
+      ...(detail.sections ?? []).flatMap((sec, i) => [
+        { where: `sections[${i}].heading`, text: sec.heading },
+        ...sec.body.map((text, j) => ({ where: `sections[${i}].body[${j}]`, text })),
+        ...(sec.steps ?? []).map((text, j) => ({ where: `sections[${i}].steps[${j}]`, text })),
+      ]),
+      ...CITY_SERVICE_COMBOS.filter((c) => c.citySlug === cityToSlug(city)).flatMap((c) => [
+        { where: `${c.serviceId}.intro`, text: c.intro },
+        ...c.body.map((text, j) => ({ where: `${c.serviceId}.body[${j}]`, text })),
+        ...c.faqs.flatMap((f, j) => [
+          { where: `${c.serviceId}.faqs[${j}].question`, text: f.question },
+          { where: `${c.serviceId}.faqs[${j}].answer`, text: f.answer },
+        ]),
+      ]),
+    ]
+  }
+
+  it('classifies every service area as incorporated or not', () => {
+    const classified = [...Object.keys(INCORPORATED), ...UNINCORPORATED].sort()
+    expect(classified).toEqual(SERVICE_AREAS.map((a) => a.city).sort())
+  })
+
+  it('names the city or town government in each incorporated city\'s permit FAQ', () => {
+    for (const [city, government] of Object.entries(INCORPORATED)) {
+      const permitFaqs = CITY_DETAILS[city].faqs.filter((f) => /permit/i.test(f.question))
+      expect({ city, count: permitFaqs.length }).toEqual({ city, count: 1 })
+      expect({ city, named: permitFaqs[0].answer.includes(government) }).toEqual({ city, named: true })
+    }
+  })
+
+  it('never cites a county rule for an incorporated city without naming the city government', () => {
+    const offenders: string[] = []
+    for (const [city, government] of Object.entries(INCORPORATED)) {
+      const countyRule = COUNTY_RULE[CITY_DETAILS[city].county]
+      for (const { where, text } of cityStrings(city)) {
+        if (countyRule?.test(text) && !text.includes(government)) offenders.push(`${city} ${where}`)
+      }
+    }
+    expect(offenders).toEqual([])
+  })
+
+  it('actually checks county-rule citations (guards against a vacuous pass)', () => {
+    const cited = Object.keys(INCORPORATED).filter((city) => {
+      const countyRule = COUNTY_RULE[CITY_DETAILS[city].county]
+      return cityStrings(city).some(({ text }) => countyRule?.test(text))
+    })
+    expect(cited).toEqual(expect.arrayContaining(['Auburn', 'Colfax']))
   })
 })

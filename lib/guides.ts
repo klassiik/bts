@@ -45,7 +45,7 @@ export const GUIDES: Guide[] = [
       'How defensible space and the proposed Zone 0 ember-resistant zone work for foothill properties, and how tree work fits the 100-foot standard.',
     category: 'fire-safety',
     readTime: '9 min read',
-    updated: '2026-07-16',
+    updated: '2026-10-09',
     intro:
       'Most of the foothill country we work in — Colfax, Auburn, Grass Valley, Nevada City and the parcels around them — sits in a Very High Fire Hazard Severity Zone, where maintaining defensible space around structures is state law, not just good practice. Defensible space is largely a tree and vegetation problem, so here is how it actually works, what is current law versus what is still being written, and where a tree crew fits in.',
     sections: [
@@ -85,7 +85,7 @@ export const GUIDES: Guide[] = [
         heading: 'Defensible space and tree-removal permits',
         body: [
           'A common worry is that permit rules will stop you from doing required fire work. In practice the two are usually compatible, but they differ by jurisdiction, so it is worth knowing which county you are in.',
-          'In Placer County, the Woodland Conservation ordinance generally exempts developed single-family lots that cannot be subdivided, and its permit trigger targets larger clearing rather than routine defensible-space work. In unincorporated Nevada County, most private-property removal needs no permit unless the parcel is in a specific overlay zone — the notable exception being properties inside the Nevada City Sphere of Influence, which do require a permit. Incorporated cities like Rocklin and the Town of Loomis protect native oaks by ordinance regardless of fire zone. We check the specific parcel before removing anything protected, and defensible-space obligations apply either way.',
+          'In unincorporated Placer County, the Woodland Conservation ordinance generally exempts developed single-family lots that cannot be subdivided, and its permit trigger targets larger clearing rather than routine defensible-space work. In unincorporated Nevada County, tree standards attach mainly to development permits, and even the permit rule around Nevada City exempts developed residential property. Inside city or town limits the local ordinance governs instead, regardless of fire zone: Rocklin and the Town of Loomis protect native oaks, and Grass Valley and Nevada City require city permits for many removals. We check the specific parcel before removing anything protected, and defensible-space obligations apply either way.',
         ],
       },
     ],
@@ -103,7 +103,7 @@ export const GUIDES: Guide[] = [
       {
         question: 'Do I need a permit to remove a tree for fire safety?',
         answer:
-          'It depends on your jurisdiction. Most developed single-family lots in Placer County are exempt, and most of unincorporated Nevada County needs no permit outside overlay zones and the Nevada City Sphere of Influence. Cities like Rocklin and the Town of Loomis protect native oaks by ordinance. We confirm the specific parcel before removing anything protected.',
+          'It depends on your jurisdiction. Most developed single-family lots in unincorporated Placer County are exempt, and most established lots in unincorporated Nevada County need no county permit. Inside city limits the city’s own ordinance applies: Rocklin and the Town of Loomis protect native oaks, and Grass Valley and Nevada City require permits for many removals. We confirm the specific parcel before removing anything protected.',
       },
     ],
     related: ['tree-safety-assessment', 'seasonal-tree-care'],
