@@ -17,8 +17,7 @@ import {
   Cog6ToothIcon
 } from '@heroicons/react/24/outline'
 import FAQSection from '@/components/FAQSection'
-import Video from '@/components/Video'
-import { getVideoUrl, getVideoHeroUrl, getVideoMobileUrl, getVideoPosterUrl } from '@/lib/media'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 // Hero city line: a short, high-signal subset; the rest are one click away.
 const HERO_CITIES = ['Colfax', 'Auburn', 'Grass Valley', 'Nevada City']
@@ -32,23 +31,12 @@ export default function HomeContent() {
     <>
       {/* GEO: Hero section with semantic article landmark for main business proposition */}
       <section className="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-950 py-20 px-4 overflow-hidden" aria-label="Hero - Tree service across the Sierra foothills, based in Colfax, CA">
-        <Video
-          src={
-            getVideoHeroUrl('553827505_24841983355418125_3276620820634142277_n') ??
-            getVideoUrl('553827505_24841983355418125_3276620820634142277_n')
-          }
-          mobileSrc={getVideoMobileUrl('553827505_24841983355418125_3276620820634142277_n')}
-          poster={getVideoPosterUrl('553827505_24841983355418125_3276620820634142277_n')}
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-          style={{ zIndex: 0 }}
-          aria-hidden="true"
-        />
+        <HeroBackdrop className="absolute inset-0 w-full h-full" />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-charcoal-950/50 via-charcoal-950/35 to-charcoal-950/25 md:bg-gradient-to-r md:from-charcoal-950/90 md:via-charcoal-950/60 md:to-charcoal-950/20 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-b from-charcoal-950/40 via-charcoal-950/30 to-charcoal-950/20 md:bg-gradient-to-r md:from-charcoal-950/80 md:via-charcoal-950/35 md:to-transparent pointer-events-none"
           style={{ zIndex: 1 }}
           aria-hidden="true"
         ></div>
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" style={{ zIndex: 1 }}></div>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 10 }}>
           <div>
