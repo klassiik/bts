@@ -1,10 +1,10 @@
 /* GEO: About page with Organization schema markers and semantic article structure for AI extraction */
 import { BUSINESS_INFO, COMPANY_CREDENTIALS } from '@/lib/config'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
-import Video from '@/components/Video'
+import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, CheckCircleIcon, SparklesIcon, HomeIcon, GlobeAmericasIcon, HeartIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import TreeCareGuides from '@/components/TreeCareGuides'
-import { getVideoUrl } from '@/lib/media'
+import { getVideoPosterUrl } from '@/lib/media'
 
 export default function AboutContent() {
   return (
@@ -53,10 +53,14 @@ export default function AboutContent() {
             <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20" role="complementary" aria-label="Company differentiators">
               <StaticCardBody className="p-8">
                 <div className="mb-6 rounded-lg overflow-hidden relative">
-                  <Video
-                    src={getVideoUrl('554478983_25636593632607805_5041281570766047163_n')}
-                    className="w-full h-auto relative z-0"
-                    aria-label="About Barker Tree Services"
+                  {/* Still from job footage (poster frame emitted by sync-media.mjs) */}
+                  <Image
+                    src={getVideoPosterUrl('554478983_25636593632607805_5041281570766047163_n')}
+                    alt="Barker climber high in a pine, fresh limb cuts down the trunk, during a removal"
+                    width={406}
+                    height={720}
+                    className="w-full h-auto"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-evergreen-300 mb-6">Why We&apos;re Different</h3>

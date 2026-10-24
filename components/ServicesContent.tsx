@@ -2,9 +2,9 @@
 import Link from 'next/link'
 import { SERVICES, BUSINESS_INFO, YEARS_IN_BUSINESS, FOUNDING_YEAR } from '@/lib/config'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
-import Video from '@/components/Video'
+import Image from 'next/image'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarIcon, HomeIcon, ShieldCheckIcon, BoltIcon } from '@heroicons/react/24/outline'
-import { getVideoUrl } from '@/lib/media'
+import { getVideoPosterUrl } from '@/lib/media'
 
 export default function ServicesContent() {
   return (
@@ -42,7 +42,7 @@ export default function ServicesContent() {
         </div>
       </section>
 
-      {/* Video showcase section */}
+      {/* Work showcase section (still from job footage) */}
       <section className="py-20 px-4 bg-charcoal-900/30" aria-label="Our work in action">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -51,10 +51,13 @@ export default function ServicesContent() {
           </div>
           <StaticCard className="bg-charcoal-800/50 border border-evergreen-900/20 overflow-hidden">
             <StaticCardBody className="p-0 relative">
-              <Video
-                src={getVideoUrl('553827505_24841983355418125_3276620820634142277_n')}
-                className="w-full h-auto relative z-0"
-                aria-label="Barker Tree Services professional tree care work demonstration"
+              <Image
+                src={getVideoPosterUrl('553827505_24841983355418125_3276620820634142277_n')}
+                alt="Climber's view from high in a tree: chainsaw in a gloved hand above the yard below"
+                width={720}
+                height={406}
+                className="w-full h-auto"
+                sizes="(max-width: 1152px) 100vw, 1152px"
               />
             </StaticCardBody>
           </StaticCard>

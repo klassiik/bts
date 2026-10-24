@@ -9,8 +9,7 @@ import {
   BoltIcon
 } from '@heroicons/react/24/outline'
 import { BUSINESS_INFO } from '@/lib/config'
-import Video from '@/components/Video'
-import { getVideoUrl } from '@/lib/media'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 export default function EmergencyResponseContent() {
   const emergencyScenarios = [
@@ -79,12 +78,9 @@ export default function EmergencyResponseContent() {
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden bg-gradient-to-br from-red-950/30 via-charcoal-950 to-charcoal-950">
-        <Video
-          src={getVideoUrl('555764101_25387785744161354_2365138505705379783_n')}
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ zIndex: 0 }}
-          aria-hidden="true"
-        />
+        <HeroBackdrop className="absolute inset-0 w-full h-full" />
+        {/* Red-tinted scrim keeps the emergency feel and centered-text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-950/50 via-charcoal-950/45 to-charcoal-950/30 pointer-events-none" style={{ zIndex: 1 }} aria-hidden="true" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]" style={{ zIndex: 1 }} />
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" style={{ zIndex: 1 }} />
         

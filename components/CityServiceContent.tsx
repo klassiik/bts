@@ -5,8 +5,8 @@ import { getCityServiceCombo } from '@/lib/cityServices'
 import { cityToSlug } from '@/lib/utils'
 import { ButtonLink, StaticCard, StaticCardBody, StaticChip } from '@/components/ui'
 import { PhoneIcon, MapPinIcon, CheckCircleIcon, StarIcon, ScissorsIcon, TruckIcon, Cog6ToothIcon, BoltIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
-import Video from '@/components/Video'
-import { getVideoUrl } from '@/lib/media'
+import Image from 'next/image'
+import { getVideoPosterUrl } from '@/lib/media'
 
 interface CityServiceContentProps {
   city: string
@@ -130,12 +130,16 @@ export default function CityServiceContent({ city, state }: CityServiceContentPr
               <h3 className="text-2xl font-bold text-evergreen-300 mb-6">
                 Tree Care Specialists Serving {city}
               </h3>
-              {/* Work clip (crew footage, not city-specific) */}
-              <div className="mb-6 rounded-lg overflow-hidden relative">
-                <Video
-                  src={getVideoUrl('554341283_24812556778411123_8495766478130270581_n')}
-                  className="w-full h-auto aspect-[9/16] relative z-0"
-                  aria-label="Barker Tree Services crew at work"
+              {/* Still from crew footage (not city-specific) */}
+              {/* Portrait still: capped so it doesn't run ~1900px tall at full card width */}
+              <div className="mb-6 rounded-lg overflow-hidden relative w-full max-w-sm mx-auto">
+                <Image
+                  src={getVideoPosterUrl('554341283_24812556778411123_8495766478130270581_n')}
+                  alt="Tall pine limbed down to a bare spar mid-removal, standing among healthy pines"
+                  width={406}
+                  height={720}
+                  className="w-full h-auto"
+                  sizes="(max-width: 448px) 100vw, 384px"
                 />
               </div>
               {detail ? (
