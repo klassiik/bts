@@ -12,111 +12,38 @@ const MANIFEST_PATH = path.resolve('lib', 'generated', 'media-manifest.json');
 
 const IMAGE_EXTS = ['.jpg', '.jpeg', '.png', '.webp'];
 
-// Two encode profiles, because the clips have two very different jobs.
-// Originals are 7-18MB Instagram/Facebook exports; all are stripped of
-// audio and held to 24fps for smooth motion.
-//
-// `backdrop`: full-bleed `absolute inset-0` loops sitting at 30-40%
-// opacity behind hero text, aria-hidden, that nobody looks at directly.
-// These were the single largest transfer on their pages (the homepage
-// clip alone was 1.9MB and gates mobile LCP), so they get a lower
-// bitrate ceiling and a 540px long edge - detail is invisible under the
-// opacity layer anyway.
-//
-// `showcase`: clips rendered at full opacity inside a card for the
-// visitor to actually watch. These stay at the original quality.
-// `standard` is what every clip has always been encoded at, and what desktop
-// still gets: at 1440px the hero fills the viewport, and desktop LCP already
-// passes comfortably, so there is nothing to buy by degrading it.
-//
-// `backdropMobile` is an extra, much smaller encode emitted only for the
-// backdrop clips and served only under 768px via <source media>. Mobile is
-// where LCP fails, and the homepage clip alone was 1.9MB of it. Measured on
-// the homepage (median of 5, mobile emulation): 1.9MB/720px = LCP 4.10s vs
-// 0.6MB/540px = LCP 3.03s. An in-between 1.4MB/720px encode measured 4.11s —
-// i.e. no benefit at all — so the size has to come down for LCP to move, and
-// the resolution drop is only acceptable because these sit at 30-40% opacity
-// behind hero text on a small screen.
-const ENCODE_PROFILES = {
-  standard: { crf: 32, maxrate: '500k', bufsize: '1000k', longEdge: 720 },
-  backdropMobile: { crf: 36, maxrate: '200k', bufsize: '400k', longEdge: 540 },
-  // `hero` is a sharper, trimmed encode of the genuinely landscape homepage
-  // clip, served to desktop only. Stretching the portrait mobile clip ~3.5x
-  // into the landscape hero box looked soft; this one is 1280px wide at its
-  // native aspect, and trimmed to 15s to keep the transfer bounded.
-  hero: { crf: 30, maxrate: '1000k', bufsize: '2000k', longEdge: 1280, maxDuration: 15 },
-  // `heroMobile` is the phone counterpart of `hero`: the same landscape clip,
-  // center-cropped to a 9:16 portrait slice (cropPortrait) before scaling, so
-  // the 720px long edge is spent on the visible part of the frame instead of
-  // on pixels object-cover would crop away. Served under 768px.
-  heroMobile: { crf: 34, maxrate: '300k', bufsize: '600k', longEdge: 720, maxDuration: 15, cropPortrait: true },
-};
-
-const BACKDROP_CLIPS = new Set([
-  '556677411_32055543104036746_2204476273704338762_n', // contact hero
-  '555764101_25387785744161354_2365138505705379783_n', // emergency hero
-]);
-
-// Clips that get the sharp `hero` encode (.h.mp4, desktop) and the cropped
-// `heroMobile` encode (.m.mp4, phones). Covers desktop + mobile, so these
-// clips don't also need to be in BACKDROP_CLIPS.
-const HERO_CLIPS = new Set([
-  '553827505_24841983355418125_3276620820634142277_n', // homepage hero (desktop + mobile)
-]);
-
-const videoFilterFor = ({ longEdge, cropPortrait }) =>
-  (cropPortrait ? 'crop=trunc(ih*9/16/2)*2:ih,' : '') +
-  `scale='if(gt(iw,ih),min(${longEdge},iw),-2)':'if(gt(iw,ih),-2,min(${longEdge},ih))'`;
+// The site no longer plays any video: background clips were replaced by the
+// SVG HeroBackdrop, and in-page job clips by a still frame from each clip.
+// So the only output per source .mp4 is a WebP poster (1s in, 720px long
+// edge), served via getVideoPosterUrl. No video is encoded or published.
+const POSTER_PROFILE = { seekSeconds: 1, longEdge: 720, quality: 75 };
 
 async function ensureDir(p) {
   await fs.mkdir(p, { recursive: true });
 }
 
-// The hash covers the source bytes AND every encode profile applied to them.
-// Profiles have to be in there: /media/* is served `immutable` for a year, so
-// if tuning an encode setting produced different bytes at the same URL, every
-// client and CDN edge holding the old copy would keep serving it indefinitely.
-async function hashFile(p, profiles) {
+// The hash covers the source bytes AND the poster profile. The profile has to
+// be in there: /media/* is served `immutable` for a year, so if tuning it
+// produced different bytes at the same URL, every client and CDN edge holding
+// the old copy would keep serving it indefinitely.
+async function hashFile(p, profile) {
   const buf = await fs.readFile(p);
   return createHash('sha256')
     .update(buf)
-    .update(JSON.stringify(profiles))
+    .update(JSON.stringify(profile))
     .digest('hex')
     .slice(0, 8);
 }
 
-function encodeMp4(input, output, profile) {
+function extractPoster(input, output, { seekSeconds, longEdge, quality }) {
   return new Promise((resolve, reject) => {
     ffmpeg(input)
-      .videoCodec('libx264')
-      .outputOptions([
-        '-preset veryfast',
-        `-crf ${profile.crf}`,
-        `-maxrate ${profile.maxrate}`,
-        `-bufsize ${profile.bufsize}`,
-        '-r 24',
-        '-movflags +faststart',
-        `-vf ${videoFilterFor(profile)}`,
-        ...(profile.maxDuration ? [`-t ${profile.maxDuration}`] : []),
-      ])
-      .noAudio()
-      .on('error', reject)
-      .on('end', resolve)
-      .save(output);
-  });
-}
-
-// Poster frame so the browser has an immediate paint candidate
-// (Video.tsx derives the poster URL from the mp4 URL).
-function extractPoster(input, output, profile) {
-  return new Promise((resolve, reject) => {
-    ffmpeg(input)
-      .seekInput(1)
+      .seekInput(seekSeconds)
       .outputOptions([
         '-frames:v 1',
-        `-vf ${videoFilterFor(profile)}`,
+        `-vf scale='if(gt(iw,ih),min(${longEdge},iw),-2)':'if(gt(iw,ih),-2,min(${longEdge},ih))'`,
         '-c:v libwebp',
-        '-quality 75',
+        `-quality ${quality}`,
       ])
       .on('error', reject)
       .on('end', resolve)
@@ -125,96 +52,37 @@ function extractPoster(input, output, profile) {
 }
 
 // Content-hashed output filenames (like Next.js does for /_next/static/*):
-// any re-encode gets a brand-new URL, so a CDN/browser that cached the old
+// a changed source gets a brand-new URL, so a CDN/browser that cached the old
 // URL as `immutable` can never serve stale bytes for changed content.
-// The hash is of the SOURCE file, not the ffmpeg output, so it's stable
-// across re-runs even though video encoding isn't byte-for-byte deterministic.
-async function processVideo(srcPath, baseName, manifest) {
-  const isBackdrop = BACKDROP_CLIPS.has(baseName);
-  const isHero = HERO_CLIPS.has(baseName);
-  const profiles = {
-    standard: ENCODE_PROFILES.standard,
-    ...(isHero
-      ? { mobile: ENCODE_PROFILES.heroMobile, hero: ENCODE_PROFILES.hero }
-      : isBackdrop
-        ? { mobile: ENCODE_PROFILES.backdropMobile }
-        : {}),
-  };
-  const hasMobile = Boolean(profiles.mobile);
-
-  const hash = await hashFile(srcPath, profiles);
-  const mp4Name = `${baseName}.${hash}.mp4`;
+async function processPoster(srcPath, baseName, manifest) {
+  const hash = await hashFile(srcPath, POSTER_PROFILE);
   const webpName = `${baseName}.${hash}.webp`;
-  const mobileName = `${baseName}.${hash}.m.mp4`;
-  const heroName = `${baseName}.${hash}.h.mp4`;
-  const mp4Out = path.join(DEST_DIR, mp4Name);
   const posterOut = path.join(DEST_DIR, webpName);
-  const mobileOut = path.join(DEST_DIR, mobileName);
-  const heroOut = path.join(DEST_DIR, heroName);
 
-  manifest[baseName] = {
-    mp4: `/media/${mp4Name}`,
-    webp: `/media/${webpName}`,
-    ...(hasMobile ? { mp4Mobile: `/media/${mobileName}` } : {}),
-    ...(isHero ? { mp4Hero: `/media/${heroName}` } : {}),
-  };
+  manifest[baseName] = { webp: `/media/${webpName}` };
 
-  // Every output has to exist, not just the mp4: if poster extraction failed
-  // after the mp4 was renamed into place, checking only the mp4 would make
-  // every subsequent run skip the work while the manifest kept pointing at a
-  // poster that isn't there — costing the <video> its LCP paint candidate.
-  const built = async (f) => fs.stat(f).then((s) => s.size > 0).catch(() => false);
-  const alreadyBuilt =
-    (await built(mp4Out)) &&
-    (await built(posterOut)) &&
-    (!hasMobile || (await built(mobileOut))) &&
-    (!isHero || (await built(heroOut)));
-  if (alreadyBuilt) {
-    console.log(`Up to date: ${mp4Name}`);
-    return;
-  }
-
-  // Clean up prior-hash outputs for this source so stale files don't
-  // accumulate across repeated local dev runs.
+  // Remove prior-hash outputs for this source, including the .mp4/.m.mp4/.h.mp4
+  // encodes older versions of this script emitted, so they don't linger in
+  // public/media (and get deployed) on machines that ran the old pipeline.
   const dirEntries = await fs.readdir(DEST_DIR).catch(() => []);
-  const stalePrefix = `${baseName}.`;
-  const keep = new Set([
-    mp4Name,
-    webpName,
-    ...(hasMobile ? [mobileName] : []),
-    ...(isHero ? [heroName] : []),
-  ]);
   await Promise.all(
     dirEntries
-      .filter((f) => f.startsWith(stalePrefix) && !keep.has(f))
+      .filter((f) => f.startsWith(`${baseName}.`) && f !== webpName)
       .map((f) => fs.rm(path.join(DEST_DIR, f)).catch(() => {}))
   );
 
-  const tmp = `${mp4Out}.tmp.mp4`;
-  console.log(`Encoding: ${mp4Name}`);
-  await encodeMp4(srcPath, tmp, profiles.standard);
-  await fs.rename(tmp, mp4Out);
-  await extractPoster(srcPath, posterOut, profiles.standard);
-
-  const [inStat, outStat] = await Promise.all([fs.stat(srcPath), fs.stat(mp4Out)]);
-  let line = `  ${(inStat.size / 1e6).toFixed(1)}MB -> ${(outStat.size / 1e6).toFixed(1)}MB (+ poster)`;
-
-  if (hasMobile) {
-    const mtmp = `${mobileOut}.tmp.mp4`;
-    await encodeMp4(srcPath, mtmp, profiles.mobile);
-    await fs.rename(mtmp, mobileOut);
-    const mStat = await fs.stat(mobileOut);
-    line += ` | mobile ${(mStat.size / 1e6).toFixed(1)}MB`;
+  const built = await fs.stat(posterOut).then((s) => s.size > 0).catch(() => false);
+  if (built) {
+    console.log(`Up to date: ${webpName}`);
+    return;
   }
 
-  if (isHero) {
-    const htmp = `${heroOut}.tmp.mp4`;
-    await encodeMp4(srcPath, htmp, profiles.hero);
-    await fs.rename(htmp, heroOut);
-    const hStat = await fs.stat(heroOut);
-    line += ` | hero ${(hStat.size / 1e6).toFixed(1)}MB`;
-  }
-  console.log(line);
+  // Write to a temp name and rename, so an interrupted run never leaves a
+  // truncated poster that the next run would mistake for a finished one.
+  const tmp = `${posterOut}.tmp.webp`;
+  console.log(`Extracting poster: ${webpName}`);
+  await extractPoster(srcPath, tmp, POSTER_PROFILE);
+  await fs.rename(tmp, posterOut);
 }
 
 async function main() {
@@ -235,8 +103,8 @@ async function main() {
 
     if (ext === '.mp4') {
       const baseName = entry.name.slice(0, -ext.length);
-      await processVideo(srcPath, baseName, manifest);
-    } else if (IMAGE_EXTS.includes(ext) || ext === '.webm') {
+      await processPoster(srcPath, baseName, manifest);
+    } else if (IMAGE_EXTS.includes(ext)) {
       const destPath = path.join(DEST_DIR, entry.name);
       const [src, out] = await Promise.all([
         fs.stat(srcPath),
