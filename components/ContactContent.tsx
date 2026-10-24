@@ -3,8 +3,7 @@ import { BUSINESS_INFO, GOOGLE_BUSINESS } from '@/lib/config'
 import ContactForm from '@/components/ContactForm'
 import { StaticCard, StaticCardBody, StaticCardLink, StaticChip } from '@/components/ui'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, ClockIcon } from '@heroicons/react/24/outline'
-import Video from '@/components/Video'
-import { getVideoUrl, getVideoMobileUrl } from '@/lib/media'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 // Card look carried over from the old HeroUI cards: 14px radius, soft shadow
 // with a hairline inner highlight, light-grey default text colour.
@@ -14,13 +13,9 @@ const cardBody = 'flex-row items-start gap-4 p-6 text-left'
 export default function ContactContent() {
   return (
     <section className="relative py-20 px-4 bg-charcoal-950 min-h-[calc(100vh-200px)] overflow-hidden" aria-label="Contact Barker Tree Services">
-      <Video
-        src={getVideoUrl('556677411_32055543104036746_2204476273704338762_n')}
-        mobileSrc={getVideoMobileUrl('556677411_32055543104036746_2204476273704338762_n')}
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
-        style={{ zIndex: 0 }}
-        aria-hidden="true"
-      />
+      <HeroBackdrop className="absolute inset-0 w-full h-full" />
+      {/* Even scrim: the form sits over the whole scene, not just one side */}
+      <div className="absolute inset-0 bg-charcoal-950/40 pointer-events-none" style={{ zIndex: 1 }} aria-hidden="true"></div>
       <div className="max-w-6xl mx-auto relative" style={{ zIndex: 10 }}>
         <div className="text-center mb-12">
           <StaticChip
