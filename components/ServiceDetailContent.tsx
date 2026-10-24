@@ -6,9 +6,9 @@ import { getCombosForService } from '@/lib/cityServices'
 import { ButtonLink, StaticCard, StaticCardBody } from '@/components/ui'
 import { PhoneIcon, CheckCircleIcon, WrenchScrewdriverIcon, CalendarDaysIcon, CurrencyDollarIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
-import Video from '@/components/Video'
+import Image from 'next/image'
 import WorkGallery from '@/components/WorkGallery'
-import { getVideoUrl } from '@/lib/media'
+import { getVideoPosterUrl } from '@/lib/media'
 
 interface ServiceData {
   id: string
@@ -129,10 +129,13 @@ export default function ServiceDetailContent({ service }: { service: ServiceData
             </h2>
             {service.id === 'removal' && (
               <div className="mb-8 rounded-lg overflow-hidden max-w-md mx-auto">
-                <Video
-                  src={getVideoUrl('tree-removal-limbing')}
-                  className="w-full h-auto aspect-[9/16]"
-                  aria-label="Barker climber limbing a tall pine during a sectional removal"
+                <Image
+                  src={getVideoPosterUrl('tree-removal-limbing')}
+                  alt="Barker climber limbing a tall pine against a blue sky during a sectional removal"
+                  width={406}
+                  height={720}
+                  className="w-full h-auto"
+                  sizes="(max-width: 448px) 100vw, 448px"
                 />
               </div>
             )}
